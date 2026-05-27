@@ -781,30 +781,45 @@
                 font-size: 0.8rem;
             }
         }
-                /* Stats Grid Dark - Compact Version */
+                        /* Stats Grid Dark - 2 Rows Layout */
         .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             background: linear-gradient(135deg, #1e1b4b 0%, #2e1065 100%);
-            padding: 32px 40px;
+            padding: 28px 32px;
             border-radius: 36px;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
         .stat-item {
             text-align: center;
             color: white;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
         }
 
         .stat-item i {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: #a78bfa;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: inline-block;
         }
 
         .stat-number {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
             color: white;
         }
@@ -812,8 +827,64 @@
         .stat-label {
             color: #c4b5fd;
             font-weight: 500;
-            margin-top: 6px;
-            font-size: 0.8rem;
+            margin-top: 4px;
+            font-size: 0.7rem;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .stats-grid {
+                padding: 20px 20px;
+                gap: 16px;
+            }
+            
+            .stat-row {
+                gap: 12px;
+            }
+            
+            .stat-item {
+                padding: 10px 12px;
+            }
+            
+            .stat-item i {
+                font-size: 1.3rem;
+                margin-bottom: 6px;
+            }
+            
+            .stat-number {
+                font-size: 1.3rem;
+            }
+            
+            .stat-label {
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                padding: 16px 16px;
+                gap: 12px;
+            }
+            
+            .stat-row {
+                gap: 10px;
+            }
+            
+            .stat-item {
+                padding: 8px 10px;
+            }
+            
+            .stat-item i {
+                font-size: 1.1rem;
+            }
+            
+            .stat-number {
+                font-size: 1.1rem;
+            }
+            
+            .stat-label {
+                font-size: 0.55rem;
+            }
         }
 
         /* Mobile responsive for stats */
@@ -1906,13 +1977,33 @@
     }
 </style>
 
-<!-- Stats Dark Section - Compact -->
+<!-- Stats Dark Section - 2 Rows Layout -->
 <div class="container" data-aos="fade-up" data-aos-duration="800">
     <div class="stats-grid">
-        <div class="stat-item"><i class="fas fa-school"></i><div class="stat-number" data-target="52">0</div><div class="stat-label">Schools</div></div>
-        <div class="stat-item"><i class="fas fa-user-graduate"></i><div class="stat-number" data-target="18400">0</div><div class="stat-label">Students</div></div>
-        <div class="stat-item"><i class="fas fa-question-circle"></i><div class="stat-number" data-target="134">0</div><div class="stat-label">Quizzes</div></div>
-        <div class="stat-item"><i class="fas fa-crown"></i><div class="stat-number" data-target="1">0</div><div class="stat-label">Pioneer</div></div>
+        <div class="stat-row">
+            <div class="stat-item">
+                <i class="fas fa-school"></i>
+                <div class="stat-number" data-target="52">0</div>
+                <div class="stat-label">Schools Partnered</div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-user-graduate"></i>
+                <div class="stat-number" data-target="18400">0</div>
+                <div class="stat-label">Students Impacted</div>
+            </div>
+        </div>
+        <div class="stat-row">
+            <div class="stat-item">
+                <i class="fas fa-question-circle"></i>
+                <div class="stat-number" data-target="134">0</div>
+                <div class="stat-label">Quizzes Organized</div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-crown"></i>
+                <div class="stat-number" data-target="1">0</div>
+                <div class="stat-label">Pioneer in J&K</div>
+            </div>
+        </div>
     </div>
 </div>
 
