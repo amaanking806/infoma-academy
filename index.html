@@ -231,33 +231,118 @@
             margin-bottom: 32px;
         }
 
-        .hero-stats {
+                /* Hero Stats - Modern Redesign */
+        .hero-stats-modern {
             display: flex;
-            flex-wrap: wrap;
             gap: 24px;
-            margin-top: 0;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
 
-        .hero-stat {
+        .hero-stat-card {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
         }
 
-        .hero-stat i {
-            font-size: 1.6rem;
-            color: #a78bfa;
+        .hero-stat-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            border-color: rgba(168, 85, 247, 0.5);
         }
 
-        .hero-stat .stat-info .number {
-            font-size: 1.2rem;
-            font-weight: 800;
+        .hero-stat-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(139, 92, 246, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .hero-stat-card:hover .hero-stat-icon {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            transform: scale(1.05);
+        }
+
+        .hero-stat-icon i {
+            font-size: 1.3rem;
+            color: #c4b5fd;
+            transition: all 0.3s ease;
+        }
+
+        .hero-stat-card:hover .hero-stat-icon i {
             color: white;
         }
 
-        .hero-stat .stat-info .label {
+        .hero-stat-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-number {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .hero-stat-label {
             font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .hero-stats-modern {
+                gap: 12px;
+                justify-content: center;
+            }
+            
+            .hero-stat-card {
+                padding: 8px 16px;
+                gap: 10px;
+            }
+            
+            .hero-stat-icon {
+                width: 38px;
+                height: 38px;
+            }
+            
+            .hero-stat-icon i {
+                font-size: 1rem;
+            }
+            
+            .hero-stat-number {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stat-label {
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .hero-stats-modern {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            
+            .hero-stat-card {
+                justify-content: center;
+                padding: 10px 20px;
+            }
         }
 
         /* Mobile Responsive Hero */
@@ -1718,10 +1803,34 @@
                         <button class="btn-primary" id="exploreBtn"><i class="fas fa-rocket"></i> Explore Quizzes</button>
                         <button class="btn-outline-light" id="schoolBtn"><i class="fas fa-graduation-cap"></i> For Schools</button>
                     </div>
-                    <div class="hero-stats">
-                        <div class="hero-stat"><i class="fas fa-school"></i><div class="stat-info"><div class="number">50+</div><div class="label">Schools</div></div></div>
-                        <div class="hero-stat"><i class="fas fa-users"></i><div class="stat-info"><div class="number">15K+</div><div class="label">Students</div></div></div>
-                        <div class="hero-stat"><i class="fas fa-trophy"></i><div class="stat-info"><div class="number">120+</div><div class="label">Events</div></div></div>
+                                        <div class="hero-stats-modern">
+                        <div class="hero-stat-card">
+                            <div class="hero-stat-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div class="hero-stat-info">
+                                <div class="hero-stat-number">50+</div>
+                                <div class="hero-stat-label">Partner Schools</div>
+                            </div>
+                        </div>
+                        <div class="hero-stat-card">
+                            <div class="hero-stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="hero-stat-info">
+                                <div class="hero-stat-number">15K+</div>
+                                <div class="hero-stat-label">Active Students</div>
+                            </div>
+                        </div>
+                        <div class="hero-stat-card">
+                            <div class="hero-stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="hero-stat-info">
+                                <div class="hero-stat-number">120+</div>
+                                <div class="hero-stat-label">Quiz Events</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="hero-image" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
