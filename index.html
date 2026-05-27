@@ -490,7 +490,7 @@
             color: #8b5cf6;
         }
 
-        /* Section Styles */
+                /* Section Styles */
         .section {
             padding: 80px 0;
         }
@@ -502,7 +502,8 @@
         .section-header {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto 60px;
+            margin: 0 auto 40px;
+            padding: 0 16px;
         }
 
         .section-header h2 {
@@ -516,6 +517,43 @@
             font-size: 1.05rem;
         }
 
+        /* Mobile section header */
+        @media (max-width: 768px) {
+            .section {
+                padding: 50px 0;
+            }
+            
+            .section-header {
+                margin: 0 auto 32px;
+                padding: 0 12px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header .section-subtitle {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 40px 0;
+            }
+            
+            .section-header {
+                margin: 0 auto 24px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-header .section-subtitle {
+                font-size: 0.85rem;
+            }
+        }
         /* Features Grid */
         .features-grid {
             display: grid;
@@ -646,29 +684,33 @@
             margin: 0 auto 32px;
         }
 
-        /* Testimonials */
+                /* Testimonials */
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
         }
 
         .testimonial-card {
             background: white;
-            padding: 32px;
-            border-radius: 28px;
+            padding: 28px;
+            border-radius: 24px;
             border: 1px solid #e5e7eb;
             transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .testimonial-card:hover {
             border-color: #c4b5fd;
             box-shadow: 0 15px 35px -12px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
         }
 
         .quote-icon {
             color: #8b5cf6;
-            font-size: 2rem;
+            font-size: 1.8rem;
             opacity: 0.4;
             margin-bottom: 16px;
         }
@@ -677,18 +719,23 @@
             color: #4b5563;
             font-style: italic;
             line-height: 1.6;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            flex: 1;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .author {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
+            margin-top: auto;
         }
 
         .author-icon {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             background: linear-gradient(135deg, #8b5cf6, #6366f1);
             border-radius: 50%;
             display: flex;
@@ -696,16 +743,94 @@
             justify-content: center;
             color: white;
             font-weight: 700;
+            flex-shrink: 0;
         }
 
         .author-info .name {
             font-weight: 700;
             color: #111827;
+            font-size: 0.9rem;
         }
 
         .author-info .title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #6b7280;
+            margin-top: 2px;
+        }
+
+        /* Mobile specific fixes for testimonials */
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 4px;
+            }
+            
+            .testimonial-card {
+                padding: 20px;
+                border-radius: 20px;
+            }
+            
+            .quote-icon {
+                font-size: 1.5rem;
+                margin-bottom: 12px;
+            }
+            
+            .testimonial-card p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin-bottom: 16px;
+            }
+            
+            .author-icon {
+                width: 38px;
+                height: 38px;
+            }
+            
+            .author-icon i {
+                font-size: 0.9rem;
+            }
+            
+            .author-info .name {
+                font-size: 0.85rem;
+            }
+            
+            .author-info .title {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .testimonials-grid {
+                gap: 16px;
+            }
+            
+            .testimonial-card {
+                padding: 16px;
+                border-radius: 18px;
+            }
+            
+            .testimonial-card p {
+                font-size: 0.8rem;
+                line-height: 1.45;
+            }
+            
+            .author {
+                gap: 10px;
+            }
+            
+            .author-icon {
+                width: 34px;
+                height: 34px;
+            }
+            
+            .author-info .name {
+                font-size: 0.8rem;
+            }
+            
+            .author-info .title {
+                font-size: 0.65rem;
+            }
         }
 
         /* CTA Section */
@@ -1210,9 +1335,39 @@
             <p class="section-subtitle">What school leaders say about our impact</p>
         </div>
         <div class="testimonials-grid">
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100"><div class="quote-icon"><i class="fas fa-quote-left"></i></div><p>"Infoma Academy has brought a quizzing revolution to our students. Being the only platform doing this in J&K, they've set a gold standard."</p><div class="author"><div class="author-icon"><i class="fas fa-user"></i></div><div class="author-info"><div class="name">Mrs. Shahnaz Ahmad</div><div class="title">Principal, DPS Jammu</div></div></div></div>
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200"><div class="quote-icon"><i class="fas fa-quote-left"></i></div><p>"Our students eagerly wait for Infoma's quizzes every semester. Professional, engaging and truly the first of its kind in the valley."</p><div class="author"><div class="author-icon"><i class="fas fa-user"></i></div><div class="author-info"><div class="name">Mr. Vikram Singh</div><div class="title">VP, Burn Hall School</div></div></div></div>
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300"><div class="quote-icon"><i class="fas fa-quote-left"></i></div><p>"The only organization that understands J&K's educational landscape. Their quizzes have boosted student confidence tremendously."</p><div class="author"><div class="author-icon"><i class="fas fa-user"></i></div><div class="author-info"><div class="name">Dr. Nusrat Jan</div><div class="title">Academic Director</div></div></div></div>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <p>"Infoma Academy has brought a quizzing revolution to our students. Being the only platform doing this in J&K, they've set a gold standard."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Mrs. Shahnaz Ahmad</div>
+                        <div class="title">Principal, DPS Jammu</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <p>"Our students eagerly wait for Infoma's quizzes every semester. Professional, engaging and truly the first of its kind in the valley."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Mr. Vikram Singh</div>
+                        <div class="title">VP, Burn Hall School</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <p>"The only organization that understands J&K's educational landscape. Their quizzes have boosted student confidence tremendously."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Dr. Nusrat Jan</div>
+                        <div class="title">Academic Director</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
