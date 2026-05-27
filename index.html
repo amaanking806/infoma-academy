@@ -1166,24 +1166,134 @@
             .cta-section { padding: 40px 24px; }
         }
 
+                /* Mobile Side Slide Menu */
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+            z-index: 1001;
+            position: relative;
+        }
+
+        /* Side Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Side Menu Panel */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100%;
+            background: linear-gradient(135deg, #1e1b4b 0%, #2e1065 100%);
+            z-index: 1002;
+            padding: 80px 28px 40px;
+            transition: right 0.3s ease;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        .side-menu-header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .close-menu {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .close-menu:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .side-menu .logo {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            display: block;
+            text-align: center;
+        }
+
+        .side-nav-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .side-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .side-nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 16px;
+            transition: all 0.2s;
+        }
+
+        .side-nav-links a:hover {
+            background: rgba(139, 92, 246, 0.3);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .side-nav-links a i {
+            width: 24px;
+            color: #a78bfa;
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
-                position: absolute;
-                top: 80px;
-                left: 20px;
-                right: 20px;
-                background: #1f2937;
-                flex-direction: column;
-                padding: 28px;
-                gap: 20px;
-                border-radius: 28px;
-                text-align: center;
             }
-            .nav-links.active { display: flex; }
-            .menu-icon { display: block; }
-            .stats-grid { grid-template-columns: 1fr; gap: 32px; }
-            .hero h1 { font-size: 2rem; }
+            .menu-icon {
+                display: block;
+            }
+            .stats-grid { 
+                grid-template-columns: 1fr; 
+                gap: 32px; 
+            }
+            .hero h1 { 
+                font-size: 2rem; 
+            }
         }
                 /* Popup Modal Styles */
         .popup-overlay {
@@ -1840,13 +1950,82 @@
     }
     createParticles();
 
-    // Mobile menu
+        // Create side menu HTML
+    const sideMenuHTML = `
+        <div class="menu-overlay" id="menuOverlay"></div>
+        <div class="side-menu" id="sideMenu">
+            <div class="side-menu-header">
+                <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="logo" style="color: white; text-align: center;">Infoma<span style="color: #a78bfa;">Academy</span></div>
+            <ul class="side-nav-links">
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+                <li><a href="#schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    `;
+    
+    // Add side menu to body
+    document.body.insertAdjacentHTML('beforeend', sideMenuHTML);
+    
+    // Get elements
     const menuToggle = document.getElementById('menuToggle');
-    const navLinksEl = document.getElementById('navLinks');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => navLinksEl.classList.toggle('active'));
+    const sideMenu = document.getElementById('sideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    
+    // Open menu function
+    function openSideMenu() {
+        if (sideMenu) sideMenu.classList.add('active');
+        if (menuOverlay) menuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
-    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => { if(window.innerWidth <= 768) navLinksEl.classList.remove('active'); }));
+    
+    // Close menu function
+    function closeSideMenu() {
+        if (sideMenu) sideMenu.classList.remove('active');
+        if (menuOverlay) menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    // Event listeners
+    if (menuToggle) {
+        menuToggle.addEventListener('click', openSideMenu);
+    }
+    
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', closeSideMenu);
+    }
+    
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', closeSideMenu);
+    }
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.side-nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            closeSideMenu();
+            // Smooth scroll to section
+            const targetId = link.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sideMenu && sideMenu.classList.contains('active')) {
+            closeSideMenu();
+        }
+    });
 
     // Popup Form HTML
     const popupHTML = `
