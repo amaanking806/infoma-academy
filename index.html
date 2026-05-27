@@ -867,13 +867,25 @@
             color: rgba(255,255,255,0.6);
         }
 
-        /* Features */
+                /* Features Grid - 3 cards per row */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
             margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .feature {
@@ -935,12 +947,25 @@
             background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
         }
 
+                /* Hall of Fame - 4 cards per row */
         .fame-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
             max-width: 1000px;
             margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .fame-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .fame-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .fame-card {
@@ -1531,35 +1556,74 @@
         </div>
     </section>
 
-    <!-- Hall of Fame -->
-    <section id="leaderboard" class="hall-of-fame reveal">
-        <h2 class="section-title">🏆 Hall of Fame</h2>
-        <p class="section-subtitle">Top performers this month</p>
+        <!-- Hall of Fame -->
+    <section id="leaderboard">
+        <div class="section-header">
+            <div class="section-tag">Top Performers</div>
+            <h2>🏆 Hall of Fame</h2>
+            <p>Celebrating excellence this month</p>
+        </div>
         <div class="fame-grid">
             <div class="fame-card">
                 <div class="rank">#1</div>
-                <i class="fas fa-crown" style="font-size: 2rem; color: #FFD700;"></i>
+                <i class="fas fa-crown" style="font-size: 1.5rem; color: #fbbf24;"></i>
                 <h4>Bilal Hussain</h4>
                 <p>Most Active</p>
-                <small>2,450 points</small>
+                <span style="color: var(--primary); font-size: 0.8rem;">2,450 pts</span>
             </div>
             <div class="fame-card">
                 <div class="rank">#2</div>
                 <h4>Aman Kumar</h4>
                 <p>Runner-Up</p>
-                <small>2,120 points</small>
+                <span style="color: var(--primary); font-size: 0.8rem;">2,120 pts</span>
             </div>
             <div class="fame-card">
                 <div class="rank">#3</div>
                 <h4>Tolba Manzoor</h4>
-                <p>Best Performance</p>
-                <small>1,980 points</small>
+                <p>Best Performer</p>
+                <span style="color: var(--primary); font-size: 0.8rem;">1,980 pts</span>
             </div>
             <div class="fame-card">
                 <div class="rank">#4</div>
                 <h4>Rizwan Hafeez</h4>
                 <p>Rising Star</p>
-                <small>1,750 points</small>
+                <span style="color: var(--primary); font-size: 0.8rem;">1,750 pts</span>
+            </div>
+            <div class="fame-card">
+                <div class="rank">#5</div>
+                <h4>Mohammad Irfan</h4>
+                <p>Quiz Master</p>
+                <span style="color: var(--primary); font-size: 0.8rem;">1,620 pts</span>
+            </div>
+            <div class="fame-card">
+                <div class="rank">#6</div>
+                <h4>Ayesha Mir</h4>
+                <p>Star Performer</p>
+                <span style="color: var(--primary); font-size: 0.8rem;">1,580 pts</span>
+            </div>
+            <div class="fame-card">
+                <div class="rank">#7</div>
+                <h4>Umar Nazir</h4>
+                <p>Consistent</p>
+                <span style="color: var(--primary); font-size: 0.8rem;">1,450 pts</span>
+            </div>
+            <div class="fame-card">
+                <div class="rank">#8</div>
+                <h4>Fatima Khan</h4>
+                <p>Top Scorer</p>
+                <span style="color: var(--primary); font-size: 0.8rem;">1,390 pts</span>
+            </div>
+            <div class="fame-card">
+                <div class="rank">#9</div>
+                <h4>Adil Rashid</h4>
+                <p>Rising Talent</p>
+                <span style="color: var(--primary); font-size: 0.8rem;">1,280 pts</span>
+            </div>
+            <div class="fame-card">
+                <div class="rank">#10</div>
+                <h4>Inaya Showkat</h4>
+                <p>New Star</p>
+                <span style="color: var(--primary); font-size: 0.8rem;">1,150 pts</span>
             </div>
         </div>
     </section>
@@ -1589,15 +1653,7 @@
         </div>
     </section>
 
-    <!-- Contribute -->
-    <section id="contribute" class="contribute reveal">
-        <div class="contribute-box">
-            <i class="fas fa-pen-fancy" style="font-size: 3rem; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;"></i>
-            <h2>Share Your Knowledge</h2>
-            <p>Write and publish educational articles. Your expertise could inspire thousands of students!</p>
-            <button class="btn-primary" style="margin-top: 0.5rem;" onclick="submitArticle()">Submit Article →</button>
-        </div>
-    </section>
+    
 
     <!-- Footer -->
     <footer id="contact" class="footer">
