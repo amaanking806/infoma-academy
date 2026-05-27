@@ -1185,6 +1185,218 @@
             .stats-grid { grid-template-columns: 1fr; gap: 32px; }
             .hero h1 { font-size: 2rem; }
         }
+                /* Popup Modal Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-container {
+            background: white;
+            width: 90%;
+            max-width: 550px;
+            max-height: 90vh;
+            border-radius: 28px;
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .popup-overlay.active .popup-container {
+            transform: scale(1);
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+        }
+
+        .popup-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+        }
+
+        .popup-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .popup-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .popup-body {
+            padding: 24px;
+            max-height: calc(90vh - 80px);
+            overflow-y: auto;
+        }
+
+        .popup-desc {
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            padding: 10px 12px;
+            background: #f3f4f6;
+            border-radius: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        .form-group label i {
+            color: #8b5cf6;
+            width: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -8px rgba(139, 92, 246, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-status {
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+            display: none;
+        }
+
+        .form-status.success {
+            display: block;
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .form-status.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .form-status {
+            display: block;
+        }
+
+        @media (max-width: 550px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .popup-container {
+                width: 95%;
+                border-radius: 20px;
+            }
+            
+            .popup-header {
+                padding: 16px 20px;
+            }
+            
+            .popup-header h3 {
+                font-size: 1.1rem;
+            }
+            
+            .popup-body {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1612,16 +1824,18 @@
     // Generate particles
     function createParticles() {
         const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            const size = Math.random() * 8 + 2;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDuration = Math.random() * 15 + 10 + 's';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            particlesContainer.appendChild(particle);
+        if (particlesContainer) {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 8 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 15 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particlesContainer.appendChild(particle);
+            }
         }
     }
     createParticles();
@@ -1629,27 +1843,260 @@
     // Mobile menu
     const menuToggle = document.getElementById('menuToggle');
     const navLinksEl = document.getElementById('navLinks');
-    menuToggle.addEventListener('click', () => navLinksEl.classList.toggle('active'));
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => navLinksEl.classList.toggle('active'));
+    }
     document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => { if(window.innerWidth <= 768) navLinksEl.classList.remove('active'); }));
 
-    // Toast message
-    function showToast(msg) {
-        const t = document.createElement('div');
-        t.textContent = msg;
-        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#1f2937;color:white;padding:12px 28px;border-radius:60px;font-family:Poppins;font-weight:500;z-index:1000;box-shadow:0 10px 25px rgba(0,0,0,0.2);';
-        document.body.appendChild(t);
-        setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 2500);
+    // Popup Form HTML
+    const popupHTML = `
+        <div id="schoolPopup" class="popup-overlay">
+            <div class="popup-container">
+                <div class="popup-header">
+                    <h3><i class="fas fa-school"></i> School Registration</h3>
+                    <button class="popup-close" id="closePopup">&times;</button>
+                </div>
+                <div class="popup-body">
+                    <p class="popup-desc">Register your school to participate in J&K's premier quiz competitions. Fill in the details below and our team will contact you within 24 hours.</p>
+                    <form id="registrationForm">
+                        <div class="form-group">
+                            <label><i class="fas fa-building"></i> School Name *</label>
+                            <input type="text" id="schoolName" name="schoolName" required placeholder="Enter your school name">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-user"></i> Principal/Contact Person *</label>
+                                <input type="text" id="contactPerson" name="contactPerson" required placeholder="Full name">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-briefcase"></i> Designation</label>
+                                <input type="text" id="designation" name="designation" placeholder="Principal / Teacher / Coordinator">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-envelope"></i> Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="school@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-phone"></i> Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXXXXXXX">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-map-marker-alt"></i> City/District *</label>
+                                <input type="text" id="city" name="city" required placeholder="e.g., Srinagar, Jammu">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-users"></i> Number of Students</label>
+                                <input type="number" id="studentCount" name="studentCount" placeholder="Approx. student strength">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-comment"></i> Additional Message (Optional)</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Any specific requirements or questions..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> Submit Registration
+                        </button>
+                        <div id="formStatus" class="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Add popup to body
+    document.body.insertAdjacentHTML('beforeend', popupHTML);
+
+    // Google Apps Script Web App URL - Replace with your deployed URL
+    // After deploying your Apps Script, replace the URL below:
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    
+    // For testing without Google Sheets, set to false. When ready to connect, set to true and update URL above
+    const USE_GOOGLE_SHEETS = false;
+
+    // Open popup function
+    function openSchoolPopup() {
+        const popup = document.getElementById('schoolPopup');
+        if (popup) {
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     }
 
-    document.getElementById('exploreBtn').addEventListener('click', () => showToast('📚 Upcoming quizzes: Winter Championship 2025! Contact us for details.'));
-    document.getElementById('schoolBtn').addEventListener('click', () => showToast('🏫 Schools can partner with us. Be part of J&K\'s exclusive quiz network.'));
-    document.getElementById('registerBtn').addEventListener('click', () => showToast('📋 Registration open! Email schools@infomaacademy.com for partnership.'));
-    document.getElementById('finalCta').addEventListener('click', () => showToast('✨ Thank you! Our team will reach out within 24 hours.'));
+    // Close popup function
+    function closeSchoolPopup() {
+        const popup = document.getElementById('schoolPopup');
+        if (popup) {
+            popup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Form submission handler
+    async function handleFormSubmit(event) {
+        event.preventDefault();
+        
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+        
+        // Get form data
+        const formData = {
+            schoolName: document.getElementById('schoolName').value,
+            contactPerson: document.getElementById('contactPerson').value,
+            designation: document.getElementById('designation').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            city: document.getElementById('city').value,
+            studentCount: document.getElementById('studentCount').value,
+            message: document.getElementById('message').value,
+            timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+            source: 'Website Registration Form'
+        };
+        
+        // Basic validation
+        if (!formData.schoolName || !formData.contactPerson || !formData.email || !formData.phone || !formData.city) {
+            formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please fill all required fields (*)';
+            formStatus.className = 'form-status error';
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter a valid email address';
+            formStatus.className = 'form-status error';
+            return;
+        }
+        
+        // Phone validation (basic)
+        const phoneRegex = /^[0-9+\-\s]{10,15}$/;
+        if (!phoneRegex.test(formData.phone)) {
+            formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter a valid phone number';
+            formStatus.className = 'form-status error';
+            return;
+        }
+        
+        // Disable button and show loading
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        formStatus.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting your registration...';
+        formStatus.className = 'form-status';
+        
+        try {
+            if (USE_GOOGLE_SHEETS && GOOGLE_SCRIPT_URL !== 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec') {
+                // Send to Google Sheets via Apps Script
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                // Since mode is 'no-cors', we can't read response, assume success
+                formStatus.innerHTML = '<i class="fas fa-check-circle"></i> Registration submitted successfully! Our team will contact you soon.';
+                formStatus.className = 'form-status success';
+                
+                // Clear form
+                document.getElementById('registrationForm').reset();
+                
+                // Close popup after 2 seconds
+                setTimeout(() => {
+                    closeSchoolPopup();
+                    formStatus.innerHTML = '';
+                }, 2500);
+                
+            } else {
+                // Demo mode - store in localStorage and show success
+                console.log('Demo mode - Form Data:', formData);
+                
+                // Store in localStorage for demo
+                let registrations = JSON.parse(localStorage.getItem('schoolRegistrations') || '[]');
+                registrations.push(formData);
+                localStorage.setItem('schoolRegistrations', JSON.stringify(registrations));
+                
+                formStatus.innerHTML = '<i class="fas fa-check-circle"></i> Registration submitted successfully! Our team will contact you within 24 hours.';
+                formStatus.className = 'form-status success';
+                
+                // Clear form
+                document.getElementById('registrationForm').reset();
+                
+                // Close popup after 2.5 seconds
+                setTimeout(() => {
+                    closeSchoolPopup();
+                    formStatus.innerHTML = '';
+                }, 2500);
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Unable to submit. Please try again or contact us directly.';
+            formStatus.className = 'form-status error';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Registration';
+        }
+    }
+
+    // Attach event listeners to all registration buttons
+    function attachButtonListeners() {
+        const registerBtns = document.querySelectorAll('#registerBtn, #finalCta, #schoolBtn, .btn-primary[onclick], .btn-white');
+        
+        registerBtns.forEach(btn => {
+            btn.removeEventListener('click', openSchoolPopup);
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openSchoolPopup();
+            });
+        });
+        
+        // Also add to any "For Schools" button specifically
+        const schoolBtn = document.getElementById('schoolBtn');
+        if (schoolBtn) {
+            schoolBtn.removeEventListener('click', openSchoolPopup);
+            schoolBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openSchoolPopup();
+            });
+        }
+    }
+
+    // Close popup events
+    const closeBtn = document.getElementById('closePopup');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeSchoolPopup);
+    }
+    
+    // Close popup when clicking outside
+    window.addEventListener('click', (e) => {
+        const popup = document.getElementById('schoolPopup');
+        if (e.target === popup) {
+            closeSchoolPopup();
+        }
+    });
+    
+    // Form submission
+    const form = document.getElementById('registrationForm');
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit);
+    }
+    
+    // Initialize button listeners
+    attachButtonListeners();
+    
+    // For dynamically added buttons, observe DOM changes
+    const observer = new MutationObserver(() => {
+        attachButtonListeners();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
 
     // Animated counter
     const statNumbers = document.querySelectorAll('.stat-number');
     const observerOptions = { threshold: 0.3, rootMargin: '0px' };
-    const observer = new IntersectionObserver((entries) => {
+    const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const el = entry.target;
@@ -1669,11 +2116,11 @@
                     }
                 };
                 const interval = setInterval(updateNumber, 20);
-                observer.unobserve(el);
+                counterObserver.unobserve(el);
             }
         });
     }, observerOptions);
-    statNumbers.forEach(stat => observer.observe(stat));
+    statNumbers.forEach(stat => counterObserver.observe(stat));
 </script>
 </body>
 </html>
