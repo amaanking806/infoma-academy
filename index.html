@@ -164,16 +164,16 @@
             color: white;
         }
 
-        /* Hero Section */
+                /* Hero Section */
         .hero {
-            padding: 100px 0 120px;
+            padding: 60px 0 80px;
             position: relative;
         }
 
         .hero-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 50px;
             align-items: center;
         }
 
@@ -183,14 +183,19 @@
             gap: 8px;
             background: rgba(168, 85, 247, 0.2);
             backdrop-filter: blur(10px);
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 60px;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: #c4b5fd;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             border: 1px solid rgba(168, 85, 247, 0.3);
             animation: pulse 2s infinite;
+            white-space: nowrap;
+        }
+
+        .hero-badge span {
+            white-space: normal;
         }
 
         @keyframes pulse {
@@ -199,8 +204,8 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 24px;
+            font-size: 3.2rem;
+            margin-bottom: 20px;
             line-height: 1.2;
             color: white;
         }
@@ -213,53 +218,163 @@
         }
 
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
             margin-bottom: 32px;
-            line-height: 1.6;
         }
 
         .hero-stats {
             display: flex;
-            gap: 40px;
-            margin-top: 48px;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 0;
         }
 
         .hero-stat {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .hero-stat i {
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: #a78bfa;
         }
 
         .hero-stat .stat-info .number {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: white;
         }
 
         .hero-stat .stat-info .label {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: rgba(255, 255, 255, 0.5);
         }
 
-        .btn-primary {
+        /* Mobile Responsive Hero */
+        @media (max-width: 968px) {
+            .hero {
+                padding: 40px 0 60px;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero-badge {
+                display: inline-flex;
+                white-space: normal;
+                text-align: center;
+                padding: 6px 14px;
+                font-size: 0.7rem;
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+                word-wrap: break-word;
+            }
+            
+            .hero p {
+                font-size: 0.95rem;
+                padding: 0 8px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+                gap: 20px;
+            }
+            
+            .hero-stat {
+                flex-direction: column;
+                text-align: center;
+                gap: 6px;
+            }
+            
+            .hero-stat i {
+                font-size: 1.4rem;
+            }
+            
+            .hero-stat .stat-info .number {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stat .stat-info .label {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 30px 0 50px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 0.85rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-outline-light {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+                margin-left: 0 !important;
+            }
+            
+            .hero-stats {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            
+            .hero-stat {
+                flex: 1;
+                min-width: 80px;
+            }
+        }
+
+                .btn-primary {
             background: linear-gradient(135deg, #8b5cf6, #6366f1);
             color: white;
             border: none;
-            padding: 14px 32px;
+            padding: 12px 28px;
             border-radius: 60px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
         }
 
@@ -272,16 +387,22 @@
             background: transparent;
             border: 2px solid rgba(255, 255, 255, 0.3);
             color: white;
-            padding: 12px 30px;
+            padding: 10px 26px;
             border-radius: 60px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-left: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .btn-primary, .btn-outline-light {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
         }
 
         .btn-outline-light:hover {
@@ -775,14 +896,14 @@
             </ul>
         </nav>
 
-        <!-- Hero Section -->
+                <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="hero-grid">
-                <div data-aos="fade-up" data-aos-duration="800">
-                    <div class="hero-badge"><i class="fas fa-crown"></i> JAMMU & KASHMIR'S FIRST & ONLY</div>
+                <div class="hero-content" data-aos="fade-up" data-aos-duration="800">
+                    <div class="hero-badge"><i class="fas fa-crown"></i> <span>JAMMU & KASHMIR'S FIRST & ONLY</span></div>
                     <h1>Where Young Minds <span class="gradient-text">Compete</span> & <span class="gradient-text">Shine</span></h1>
                     <p>Infoma Academy is the only dedicated quiz platform in J&K, organizing professional inter-school quizzes that transform how students learn and compete.</p>
-                    <div>
+                    <div class="hero-buttons">
                         <button class="btn-primary" id="exploreBtn"><i class="fas fa-rocket"></i> Explore Quizzes</button>
                         <button class="btn-outline-light" id="schoolBtn"><i class="fas fa-graduation-cap"></i> For Schools</button>
                     </div>
@@ -794,8 +915,8 @@
                 </div>
                 <div class="hero-image" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
                     <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=600&fit=crop" alt="Quiz competition">
-                    <div class="floating-card badge-1"><i class="fas fa-medal" style="color: #f59e0b;"></i> #1 in J&K</div>
-                    <div class="floating-card badge-2"><i class="fas fa-star" style="color: #8b5cf6;"></i> 98% Satisfaction</div>
+                    <div class="floating-card badge-1"><i class="fas fa-medal" style="color: #f59e0b;"></i> <span>#1 in J&K</span></div>
+                    <div class="floating-card badge-2"><i class="fas fa-star" style="color: #8b5cf6;"></i> <span>98% Satisfaction</span></div>
                 </div>
             </div>
         </section>
