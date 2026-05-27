@@ -831,14 +831,14 @@
                 <div class="trust-icon"><i class="fas fa-school"></i></div>
                 <div class="trust-content">
                     <div class="trust-title">50+ Schools</div>
-                    <div class="trust-desc">Partnered with us</div>
+                    <div class="trust-desc">Partnered</div>
                 </div>
             </div>
             <div class="trust-item">
                 <div class="trust-icon"><i class="fas fa-globe"></i></div>
                 <div class="trust-content">
-                    <div class="trust-title">Pan J&K Presence</div>
-                    <div class="trust-desc">From Jammu to Kashmir</div>
+                    <div class="trust-title">Pan J&K</div>
+                    <div class="trust-desc">Full coverage</div>
                 </div>
             </div>
         </div>
@@ -855,10 +855,10 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: 16px;
         background: white;
-        padding: 32px 40px;
-        border-radius: 80px;
+        padding: 28px 32px;
+        border-radius: 60px;
         box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.05);
         border: 1px solid rgba(99, 102, 241, 0.15);
         backdrop-filter: blur(4px);
@@ -873,11 +873,12 @@
     .trust-item {
         display: flex;
         align-items: center;
-        gap: 14px;
-        padding: 8px 16px;
+        gap: 12px;
+        padding: 6px 14px;
         border-radius: 50px;
         transition: all 0.3s ease;
         cursor: default;
+        flex-shrink: 0;
     }
 
     .trust-item:hover {
@@ -886,8 +887,8 @@
     }
 
     .trust-icon {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
         background: linear-gradient(135deg, #eef2ff 0%, #ede9fe 100%);
         border-radius: 50%;
         display: flex;
@@ -902,7 +903,7 @@
     }
 
     .trust-icon i {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         color: #6366f1;
         transition: all 0.3s ease;
     }
@@ -914,40 +915,121 @@
     .trust-content {
         display: flex;
         flex-direction: column;
+        white-space: nowrap;
     }
 
     .trust-title {
         font-weight: 700;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         color: #1e293b;
         letter-spacing: -0.2px;
     }
 
     .trust-desc {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         color: #94a3b8;
         font-weight: 500;
         margin-top: 2px;
     }
 
-    @media (max-width: 968px) {
+    /* Desktop: horizontal scroll for many items */
+    @media (min-width: 969px) {
         .trust-grid {
-            flex-direction: column;
-            align-items: stretch;
-            border-radius: 48px;
-            padding: 28px 24px;
-            gap: 16px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            justify-content: flex-start;
+            scrollbar-width: thin;
+        }
+        
+        .trust-grid::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        .trust-grid::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        
+        .trust-grid::-webkit-scrollbar-thumb {
+            background: #8b5cf6;
+            border-radius: 10px;
+        }
+    }
+
+    /* Mobile: clean vertical stack */
+    @media (max-width: 968px) {
+        .trust-section {
+            padding: 30px 0;
+        }
+        
+        .trust-grid {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            border-radius: 40px;
+            padding: 20px 20px;
+            gap: 12px;
         }
         
         .trust-item {
-            justify-content: flex-start;
-            padding: 10px 20px;
+            padding: 8px 16px;
             background: #f8fafc;
-            border-radius: 60px;
+            border-radius: 50px;
+            flex-shrink: 0;
+            min-width: auto;
         }
         
         .trust-item:hover {
             background: linear-gradient(135deg, #eef2ff, #ede9fe);
+            transform: translateY(-2px);
+        }
+        
+        .trust-content {
+            white-space: normal;
+        }
+        
+        .trust-title {
+            font-size: 0.85rem;
+        }
+        
+        .trust-desc {
+            font-size: 0.6rem;
+        }
+        
+        .trust-icon {
+            width: 36px;
+            height: 36px;
+        }
+        
+        .trust-icon i {
+            font-size: 1rem;
+        }
+    }
+
+    /* Small mobile */
+    @media (max-width: 550px) {
+        .trust-grid {
+            gap: 10px;
+            padding: 16px;
+        }
+        
+        .trust-item {
+            padding: 6px 12px;
+            gap: 8px;
+        }
+        
+        .trust-icon {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .trust-title {
+            font-size: 0.75rem;
+        }
+        
+        .trust-desc {
+            font-size: 0.55rem;
         }
     }
 </style>
