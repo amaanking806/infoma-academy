@@ -850,8 +850,8 @@
             margin-bottom: 24px;
         }
 
-        .exclusive-banner h2 {
-            font-size: 2.2rem;
+                .exclusive-banner h2 {
+            font-size: 1.8rem;
             margin-bottom: 20px;
             color: #111827;
         }
@@ -860,6 +860,17 @@
             color: #6b7280;
             max-width: 600px;
             margin: 0 auto 32px;
+        }
+                @media (max-width: 768px) {
+            .exclusive-banner h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .exclusive-banner h2 {
+                font-size: 1.3rem;
+            }
         }
 
                 /* Testimonials */
@@ -1525,7 +1536,7 @@
     <div class="exclusive-banner">
         <div class="exclusive-badge"><i class="fas fa-star"></i> EXCLUSIVE</div>
         <h2>The Only Dedicated Quiz Platform in <span style="color: #8b5cf6;">Jammu & Kashmir</span></h2>
-        <p>No other organization in J&K specializes in school quiz championships, state-level tournaments, and knowledge festivals at this scale. Infoma Academy is leading this movement alone.</p>
+        <p>No other organization in J&K specializes in school quiz championships at this scale. Infoma Academy is leading this movement alone.</p>
         <button class="btn-primary" id="registerBtn"><i class="fas fa-calendar-alt"></i> Register Your School →</button>
     </div>
 </div>
