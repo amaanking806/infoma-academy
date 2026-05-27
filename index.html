@@ -554,55 +554,233 @@
                 font-size: 0.85rem;
             }
         }
-        /* Features Grid */
+                /* Features Grid - Redesigned */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
+            gap: 28px;
         }
 
         .feature-card {
             background: white;
-            padding: 36px 28px;
-            border-radius: 32px;
-            transition: all 0.4s;
+            padding: 32px 28px;
+            border-radius: 28px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid #e5e7eb;
             box-shadow: 0 4px 6px -2px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #8b5cf6, #6366f1, #a78bfa);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: left;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: #8b5cf6;
-            box-shadow: 0 20px 40px -12px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 25px 45px -12px rgba(139, 92, 246, 0.25);
+        }
+
+        .feature-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-number {
+            opacity: 0.6;
+            transform: scale(1.05);
         }
 
         .feature-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #f3e8ff, #ede9fe);
-            border-radius: 24px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px -8px rgba(139, 92, 246, 0.3);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 12px 25px -8px rgba(139, 92, 246, 0.4);
         }
 
         .feature-icon i {
-            font-size: 2rem;
-            color: #8b5cf6;
+            font-size: 1.8rem;
+            color: white;
+            transition: all 0.3s ease;
         }
 
         .feature-card h3 {
             font-size: 1.35rem;
             margin-bottom: 12px;
             color: #111827;
+            font-weight: 700;
         }
 
         .feature-card p {
             color: #6b7280;
             line-height: 1.6;
+            margin-bottom: 20px;
         }
 
+        .feature-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #8b5cf6;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .feature-card:hover .feature-link {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .feature-link i {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+
+        .feature-link:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Section Badge */
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ede9fe, #eef2ff);
+            color: #8b5cf6;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 5px 12px;
+            border-radius: 30px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .gradient-heading {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Mobile Responsive for Features */
+        @media (max-width: 768px) {
+            .features-grid {
+                gap: 20px;
+                padding: 0 4px;
+            }
+            
+            .feature-card {
+                padding: 24px 20px;
+                border-radius: 24px;
+            }
+            
+            .feature-number {
+                font-size: 2.5rem;
+                top: 16px;
+                right: 18px;
+            }
+            
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .feature-icon i {
+                font-size: 1.5rem;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+            
+            .feature-card p {
+                font-size: 0.85rem;
+                margin-bottom: 16px;
+            }
+            
+            .feature-link {
+                font-size: 0.8rem;
+                opacity: 1;
+                transform: translateX(0);
+                color: #8b5cf6;
+            }
+            
+            .section-badge {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feature-card {
+                padding: 20px 16px;
+            }
+            
+            .feature-number {
+                font-size: 2rem;
+                top: 12px;
+                right: 14px;
+            }
+            
+            .feature-icon {
+                width: 44px;
+                height: 44px;
+                border-radius: 14px;
+                margin-bottom: 16px;
+            }
+            
+            .feature-icon i {
+                font-size: 1.3rem;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .feature-card p {
+                font-size: 0.8rem;
+            }
+        }
         /* Stats Grid Dark */
         .stats-grid {
             display: grid;
@@ -1301,18 +1479,43 @@
     </div>
 </div>
 
-<!-- Features Section -->
+<!-- Features Section - Redesigned -->
 <section class="section" id="quizzes">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <h2>Why choose Infoma Academy?</h2>
+            <div class="section-badge">WHY US</div>
+            <h2>Why choose <span class="gradient-heading">Infoma Academy?</span></h2>
             <p class="section-subtitle">We're not just another quiz platform — we're the only one in J&K doing this at scale</p>
         </div>
         <div class="features-grid">
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="100"><div class="feature-icon"><i class="fas fa-brain"></i></div><h3>Elite Curriculum</h3><p>Carefully crafted questions that challenge critical thinking and celebrate knowledge.</p></div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="200"><div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div><h3>Pan J&K Presence</h3><p>From Jammu to Srinagar to Leh, we reach schools across the entire region.</p></div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="300"><div class="feature-icon"><i class="fas fa-trophy"></i></div><h3>National Standards</h3><p>Professional formats, digital scoring, and grand ceremonies that students love.</p></div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="400"><div class="feature-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Teacher Training</h3><p>We empower educators with resources to build sustainable quizzing culture.</p></div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-number">01</div>
+                <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                <h3>Elite Curriculum</h3>
+                <p>Carefully crafted questions that challenge critical thinking and celebrate knowledge.</p>
+                <div class="feature-link">Learn more <i class="fas fa-arrow-right"></i></div>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-number">02</div>
+                <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>Pan J&K Presence</h3>
+                <p>From Jammu to Srinagar to Leh, we reach schools across the entire region.</p>
+                <div class="feature-link">Learn more <i class="fas fa-arrow-right"></i></div>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-number">03</div>
+                <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+                <h3>National Standards</h3>
+                <p>Professional formats, digital scoring, and grand ceremonies that students love.</p>
+                <div class="feature-link">Learn more <i class="fas fa-arrow-right"></i></div>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-number">04</div>
+                <div class="feature-icon"><i class="fas fa-chalkboard-user"></i></div>
+                <h3>Teacher Training</h3>
+                <p>We empower educators with resources to build sustainable quizzing culture.</p>
+                <div class="feature-link">Learn more <i class="fas fa-arrow-right"></i></div>
+            </div>
         </div>
     </div>
 </section>
