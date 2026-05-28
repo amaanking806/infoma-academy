@@ -2441,7 +2441,7 @@
         }
     }
 
-        @media (max-width: 768px) {
+           @media (max-width: 768px) {
         .testimonials-arrow-carousel {
             padding: 20px 16px;
             gap: 10px;
@@ -2457,8 +2457,22 @@
             font-size: 1rem;
         }
         
+        .testimonials-arrow-container {
+            overflow: visible;
+            flex: 1;
+        }
+        
+        .testimonials-arrow-track {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            transition: transform 0.3s ease-in-out;
+            width: max-content;
+        }
+        
         .testimonial-arrow-slide {
-            flex: 0 0 85%;
+            flex: 0 0 280px;
+            width: 280px;
             padding: 20px;
             margin-right: 0;
         }
@@ -2484,16 +2498,13 @@
         .author-info .title {
             font-size: 0.65rem;
         }
-        
-        .testimonials-arrow-container {
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .testimonials-arrow-track {
-            display: flex;
-            transition: transform 0.3s ease-in-out;
+    }
+    
+    @media (max-width: 480px) {
+        .testimonial-arrow-slide {
+            flex: 0 0 260px;
+            width: 260px;
+            padding: 16px;
         }
     }
 </style>
