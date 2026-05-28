@@ -2120,7 +2120,7 @@
     <div class="cta-section">
         <h2>Ready to bring quizzing to your school?</h2>
         <p>Join the only platform in J&K that's shaping the future of academic competitions.</p>
-        <button class="btn-white" id="finalCta"><i class="fas fa-arrow-right"></i> Get Started Today</button>
+       <button class="btn-white" id="finalCta" onclick="openSchoolPopup()"><i class="fas fa-arrow-right"></i> Get Started Today</button>
     </div>
 </div>
 
@@ -2313,7 +2313,7 @@
     const USE_GOOGLE_SHEETS = false;
 
     // Open popup function
-    function openSchoolPopup() {
+    window.openSchoolPopup = function openSchoolPopup() {
         const popup = document.getElementById('schoolPopup');
         if (popup) {
             popup.classList.add('active');
