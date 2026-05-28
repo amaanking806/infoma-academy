@@ -2449,20 +2449,15 @@
         }
     }
 
-    // Attach event listeners to all registration buttons
-    function attachButtonListeners() {
-        const ids = ['registerBtn', 'finalCta', 'schoolBtn', 'exploreBtn'];
-        ids.forEach(id => {
-            const btn = document.getElementById(id);
-            if (btn && !btn.dataset.listenerAttached) {
-                btn.dataset.listenerAttached = 'true';
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    openSchoolPopup();
-                });
-            }
-        });
-    }
+    // Single delegated listener on document — works on all devices including mobile touch
+    function attachButtonListeners() {}
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('#registerBtn, #finalCta, #schoolBtn, #exploreBtn');
+        if (btn) {
+            e.preventDefault();
+            openSchoolPopup();
+        }
+    });
     // Close popup events
     const closeBtn = document.getElementById('closePopup');
     if (closeBtn) {
