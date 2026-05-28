@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Our Team | Infoma Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Poppins',sans-serif;overflow-x:hidden;background:#fff}
+        .header-bg{position:relative;width:100%;overflow:hidden;background:linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)}
+        .particles{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0}
+        .particle{position:absolute;background:rgba(255,255,255,.1);border-radius:50%;animation:floatParticle 20s infinite linear}
+        @keyframes floatParticle{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:.5}90%{opacity:.5}100%{transform:translateY(-100vh) rotate(720deg);opacity:0}}
+        .orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.3;animation:orbFloat 15s ease-in-out infinite}
+        .orb-1{width:300px;height:300px;background:#6366f1;top:-100px;right:-50px}
+        .orb-2{width:400px;height:400px;background:#ec4899;bottom:-150px;left:-100px;animation-delay:-5s}
+        .orb-3{width:250px;height:250px;background:#06b6d4;top:50%;left:30%;animation-delay:-10s}
+        @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(.9)}}
+        .container{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+        .navbar{display:flex;justify-content:space-between;align-items:center;padding:24px 0;position:relative;z-index:10}
+        .logo{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,#fff 0%,#a78bfa 100%);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em;text-decoration:none}
+        .nav-links{display:flex;gap:42px;list-style:none}
+        .nav-links a{text-decoration:none;color:rgba(255,255,255,.8);font-weight:500;transition:all .3s;font-size:.95rem;display:flex;align-items:center;gap:6px}
+        .nav-links a:hover{color:#a78bfa;transform:translateY(-2px)}
+        .menu-icon{display:none;font-size:1.8rem;cursor:pointer;color:#fff;z-index:1001}
+        .page-hero{padding:60px 0 70px;position:relative;z-index:2}
+        .page-hero-inner{text-align:center;max-width:700px;margin:0 auto}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,.2);backdrop-filter:blur(10px);padding:6px 16px;border-radius:60px;font-size:.75rem;font-weight:600;color:#c4b5fd;margin-bottom:24px;border:1px solid rgba(168,85,247,.3);animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(168,85,247,.4)}50%{box-shadow:0 0 0 10px rgba(168,85,247,0)}}
+        .page-hero h1{font-size:3rem;color:#fff;margin-bottom:16px;line-height:1.2}
+        .page-hero h1 .g{background:linear-gradient(135deg,#a78bfa,#f0f9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+        .page-hero p{color:rgba(255,255,255,.7);font-size:1rem;line-height:1.6}
+        .section{padding:80px 0}
+        .section-dark{background:#f9fafb}
+        .section-badge{display:inline-block;background:linear-gradient(135deg,#ede9fe,#eef2ff);color:#8b5cf6;font-size:.7rem;font-weight:700;letter-spacing:1px;padding:5px 12px;border-radius:30px;margin-bottom:16px;text-transform:uppercase}
+        .section-header{text-align:center;max-width:700px;margin:0 auto 50px}
+        .section-header h2{font-size:2.2rem;color:#111827;margin-bottom:12px}
+        .section-header p{color:#6b7280;font-size:1rem}
+        .gradient-heading{background:linear-gradient(135deg,#8b5cf6,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent}
+        /* Leadership */
+        .leadership-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:60px}
+        .leader-card{background:#fff;border-radius:28px;overflow:hidden;border:1px solid #e5e7eb;transition:all .4s;text-align:center}
+        .leader-card:hover{transform:translateY(-8px);border-color:#c4b5fd;box-shadow:0 25px 50px -12px rgba(139,92,246,.2)}
+        .leader-img{height:220px;position:relative;overflow:hidden}
+        .leader-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+        .leader-card:hover .leader-img img{transform:scale(1.06)}
+        .leader-avatar{width:100%;height:100%;background:linear-gradient(135deg,#8b5cf6,#6366f1);display:flex;align-items:center;justify-content:center;font-size:3.5rem;font-weight:800;color:#fff}
+        .leader-info{padding:24px}
+        .leader-name{font-size:1.1rem;font-weight:800;color:#111827;margin-bottom:4px}
+        .leader-role{font-size:.8rem;color:#8b5cf6;font-weight:600;margin-bottom:12px}
+        .leader-bio{font-size:.82rem;color:#6b7280;line-height:1.6;margin-bottom:16px}
+        .leader-social{display:flex;gap:10px;justify-content:center}
+        .leader-social a{width:32px;height:32px;background:#f3f4f6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#8b5cf6;font-size:.8rem;transition:all .2s;text-decoration:none}
+        .leader-social a:hover{background:#8b5cf6;color:#fff;transform:translateY(-2px)}
+        /* Departments */
+        .dept-tabs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+        .dept-tab{padding:8px 20px;border-radius:40px;border:2px solid #e5e7eb;cursor:pointer;font-size:.85rem;font-weight:600;color:#6b7280;transition:all .3s;background:#fff}
+        .dept-tab.active,.dept-tab:hover{border-color:#8b5cf6;color:#8b5cf6;background:#f5f3ff}
+        /* Team Grid */
+        .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+        .team-card{background:#fff;border-radius:20px;padding:24px 16px;border:1px solid #e5e7eb;text-align:center;transition:all .3s}
+        .team-card:hover{transform:translateY(-5px);border-color:#c4b5fd;box-shadow:0 15px 30px -10px rgba(139,92,246,.2)}
+        .team-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#6366f1);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.5rem;font-weight:800;color:#fff}
+        .team-name{font-size:.9rem;font-weight:700;color:#111827;margin-bottom:4px}
+        .team-role{font-size:.75rem;color:#8b5cf6;font-weight:600;margin-bottom:8px}
+        .team-loc{font-size:.72rem;color:#9ca3af;display:flex;align-items:center;justify-content:center;gap:4px}
+        /* Join CTA */
+        .join-banner{background:linear-gradient(135deg,#f5f3ff,#eef2ff);border-radius:32px;padding:50px;text-align:center;border:1px solid #e0e7ff}
+        .join-banner h2{font-size:1.8rem;color:#111827;margin-bottom:12px}
+        .join-banner p{color:#6b7280;max-width:500px;margin:0 auto 28px}
+        .btn-primary{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border:none;padding:12px 28px;border-radius:60px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;text-decoration:none;box-shadow:0 4px 20px rgba(139,92,246,.4)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(139,92,246,.6)}
+        footer{padding:60px 0 40px;background:#111827;margin-top:60px}
+        .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:40px}
+        .footer-col p{color:#9ca3af;max-width:250px}
+        .footer-links{display:flex;gap:60px;flex-wrap:wrap}
+        .footer-links-column h4{margin-bottom:20px;font-size:1rem;color:#fff}
+        .footer-links-column a{display:block;text-decoration:none;color:#9ca3af;margin-bottom:12px;transition:color .2s}
+        .footer-links-column a:hover{color:#a78bfa}
+        .social-icons{display:flex;gap:16px}
+        .social-icons a{width:40px;height:40px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:all .2s}
+        .social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px)}
+        .copyright{text-align:center;color:#6b7280;font-size:.85rem;padding-top:32px;border-top:1px solid #1f2937}
+        .menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);z-index:1000;opacity:0;visibility:hidden;transition:all .4s}
+        .menu-overlay.active{opacity:1;visibility:visible}
+        .side-menu{position:fixed;top:0;left:-320px;width:300px;height:100%;background:#fff;z-index:1002;transition:left .4s;box-shadow:5px 0 40px rgba(0,0,0,.1);overflow-y:auto}
+        .side-menu.active{left:0}
+        .side-menu-header{background:linear-gradient(135deg,#8b5cf6,#6366f1);padding:40px 24px 30px;margin-bottom:20px}
+        .close-menu{background:rgba(255,255,255,.2);border:none;color:#fff;font-size:1.2rem;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;float:right;transition:all .2s}
+        .close-menu:hover{background:rgba(255,255,255,.3);transform:rotate(90deg)}
+        .side-menu .menu-logo{font-size:1.6rem;font-weight:800;color:#fff;margin-top:20px;display:block;clear:both}
+        .side-nav-links{list-style:none;padding:20px 0}
+        .side-nav-links li{border-bottom:1px solid #f3f4f6}
+        .side-nav-links a{text-decoration:none;color:#374151;font-weight:500;font-size:1rem;display:flex;align-items:center;gap:14px;padding:16px 24px;transition:all .2s}
+        .side-nav-links a:hover{background:linear-gradient(90deg,#f5f3ff,#fff);color:#8b5cf6;padding-left:28px}
+        .side-nav-links a i{width:22px;color:#8b5cf6}
+        .side-menu-footer{padding:24px;border-top:1px solid #f3f4f6;margin-top:20px}
+        .side-social-icons{display:flex;gap:16px;justify-content:center;margin-bottom:16px}
+        .side-social-icons a{width:36px;height:36px;background:#f3f4f6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#8b5cf6;transition:all .2s}
+        .side-social-icons a:hover{background:#8b5cf6;color:#fff}
+        .side-menu-footer p{font-size:.7rem;color:#9ca3af;text-align:center}
+        @media(max-width:968px){.leadership-grid{grid-template-columns:1fr 1fr}.team-grid{grid-template-columns:repeat(3,1fr)}.page-hero h1{font-size:2.2rem}}
+        @media(max-width:768px){.nav-links{display:none}.menu-icon{display:block}.leadership-grid{grid-template-columns:1fr}.team-grid{grid-template-columns:repeat(2,1fr)}.container{padding:0 20px}.section{padding:50px 0}}
+        @media(max-width:480px){.page-hero h1{font-size:1.8rem}.team-grid{grid-template-columns:1fr 1fr}.join-banner{padding:32px 20px}}
+    </style>
+</head>
+<body>
+<div class="header-bg">
+    <div class="particles" id="particles"></div>
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
+            <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="events-gallery.html"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+                <li><a href="index.html#schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+        <div class="page-hero">
+            <div class="page-hero-inner" data-aos="fade-up">
+                <div class="hero-badge"><i class="fas fa-users"></i> Our Team</div>
+                <h1>The People Behind <span class="g">Infoma Academy</span></h1>
+                <p>A passionate team of educators, quiz enthusiasts, and tech minds united by one goal — transforming education in J&K through the power of quiz.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Leadership -->
+<section class="section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <div class="section-badge">LEADERSHIP</div>
+            <h2>Meet our <span class="gradient-heading">founders & leaders</span></h2>
+            <p>The visionaries who started and guide Infoma Academy's mission</p>
+        </div>
+        <div class="leadership-grid">
+            <div class="leader-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="leader-img">
+                    <div class="leader-avatar">AK</div>
+                </div>
+                <div class="leader-info">
+                    <div class="leader-name">Aditya Kumar</div>
+                    <div class="leader-role">Founder & CEO</div>
+                    <div class="leader-bio">An educator at heart, Aditya founded Infoma Academy after seeing firsthand the lack of competitive academic platforms for students in J&K. He brings 10+ years of experience in education and event management.</div>
+                    <div class="leader-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="leader-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="leader-img">
+                    <div class="leader-avatar" style="background:linear-gradient(135deg,#ec4899,#f43f5e)">SB</div>
+                </div>
+                <div class="leader-info">
+                    <div class="leader-name">Sara Bhat</div>
+                    <div class="leader-role">Co-Founder & Academic Head</div>
+                    <div class="leader-bio">Sara oversees all quiz content and curriculum design. With a Master's in Education, she ensures every question set is pedagogically sound, rigorous, and genuinely challenging for students.</div>
+                    <div class="leader-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="leader-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="leader-img">
+                    <div class="leader-avatar" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)">RD</div>
+                </div>
+                <div class="leader-info">
+                    <div class="leader-name">Rahul Dogra</div>
+                    <div class="leader-role">CTO & Tech Lead</div>
+                    <div class="leader-bio">Rahul built and maintains Infoma's digital platform. A software engineer who's passionate about using technology to democratize education, he ensures every online quiz runs flawlessly.</div>
+                    <div class="leader-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Extended Team -->
+        <div class="section-header" data-aos="fade-up" style="margin-top:20px">
+            <div class="section-badge">THE TEAM</div>
+            <h2>The full <span class="gradient-heading">Infoma family</span></h2>
+            <p>Spread across J&K, making things happen on the ground</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="team-avatar">NJ</div>
+                <div class="team-name">Nadia Jan</div>
+                <div class="team-role">School Relations</div>
+                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Srinagar</div>
+            </div>
+            <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">VS</div>
+                <div class="team-name">Vikas Sharma</div>
+                <div class="team-role">Event Coordinator</div>
+                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Jammu</div>
+            </div>
+            <div class="team-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">FM</div>
+                <div class="team-name">Faizan Mir</div>
+                <div class="team-role">Quiz Curator</div>
+                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Baramulla</div>
+            </div>
+            <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#a855f7,#ec4899)">PG</div>
+                <div class="team-name">Priya Gupta</div>
+                <div class="team-role">Marketing & Outreach</div>
+                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Jammu</div>
+            </div>
+            <div class="team-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#0f172a,#1e293b)">AW</div>
+                <div class="team-name">Adil Wani</div>
+                <div class="team-role">Operations Lead</div>
+                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Anantnag</div>
+            </div>
+            <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#0ea5e9,#2563eb)">SS</div>
+                <div class="team-name">Sunita Singh</div>
+                <div class="team-role">Teacher Relations</div>
+                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Udhampur</div>
+            </div>
+            <div class="team-card" data-aos="fade-up" data-aos-delay="350">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">ZA</div>
+                <div class="team-name">Zainab Akhtar</div>
+                <div class="team-role">Content Writer</div>
+                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Kupwara</div>
+            </div>
+            <div class="team-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">MK</div>
+                <div class="team-name">Mohit Kapoor</div>
+                <div class="team-role">Digital Scoring</div>
+                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Jammu</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Join the Team -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="join-banner" data-aos="zoom-in">
+            <div class="section-badge">JOIN US</div>
+            <h2>Want to be part of the <span class="gradient-heading">Infoma family?</span></h2>
+            <p>We're always looking for passionate educators, quiz enthusiasts, event coordinators, and tech talent to help us grow across J&K.</p>
+            <a href="careers.html" class="btn-primary"><i class="fas fa-briefcase"></i> View Open Positions</a>
+        </div>
+    </div>
+</section>
+
+<footer style="padding:60px 0 40px;background:#111827;margin-top:60px">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="font-size:1.5rem;">Infoma<span style="color:#a78bfa;">Academy</span></a>
+                <p style="margin-top:16px;">Pioneering school quizzes in Jammu & Kashmir since 2020.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-links-column"><h4>Quick Links</h4><a href="index.html">Home</a><a href="quiz-categories.html">Quizzes</a><a href="events-gallery.html">Gallery</a><a href="terms.html">Terms</a></div>
+                <div class="footer-links-column"><h4>Resources</h4><a href="how-it-works.html">How it works</a><a href="faq.html">FAQ</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a></div>
+                <div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+            </div>
+        </div>
+        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu & Kashmir. The only one.</div>
+    </div>
+</footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration:800,once:false,mirror:true});
+function createParticles(){const c=document.getElementById('particles');if(!c)return;for(let i=0;i<50;i++){const p=document.createElement('div');p.classList.add('particle');const s=Math.random()*8+2;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s`;c.appendChild(p);}}
+createParticles();
+document.body.insertAdjacentHTML('beforeend',`<div class="menu-overlay" id="menuOverlay"></div><div class="side-menu" id="sideMenu"><div class="side-menu-header"><button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button><span class="menu-logo">Infoma<span style="color:#c4b5fd">Academy</span></span></div><ul class="side-nav-links"><li><a href="index.html"><i class="fas fa-home"></i> Home</a></li><li><a href="events-gallery.html"><i class="fas fa-question-circle"></i> Quizzes</a></li><li><a href="index.html#schools"><i class="fas fa-school"></i> Schools</a></li><li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li><li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li></ul><div class="side-menu-footer"><div class="side-social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div><p>© 2025 Infoma Academy</p></div></div>`);
+const sideMenu=document.getElementById('sideMenu'),menuOverlay=document.getElementById('menuOverlay'),closeMenuBtn=document.getElementById('closeMenuBtn'),menuToggle=document.getElementById('menuToggle');
+function openMenu(){sideMenu.classList.add('active');menuOverlay.classList.add('active');document.body.style.overflow='hidden';}
+function closeMenu(){sideMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';}
+if(menuToggle)menuToggle.addEventListener('click',openMenu);
+if(closeMenuBtn)closeMenuBtn.addEventListener('click',closeMenu);
+if(menuOverlay)menuOverlay.addEventListener('click',closeMenu);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+</script>
+</body>
+</html>
