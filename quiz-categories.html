@@ -75,13 +75,57 @@
             .section { padding: 50px 0; }
             .levels-grid { grid-template-columns: 1fr; }
         }
+                /* 2-COLUMN LEVELS (smaller cards, no wrapper) */
+        .levels-grid-2cols {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .level-card-sm {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .level-card-sm:hover {
+            transform: translateY(-4px);
+            border-color: #c4b5fd;
+            box-shadow: 0 12px 24px -10px rgba(139,92,246,0.12);
+        }
+        .level-card-sm .level-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .level-card-sm h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #111827;
+        }
+        .level-card-sm .grades {
+            font-size: 0.75rem;
+            color: #8b5cf6;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .level-card-sm p {
+            font-size: 0.8rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
 
 <nav class="navbar">
     <a href="index.html" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
-    <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    
 </nav>
 
 <div class="page-hero">
@@ -162,26 +206,26 @@
         </div>
     </section>
 
-    <section class="section" style="background:#f9fafb; border-radius:40px; padding:60px 40px;">
+        <section class="section">
         <div class="section-header">
             <div class="section-badge">Divisions</div>
             <h2>Competition <span>Levels</span></h2>
             <p>Age-appropriate competitions so every student competes fairly</p>
         </div>
-        <div class="levels-grid">
-            <div class="level-card">
+        <div class="levels-grid-2cols">
+            <div class="level-card-sm">
                 <div class="level-badge junior">Junior</div>
                 <h3>Junior Division</h3>
                 <div class="grades">Classes 6, 7 & 8</div>
                 <p>Foundation-level questions focused on NCERT curriculum, fun science facts, Indian history and local J&K knowledge.</p>
             </div>
-            <div class="level-card">
+            <div class="level-card-sm">
                 <div class="level-badge senior">Senior Division</div>
                 <h3>Senior Division</h3>
                 <div class="grades">Classes 9 & 10</div>
                 <p>Intermediate difficulty covering board-level curriculum plus current affairs, sports and general awareness.</p>
             </div>
-            <div class="level-card">
+            <div class="level-card-sm">
                 <div class="level-badge ss">Senior Secondary</div>
                 <h3>Senior Secondary</h3>
                 <div class="grades">Classes 11 & 12</div>
