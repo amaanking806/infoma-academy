@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Categories | Infoma Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #fff; color: #111827; overflow-x: hidden; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: linear-gradient(135deg, #0f0c29, #302b63); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #fff, #c4b5fd); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; }
+        .nav-back { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+        .nav-back:hover { color: #a78bfa; }
+        .page-hero { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); padding: 80px 40px; text-align: center; }
+        .page-hero .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.3); padding: 6px 16px; border-radius: 60px; font-size: 0.75rem; font-weight: 600; color: #c4b5fd; margin-bottom: 20px; }
+        .page-hero h1 { font-size: 3rem; color: white; margin-bottom: 16px; }
+        .page-hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; font-size: 1.05rem; line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+        .section { padding: 80px 0; }
+        .section-badge { display: inline-block; background: linear-gradient(135deg, #ede9fe, #eef2ff); color: #8b5cf6; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; padding: 5px 12px; border-radius: 30px; margin-bottom: 16px; text-transform: uppercase; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header h2 { font-size: 2.2rem; color: #111827; margin-bottom: 12px; }
+        .section-header h2 span { background: linear-gradient(135deg, #8b5cf6, #6366f1); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .section-header p { color: #6b7280; }
+
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .cat-card { border-radius: 28px; padding: 32px; position: relative; overflow: hidden; transition: all 0.3s; border: 1px solid transparent; }
+        .cat-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -12px rgba(0,0,0,0.15); }
+        .cat-card.purple { background: linear-gradient(135deg, #f5f3ff, #ede9fe); border-color: #ddd6fe; }
+        .cat-card.blue { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #bfdbfe; }
+        .cat-card.green { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #bbf7d0; }
+        .cat-card.amber { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; }
+        .cat-card.pink { background: linear-gradient(135deg, #fdf2f8, #fce7f3); border-color: #fbcfe8; }
+        .cat-card.teal { background: linear-gradient(135deg, #f0fdfa, #ccfbf1); border-color: #99f6e4; }
+        .cat-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .cat-icon { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+        .purple .cat-icon { background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white; }
+        .blue .cat-icon { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
+        .green .cat-icon { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; }
+        .amber .cat-icon { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+        .pink .cat-icon { background: linear-gradient(135deg, #ec4899, #db2777); color: white; }
+        .teal .cat-icon { background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; }
+        .cat-card h3 { font-size: 1.1rem; font-weight: 700; color: #111827; }
+        .cat-card p { color: #4b5563; font-size: 0.875rem; line-height: 1.6; margin-bottom: 16px; }
+        .cat-topics { display: flex; flex-wrap: wrap; gap: 6px; }
+        .topic-tag { font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+        .purple .topic-tag { background: #ede9fe; color: #7c3aed; }
+        .blue .topic-tag { background: #dbeafe; color: #1d4ed8; }
+        .green .topic-tag { background: #dcfce7; color: #15803d; }
+        .amber .topic-tag { background: #fef3c7; color: #b45309; }
+        .pink .topic-tag { background: #fce7f3; color: #be185d; }
+        .teal .topic-tag { background: #ccfbf1; color: #0f766e; }
+
+        /* LEVELS */
+        .levels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .level-card { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 28px; text-align: center; }
+        .level-badge { display: inline-block; padding: 6px 16px; border-radius: 30px; font-size: 0.8rem; font-weight: 700; margin-bottom: 16px; }
+        .level-badge.junior { background: #dcfce7; color: #15803d; }
+        .level-badge.senior { background: #dbeafe; color: #1d4ed8; }
+        .level-badge.ss { background: #f3e8ff; color: #7c3aed; }
+        .level-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #111827; }
+        .level-card .grades { font-size: 0.85rem; color: #8b5cf6; font-weight: 600; margin-bottom: 12px; }
+        .level-card p { font-size: 0.85rem; color: #6b7280; line-height: 1.6; }
+
+        footer { background: #111827; padding: 40px; text-align: center; margin-top: 40px; }
+        footer p { color: #6b7280; font-size: 0.85rem; }
+        footer a { color: #a78bfa; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2rem; }
+            .navbar { padding: 16px 20px; }
+            .container { padding: 0 20px; }
+            .section { padding: 50px 0; }
+            .levels-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
+    <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+</nav>
+
+<div class="page-hero">
+    <div class="badge"><i class="fas fa-layer-group"></i> Quiz Categories</div>
+    <h1>What We Quiz About</h1>
+    <p>Our competitions span every major subject area — from science and history to J&K culture and current affairs. Something for every curious mind.</p>
+</div>
+
+<div class="container">
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-badge">Categories</div>
+            <h2>Quiz <span>Subject Areas</span></h2>
+            <p>Broad, balanced and exciting — our question bank covers it all</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card purple">
+                <div class="cat-header">
+                    <div class="cat-icon"><i class="fas fa-flask"></i></div>
+                    <h3>Science & Technology</h3>
+                </div>
+                <p>From Newton's laws to ISRO missions — physics, chemistry, biology, space and cutting-edge tech.</p>
+                <div class="cat-topics">
+                    <span class="topic-tag">Physics</span><span class="topic-tag">Chemistry</span><span class="topic-tag">Biology</span><span class="topic-tag">Space</span><span class="topic-tag">AI & Tech</span>
+                </div>
+            </div>
+            <div class="cat-card blue">
+                <div class="cat-header">
+                    <div class="cat-icon"><i class="fas fa-landmark"></i></div>
+                    <h3>History & Civics</h3>
+                </div>
+                <p>Ancient civilizations, Indian freedom struggle, world wars, constitutions and political systems.</p>
+                <div class="cat-topics">
+                    <span class="topic-tag">Ancient India</span><span class="topic-tag">World Wars</span><span class="topic-tag">Constitution</span><span class="topic-tag">Polity</span>
+                </div>
+            </div>
+            <div class="cat-card green">
+                <div class="cat-header">
+                    <div class="cat-icon"><i class="fas fa-globe-asia"></i></div>
+                    <h3>Geography</h3>
+                </div>
+                <p>Maps, capitals, rivers, mountain ranges, climate zones and physical features of India and the world.</p>
+                <div class="cat-topics">
+                    <span class="topic-tag">India</span><span class="topic-tag">World</span><span class="topic-tag">Maps</span><span class="topic-tag">Rivers & Peaks</span>
+                </div>
+            </div>
+            <div class="cat-card amber">
+                <div class="cat-header">
+                    <div class="cat-icon"><i class="fas fa-newspaper"></i></div>
+                    <h3>Current Affairs</h3>
+                </div>
+                <p>Recent national and international events, sports results, awards, appointments and major developments.</p>
+                <div class="cat-topics">
+                    <span class="topic-tag">National</span><span class="topic-tag">International</span><span class="topic-tag">Sports</span><span class="topic-tag">Awards</span>
+                </div>
+            </div>
+            <div class="cat-card pink">
+                <div class="cat-header">
+                    <div class="cat-icon"><i class="fas fa-om"></i></div>
+                    <h3>J&K Culture & Heritage</h3>
+                </div>
+                <p>The history, art, music, cuisine, festivals, rivers, rulers and personalities of Jammu & Kashmir.</p>
+                <div class="cat-topics">
+                    <span class="topic-tag">Jammu</span><span class="topic-tag">Kashmir</span><span class="topic-tag">Ladakh</span><span class="topic-tag">Heritage</span>
+                </div>
+            </div>
+            <div class="cat-card teal">
+                <div class="cat-header">
+                    <div class="cat-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Literature & Arts</h3>
+                </div>
+                <p>Authors, poets, novels, Booker & Nobel prize winners, Indian classical arts, music and cinema.</p>
+                <div class="cat-topics">
+                    <span class="topic-tag">Indian Literature</span><span class="topic-tag">World Lit</span><span class="topic-tag">Cinema</span><span class="topic-tag">Music</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:#f9fafb; border-radius:40px; padding:60px 40px;">
+        <div class="section-header">
+            <div class="section-badge">Divisions</div>
+            <h2>Competition <span>Levels</span></h2>
+            <p>Age-appropriate competitions so every student competes fairly</p>
+        </div>
+        <div class="levels-grid">
+            <div class="level-card">
+                <div class="level-badge junior">Junior</div>
+                <h3>Junior Division</h3>
+                <div class="grades">Classes 6, 7 & 8</div>
+                <p>Foundation-level questions focused on NCERT curriculum, fun science facts, Indian history and local J&K knowledge.</p>
+            </div>
+            <div class="level-card">
+                <div class="level-badge senior">Senior Division</div>
+                <h3>Senior Division</h3>
+                <div class="grades">Classes 9 & 10</div>
+                <p>Intermediate difficulty covering board-level curriculum plus current affairs, sports and general awareness.</p>
+            </div>
+            <div class="level-card">
+                <div class="level-badge ss">Senior Secondary</div>
+                <h3>Senior Secondary</h3>
+                <div class="grades">Classes 11 & 12</div>
+                <p>Advanced questions including competitive exam topics, world history, technology and deep current affairs analysis.</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2025 <a href="index.html">Infoma Academy</a> — Pioneering School Quizzes in Jammu & Kashmir</p>
+</footer>
+
+</body>
+</html>
