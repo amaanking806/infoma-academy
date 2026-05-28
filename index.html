@@ -2490,6 +2490,13 @@
     });
     observer.observe(document.body, { childList: true, subtree: true });
 
+   // Duplicate testimonial cards for seamless infinite scroll loop
+    const track = document.getElementById('testimonialsTrack');
+    if (track) {
+        const cards = track.innerHTML;
+        track.innerHTML = cards + cards;
+    }
+
     // Animated counter
     const statNumbers = document.querySelectorAll('.stat-number');
     const observerOptions = { threshold: 0.3, rootMargin: '0px' };
