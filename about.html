@@ -2,203 +2,324 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>About Us | Infoma Academy</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: #fff; color: #111827; overflow-x: hidden; }
-
-        /* NAV */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: linear-gradient(135deg, #0f0c29, #302b63); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #fff, #c4b5fd); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; }
-        .nav-back { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
-        .nav-back:hover { color: #a78bfa; }
-
-        /* HERO */
-        .page-hero { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
-        .page-hero::before { content: ''; position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,0.2), transparent); border-radius: 50%; top: -100px; right: -100px; }
-        .page-hero .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.3); padding: 6px 16px; border-radius: 60px; font-size: 0.75rem; font-weight: 600; color: #c4b5fd; margin-bottom: 20px; }
-        .page-hero h1 { font-size: 3rem; color: white; margin-bottom: 16px; }
-        .page-hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; font-size: 1.05rem; line-height: 1.7; }
-
-        /* CONTENT */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-        .section { padding: 80px 0; }
-
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .about-img { border-radius: 32px; overflow: hidden; }
-        .about-img img { width: 100%; height: 380px; object-fit: cover; }
-        .about-text .section-badge { display: inline-block; background: linear-gradient(135deg, #ede9fe, #eef2ff); color: #8b5cf6; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; padding: 5px 12px; border-radius: 30px; margin-bottom: 16px; text-transform: uppercase; }
-        .about-text h2 { font-size: 2rem; margin-bottom: 16px; color: #111827; }
-        .about-text h2 span { background: linear-gradient(135deg, #8b5cf6, #6366f1); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .about-text p { color: #6b7280; line-height: 1.8; margin-bottom: 16px; }
-
-        /* MISSION VISION */
-        .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 20px; }
-        .mv-card { background: linear-gradient(135deg, #f5f3ff, #eef2ff); border-radius: 24px; padding: 28px; border: 1px solid #e0e7ff; }
-        .mv-card .icon { width: 48px; height: 48px; background: linear-gradient(135deg, #8b5cf6, #6366f1); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-        .mv-card .icon i { color: white; font-size: 1.3rem; }
-        .mv-card h3 { font-size: 1.1rem; color: #111827; margin-bottom: 10px; }
-        .mv-card p { color: #6b7280; font-size: 0.9rem; line-height: 1.6; }
-
-        /* TEAM */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-        .team-card { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 28px; text-align: center; transition: all 0.3s; }
-        .team-card:hover { transform: translateY(-6px); border-color: #c4b5fd; box-shadow: 0 20px 40px -12px rgba(139,92,246,0.2); }
-        .team-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, #8b5cf6, #6366f1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.8rem; font-weight: 800; color: white; }
-        .team-card h3 { font-size: 1rem; font-weight: 700; color: #111827; margin-bottom: 4px; }
-        .team-card .role { font-size: 0.8rem; color: #8b5cf6; font-weight: 600; margin-bottom: 12px; }
-        .team-card p { font-size: 0.82rem; color: #6b7280; line-height: 1.6; }
-
-        /* TIMELINE */
-        .timeline { position: relative; padding-left: 40px; }
-        .timeline::before { content: ''; position: absolute; left: 16px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #8b5cf6, #6366f1); }
-        .timeline-item { position: relative; margin-bottom: 40px; }
-        .timeline-item::before { content: ''; position: absolute; left: -32px; top: 6px; width: 14px; height: 14px; background: #8b5cf6; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 3px #8b5cf6; }
-        .timeline-item .year { font-size: 0.75rem; font-weight: 700; color: #8b5cf6; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-        .timeline-item h3 { font-size: 1rem; font-weight: 700; color: #111827; margin-bottom: 6px; }
-        .timeline-item p { font-size: 0.875rem; color: #6b7280; line-height: 1.6; }
-
-        .section-header { text-align: center; margin-bottom: 48px; }
-        .section-header h2 { font-size: 2.2rem; color: #111827; margin-bottom: 12px; }
-        .section-header h2 span { background: linear-gradient(135deg, #8b5cf6, #6366f1); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .section-header p { color: #6b7280; font-size: 1rem; }
-
-        /* FOOTER */
-        footer { background: #111827; padding: 40px; text-align: center; margin-top: 40px; }
-        footer p { color: #6b7280; font-size: 0.85rem; }
-        footer a { color: #a78bfa; text-decoration: none; }
-
-        @media (max-width: 768px) {
-            .about-grid { grid-template-columns: 1fr; }
-            .mv-grid { grid-template-columns: 1fr; }
-            .page-hero h1 { font-size: 2rem; }
-            .navbar { padding: 16px 20px; }
-            .container { padding: 0 20px; }
-            .section { padding: 50px 0; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Poppins',sans-serif;overflow-x:hidden;background:#fff}
+        .header-bg{position:relative;width:100%;overflow:hidden;background:linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)}
+        .particles{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0}
+        .particle{position:absolute;background:rgba(255,255,255,.1);border-radius:50%;animation:floatParticle 20s infinite linear}
+        @keyframes floatParticle{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:.5}90%{opacity:.5}100%{transform:translateY(-100vh) rotate(720deg);opacity:0}}
+        .orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.3;animation:orbFloat 15s ease-in-out infinite}
+        .orb-1{width:300px;height:300px;background:#6366f1;top:-100px;right:-50px}
+        .orb-2{width:400px;height:400px;background:#ec4899;bottom:-150px;left:-100px;animation-delay:-5s}
+        .orb-3{width:250px;height:250px;background:#06b6d4;top:50%;left:30%;animation-delay:-10s}
+        @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(.9)}}
+        .container{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+        .navbar{display:flex;justify-content:space-between;align-items:center;padding:24px 0;position:relative;z-index:10}
+        .logo{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,#fff 0%,#a78bfa 100%);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em;text-decoration:none}
+        .nav-links{display:flex;gap:42px;list-style:none}
+        .nav-links a{text-decoration:none;color:rgba(255,255,255,.8);font-weight:500;transition:all .3s;font-size:.95rem;display:flex;align-items:center;gap:6px}
+        .nav-links a:hover{color:#a78bfa;transform:translateY(-2px)}
+        .menu-icon{display:none;font-size:1.8rem;cursor:pointer;color:#fff;z-index:1001}
+        /* Page Hero */
+        .page-hero{padding:60px 0 70px;position:relative;z-index:2}
+        .page-hero-inner{text-align:center;max-width:700px;margin:0 auto}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,.2);backdrop-filter:blur(10px);padding:6px 16px;border-radius:60px;font-size:.75rem;font-weight:600;color:#c4b5fd;margin-bottom:24px;border:1px solid rgba(168,85,247,.3);animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(168,85,247,.4)}50%{box-shadow:0 0 0 10px rgba(168,85,247,0)}}
+        .page-hero h1{font-size:3rem;color:#fff;margin-bottom:16px;line-height:1.2}
+        .page-hero h1 .g{background:linear-gradient(135deg,#a78bfa,#f0f9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+        .page-hero p{color:rgba(255,255,255,.7);font-size:1rem;line-height:1.6}
+        /* Sections */
+        .section{padding:80px 0}
+        .section-dark{background:#f9fafb}
+        .section-badge{display:inline-block;background:linear-gradient(135deg,#ede9fe,#eef2ff);color:#8b5cf6;font-size:.7rem;font-weight:700;letter-spacing:1px;padding:5px 12px;border-radius:30px;margin-bottom:16px;text-transform:uppercase}
+        .section-header{text-align:center;max-width:700px;margin:0 auto 50px}
+        .section-header h2{font-size:2.2rem;color:#111827;margin-bottom:12px}
+        .section-header p{color:#6b7280;font-size:1rem}
+        .gradient-heading{background:linear-gradient(135deg,#8b5cf6,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent}
+        /* Story */
+        .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .story-img{border-radius:32px;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,.15);position:relative}
+        .story-img img{width:100%;display:block}
+        .story-img-badge{position:absolute;bottom:24px;left:24px;background:rgba(255,255,255,.95);padding:12px 20px;border-radius:60px;display:flex;align-items:center;gap:10px;font-weight:600;font-size:.85rem;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+        .story-content h2{font-size:2rem;color:#111827;margin-bottom:16px;line-height:1.3}
+        .story-content p{color:#6b7280;line-height:1.7;margin-bottom:16px;font-size:.95rem}
+        .story-list{list-style:none;margin-top:24px}
+        .story-list li{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;color:#374151;font-size:.9rem}
+        .story-list li i{color:#8b5cf6;margin-top:3px;flex-shrink:0}
+        /* Values */
+        .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+        .value-card{background:#fff;padding:36px 28px;border-radius:28px;border:1px solid #e5e7eb;transition:all .4s;text-align:center;position:relative;overflow:hidden}
+        .value-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#8b5cf6,#6366f1,#a78bfa);transform:scaleX(0);transition:transform .4s ease;transform-origin:left}
+        .value-card:hover::before{transform:scaleX(1)}
+        .value-card:hover{transform:translateY(-8px);border-color:#8b5cf6;box-shadow:0 25px 45px -12px rgba(139,92,246,.25)}
+        .value-icon{width:64px;height:64px;background:linear-gradient(135deg,#8b5cf6,#a78bfa);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;transition:all .3s}
+        .value-card:hover .value-icon{transform:scale(1.05) rotate(5deg)}
+        .value-icon i{font-size:1.8rem;color:#fff}
+        .value-card h3{font-size:1.15rem;color:#111827;margin-bottom:10px;font-weight:700}
+        .value-card p{color:#6b7280;font-size:.85rem;line-height:1.6}
+        /* Timeline */
+        .timeline{position:relative;max-width:700px;margin:0 auto}
+        .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#8b5cf6,#6366f1);transform:translateX(-50%)}
+        .timeline-item{display:flex;gap:40px;margin-bottom:48px;align-items:flex-start}
+        .timeline-item:nth-child(even){flex-direction:row-reverse}
+        .timeline-content{flex:1;background:#fff;padding:24px;border-radius:20px;border:1px solid #e5e7eb;box-shadow:0 4px 15px rgba(0,0,0,.05);transition:all .3s}
+        .timeline-content:hover{border-color:#c4b5fd;box-shadow:0 10px 30px rgba(139,92,246,.15)}
+        .timeline-dot{width:44px;height:44px;background:linear-gradient(135deg,#8b5cf6,#6366f1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;box-shadow:0 0 0 6px #f9fafb}
+        .timeline-dot i{color:#fff;font-size:1rem}
+        .timeline-year{font-size:.75rem;font-weight:700;color:#8b5cf6;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+        .timeline-content h3{font-size:1rem;color:#111827;font-weight:700;margin-bottom:6px}
+        .timeline-content p{font-size:.82rem;color:#6b7280;line-height:1.6}
+        /* CTA */
+        .cta-section{background:linear-gradient(135deg,#8b5cf6 0%,#6366f1 100%);border-radius:48px;padding:60px;text-align:center;position:relative;overflow:hidden}
+        .cta-section h2{color:#fff;font-size:2rem;margin-bottom:16px}
+        .cta-section p{color:rgba(255,255,255,.85);max-width:500px;margin:0 auto 32px}
+        .btn-primary{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border:none;padding:12px 28px;border-radius:60px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;text-decoration:none;box-shadow:0 4px 20px rgba(139,92,246,.4)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(139,92,246,.6)}
+        .btn-white{background:#fff;color:#8b5cf6;padding:14px 38px;border-radius:60px;font-weight:700;border:none;cursor:pointer;transition:all .3s;font-family:'Poppins',sans-serif;font-size:1rem;display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+        .btn-white:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(0,0,0,.2)}
+        /* Footer */
+        footer{padding:60px 0 40px;background:#111827;margin-top:60px}
+        .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:40px}
+        .footer-col p{color:#9ca3af;max-width:250px}
+        .footer-links{display:flex;gap:60px;flex-wrap:wrap}
+        .footer-links-column h4{margin-bottom:20px;font-size:1rem;color:#fff}
+        .footer-links-column a{display:block;text-decoration:none;color:#9ca3af;margin-bottom:12px;transition:color .2s}
+        .footer-links-column a:hover{color:#a78bfa}
+        .social-icons{display:flex;gap:16px}
+        .social-icons a{width:40px;height:40px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:all .2s}
+        .social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px)}
+        .copyright{text-align:center;color:#6b7280;font-size:.85rem;padding-top:32px;border-top:1px solid #1f2937}
+        /* Side Menu */
+        .menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);z-index:1000;opacity:0;visibility:hidden;transition:all .4s}
+        .menu-overlay.active{opacity:1;visibility:visible}
+        .side-menu{position:fixed;top:0;left:-320px;width:300px;height:100%;background:#fff;z-index:1002;transition:left .4s cubic-bezier(.4,0,.2,1);box-shadow:5px 0 40px rgba(0,0,0,.1);overflow-y:auto}
+        .side-menu.active{left:0}
+        .side-menu-header{background:linear-gradient(135deg,#8b5cf6,#6366f1);padding:40px 24px 30px;margin-bottom:20px}
+        .close-menu{background:rgba(255,255,255,.2);border:none;color:#fff;font-size:1.2rem;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s;float:right}
+        .close-menu:hover{background:rgba(255,255,255,.3);transform:rotate(90deg)}
+        .side-menu .menu-logo{font-size:1.6rem;font-weight:800;color:#fff;margin-top:20px;display:block;clear:both}
+        .side-nav-links{list-style:none;padding:20px 0}
+        .side-nav-links li{margin:0;border-bottom:1px solid #f3f4f6}
+        .side-nav-links a{text-decoration:none;color:#374151;font-weight:500;font-size:1rem;display:flex;align-items:center;gap:14px;padding:16px 24px;transition:all .2s}
+        .side-nav-links a:hover{background:linear-gradient(90deg,#f5f3ff 0%,#fff 100%);color:#8b5cf6;padding-left:28px}
+        .side-nav-links a i{width:22px;color:#8b5cf6;font-size:1.1rem}
+        .side-menu-footer{padding:24px;border-top:1px solid #f3f4f6;margin-top:20px}
+        .side-social-icons{display:flex;gap:16px;justify-content:center;margin-bottom:16px}
+        .side-social-icons a{width:36px;height:36px;background:#f3f4f6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#8b5cf6;transition:all .2s}
+        .side-social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px)}
+        .side-menu-footer p{font-size:.7rem;color:#9ca3af;text-align:center}
+        @media(max-width:968px){
+            .story-grid{grid-template-columns:1fr;gap:40px}
+            .values-grid{grid-template-columns:1fr 1fr}
+            .timeline::before{left:22px}
+            .timeline-item,.timeline-item:nth-child(even){flex-direction:row}
+            .page-hero h1{font-size:2.2rem}
+        }
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .menu-icon{display:block}
+            .values-grid{grid-template-columns:1fr}
+            .container{padding:0 20px}
+            .section{padding:50px 0}
+        }
+        @media(max-width:480px){
+            .page-hero h1{font-size:1.8rem}
+            .cta-section{padding:40px 24px}
         }
     </style>
 </head>
 <body>
-
-<nav class="navbar">
-    <a href="index.html" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
-    <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
-</nav>
-
-<div class="page-hero">
-    <div class="badge"><i class="fas fa-info-circle"></i> About Us</div>
-    <h1>Our Story & Mission</h1>
-    <p>Born in J&K, built for J&K. We're on a mission to make academic quizzing the heartbeat of every school in the region.</p>
+<div class="header-bg">
+    <div class="particles" id="particles"></div>
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
+            <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="events-gallery.html"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+                <li><a href="index.html#schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+        <div class="page-hero">
+            <div class="page-hero-inner" data-aos="fade-up">
+                <div class="hero-badge"><i class="fas fa-info-circle"></i> About Us</div>
+                <h1>The Story Behind <span class="g">Infoma Academy</span></h1>
+                <p>From a dream to J&K's only dedicated quiz platform — discover how we're transforming the way young minds compete and grow.</p>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="container">
-
-    <!-- About -->
-    <section class="section">
-        <div class="about-grid">
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=380&fit=crop" alt="Students">
+<!-- Our Story -->
+<section class="section">
+    <div class="container">
+        <div class="story-grid">
+            <div class="story-img" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=500&fit=crop" alt="Students at quiz">
+                <div class="story-img-badge"><i class="fas fa-crown" style="color:#f59e0b;"></i> Founded 2020</div>
             </div>
-            <div class="about-text">
-                <div class="section-badge">Who We Are</div>
-                <h2>J&K's <span>First & Only</span> Quiz Platform</h2>
-                <p>Infoma Academy was founded in 2020 with a singular vision — to bring structured, professional academic quizzing to the schools of Jammu & Kashmir. Before us, there was no dedicated platform doing this at scale in the region.</p>
-                <p>We organize inter-school quiz competitions that go beyond rote learning, encouraging students to think critically, compete fairly, and celebrate knowledge. From Jammu to Srinagar to Leh, we've reached over 50 schools and impacted 18,000+ students.</p>
-                <div class="mv-grid">
-                    <div class="mv-card">
-                        <div class="icon"><i class="fas fa-bullseye"></i></div>
-                        <h3>Our Mission</h3>
-                        <p>To make J&K's students the most quiz-competitive in India by building a culture of curiosity and knowledge.</p>
-                    </div>
-                    <div class="mv-card">
-                        <div class="icon"><i class="fas fa-eye"></i></div>
-                        <h3>Our Vision</h3>
-                        <p>A J&K where every school has an active quiz team and every student is proud to compete on the national stage.</p>
-                    </div>
-                </div>
+            <div class="story-content" data-aos="fade-left">
+                <div class="section-badge">OUR STORY</div>
+                <h2>Born out of a gap in <span class="gradient-heading">J&K's education</span></h2>
+                <p>In 2020, we noticed that students in Jammu & Kashmir had exceptional academic talent but lacked a structured, professional platform to showcase it. National quiz competitions were out of reach, and local ones were few and informal.</p>
+                <p>Infoma Academy was founded to fill that void — to bring world-class quiz competitions right to the doorstep of J&K's schools, nurturing curiosity, confidence, and competitive spirit in every student.</p>
+                <ul class="story-list">
+                    <li><i class="fas fa-check-circle"></i> First and only dedicated inter-school quiz platform in J&K</li>
+                    <li><i class="fas fa-check-circle"></i> 50+ partner schools across Jammu, Kashmir & Ladakh</li>
+                    <li><i class="fas fa-check-circle"></i> 15,000+ students impacted since inception</li>
+                    <li><i class="fas fa-check-circle"></i> 120+ professionally organized quiz events</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Team -->
-    <section class="section" style="background: #f9fafb; border-radius: 40px; padding: 60px 40px;">
-        <div class="section-header">
-            <div class="section-badge" style="display:inline-block;background:linear-gradient(135deg,#ede9fe,#eef2ff);color:#8b5cf6;font-size:0.7rem;font-weight:700;letter-spacing:1px;padding:5px 12px;border-radius:30px;margin-bottom:16px;text-transform:uppercase;">Our People</div>
-            <h2>Meet the <span>Team</span></h2>
-            <p>Passionate educators and organizers driving J&K's quiz revolution</p>
+<!-- Values -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <div class="section-badge">WHAT WE STAND FOR</div>
+            <h2>Our Core <span class="gradient-heading">Values</span></h2>
+            <p>Every decision we make is guided by these principles</p>
         </div>
-        <div class="team-grid">
-            <div class="team-card">
-                <div class="team-avatar">AK</div>
-                <h3>Aryan Khanna</h3>
-                <div class="role">Founder & CEO</div>
-                <p>Former national quiz champion with a passion for education in J&K.</p>
+        <div class="values-grid">
+            <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Curiosity First</h3>
+                <p>We believe every question asked is a step toward brilliance. We design every quiz to spark genuine intellectual curiosity in students.</p>
             </div>
-            <div class="team-card">
-                <div class="team-avatar">SR</div>
-                <h3>Sara Raina</h3>
-                <div class="role">Head of Academics</div>
-                <p>Curriculum designer who has built 500+ quiz questions across subjects.</p>
+            <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Inclusive Competition</h3>
+                <p>Whether CBSE, JKBOSE or ICSE — every school, every student deserves equal access to quality competitive experiences.</p>
             </div>
-            <div class="team-card">
-                <div class="team-avatar">IM</div>
-                <h3>Imran Malik</h3>
-                <div class="role">Operations Lead</div>
-                <p>Manages school partnerships across Jammu, Kashmir and Ladakh divisions.</p>
+            <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="value-icon"><i class="fas fa-star"></i></div>
+                <h3>Excellence in Execution</h3>
+                <p>From question curation to ceremony — we hold every detail to national standards, ensuring students are proud to participate.</p>
             </div>
-            <div class="team-card">
-                <div class="team-avatar">NB</div>
-                <h3>Nidhi Bhat</h3>
-                <div class="role">Technology Head</div>
-                <p>Builds and maintains the digital quiz infrastructure powering our events.</p>
+            <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="value-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>Rooted in J&K</h3>
+                <p>We understand our region's unique educational landscape and design programs that resonate with the local culture and aspirations.</p>
+            </div>
+            <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Integrity Always</h3>
+                <p>Fair scoring, unbiased question sets, and transparent results — trust is the foundation of every quiz we organize.</p>
+            </div>
+            <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="value-icon"><i class="fas fa-seedling"></i></div>
+                <h3>Long-term Growth</h3>
+                <p>We measure success not by events held, but by students who grew more confident, curious, and capable of taking on the world.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Timeline -->
-    <section class="section">
-        <div class="section-header">
-            <div class="section-badge" style="display:inline-block;background:linear-gradient(135deg,#ede9fe,#eef2ff);color:#8b5cf6;font-size:0.7rem;font-weight:700;letter-spacing:1px;padding:5px 12px;border-radius:30px;margin-bottom:16px;text-transform:uppercase;">Journey</div>
-            <h2>Our <span>Story So Far</span></h2>
-            <p>From a single event to J&K's premier quiz platform</p>
+<!-- Journey Timeline -->
+<section class="section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <div class="section-badge">OUR JOURNEY</div>
+            <h2>Milestones that <span class="gradient-heading">define us</span></h2>
+            <p>From one quiz to a movement spanning all of J&K</p>
         </div>
         <div class="timeline">
-            <div class="timeline-item">
-                <div class="year">2020</div>
-                <h3>Founded in Jammu</h3>
-                <p>Infoma Academy started with our first inter-school quiz between 5 schools in Jammu city.</p>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <div class="timeline-year">2020</div>
+                    <h3>The Beginning</h3>
+                    <p>Infoma Academy was founded in Jammu with a bold mission — to create J&K's first professional inter-school quiz platform.</p>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-rocket"></i></div>
             </div>
-            <div class="timeline-item">
-                <div class="year">2021</div>
-                <h3>Expanded to Kashmir Valley</h3>
-                <p>Crossed the Banihal Pass — our quizzes reached Srinagar, Anantnag and Baramulla.</p>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <div class="timeline-year">2021</div>
+                    <h3>First 10 Schools</h3>
+                    <p>We onboarded our first 10 partner schools and organized our debut inter-school quiz championship with over 300 participants.</p>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-school"></i></div>
             </div>
-            <div class="timeline-item">
-                <div class="year">2022</div>
-                <h3>Digital Platform Launch</h3>
-                <p>Launched our online quiz portal enabling remote participation from schools across J&K.</p>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <div class="timeline-year">2022</div>
+                    <h3>Going Digital</h3>
+                    <p>Launched our digital quiz platform enabling online rounds, real-time scoring, and remote participation across the region.</p>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-laptop-code"></i></div>
             </div>
-            <div class="timeline-item">
-                <div class="year">2023</div>
-                <h3>50 Schools Milestone</h3>
-                <p>Crossed 50 partner schools and 10,000 students — a landmark for education in the region.</p>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <div class="timeline-year">2023</div>
+                    <h3>Pan J&K Expansion</h3>
+                    <p>Expanded to the Kashmir Valley and Ladakh — now covering Jammu, Srinagar, Leh and surrounding districts.</p>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-map-marked-alt"></i></div>
             </div>
-            <div class="timeline-item">
-                <div class="year">2024–25</div>
-                <h3>Ladakh & National Ambitions</h3>
-                <p>Expanded to Leh-Ladakh and are now preparing J&K students for national quiz championships.</p>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <div class="timeline-year">2024–25</div>
+                    <h3>50+ Schools & 15K+ Students</h3>
+                    <p>Reached our biggest milestone — 50 partner schools, 15,000+ students impacted, and 120+ events organized successfully.</p>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-trophy"></i></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
+<!-- CTA -->
+<div class="container" data-aos="fade-up">
+    <div class="cta-section">
+        <h2>Want to be part of our story?</h2>
+        <p>Register your school and join the quiz movement that's reshaping education in J&K.</p>
+        <a href="contact.html" class="btn-white"><i class="fas fa-arrow-right"></i> Get in Touch</a>
+    </div>
 </div>
 
-<footer>
-    <p>© 2025 <a href="index.html">Infoma Academy</a> — Pioneering School Quizzes in Jammu & Kashmir</p>
+<footer id="contact">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="font-size:1.5rem;">Infoma<span style="color:#a78bfa;">Academy</span></a>
+                <p style="margin-top:16px;">Pioneering school quizzes in Jammu & Kashmir since 2020.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-links-column"><h4>Quick Links</h4><a href="index.html">Home</a><a href="quiz-categories.html">Quizzes</a><a href="events-gallery.html">Gallery</a><a href="terms.html">Terms</a></div>
+                <div class="footer-links-column"><h4>Resources</h4><a href="how-it-works.html">How it works</a><a href="faq.html">FAQ</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a></div>
+                <div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+            </div>
+        </div>
+        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu & Kashmir. The only one.</div>
+    </div>
 </footer>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration:800,once:false,mirror:true});
+function createParticles(){const c=document.getElementById('particles');if(!c)return;for(let i=0;i<50;i++){const p=document.createElement('div');p.classList.add('particle');const s=Math.random()*8+2;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s`;c.appendChild(p);}}
+createParticles();
+const menuToggle=document.getElementById('menuToggle');
+document.body.insertAdjacentHTML('beforeend',`<div class="menu-overlay" id="menuOverlay"></div><div class="side-menu" id="sideMenu"><div class="side-menu-header"><button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button><span class="menu-logo">Infoma<span style="color:#c4b5fd">Academy</span></span></div><ul class="side-nav-links"><li><a href="index.html"><i class="fas fa-home"></i> Home</a></li><li><a href="events-gallery.html"><i class="fas fa-question-circle"></i> Quizzes</a></li><li><a href="index.html#schools"><i class="fas fa-school"></i> Schools</a></li><li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li><li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li></ul><div class="side-menu-footer"><div class="side-social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div><p>© 2025 Infoma Academy</p></div></div>`);
+const sideMenu=document.getElementById('sideMenu'),menuOverlay=document.getElementById('menuOverlay'),closeMenuBtn=document.getElementById('closeMenuBtn');
+function openMenu(){sideMenu.classList.add('active');menuOverlay.classList.add('active');document.body.style.overflow='hidden';}
+function closeMenu(){sideMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';}
+if(menuToggle)menuToggle.addEventListener('click',openMenu);
+if(closeMenuBtn)closeMenuBtn.addEventListener('click',closeMenu);
+if(menuOverlay)menuOverlay.addEventListener('click',closeMenu);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+</script>
 </body>
 </html>
