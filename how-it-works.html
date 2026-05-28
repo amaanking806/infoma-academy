@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works | Infoma Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #fff; color: #111827; overflow-x: hidden; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: linear-gradient(135deg, #0f0c29, #302b63); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #fff, #c4b5fd); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; }
+        .nav-back { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+        .nav-back:hover { color: #a78bfa; }
+        .page-hero { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); padding: 80px 40px; text-align: center; }
+        .page-hero .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.3); padding: 6px 16px; border-radius: 60px; font-size: 0.75rem; font-weight: 600; color: #c4b5fd; margin-bottom: 20px; }
+        .page-hero h1 { font-size: 3rem; color: white; margin-bottom: 16px; }
+        .page-hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; font-size: 1.05rem; line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+        .section { padding: 80px 0; }
+        .section-badge { display: inline-block; background: linear-gradient(135deg, #ede9fe, #eef2ff); color: #8b5cf6; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; padding: 5px 12px; border-radius: 30px; margin-bottom: 16px; text-transform: uppercase; }
+        .section-header { text-align: center; margin-bottom: 56px; }
+        .section-header h2 { font-size: 2.2rem; color: #111827; margin-bottom: 12px; }
+        .section-header h2 span { background: linear-gradient(135deg, #8b5cf6, #6366f1); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .section-header p { color: #6b7280; }
+
+        /* STEPS */
+        .steps { display: flex; flex-direction: column; gap: 0; }
+        .step { display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start; padding: 40px 0; border-bottom: 1px solid #f3f4f6; }
+        .step:last-child { border-bottom: none; }
+        .step-number { width: 64px; height: 64px; background: linear-gradient(135deg, #8b5cf6, #6366f1); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 800; color: white; flex-shrink: 0; }
+        .step-content h3 { font-size: 1.25rem; font-weight: 700; color: #111827; margin-bottom: 10px; }
+        .step-content p { color: #6b7280; line-height: 1.7; margin-bottom: 16px; }
+        .step-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { background: #f3f4f6; color: #374151; font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+
+        /* FORMAT CARDS */
+        .format-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+        .format-card { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 28px; transition: all 0.3s; }
+        .format-card:hover { transform: translateY(-5px); border-color: #c4b5fd; box-shadow: 0 20px 40px -12px rgba(139,92,246,0.15); }
+        .format-icon { width: 52px; height: 52px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+        .format-icon i { color: white; font-size: 1.3rem; }
+        .format-card h3 { font-size: 1rem; font-weight: 700; color: #111827; margin-bottom: 8px; }
+        .format-card p { font-size: 0.85rem; color: #6b7280; line-height: 1.6; }
+
+        /* FAQ */
+        .faq-list { display: flex; flex-direction: column; gap: 16px; }
+        .faq-item { background: #f9fafb; border-radius: 16px; padding: 24px; border: 1px solid #e5e7eb; cursor: pointer; transition: all 0.2s; }
+        .faq-item:hover { border-color: #c4b5fd; }
+        .faq-q { font-weight: 600; color: #111827; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .faq-q i { color: #8b5cf6; flex-shrink: 0; }
+        .faq-a { color: #6b7280; font-size: 0.9rem; line-height: 1.7; margin-top: 12px; }
+
+        footer { background: #111827; padding: 40px; text-align: center; margin-top: 40px; }
+        footer p { color: #6b7280; font-size: 0.85rem; }
+        footer a { color: #a78bfa; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2rem; }
+            .navbar { padding: 16px 20px; }
+            .container { padding: 0 20px; }
+            .section { padding: 50px 0; }
+            .step { grid-template-columns: 1fr; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
+    <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+</nav>
+
+<div class="page-hero">
+    <div class="badge"><i class="fas fa-cogs"></i> How It Works</div>
+    <h1>From Registration to Trophy</h1>
+    <p>Everything you need to know about how Infoma Academy runs its inter-school quiz competitions — step by step.</p>
+</div>
+
+<div class="container">
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-badge">The Process</div>
+            <h2>How a Quiz <span>Competition Works</span></h2>
+            <p>Simple, transparent, and professionally managed from start to finish</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>School Registration</h3>
+                    <p>Your school registers through our website or by contacting our team. We confirm participation, share the competition calendar, and assign a dedicated coordinator for your school.</p>
+                    <div class="step-tags"><span class="tag">Online Form</span><span class="tag">Free Registration</span><span class="tag">24hr Confirmation</span></div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Team Selection & Preparation</h3>
+                    <p>Each school selects a team (typically 2–4 students per team). We share a preparation guide, topic list, and sample questions to help students prepare. Teacher coordinators receive a full briefing pack.</p>
+                    <div class="step-tags"><span class="tag">Prep Material Provided</span><span class="tag">2–4 Students per Team</span><span class="tag">Teacher Briefing</span></div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Preliminary Rounds</h3>
+                    <p>Schools participate in written or online preliminary rounds. Top-scoring teams qualify for the main event. Results are shared within 48 hours with detailed score breakdowns.</p>
+                    <div class="step-tags"><span class="tag">Online / Written</span><span class="tag">Transparent Scoring</span><span class="tag">Results in 48hrs</span></div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h3>Grand Quiz Event</h3>
+                    <p>Qualifying teams compete in a live, professionally hosted quiz event with multiple exciting rounds — buzzer rounds, visual rounds, rapid fire, and more. Events are held at prestigious venues across J&K.</p>
+                    <div class="step-tags"><span class="tag">Live Hosted Event</span><span class="tag">Multiple Rounds</span><span class="tag">Audience Welcome</span></div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">05</div>
+                <div class="step-content">
+                    <h3>Awards & Certificates</h3>
+                    <p>Winners receive trophies, medals, and cash prizes. All participants receive participation certificates. Top schools receive a "Quiz Excellence" shield for their school hall of fame.</p>
+                    <div class="step-tags"><span class="tag">Trophies & Medals</span><span class="tag">Certificates for All</span><span class="tag">Cash Prizes</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:#f9fafb; border-radius:40px; padding:60px 40px;">
+        <div class="section-header">
+            <div class="section-badge">Quiz Formats</div>
+            <h2>Round <span>Formats We Use</span></h2>
+            <p>Our competitions feature multiple exciting round types</p>
+        </div>
+        <div class="format-grid">
+            <div class="format-card">
+                <div class="format-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Buzzer Round</h3>
+                <p>Fast-paced questions where the first team to buzz in gets to answer. Tests quick thinking and reflexes.</p>
+            </div>
+            <div class="format-card">
+                <div class="format-icon"><i class="fas fa-image"></i></div>
+                <h3>Visual Round</h3>
+                <p>Images, logos, maps and photographs projected on screen. Identify what you see — geography, science, history.</p>
+            </div>
+            <div class="format-card">
+                <div class="format-icon"><i class="fas fa-fire"></i></div>
+                <h3>Rapid Fire</h3>
+                <p>30 questions in 60 seconds per team. Pure speed, breadth of knowledge and nerves of steel required.</p>
+            </div>
+            <div class="format-card">
+                <div class="format-icon"><i class="fas fa-users"></i></div>
+                <h3>Pass & Play</h3>
+                <p>Teams can pass difficult questions to opponents. Strategy matters as much as knowledge in this format.</p>
+            </div>
+            <div class="format-card">
+                <div class="format-icon"><i class="fas fa-globe"></i></div>
+                <h3>J&K Special Round</h3>
+                <p>Questions exclusively about Jammu & Kashmir — history, culture, geography, personalities and current affairs.</p>
+            </div>
+            <div class="format-card">
+                <div class="format-icon"><i class="fas fa-music"></i></div>
+                <h3>Audio Round</h3>
+                <p>Identify songs, speeches, sounds and audio clips. Tests a different dimension of knowledge and memory.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-badge">FAQ</div>
+            <h2>Common <span>Questions</span></h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-q">Is there a registration fee? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">No — registration for schools is completely free. Infoma Academy believes every student deserves access to quality competitions regardless of school budget.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Which classes/grades can participate? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">We run separate competitions for Junior (Classes 6–8), Senior (Classes 9–10), and Senior Secondary (Classes 11–12) divisions so students compete within their age group.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">How many students can a school send? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">Each school can register up to 3 teams per division (one team = 2 to 4 students). There is no limit on observers/supporters who come to cheer.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Where are the events held? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">Events are held at school auditoriums, convention centres and university halls across Jammu, Srinagar and Leh. Venue details are shared 2 weeks before the event.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Can private/convent schools participate? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">Absolutely. We welcome government schools, private schools, convent schools, Kendriya Vidyalayas, Navodaya Vidyalayas and all CBSE/JKBOSE affiliated institutions.</div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2025 <a href="index.html">Infoma Academy</a> — Pioneering School Quizzes in Jammu & Kashmir</p>
+</footer>
+
+</body>
+</html>
