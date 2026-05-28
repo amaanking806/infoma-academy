@@ -2058,15 +2058,26 @@
     </div>
 </div>
 
-<!-- Testimonials -->
+<!-- Testimonials - Horizontal Auto-Sliding Carousel -->
 <section class="section section-dark" id="schools">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <h2>Trusted by educators across J&K</h2>
             <p class="section-subtitle">What school leaders say about our impact</p>
         </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+    </div>
+    
+    <div class="testimonials-carousel">
+        <div class="testimonials-track">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
                 <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
                 <p>"Infoma Academy has brought a quizzing revolution to our students. Being the only platform doing this in J&K, they've set a gold standard."</p>
                 <div class="author">
@@ -2077,7 +2088,15 @@
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+            <!-- Testimonial 2 -->
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
                 <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
                 <p>"Our students eagerly wait for Infoma's quizzes every semester. Professional, engaging and truly the first of its kind in the valley."</p>
                 <div class="author">
@@ -2088,7 +2107,15 @@
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+            <!-- Testimonial 3 -->
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
                 <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
                 <p>"The only organization that understands J&K's educational landscape. Their quizzes have boosted student confidence tremendously."</p>
                 <div class="author">
@@ -2099,9 +2126,277 @@
                     </div>
                 </div>
             </div>
+            <!-- Testimonial 4 - Additional -->
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <p>"Infoma Academy's quiz competitions have become the highlight of our academic calendar. Truly transformative for our students."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Mr. Abdul Rahman</div>
+                        <div class="title">Principal, Green Valley School</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Testimonial 5 - Additional -->
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <p>"Professional, well-organized, and truly unique to J&K. Infoma Academy is raising the bar for academic competitions."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Ms. Neelam Gupta</div>
+                        <div class="title">Coordinator, Model Academy</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <p>"Infoma Academy has brought a quizzing revolution to our students. Being the only platform doing this in J&K, they've set a gold standard."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Mrs. Shahnaz Ahmad</div>
+                        <div class="title">Principal, DPS Jammu</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<style>
+    /* Testimonials - Horizontal Auto-Sliding Carousel */
+    .section-dark {
+        background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .testimonials-carousel {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        padding: 20px 0 40px;
+    }
+
+    .testimonials-track {
+        display: flex;
+        animation: slideTestimonials 40s linear infinite;
+        gap: 24px;
+        padding: 0 20px;
+    }
+
+    .testimonials-carousel:hover .testimonials-track {
+        animation-play-state: paused;
+    }
+
+    .testimonial-slide {
+        flex: 0 0 380px;
+        background: white;
+        padding: 28px;
+        border-radius: 28px;
+        border: 1px solid #e5e7eb;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    }
+
+    .testimonial-slide:hover {
+        transform: translateY(-5px);
+        border-color: #fbbf24;
+        box-shadow: 0 20px 35px -12px rgba(251, 191, 36, 0.15);
+    }
+
+    .testimonial-stars {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 16px;
+    }
+
+    .testimonial-stars i {
+        color: #fbbf24;
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+
+    .quote-icon {
+        color: #fbbf24;
+        font-size: 1.5rem;
+        opacity: 0.5;
+        margin-bottom: 16px;
+    }
+
+    .testimonial-slide p {
+        color: #4b5563;
+        font-style: italic;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+        min-height: 100px;
+    }
+
+    .author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: auto;
+        border-top: 1px solid #f3f4f6;
+        padding-top: 16px;
+    }
+
+    .author-icon {
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .author-info .name {
+        font-weight: 700;
+        color: #111827;
+        font-size: 0.9rem;
+    }
+
+    .author-info .title {
+        font-size: 0.7rem;
+        color: #f59e0b;
+        font-weight: 600;
+        margin-top: 2px;
+    }
+
+    @keyframes slideTestimonials {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* Navigation dots (optional) */
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+        background: #d1d5db;
+        border-radius: 50%;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    .carousel-dot.active {
+        width: 24px;
+        background: #fbbf24;
+        border-radius: 10px;
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 968px) {
+        .testimonial-slide {
+            flex: 0 0 320px;
+            padding: 24px;
+        }
+        
+        .testimonial-slide p {
+            font-size: 0.85rem;
+            min-height: 110px;
+        }
+        
+        .testimonials-track {
+            animation: slideTestimonials 35s linear infinite;
+            gap: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .testimonial-slide {
+            flex: 0 0 300px;
+            padding: 20px;
+        }
+        
+        .testimonial-stars i {
+            font-size: 0.85rem;
+        }
+        
+        .quote-icon {
+            font-size: 1.3rem;
+        }
+        
+        .testimonial-slide p {
+            font-size: 0.8rem;
+            min-height: 120px;
+        }
+        
+        .author-icon {
+            width: 38px;
+            height: 38px;
+        }
+        
+        .author-info .name {
+            font-size: 0.85rem;
+        }
+        
+        .author-info .title {
+            font-size: 0.65rem;
+        }
+        
+        .testimonials-track {
+            animation: slideTestimonials 30s linear infinite;
+            gap: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .testimonial-slide {
+            flex: 0 0 280px;
+            padding: 16px;
+        }
+        
+        .testimonial-slide p {
+            font-size: 0.75rem;
+            min-height: 100px;
+        }
+        
+        .testimonials-track {
+            animation: slideTestimonials 25s linear infinite;
+            gap: 12px;
+        }
+    }
+</style>
 
 <!-- CTA Section -->
 <div class="container" data-aos="fade-up" data-aos-duration="800">
