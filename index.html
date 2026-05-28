@@ -2246,15 +2246,19 @@
     // Close menu when clicking on a link
     document.querySelectorAll('.side-nav-links a').forEach(link => {
         link.addEventListener('click', (e) => {
-            closeSideMenu();
-            // Smooth scroll to section
             const targetId = link.getAttribute('href');
-            if (targetId && targetId !== '#') {
+            // Only intercept hash links (#schools etc), let page links navigate normally
+            if (targetId && targetId.startsWith('#')) {
                 e.preventDefault();
+                closeSideMenu();
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }, 300);
                 }
+            } else {
+                closeSideMenu();
             }
         });
     });
