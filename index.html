@@ -2451,27 +2451,18 @@
 
     // Attach event listeners to all registration buttons
     function attachButtonListeners() {
-        const registerBtns = document.querySelectorAll('#registerBtn, #finalCta, #schoolBtn, .btn-primary[onclick], .btn-white');
-        
-        registerBtns.forEach(btn => {
-            btn.removeEventListener('click', openSchoolPopup);
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openSchoolPopup();
-            });
+        const ids = ['registerBtn', 'finalCta', 'schoolBtn', 'exploreBtn'];
+        ids.forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn && !btn.dataset.listenerAttached) {
+                btn.dataset.listenerAttached = 'true';
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openSchoolPopup();
+                });
+            }
         });
-        
-        // Also add to any "For Schools" button specifically
-        const schoolBtn = document.getElementById('schoolBtn');
-        if (schoolBtn) {
-            schoolBtn.removeEventListener('click', openSchoolPopup);
-            schoolBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openSchoolPopup();
-            });
-        }
     }
-
     // Close popup events
     const closeBtn = document.getElementById('closePopup');
     if (closeBtn) {
