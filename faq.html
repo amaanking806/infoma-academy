@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>FAQ | Infoma Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Poppins',sans-serif;overflow-x:hidden;background:#fff}
+        .header-bg{position:relative;width:100%;overflow:hidden;background:linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)}
+        .particles{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0}
+        .particle{position:absolute;background:rgba(255,255,255,.1);border-radius:50%;animation:floatParticle 20s infinite linear}
+        @keyframes floatParticle{0%{transform:translateY(100vh) rotate(0);opacity:0}10%{opacity:.5}90%{opacity:.5}100%{transform:translateY(-100vh) rotate(720deg);opacity:0}}
+        .orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.3;animation:orbFloat 15s ease-in-out infinite}
+        .orb-1{width:300px;height:300px;background:#6366f1;top:-100px;right:-50px}
+        .orb-2{width:400px;height:400px;background:#ec4899;bottom:-150px;left:-100px;animation-delay:-5s}
+        .orb-3{width:250px;height:250px;background:#06b6d4;top:50%;left:30%;animation-delay:-10s}
+        @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(.9)}}
+        .container{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+        .navbar{display:flex;justify-content:space-between;align-items:center;padding:24px 0;z-index:10;position:relative}
+        .logo{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,#fff 0%,#a78bfa 100%);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em;text-decoration:none}
+        .nav-links{display:flex;gap:42px;list-style:none}
+        .nav-links a{text-decoration:none;color:rgba(255,255,255,.8);font-weight:500;transition:all .3s;font-size:.95rem;display:flex;align-items:center;gap:6px}
+        .nav-links a:hover{color:#a78bfa;transform:translateY(-2px)}
+        .menu-icon{display:none;font-size:1.8rem;cursor:pointer;color:#fff;z-index:1001}
+        .page-hero{padding:60px 0 70px;position:relative;z-index:2;text-align:center}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,.2);backdrop-filter:blur(10px);padding:6px 16px;border-radius:60px;font-size:.75rem;font-weight:600;color:#c4b5fd;margin-bottom:24px;border:1px solid rgba(168,85,247,.3);animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(168,85,247,.4)}50%{box-shadow:0 0 0 10px rgba(168,85,247,0)}}
+        .page-hero h1{font-size:3rem;color:#fff;margin-bottom:16px;line-height:1.2}
+        .page-hero h1 .g{background:linear-gradient(135deg,#a78bfa,#f0f9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+        .page-hero p{color:rgba(255,255,255,.7);font-size:1rem;line-height:1.6;max-width:600px;margin:0 auto}
+        /* Search */
+        .faq-search{max-width:550px;margin:0 auto 60px;position:relative}
+        .faq-search input{width:100%;padding:16px 24px 16px 52px;border-radius:60px;border:2px solid #e5e7eb;font-family:'Poppins',sans-serif;font-size:.95rem;transition:all .3s;outline:none;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+        .faq-search input:focus{border-color:#8b5cf6;box-shadow:0 0 0 4px rgba(139,92,246,.1)}
+        .faq-search i{position:absolute;left:20px;top:50%;transform:translateY(-50%);color:#8b5cf6;font-size:1.1rem}
+        /* Category Tabs */
+        .faq-cats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+        .faq-cat{padding:8px 20px;border-radius:40px;border:2px solid #e5e7eb;cursor:pointer;font-size:.85rem;font-weight:600;color:#6b7280;transition:all .3s;background:#fff}
+        .faq-cat.active,.faq-cat:hover{border-color:#8b5cf6;color:#8b5cf6;background:#f5f3ff}
+        /* Accordion */
+        .faq-group{margin-bottom:40px}
+        .faq-group-title{font-size:1rem;font-weight:700;color:#8b5cf6;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+        .faq-group-title i{font-size:1rem}
+        .faq-item{background:#fff;border:1px solid #e5e7eb;border-radius:16px;margin-bottom:10px;overflow:hidden;transition:all .3s}
+        .faq-item:hover{border-color:#c4b5fd}
+        .faq-item.open{border-color:#8b5cf6;box-shadow:0 8px 25px -8px rgba(139,92,246,.2)}
+        .faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;gap:16px}
+        .faq-q span{font-weight:600;font-size:.95rem;color:#111827;line-height:1.4}
+        .faq-icon{width:28px;height:28px;background:#f5f3ff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;color:#8b5cf6;font-size:.8rem}
+        .faq-item.open .faq-icon{background:#8b5cf6;color:#fff;transform:rotate(45deg)}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+        .faq-item.open .faq-a{max-height:300px}
+        .faq-a-inner{padding:0 24px 20px;color:#6b7280;font-size:.9rem;line-height:1.7;border-top:1px solid #f3f4f6}
+        .faq-a-inner{padding-top:16px}
+        /* Still have questions */
+        .faq-contact{background:linear-gradient(135deg,#f5f3ff,#eef2ff);border-radius:28px;padding:40px;text-align:center;border:1px solid #e0e7ff;margin-top:40px}
+        .faq-contact h3{font-size:1.5rem;color:#111827;margin-bottom:10px}
+        .faq-contact p{color:#6b7280;margin-bottom:24px;font-size:.9rem}
+        .btn-primary{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border:none;padding:12px 28px;border-radius:60px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;text-decoration:none;box-shadow:0 4px 20px rgba(139,92,246,.4)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(139,92,246,.6)}
+        .section{padding:80px 0}
+        footer{padding:60px 0 40px;background:#111827;margin-top:60px}
+        .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:40px}
+        .footer-col p{color:#9ca3af;max-width:250px}
+        .footer-links{display:flex;gap:60px;flex-wrap:wrap}
+        .footer-links-column h4{margin-bottom:20px;font-size:1rem;color:#fff}
+        .footer-links-column a{display:block;text-decoration:none;color:#9ca3af;margin-bottom:12px;transition:color .2s}
+        .footer-links-column a:hover{color:#a78bfa}
+        .social-icons{display:flex;gap:16px}
+        .social-icons a{width:40px;height:40px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:all .2s}
+        .social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px)}
+        .copyright{text-align:center;color:#6b7280;font-size:.85rem;padding-top:32px;border-top:1px solid #1f2937}
+        .menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);z-index:1000;opacity:0;visibility:hidden;transition:all .4s}
+        .menu-overlay.active{opacity:1;visibility:visible}
+        .side-menu{position:fixed;top:0;left:-320px;width:300px;height:100%;background:#fff;z-index:1002;transition:left .4s;box-shadow:5px 0 40px rgba(0,0,0,.1);overflow-y:auto}
+        .side-menu.active{left:0}
+        .side-menu-header{background:linear-gradient(135deg,#8b5cf6,#6366f1);padding:40px 24px 30px;margin-bottom:20px}
+        .close-menu{background:rgba(255,255,255,.2);border:none;color:#fff;font-size:1.2rem;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;float:right;transition:all .2s}
+        .close-menu:hover{background:rgba(255,255,255,.3);transform:rotate(90deg)}
+        .side-menu .menu-logo{font-size:1.6rem;font-weight:800;color:#fff;margin-top:20px;display:block;clear:both}
+        .side-nav-links{list-style:none;padding:20px 0}
+        .side-nav-links li{border-bottom:1px solid #f3f4f6}
+        .side-nav-links a{text-decoration:none;color:#374151;font-weight:500;font-size:1rem;display:flex;align-items:center;gap:14px;padding:16px 24px;transition:all .2s}
+        .side-nav-links a:hover{background:linear-gradient(90deg,#f5f3ff,#fff);color:#8b5cf6;padding-left:28px}
+        .side-nav-links a i{width:22px;color:#8b5cf6}
+        .side-menu-footer{padding:24px;border-top:1px solid #f3f4f6;margin-top:20px}
+        .side-social-icons{display:flex;gap:16px;justify-content:center;margin-bottom:16px}
+        .side-social-icons a{width:36px;height:36px;background:#f3f4f6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#8b5cf6;transition:all .2s}
+        .side-social-icons a:hover{background:#8b5cf6;color:#fff}
+        .side-menu-footer p{font-size:.7rem;color:#9ca3af;text-align:center}
+        @media(max-width:768px){.nav-links{display:none}.menu-icon{display:block}.container{padding:0 20px}.section{padding:50px 0}.page-hero h1{font-size:2rem}}
+        @media(max-width:480px){.page-hero h1{font-size:1.7rem}}
+    </style>
+</head>
+<body>
+<div class="header-bg">
+    <div class="particles" id="particles"></div>
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
+            <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="events-gallery.html"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+                <li><a href="index.html#schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+        <div class="page-hero" data-aos="fade-up">
+            <div class="hero-badge"><i class="fas fa-question-circle"></i> FAQ</div>
+            <h1>Frequently Asked <span class="g">Questions</span></h1>
+            <p>Everything you need to know about Infoma Academy, our quizzes, and how to participate.</p>
+        </div>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="faq-search" data-aos="fade-up">
+            <i class="fas fa-search"></i>
+            <input type="text" id="faqSearch" placeholder="Search your question...">
+        </div>
+
+        <div id="faqContent" data-aos="fade-up">
+            <!-- General -->
+            <div class="faq-group" data-cat="general">
+                <div class="faq-group-title"><i class="fas fa-info-circle"></i> General</div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>What is Infoma Academy?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">Infoma Academy is Jammu & Kashmir's first and only dedicated inter-school quiz platform. We organize professional, large-scale quiz competitions for schools across J&K — from Jammu to Srinagar to Leh — covering a wide range of academic subjects.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>Is Infoma Academy the only quiz platform in J&K?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">Yes! As of 2025, Infoma Academy remains the only organization in Jammu & Kashmir that specializes in professional inter-school quiz championships at scale. No other body organizes quizzes across the region with this level of structure, digital infrastructure, and school partnerships.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>When was Infoma Academy founded?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">Infoma Academy was founded in 2020 in Jammu, with the mission of creating a world-class academic competition platform for students across the J&K Union Territory.</div></div>
+                </div>
+            </div>
+            <!-- Schools -->
+            <div class="faq-group" data-cat="schools">
+                <div class="faq-group-title"><i class="fas fa-school"></i> Schools & Registration</div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>How can my school register with Infoma Academy?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">Simply click the "Register Your School" button on our homepage or contact us via the Contact page. Fill in your school's details and our team will reach out within 24 hours to discuss participation and upcoming quiz events.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>Is there a fee for schools to join?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">Participation fees vary by event type and size. Some introductory events are free for new partner schools. We also offer subsidized participation for government schools and schools from rural areas to ensure inclusive access. Contact us for pricing specific to your school.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>Which boards/curricula do you support?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">We support all major curricula including CBSE, JKBOSE, and ICSE. Our question sets are designed to be curriculum-agnostic at the core — emphasizing general knowledge, reasoning, and subject understanding rather than rote syllabus recall.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>How many students can a school send per quiz?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">This varies by event format. Typically, team quizzes allow 2–3 students per team, and schools can register multiple teams. Individual quizzes allow unlimited participants per school. Specific limits are communicated during event registration.</div></div>
+                </div>
+            </div>
+            <!-- Quizzes -->
+            <div class="faq-group" data-cat="quizzes">
+                <div class="faq-group-title"><i class="fas fa-brain"></i> Quiz Format & Participation</div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>What subjects do the quizzes cover?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">Our quizzes cover General Knowledge, Science & Technology, History & Geography, Current Affairs, Sports, Literature, Math & Logic, and J&K-specific knowledge. Visit our Quiz Categories page for the full list of topics and upcoming events.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>Are quizzes conducted online or offline?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">We conduct both! Preliminary rounds are often online through our digital platform, while grand finale events are held in-person at partner venues across Jammu and Srinagar. Some regional events are fully offline to accommodate schools with limited internet access.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>Do students receive certificates for participating?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">Yes! Every participant receives a digital certificate of participation. Winners receive printed certificates, trophies, and medals at the award ceremony. Top performers in major events also receive cash prizes and scholarships from our sponsor partners.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>For which age groups/grades are quizzes designed?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">We have separate quiz tracks for: Junior (Classes 3–5), Middle (Classes 6–8), and Senior (Classes 9–12). Each track has age-appropriate question difficulty, format, and topics to ensure fair and meaningful competition.</div></div>
+                </div>
+            </div>
+            <!-- Results -->
+            <div class="faq-group" data-cat="results">
+                <div class="faq-group-title"><i class="fas fa-chart-bar"></i> Results & Awards</div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>How are results announced?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">Results are announced at the event's closing ceremony. Digital score sheets and rankings are shared with all registered schools via email within 48 hours. Results are also posted on our website and social media channels.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>Can schools appeal quiz results?</span><div class="faq-icon"><i class="fas fa-plus"></i></div></div>
+                    <div class="faq-a"><div class="faq-a-inner">Yes. We have a formal grievance and appeal process. Schools can raise objections within 48 hours of results publication. A review panel consisting of senior quiz experts examines the objection and announces a final decision within 5 working days.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Still have questions -->
+        <div class="faq-contact" data-aos="fade-up">
+            <h3>Still have questions?</h3>
+            <p>Our team is happy to help. Reach out and we'll get back to you within 24 hours.</p>
+            <a href="contact.html" class="btn-primary"><i class="fas fa-envelope"></i> Contact Us</a>
+        </div>
+    </div>
+</section>
+
+<footer style="padding:60px 0 40px;background:#111827;margin-top:60px">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="font-size:1.5rem;">Infoma<span style="color:#a78bfa;">Academy</span></a>
+                <p style="margin-top:16px;">Pioneering school quizzes in Jammu & Kashmir since 2020.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-links-column"><h4>Quick Links</h4><a href="index.html">Home</a><a href="quiz-categories.html">Quizzes</a><a href="events-gallery.html">Gallery</a><a href="terms.html">Terms</a></div>
+                <div class="footer-links-column"><h4>Resources</h4><a href="how-it-works.html">How it works</a><a href="faq.html">FAQ</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a></div>
+                <div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+            </div>
+        </div>
+        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu & Kashmir. The only one.</div>
+    </div>
+</footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration:800,once:false,mirror:true});
+function createParticles(){const c=document.getElementById('particles');if(!c)return;for(let i=0;i<50;i++){const p=document.createElement('div');p.classList.add('particle');const s=Math.random()*8+2;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s`;c.appendChild(p);}}
+createParticles();
+// Accordion
+document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+        const item=q.parentElement;
+        const wasOpen=item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+        if(!wasOpen)item.classList.add('open');
+    });
+});
+// Search
+document.getElementById('faqSearch').addEventListener('input',function(){
+    const val=this.value.toLowerCase();
+    document.querySelectorAll('.faq-item').forEach(item=>{
+        const q=item.querySelector('.faq-q span').textContent.toLowerCase();
+        const a=item.querySelector('.faq-a-inner').textContent.toLowerCase();
+        item.style.display=(q.includes(val)||a.includes(val)||val==='')? '':'none';
+    });
+    document.querySelectorAll('.faq-group').forEach(g=>{
+        const visible=[...g.querySelectorAll('.faq-item')].some(i=>i.style.display!=='none');
+        g.style.display=visible?'':'none';
+    });
+});
+// Side menu
+document.body.insertAdjacentHTML('beforeend',`<div class="menu-overlay" id="menuOverlay"></div><div class="side-menu" id="sideMenu"><div class="side-menu-header"><button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button><span class="menu-logo">Infoma<span style="color:#c4b5fd">Academy</span></span></div><ul class="side-nav-links"><li><a href="index.html"><i class="fas fa-home"></i> Home</a></li><li><a href="events-gallery.html"><i class="fas fa-question-circle"></i> Quizzes</a></li><li><a href="index.html#schools"><i class="fas fa-school"></i> Schools</a></li><li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li><li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li></ul><div class="side-menu-footer"><div class="side-social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div><p>© 2025 Infoma Academy</p></div></div>`);
+const sideMenu=document.getElementById('sideMenu'),menuOverlay=document.getElementById('menuOverlay'),closeMenuBtn=document.getElementById('closeMenuBtn'),menuToggle=document.getElementById('menuToggle');
+function openMenu(){sideMenu.classList.add('active');menuOverlay.classList.add('active');document.body.style.overflow='hidden';}
+function closeMenu(){sideMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';}
+if(menuToggle)menuToggle.addEventListener('click',openMenu);
+if(closeMenuBtn)closeMenuBtn.addEventListener('click',closeMenu);
+if(menuOverlay)menuOverlay.addEventListener('click',closeMenu);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+</script>
+</body>
+</html>
