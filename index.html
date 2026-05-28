@@ -987,11 +987,33 @@
             }
         }
 
-                /* Testimonials */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                /* Testimonials - Horizontal Auto Scroll */
+        .testimonials-scroll-wrapper {
+            overflow: hidden;
+            padding: 12px 0 32px;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .testimonials-scroll-wrapper:active {
+            cursor: grabbing;
+        }
+
+        .testimonials-track {
+            display: flex;
             gap: 24px;
+            width: max-content;
+            animation: scrollTestimonials 30s linear infinite;
+            padding: 0 32px;
+        }
+
+        .testimonials-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollTestimonials {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .testimonial-card {
@@ -1000,7 +1022,8 @@
             border-radius: 24px;
             border: 1px solid #e5e7eb;
             transition: all 0.3s;
-            height: 100%;
+            width: 340px;
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
         }
@@ -1015,7 +1038,18 @@
             color: #8b5cf6;
             font-size: 1.8rem;
             opacity: 0.4;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 14px;
+        }
+
+        .star-rating i {
+            color: #f59e0b;
+            font-size: 0.9rem;
         }
 
         .testimonial-card p {
@@ -1025,8 +1059,6 @@
             margin-bottom: 20px;
             font-size: 0.95rem;
             flex: 1;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .author {
@@ -1061,78 +1093,21 @@
             margin-top: 2px;
         }
 
-        /* Mobile specific fixes for testimonials */
         @media (max-width: 768px) {
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 0 4px;
-            }
-            
             .testimonial-card {
+                width: 280px;
                 padding: 20px;
-                border-radius: 20px;
-            }
-            
-            .quote-icon {
-                font-size: 1.5rem;
-                margin-bottom: 12px;
-            }
-            
-            .testimonial-card p {
-                font-size: 0.85rem;
-                line-height: 1.5;
-                margin-bottom: 16px;
-            }
-            
-            .author-icon {
-                width: 38px;
-                height: 38px;
-            }
-            
-            .author-icon i {
-                font-size: 0.9rem;
-            }
-            
-            .author-info .name {
-                font-size: 0.85rem;
-            }
-            
-            .author-info .title {
-                font-size: 0.7rem;
             }
         }
 
         @media (max-width: 480px) {
-            .testimonials-grid {
-                gap: 16px;
-            }
-            
             .testimonial-card {
+                width: 240px;
                 padding: 16px;
-                border-radius: 18px;
             }
-            
+
             .testimonial-card p {
-                font-size: 0.8rem;
-                line-height: 1.45;
-            }
-            
-            .author {
-                gap: 10px;
-            }
-            
-            .author-icon {
-                width: 34px;
-                height: 34px;
-            }
-            
-            .author-info .name {
-                font-size: 0.8rem;
-            }
-            
-            .author-info .title {
-                font-size: 0.65rem;
+                font-size: 0.82rem;
             }
         }
 
@@ -2065,9 +2040,14 @@
             <h2>Trusted by educators across J&K</h2>
             <p class="section-subtitle">What school leaders say about our impact</p>
         </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+    </div>
+    <div class="testimonials-scroll-wrapper">
+        <div class="testimonials-track" id="testimonialsTrack">
+            <div class="testimonial-card">
                 <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
                 <p>"Infoma Academy has brought a quizzing revolution to our students. Being the only platform doing this in J&K, they've set a gold standard."</p>
                 <div class="author">
                     <div class="author-icon"><i class="fas fa-user"></i></div>
@@ -2077,8 +2057,11 @@
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-card">
                 <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
                 <p>"Our students eagerly wait for Infoma's quizzes every semester. Professional, engaging and truly the first of its kind in the valley."</p>
                 <div class="author">
                     <div class="author-icon"><i class="fas fa-user"></i></div>
@@ -2088,14 +2071,45 @@
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="testimonial-card">
                 <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
                 <p>"The only organization that understands J&K's educational landscape. Their quizzes have boosted student confidence tremendously."</p>
                 <div class="author">
                     <div class="author-icon"><i class="fas fa-user"></i></div>
                     <div class="author-info">
                         <div class="name">Dr. Nusrat Jan</div>
                         <div class="title">Academic Director</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p>"A platform that truly understands the aspirations of J&K's youth. Our students have grown more confident and competitive."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Mr. Rajan Bhat</div>
+                        <div class="title">Principal, Army School Srinagar</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p>"Organizing, professional, and passionate about education. Infoma Academy is exactly what J&K's school ecosystem needed."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Mrs. Aarti Dogra</div>
+                        <div class="title">Vice Principal, Springdales Jammu</div>
                     </div>
                 </div>
             </div>
