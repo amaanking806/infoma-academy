@@ -2204,7 +2204,7 @@
 
     .testimonials-track {
         display: flex;
-        animation: slideTestimonials 20s linear infinite;
+        animation: slideTestimonials 10s linear infinite;
         gap: 24px;
         padding: 0 20px;
     }
@@ -2235,41 +2235,29 @@
         margin-bottom: 16px;
     }
 
-    .testimonial-stars i {
-        color: #fbbf24;
+        .testimonial-stars i {
+        color: #8b5cf6;
         font-size: 1rem;
         letter-spacing: 2px;
     }
 
     .quote-icon {
-        color: #fbbf24;
+        color: #8b5cf6;
         font-size: 1.5rem;
         opacity: 0.5;
         margin-bottom: 16px;
     }
 
-    .testimonial-slide p {
-        color: #4b5563;
-        font-style: italic;
-        line-height: 1.6;
-        margin-bottom: 20px;
-        font-size: 0.9rem;
-        min-height: 100px;
-    }
-
-    .author {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-top: auto;
-        border-top: 1px solid #f3f4f6;
-        padding-top: 16px;
+    .testimonial-slide:hover {
+        transform: translateY(-5px);
+        border-color: #8b5cf6;
+        box-shadow: 0 20px 35px -12px rgba(139, 92, 246, 0.15);
     }
 
     .author-icon {
         width: 44px;
         height: 44px;
-        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        background: linear-gradient(135deg, #8b5cf6, #6366f1);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -2279,19 +2267,12 @@
         flex-shrink: 0;
     }
 
-    .author-info .name {
-        font-weight: 700;
-        color: #111827;
-        font-size: 0.9rem;
-    }
-
     .author-info .title {
         font-size: 0.7rem;
-        color: #f59e0b;
+        color: #8b5cf6;
         font-weight: 600;
         margin-top: 2px;
     }
-
     @keyframes slideTestimonials {
         0% {
             transform: translateX(0);
@@ -2324,7 +2305,7 @@
         border-radius: 10px;
     }
 
-        @media (max-width: 968px) {
+           @media (max-width: 968px) {
         .testimonial-slide {
             flex: 0 0 320px;
             padding: 24px;
@@ -2336,7 +2317,7 @@
         }
         
         .testimonials-track {
-            animation: slideTestimonials 18s linear infinite;
+            animation: slideTestimonials 8s linear infinite;
             gap: 20px;
         }
     }
@@ -2374,7 +2355,7 @@
         }
         
         .testimonials-track {
-            animation: slideTestimonials 14s linear infinite;
+            animation: slideTestimonials 6s linear infinite;
             gap: 16px;
         }
     }
@@ -2391,11 +2372,10 @@
         }
         
         .testimonials-track {
-            animation: slideTestimonials 10s linear infinite;
+            animation: slideTestimonials 5s linear infinite;
             gap: 12px;
         }
     }
-
     @media (max-width: 768px) {
         .testimonial-slide {
             flex: 0 0 300px;
