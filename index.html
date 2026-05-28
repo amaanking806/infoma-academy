@@ -1734,185 +1734,156 @@
     </div>
 </div>
 
-<!-- Trust Bar - Glassmorphism Card Design -->
+<!-- Trust Bar - Horizontal Auto-Scrolling Strip -->
 <div class="trust-section" data-aos="fade-up" data-aos-duration="600">
-    <div class="container">
-        <div class="trust-glass-container">
-            <div class="trust-glass-item">
-                <div class="trust-glass-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <div class="trust-glass-text">
-                    <h4>Only in J&K</h4>
-                    <p>Exclusive platform</p>
-                </div>
+    <div class="trust-marquee">
+        <div class="trust-marquee-content">
+            <div class="trust-marquee-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Only in J&K</span>
             </div>
-            <div class="trust-glass-item">
-                <div class="trust-glass-icon"><i class="fas fa-trophy"></i></div>
-                <div class="trust-glass-text">
-                    <h4>Win Award</h4>
-                    <p>Certificates & Medals</p>
-                </div>
+            <div class="trust-marquee-item">
+                <i class="fas fa-trophy"></i>
+                <span>Win Award</span>
             </div>
-            <div class="trust-glass-item">
-                <div class="trust-glass-icon"><i class="fas fa-chart-line"></i></div>
-                <div class="trust-glass-text">
-                    <h4>98% Satisfaction</h4>
-                    <p>School approved</p>
-                </div>
+            <div class="trust-marquee-item">
+                <i class="fas fa-chart-line"></i>
+                <span>98% Satisfaction</span>
             </div>
-            <div class="trust-glass-item">
-                <div class="trust-glass-icon"><i class="fas fa-laptop-code"></i></div>
-                <div class="trust-glass-text">
-                    <h4>Online Quiz</h4>
-                    <p>Digital platform</p>
-                </div>
+            <div class="trust-marquee-item">
+                <i class="fas fa-laptop-code"></i>
+                <span>Online Quiz</span>
             </div>
-            <div class="trust-glass-item">
-                <div class="trust-glass-icon"><i class="fas fa-school"></i></div>
-                <div class="trust-glass-text">
-                    <h4>50+ Schools</h4>
-                    <p>Partnered with us</p>
-                </div>
+            <div class="trust-marquee-item">
+                <i class="fas fa-school"></i>
+                <span>50+ Schools</span>
             </div>
-            <div class="trust-glass-item">
-                <div class="trust-glass-icon"><i class="fas fa-globe"></i></div>
-                <div class="trust-glass-text">
-                    <h4>Pan J&K</h4>
-                    <p>Complete coverage</p>
-                </div>
+            <div class="trust-marquee-item">
+                <i class="fas fa-globe"></i>
+                <span>Pan J&K</span>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="trust-marquee-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Only in J&K</span>
+            </div>
+            <div class="trust-marquee-item">
+                <i class="fas fa-trophy"></i>
+                <span>Win Award</span>
+            </div>
+            <div class="trust-marquee-item">
+                <i class="fas fa-chart-line"></i>
+                <span>98% Satisfaction</span>
+            </div>
+            <div class="trust-marquee-item">
+                <i class="fas fa-laptop-code"></i>
+                <span>Online Quiz</span>
+            </div>
+            <div class="trust-marquee-item">
+                <i class="fas fa-school"></i>
+                <span>50+ Schools</span>
+            </div>
+            <div class="trust-marquee-item">
+                <i class="fas fa-globe"></i>
+                <span>Pan J&K</span>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    /* Trust Bar - Glassmorphism Card Design */
+    /* Trust Bar - Horizontal Auto-Scrolling Strip */
     .trust-section {
-        padding: 40px 0;
+        padding: 30px 0;
         background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        overflow: hidden;
+        position: relative;
     }
 
-    .trust-glass-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        background: transparent;
+    .trust-marquee {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
     }
 
-    .trust-glass-item {
+    .trust-marquee-content {
         display: flex;
-        align-items: center;
-        gap: 16px;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        padding: 18px 20px;
-        border-radius: 24px;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(139, 92, 246, 0.15);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        animation: scrollMarquee 25s linear infinite;
+        white-space: nowrap;
     }
 
-    .trust-glass-item:hover {
-        transform: translateY(-5px);
-        border-color: rgba(139, 92, 246, 0.4);
-        box-shadow: 0 15px 30px -12px rgba(139, 92, 246, 0.15);
+    .trust-marquee:hover .trust-marquee-content {
+        animation-play-state: paused;
+    }
+
+    .trust-marquee-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 28px;
+        margin: 0 8px;
         background: white;
-    }
-
-    .trust-glass-icon {
-        width: 48px;
-        height: 48px;
-        background: linear-gradient(135deg, #f3e8ff, #ede9fe);
-        border-radius: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        border-radius: 60px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #1e293b;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e5e7eb;
         transition: all 0.3s ease;
+        white-space: nowrap;
     }
 
-    .trust-glass-item:hover .trust-glass-icon {
-        background: linear-gradient(135deg, #8b5cf6, #6366f1);
-        transform: scale(1.05);
-    }
-
-    .trust-glass-icon i {
-        font-size: 1.3rem;
+    .trust-marquee-item i {
+        font-size: 1rem;
         color: #8b5cf6;
-        transition: all 0.3s ease;
     }
 
-    .trust-glass-item:hover .trust-glass-icon i {
+    .trust-marquee-item:hover {
+        transform: translateY(-3px);
+        background: linear-gradient(135deg, #8b5cf6, #6366f1);
+        color: white;
+        box-shadow: 0 8px 20px -8px rgba(139, 92, 246, 0.4);
+    }
+
+    .trust-marquee-item:hover i {
         color: white;
     }
 
-    .trust-glass-text h4 {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: #1e293b;
-        margin-bottom: 4px;
-    }
-
-    .trust-glass-text p {
-        font-size: 0.7rem;
-        color: #94a3b8;
-        font-weight: 500;
-    }
-
-    @media (max-width: 968px) {
-        .trust-glass-container {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+    @keyframes scrollMarquee {
+        0% {
+            transform: translateX(0);
         }
-        .trust-glass-item {
-            padding: 15px 18px;
+        100% {
+            transform: translateX(-50%);
         }
     }
 
+    /* Pause animation on mobile for better UX */
     @media (max-width: 768px) {
-        .trust-section {
-            padding: 30px 0;
+        .trust-marquee-content {
+            animation: scrollMarquee 35s linear infinite;
         }
-        .trust-glass-container {
-            grid-template-columns: 1fr;
-            gap: 12px;
+        
+        .trust-marquee-item {
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            margin: 0 6px;
         }
-        .trust-glass-item {
-            padding: 14px 16px;
-            gap: 14px;
-        }
-        .trust-glass-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
-        }
-        .trust-glass-icon i {
-            font-size: 1.1rem;
-        }
-        .trust-glass-text h4 {
-            font-size: 0.9rem;
-        }
-        .trust-glass-text p {
-            font-size: 0.65rem;
+        
+        .trust-marquee-item i {
+            font-size: 0.85rem;
         }
     }
 
     @media (max-width: 480px) {
-        .trust-glass-item {
-            padding: 12px 14px;
-            gap: 12px;
+        .trust-marquee-item {
+            padding: 6px 16px;
+            font-size: 0.7rem;
+            margin: 0 5px;
         }
-        .trust-glass-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
-        }
-        .trust-glass-icon i {
-            font-size: 1rem;
-        }
-        .trust-glass-text h4 {
-            font-size: 0.85rem;
-        }
-        .trust-glass-text p {
-            font-size: 0.6rem;
+        
+        .trust-marquee-item i {
+            font-size: 0.75rem;
         }
     }
 </style>
