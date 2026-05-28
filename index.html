@@ -2410,17 +2410,9 @@ const response = await fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), {
 });
                 
                 // Since mode is 'no-cors', we can't read response, assume success
-                formStatus.innerHTML = '<i class="fas fa-check-circle"></i> Registration submitted successfully! Our team will contact you soon.';
-                formStatus.className = 'form-status success';
-                
-                // Clear form
                 document.getElementById('registrationForm').reset();
-                
-                // Close popup after 2 seconds
-                setTimeout(() => {
-                    closeSchoolPopup();
-                    formStatus.innerHTML = '';
-                }, 2500);
+                closeSchoolPopup();
+                showResultPopup('success', '🎉 Registration Successful!', 'Your school has been registered successfully! Our team will contact you within 24 hours.');
                 
             } else {
                 // Demo mode - store in localStorage and show success
