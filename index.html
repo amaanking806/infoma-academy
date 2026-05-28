@@ -2376,25 +2376,22 @@
         
         // Basic validation
         if (!formData.schoolName || !formData.contactPerson || !formData.email || !formData.phone || !formData.city) {
-            formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please fill all required fields (*)';
-            formStatus.className = 'form-status error';
-            return;
+            showResultPopup('error', '⚠️ Missing Fields', 'Please fill all required fields marked with (*)');
+return;
         }
         
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(formData.email)) {
-            formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter a valid email address';
-            formStatus.className = 'form-status error';
-            return;
+            showResultPopup('error', '⚠️ Invalid Email', 'Please enter a valid email address.');
+return;
         }
         
         // Phone validation (basic)
         const phoneRegex = /^[0-9+\-\s]{10,15}$/;
         if (!phoneRegex.test(formData.phone)) {
-            formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter a valid phone number';
-            formStatus.className = 'form-status error';
-            return;
+            showResultPopup('error', '⚠️ Invalid Phone', 'Please enter a valid phone number.');
+return;
         }
         
         // Disable button and show loading
@@ -2434,22 +2431,13 @@ const response = await fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), {
                 registrations.push(formData);
                 localStorage.setItem('schoolRegistrations', JSON.stringify(registrations));
                 
-                formStatus.innerHTML = '<i class="fas fa-check-circle"></i> Registration submitted successfully! Our team will contact you within 24 hours.';
-                formStatus.className = 'form-status success';
-                
-                // Clear form
                 document.getElementById('registrationForm').reset();
-                
-                // Close popup after 2.5 seconds
-                setTimeout(() => {
-                    closeSchoolPopup();
-                    formStatus.innerHTML = '';
-                }, 2500);
+closeSchoolPopup();
+showResultPopup('success', '🎉 Registration Successful!', 'Your school has been registered successfully! Our team will contact you within 24 hours.');
             }
         } catch (error) {
             console.error('Submission error:', error);
-            formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Unable to submit. Please try again or contact us directly.';
-            formStatus.className = 'form-status error';
+            showResultPopup('error', '❌ Submission Failed', 'Unable to submit. Please try again or contact us directly.');
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Registration';
@@ -2529,6 +2517,52 @@ const response = await fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), {
         });
     }, observerOptions);
     statNumbers.forEach(stat => counterObserver.observe(stat));
+// Result Popup
+function showResultPopup(type, title, message) {
+    const existing = document.getElementById('resultPopup');
+    if (existing) existing.remove();
+
+    const isSuccess = type === 'success';
+    const popup = document.createElement('div');
+    popup.id = 'resultPopup';
+    popup.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+        z-index: 99999; display: flex; align-items: center; justify-content: center;
+        animation: fadeIn 0.3s ease;
+    `;
+    popup.innerHTML = `
+        <div style="
+            background: white; border-radius: 24px; padding: 40px 32px;
+            max-width: 420px; width: 90%; text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        ">
+            <div style="
+                width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 20px;
+                display: flex; align-items: center; justify-content: center; font-size: 2rem;
+                background: ${isSuccess ? 'linear-gradient(135deg, #d1fae5, #a7f3d0)' : 'linear-gradient(135deg, #fee2e2, #fecaca)'};
+                color: ${isSuccess ? '#059669' : '#dc2626'};
+            ">${isSuccess ? '✓' : '✕'}</div>
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: #111827; margin-bottom: 12px; font-family: Poppins, sans-serif;">${title}</h3>
+            <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.6; margin-bottom: 28px; font-family: Poppins, sans-serif;">${message}</p>
+            <button onclick="document.getElementById('resultPopup').remove()" style="
+                background: ${isSuccess ? 'linear-gradient(135deg, #8b5cf6, #6366f1)' : 'linear-gradient(135deg, #ef4444, #dc2626)'};
+                color: white; border: none; padding: 12px 36px; border-radius: 40px;
+                font-weight: 600; font-size: 0.95rem; cursor: pointer;
+                font-family: Poppins, sans-serif; transition: all 0.2s;
+            " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                Close
+            </button>
+        </div>
+        <style>
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes scaleIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        </style>
+    `;
+    popup.addEventListener('click', (e) => { if (e.target === popup) popup.remove(); });
+    document.body.appendChild(popup);
+}
 </script>
 </body>
 </html>
