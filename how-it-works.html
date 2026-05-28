@@ -43,7 +43,49 @@
         .format-icon i { color: white; font-size: 1.3rem; }
         .format-card h3 { font-size: 1rem; font-weight: 700; color: #111827; margin-bottom: 8px; }
         .format-card p { font-size: 0.85rem; color: #6b7280; line-height: 1.6; }
-
+        /* 2-COLUMN SMALL CARDS (no outer wrapper) */
+        .format-grid-2cols {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .format-card-sm {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        .format-card-sm:hover {
+            transform: translateY(-4px);
+            border-color: #c4b5fd;
+            box-shadow: 0 12px 24px -10px rgba(139,92,246,0.12);
+        }
+        .format-card-sm .format-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+        .format-card-sm .format-icon i {
+            color: white;
+            font-size: 1.1rem;
+        }
+        .format-card-sm h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+        .format-card-sm p {
+            font-size: 0.8rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
         /* FAQ */
         .faq-list { display: flex; flex-direction: column; gap: 16px; }
         .faq-item { background: #f9fafb; border-radius: 16px; padding: 24px; border: 1px solid #e5e7eb; cursor: pointer; transition: all 0.2s; }
@@ -130,46 +172,45 @@
         </div>
     </section>
 
-    <section class="section" style="background:#f9fafb; border-radius:40px; padding:60px 40px;">
+        <section class="section">
         <div class="section-header">
             <div class="section-badge">Quiz Formats</div>
             <h2>Round <span>Formats We Use</span></h2>
             <p>Our competitions feature multiple exciting round types</p>
         </div>
-        <div class="format-grid">
-            <div class="format-card">
+        <div class="format-grid-2cols">
+            <div class="format-card-sm">
                 <div class="format-icon"><i class="fas fa-bolt"></i></div>
                 <h3>Buzzer Round</h3>
                 <p>Fast-paced questions where the first team to buzz in gets to answer. Tests quick thinking and reflexes.</p>
             </div>
-            <div class="format-card">
+            <div class="format-card-sm">
                 <div class="format-icon"><i class="fas fa-image"></i></div>
                 <h3>Visual Round</h3>
                 <p>Images, logos, maps and photographs projected on screen. Identify what you see — geography, science, history.</p>
             </div>
-            <div class="format-card">
+            <div class="format-card-sm">
                 <div class="format-icon"><i class="fas fa-fire"></i></div>
                 <h3>Rapid Fire</h3>
                 <p>30 questions in 60 seconds per team. Pure speed, breadth of knowledge and nerves of steel required.</p>
             </div>
-            <div class="format-card">
+            <div class="format-card-sm">
                 <div class="format-icon"><i class="fas fa-users"></i></div>
                 <h3>Pass & Play</h3>
                 <p>Teams can pass difficult questions to opponents. Strategy matters as much as knowledge in this format.</p>
             </div>
-            <div class="format-card">
+            <div class="format-card-sm">
                 <div class="format-icon"><i class="fas fa-globe"></i></div>
                 <h3>J&K Special Round</h3>
                 <p>Questions exclusively about Jammu & Kashmir — history, culture, geography, personalities and current affairs.</p>
             </div>
-            <div class="format-card">
+            <div class="format-card-sm">
                 <div class="format-icon"><i class="fas fa-music"></i></div>
                 <h3>Audio Round</h3>
                 <p>Identify songs, speeches, sounds and audio clips. Tests a different dimension of knowledge and memory.</p>
             </div>
         </div>
     </section>
-
     <section class="section">
         <div class="section-header">
             <div class="section-badge">FAQ</div>
