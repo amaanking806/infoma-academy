@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Events & Gallery | Infoma Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #fff; color: #111827; overflow-x: hidden; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: linear-gradient(135deg, #0f0c29, #302b63); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #fff, #c4b5fd); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; }
+        .nav-back { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+        .nav-back:hover { color: #a78bfa; }
+        .page-hero { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); padding: 80px 40px; text-align: center; }
+        .page-hero .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.3); padding: 6px 16px; border-radius: 60px; font-size: 0.75rem; font-weight: 600; color: #c4b5fd; margin-bottom: 20px; }
+        .page-hero h1 { font-size: 3rem; color: white; margin-bottom: 16px; }
+        .page-hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; font-size: 1.05rem; line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+        .section { padding: 80px 0; }
+        .section-badge { display: inline-block; background: linear-gradient(135deg, #ede9fe, #eef2ff); color: #8b5cf6; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; padding: 5px 12px; border-radius: 30px; margin-bottom: 16px; text-transform: uppercase; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header h2 { font-size: 2.2rem; color: #111827; margin-bottom: 12px; }
+        .section-header h2 span { background: linear-gradient(135deg, #8b5cf6, #6366f1); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .section-header p { color: #6b7280; }
+
+        /* EVENTS */
+        .events-list { display: flex; flex-direction: column; gap: 28px; }
+        .event-card { display: grid; grid-template-columns: 200px 1fr; gap: 28px; background: white; border: 1px solid #e5e7eb; border-radius: 28px; overflow: hidden; transition: all 0.3s; }
+        .event-card:hover { transform: translateY(-4px); border-color: #c4b5fd; box-shadow: 0 20px 40px -12px rgba(139,92,246,0.15); }
+        .event-img { overflow: hidden; }
+        .event-img img { width: 100%; height: 100%; object-fit: cover; min-height: 160px; }
+        .event-body { padding: 24px 24px 24px 0; }
+        .event-year { display: inline-block; background: linear-gradient(135deg, #ede9fe, #eef2ff); color: #8b5cf6; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+        .event-body h3 { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 8px; }
+        .event-body p { font-size: 0.875rem; color: #6b7280; line-height: 1.6; margin-bottom: 16px; }
+        .event-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+        .event-stat { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #6b7280; }
+        .event-stat i { color: #8b5cf6; }
+
+        /* GALLERY */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .gallery-item { border-radius: 16px; overflow: hidden; aspect-ratio: 1; position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
+
+        footer { background: #111827; padding: 40px; text-align: center; margin-top: 40px; }
+        footer p { color: #6b7280; font-size: 0.85rem; }
+        footer a { color: #a78bfa; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2rem; }
+            .navbar { padding: 16px 20px; }
+            .container { padding: 0 20px; }
+            .section { padding: 50px 0; }
+            .event-card { grid-template-columns: 1fr; }
+            .event-img img { min-height: 200px; }
+            .event-body { padding: 20px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.wide { grid-column: span 1; aspect-ratio: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
+    <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+</nav>
+
+<div class="page-hero">
+    <div class="badge"><i class="fas fa-images"></i> Past Events</div>
+    <h1>Our Journey in Pictures</h1>
+    <p>From our very first quiz in 2020 to our biggest championship yet — relive the moments that define Infoma Academy.</p>
+</div>
+
+<div class="container">
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-badge">Events</div>
+            <h2>Past <span>Championships</span></h2>
+            <p>134+ events and counting — here are some of our most memorable</p>
+        </div>
+        <div class="events-list">
+            <div class="event-card">
+                <div class="event-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop" alt="Event"></div>
+                <div class="event-body">
+                    <span class="event-year">2024</span>
+                    <h3>J&K Grand Quiz Championship 2024</h3>
+                    <p>Our biggest event yet — 48 schools, 200+ students, held at the University of Jammu auditorium. Three divisions competed across 6 thrilling rounds.</p>
+                    <div class="event-stats">
+                        <div class="event-stat"><i class="fas fa-school"></i> 48 Schools</div>
+                        <div class="event-stat"><i class="fas fa-users"></i> 200+ Students</div>
+                        <div class="event-stat"><i class="fas fa-map-marker-alt"></i> Jammu University</div>
+                        <div class="event-stat"><i class="fas fa-trophy"></i> DPS Jammu Won</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-img"><img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&h=250&fit=crop" alt="Event"></div>
+                <div class="event-body">
+                    <span class="event-year">2024</span>
+                    <h3>Kashmir Valley Quiz League — Spring Edition</h3>
+                    <p>First ever Srinagar-based league format with 6 schools competing across 4 weeks. A landmark event for academic quizzing in the valley.</p>
+                    <div class="event-stats">
+                        <div class="event-stat"><i class="fas fa-school"></i> 6 Schools</div>
+                        <div class="event-stat"><i class="fas fa-users"></i> 80+ Students</div>
+                        <div class="event-stat"><i class="fas fa-map-marker-alt"></i> Srinagar</div>
+                        <div class="event-stat"><i class="fas fa-trophy"></i> Burn Hall Won</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-img"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=250&fit=crop" alt="Event"></div>
+                <div class="event-body">
+                    <span class="event-year">2023</span>
+                    <h3>Ladakh Debut Quiz — Leh Edition</h3>
+                    <p>We took quizzing to the roof of the world — Leh, Ladakh. 8 schools participated in a special edition with a dedicated J&K culture round.</p>
+                    <div class="event-stats">
+                        <div class="event-stat"><i class="fas fa-school"></i> 8 Schools</div>
+                        <div class="event-stat"><i class="fas fa-users"></i> 60 Students</div>
+                        <div class="event-stat"><i class="fas fa-map-marker-alt"></i> Leh, Ladakh</div>
+                        <div class="event-stat"><i class="fas fa-trophy"></i> Army School Won</div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-img"><img src="https://images.unsplash.com/photo-1559223607-a43c990c692c?w=400&h=250&fit=crop" alt="Event"></div>
+                <div class="event-body">
+                    <span class="event-year">2022</span>
+                    <h3>Digital Quiz Championship — Online Edition</h3>
+                    <p>Launched our first fully digital quiz platform. 35 schools participated from across J&K without leaving their classrooms — a pandemic-era innovation that stayed.</p>
+                    <div class="event-stats">
+                        <div class="event-stat"><i class="fas fa-school"></i> 35 Schools</div>
+                        <div class="event-stat"><i class="fas fa-users"></i> 140 Students</div>
+                        <div class="event-stat"><i class="fas fa-laptop"></i> Online</div>
+                        <div class="event-stat"><i class="fas fa-trophy"></i> Springdales Won</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:#f9fafb; border-radius:40px; padding:60px 40px;">
+        <div class="section-header">
+            <div class="section-badge">Gallery</div>
+            <h2>Moments That <span>Matter</span></h2>
+            <p>A glimpse into the excitement, energy and joy of our quiz events</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item wide"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop" alt="Event"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=400&fit=crop" alt="Students"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&h=400&fit=crop" alt="Award"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=400&fit=crop" alt="Students"></div>
+            <div class="gallery-item wide"><img src="https://images.unsplash.com/photo-1559223607-a43c990c692c?w=800&h=400&fit=crop" alt="Competition"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=400&fit=crop" alt="Trophy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=400&fit=crop" alt="Study"></div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2025 <a href="index.html">Infoma Academy</a> — Pioneering School Quizzes in Jammu & Kashmir</p>
+</footer>
+</body>
+</html>
