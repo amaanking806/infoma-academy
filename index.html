@@ -2441,7 +2441,7 @@
         }
     }
 
-    @media (max-width: 768px) {
+        @media (max-width: 768px) {
         .testimonials-arrow-carousel {
             padding: 20px 16px;
             gap: 10px;
@@ -2450,6 +2450,7 @@
         .carousel-arrow {
             width: 40px;
             height: 40px;
+            flex-shrink: 0;
         }
         
         .carousel-arrow i {
@@ -2457,8 +2458,9 @@
         }
         
         .testimonial-arrow-slide {
-            flex: 0 0 100%;
+            flex: 0 0 85%;
             padding: 20px;
+            margin-right: 0;
         }
         
         .testimonial-arrow-slide p {
@@ -2481,6 +2483,17 @@
         
         .author-info .title {
             font-size: 0.65rem;
+        }
+        
+        .testimonials-arrow-container {
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .testimonials-arrow-track {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
         }
     }
 </style>
