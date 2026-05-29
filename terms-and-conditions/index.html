@@ -125,9 +125,17 @@
         .btn-white { background: white; color: #8b5cf6; padding: 10px 28px; border-radius: 40px; font-weight: 700; border: none; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; }
         .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
 
-        footer { background: #111827; padding: 40px; text-align: center; margin-top: 40px; }
-        footer p { color: #6b7280; font-size: 0.85rem; }
-        footer a { color: #a78bfa; text-decoration: none; }
+        footer{padding:60px 0 40px;background:#111827;margin-top:60px}
+        .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:40px}
+        .footer-col p{color:#9ca3af;max-width:250px}
+        .footer-links{display:flex;gap:60px;flex-wrap:wrap}
+        .footer-links-column h4{margin-bottom:20px;font-size:1rem;color:#fff}
+        .footer-links-column a{display:block;text-decoration:none;color:#9ca3af;margin-bottom:12px;transition:color .2s}
+        .footer-links-column a:hover{color:#a78bfa}
+        .social-icons{display:flex;gap:16px}
+        .social-icons a{width:40px;height:40px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:all .2s}
+        .social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px)}
+        .copyright{text-align:center;color:#6b7280;font-size:.85rem;padding-top:32px;border-top:1px solid #1f2937}
 
         @media (max-width: 768px) {
             .page-hero h1 { font-size: 2rem; }
@@ -277,7 +285,7 @@
         <div class="contact-cta">
             <h3>Still have questions?</h3>
             <p>Our team is happy to clarify anything about our terms or policies.</p>
-            <a href="contact.html" class="btn-white"><i class="fas fa-envelope"></i> Contact Us</a>
+            <a href="https://infoma.in/contact-us" class="btn-white"><i class="fas fa-envelope"></i> Contact Us</a>
         </div>
     </section>
 </div>
