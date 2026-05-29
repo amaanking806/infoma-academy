@@ -578,9 +578,17 @@
         .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
 
         /* Footer */
-        footer { background: #111827; padding: 40px; text-align: center; margin-top: 40px; }
-        footer p { color: #6b7280; font-size: 0.85rem; }
-        footer a { color: #a78bfa; text-decoration: none; }
+        footer{padding:60px 0 40px;background:#111827;margin-top:60px}
+        .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:40px}
+        .footer-col p{color:#9ca3af;max-width:250px}
+        .footer-links{display:flex;gap:60px;flex-wrap:wrap}
+        .footer-links-column h4{margin-bottom:20px;font-size:1rem;color:#fff}
+        .footer-links-column a{display:block;text-decoration:none;color:#9ca3af;margin-bottom:12px;transition:color .2s}
+        .footer-links-column a:hover{color:#a78bfa}
+        .social-icons{display:flex;gap:16px}
+        .social-icons a{width:40px;height:40px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:all .2s}
+        .social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px)}
+        .copyright{text-align:center;color:#6b7280;font-size:.85rem;padding-top:32px;border-top:1px solid #1f2937}
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -896,7 +904,7 @@
             <button class="btn-white" onclick="document.getElementById('jobsGrid').scrollIntoView({behavior:'smooth'})">
                 <i class="fas fa-briefcase"></i> See All Openings
             </button>
-            <a href="contact.html" class="btn-outline-white"><i class="fas fa-envelope"></i> Email Us Directly</a>
+            <a href="https://infoma.in/contact-us" class="btn-outline-white"><i class="fas fa-envelope"></i> Email Us Directly</a>
         </div>
     </div>
 </div>
