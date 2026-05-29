@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Partners | Infoma Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #fff; color: #111827; overflow-x: hidden; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: linear-gradient(135deg, #0f0c29, #302b63); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #fff, #c4b5fd); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; }
+        .page-hero { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); padding: 80px 40px; text-align: center; }
+        .page-hero .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.3); padding: 6px 16px; border-radius: 60px; font-size: 0.75rem; font-weight: 600; color: #c4b5fd; margin-bottom: 20px; }
+        .page-hero h1 { font-size: 3rem; color: white; margin-bottom: 16px; }
+        .page-hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; font-size: 1rem; line-height: 1.7; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+        .section { padding: 80px 0; }
+        .section-dark { background: #f9fafb; }
+        .section-badge { display: inline-block; background: linear-gradient(135deg, #ede9fe, #eef2ff); color: #8b5cf6; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; padding: 5px 12px; border-radius: 30px; margin-bottom: 16px; text-transform: uppercase; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header h2 { font-size: 2.2rem; color: #111827; margin-bottom: 12px; }
+        .section-header h2 span { background: linear-gradient(135deg, #8b5cf6, #6366f1); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .section-header p { color: #6b7280; }
+
+        /* Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+        .stat-box {
+            background: linear-gradient(135deg, #1e1b4b, #2e1065);
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            color: white;
+        }
+        .stat-box i { font-size: 1.6rem; color: #a78bfa; margin-bottom: 10px; display: block; }
+        .stat-box .num { font-size: 1.8rem; font-weight: 800; }
+        .stat-box .lbl { font-size: 0.7rem; color: #c4b5fd; margin-top: 4px; }
+
+        /* Partner Type Cards */
+        .partner-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
+        .partner-type-card {
+            border-radius: 24px;
+            padding: 28px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+        .partner-type-card:hover { transform: translateY(-6px); }
+        .partner-type-card.school { background: linear-gradient(135deg, #f5f3ff, #ede9fe); border-color: #ddd6fe; }
+        .partner-type-card.media { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #bfdbfe; }
+        .partner-type-card.sponsor { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; }
+        .type-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 16px; }
+        .school .type-icon { background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white; }
+        .media .type-icon { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
+        .sponsor .type-icon { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+        .partner-type-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #111827; }
+        .partner-type-card p { font-size: 0.85rem; color: #4b5563; line-height: 1.6; }
+
+        /* School Partner Grid */
+        .schools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+        .school-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 20px 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .school-card:hover { border-color: #c4b5fd; box-shadow: 0 8px 20px -8px rgba(139,92,246,0.2); transform: translateY(-3px); }
+        .school-initial {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: white;
+            margin: 0 auto 12px;
+        }
+        .school-card h4 { font-size: 0.85rem; font-weight: 700; color: #111827; margin-bottom: 4px; }
+        .school-card .region { font-size: 0.7rem; color: #8b5cf6; font-weight: 600; }
+
+        /* Region Tabs */
+        .region-tabs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+        .region-tab {
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid #e5e7eb;
+            background: white;
+            color: #6b7280;
+            transition: all 0.2s;
+        }
+        .region-tab.active, .region-tab:hover {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Become Partner CTA */
+        .partner-cta {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            border-radius: 32px;
+            padding: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .partner-cta h2 { color: white; font-size: 2rem; margin-bottom: 12px; }
+        .partner-cta p { color: rgba(255,255,255,0.85); max-width: 500px; margin: 0 auto 32px; }
+        .partner-cta .btn-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-white { background: white; color: #8b5cf6; padding: 12px 28px; border-radius: 40px; font-weight: 700; border: none; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .btn-outline-white { background: transparent; color: white; padding: 12px 28px; border-radius: 40px; font-weight: 600; border: 2px solid rgba(255,255,255,0.5); cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        /* Benefits */
+        .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .benefit-item {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+        .benefit-item:hover { border-color: #c4b5fd; box-shadow: 0 8px 20px -8px rgba(139,92,246,0.15); }
+        .benefit-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .benefit-icon i { color: white; font-size: 1rem; }
+        .benefit-item h4 { font-size: 0.95rem; font-weight: 700; color: #111827; margin-bottom: 6px; }
+        .benefit-item p { font-size: 0.83rem; color: #6b7280; line-height: 1.6; }
+
+        footer { background: #111827; padding: 40px; text-align: center; margin-top: 40px; }
+        footer p { color: #6b7280; font-size: 0.85rem; }
+        footer a { color: #a78bfa; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2rem; }
+            .navbar { padding: 16px 20px; }
+            .container { padding: 0 20px; }
+            .section { padding: 50px 0; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .partner-types { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .schools-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
+    
+</nav>
+
+<div class="page-hero">
+    <div class="badge"><i class="fas fa-handshake"></i> Partners</div>
+    <h1>Our Partners!</h1>
+    <p>50+ schools across Jammu, Kashmir and Ladakh trust Infoma Academy to bring world-class quiz competitions to their students.</p>
+</div>
+
+<div class="container">
+    <section class="section">
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <i class="fas fa-school"></i>
+                <div class="num">50+</div>
+                <div class="lbl">Partner Schools</div>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="num">3</div>
+                <div class="lbl">Regions Covered</div>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-user-graduate"></i>
+                <div class="num">15K+</div>
+                <div class="lbl">Students Reached</div>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-trophy"></i>
+                <div class="num">120+</div>
+                <div class="lbl">Events Together</div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <div class="section-badge">Partnership Types</div>
+            <h2>How Schools <span>Partner With Us</span></h2>
+            <p>Multiple ways to get involved with Infoma Academy</p>
+        </div>
+
+        <div class="partner-types">
+            <div class="partner-type-card school">
+                <div class="type-icon"><i class="fas fa-school"></i></div>
+                <h3>School Partner</h3>
+                <p>Register your school to participate in our inter-school quiz competitions. Your students compete, learn, and win.</p>
+            </div>
+            <div class="partner-type-card media">
+                <div class="type-icon"><i class="fas fa-broadcast-tower"></i></div>
+                <h3>Media Partner</h3>
+                <p>Cover our events, amplify the stories of young achievers, and help put J&K's talent on the national map.</p>
+            </div>
+            <div class="partner-type-card sponsor">
+                <div class="type-icon"><i class="fas fa-star"></i></div>
+                <h3>Sponsor / Brand</h3>
+                <p>Support education in J&K and get your brand in front of thousands of students, parents and educators.</p>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<!-- Schools Section -->
+<div class="section-dark">
+    <div class="container">
+        <section class="section" style="padding-top:0;">
+            <div class="section-header">
+                <div class="section-badge">Partner Schools</div>
+                <h2>Schools <span>We Work With</span></h2>
+                <p>Proud to partner with these institutions across J&K</p>
+            </div>
+
+            <div class="region-tabs">
+                <div class="region-tab active">All Regions</div>
+                <div class="region-tab">Jammu</div>
+                <div class="region-tab">Kashmir</div>
+                <div class="region-tab">Ladakh</div>
+            </div>
+
+            <div class="schools-grid">
+                <div class="school-card"><div class="school-initial">D</div><h4>DPS Jammu</h4><div class="region">Jammu</div></div>
+                <div class="school-card"><div class="school-initial">B</div><h4>Burn Hall School</h4><div class="region">Kashmir</div></div>
+                <div class="school-card"><div class="school-initial">S</div><h4>Springdales School</h4><div class="region">Jammu</div></div>
+                <div class="school-card"><div class="school-initial">A</div><h4>Army School Srinagar</h4><div class="region">Kashmir</div></div>
+                <div class="school-card"><div class="school-initial">T</div><h4>Tyndale Biscoe School</h4><div class="region">Kashmir</div></div>
+                <div class="school-card"><div class="school-initial">J</div><h4>JK Public School</h4><div class="region">Jammu</div></div>
+                <div class="school-card"><div class="school-initial">R</div><h4>Ryan International</h4><div class="region">Jammu</div></div>
+                <div class="school-card"><div class="school-initial">L</div><h4>Leh Public School</h4><div class="region">Ladakh</div></div>
+<div class="school-card"><div class="school-initial">C</div><h4>Central School Leh</h4><div class="region">Ladakh</div></div>
+                <div class="school-card"><div class="school-initial">M</div><h4>Modern School Jammu</h4><div class="region">Jammu</div></div>
+                <div class="school-card"><div class="school-initial">G</div><h4>GD Goenka School</h4><div class="region">Jammu</div></div>
+                <div class="school-card" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-color:#ddd6fe;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                    <i class="fas fa-plus" style="font-size:1.5rem;color:#8b5cf6;margin-bottom:8px;"></i>
+                    <h4 style="color:#8b5cf6;">40+ More</h4>
+                    <div class="region">Across J&K</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Benefits -->
+<div class="container">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-badge">Why Partner</div>
+            <h2>Benefits of <span>Partnering With Us</span></h2>
+            <p>What your school gains when you join Infoma Academy</p>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fas fa-trophy"></i></div>
+                <div><h4>Certificates & Awards</h4><p>Every participating student receives a certificate. Winners get trophies and medals at grand ceremonies.</p></div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <div><h4>Teacher Development</h4><p>Free access to our teacher training modules to build a lasting quiz culture in your school.</p></div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                <div><h4>Performance Insights</h4><p>Receive detailed reports on your school's performance and improvement trends across events.</p></div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fas fa-bullhorn"></i></div>
+                <div><h4>Recognition & Publicity</h4><p>Winning schools and students are featured on our platform and social media channels.</p></div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fas fa-laptop-code"></i></div>
+                <div><h4>Digital Platform Access</h4><p>Participate in online rounds with real-time scoring from your own school — no travel needed.</p></div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fas fa-users"></i></div>
+                <div><h4>Community Network</h4><p>Connect with 50+ partner schools and educators across J&K for collaboration and exchange.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="partner-cta">
+        <h2>Ready to become a partner?</h2>
+        <p>Join J&K's largest inter-school quiz network and give your students a platform to shine.</p>
+        <div class="btn-row">
+            <a href="contact.html" class="btn-white"><i class="fas fa-school"></i> Register Your School</a>
+            <a href="contact.html" class="btn-outline-white"><i class="fas fa-envelope"></i> Get in Touch</a>
+        </div>
+    </div>
+</div>
+
+<footer style="margin-top:80px;">
+    <p>© 2026 <a href="index.html">Infoma Academy</a> — Pioneering School Quizzes in Jammu & Kashmir</p>
+</footer>
+</body>
+</html>
