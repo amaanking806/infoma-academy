@@ -6,6 +6,7 @@
     <title>Our Partners | Infoma Academy</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background: #fff; color: #111827; overflow-x: hidden; }
@@ -14,7 +15,7 @@
         .page-hero { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); padding: 80px 40px; text-align: center; }
         .page-hero .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.3); padding: 6px 16px; border-radius: 60px; font-size: 0.75rem; font-weight: 600; color: #c4b5fd; margin-bottom: 20px; }
         .page-hero h1 { font-size: 3rem; color: white; margin-bottom: 16px; }
-        .page-hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; font-size: 1rem; line-height: 1.7; }
+        .page-hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; font-size: 1rem; line-height: 1.7; font-weight: 500;}
         .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
         .section { padding: 80px 0; }
         .section-dark { background: #f9fafb; }
@@ -22,7 +23,7 @@
         .section-header { text-align: center; margin-bottom: 48px; }
         .section-header h2 { font-size: 2.2rem; color: #111827; margin-bottom: 12px; }
         .section-header h2 span { background: linear-gradient(135deg, #8b5cf6, #6366f1); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .section-header p { color: #6b7280; }
+        .section-header p { color: #6b7280; font-weight: 500; }
 
         /* Stats Row */
         .stats-row {
@@ -60,7 +61,7 @@
         .media .type-icon { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
         .sponsor .type-icon { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
         .partner-type-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #111827; }
-        .partner-type-card p { font-size: 0.85rem; color: #4b5563; line-height: 1.6; }
+        .partner-type-card p { font-size: 0.85rem; color: #4b5563; line-height: 1.6; font-weight: 600;}
 
         /* School Partner Grid */
         .schools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
@@ -170,15 +171,15 @@
 </nav>
 
 <div class="page-hero">
-    <div class="badge"><i class="fas fa-handshake"></i> Partners</div>
-    <h1>Our Partners!</h1>
-    <p>50+ schools across Jammu, Kashmir and Ladakh trust Infoma Academy to bring world-class quiz competitions to their students.</p>
+    <div class="badge" data-aos="fade-down" data-aos-duration="600"><i class="fas fa-handshake"></i> Partners</div>
+    <h1 data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">Our Partners!</h1>
+    <p data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">50+ schools across Jammu, Kashmir and Ladakh trust Infoma Academy to bring world-class quiz competitions to their students.</p>
 </div>
 
 <div class="container">
     <section class="section">
 
-        <div class="stats-row">
+        <div class="stats-row" data-aos="fade-up">
             <div class="stat-box">
                 <i class="fas fa-school"></i>
                 <div class="num">50+</div>
@@ -204,10 +205,10 @@
         <div class="section-header">
             <div class="section-badge">Partnership Types</div>
             <h2>How Schools <span>Partner With Us</span></h2>
-            <p>Multiple ways to get involved with Infoma Academy</p>
+            <p>Multiple ways to get involved with Infoma</p>
         </div>
 
-        <div class="partner-types">
+        <div class="partner-types" data-aos="fade-up" data-aos-delay="100">
             <div class="partner-type-card school">
                 <div class="type-icon"><i class="fas fa-school"></i></div>
                 <h3>School Partner</h3>
@@ -234,7 +235,7 @@
         <section class="section" style="padding-top:0;">
             <div class="section-header">
                 <div class="section-badge">Partner Schools</div>
-                <h2>Schools <span>We Work With</span></h2>
+                <h2>Schools <span>We Work With:</span></h2>
                 <p>Proud to partner with these institutions across J&K</p>
             </div>
 
@@ -245,7 +246,7 @@
                 <div class="region-tab">Ladakh</div>
             </div>
 
-            <div class="schools-grid">
+            <div class="schools-grid" data-aos="fade-up">
                 <div class="school-card"><div class="school-initial">D</div><h4>DPS Jammu</h4><div class="region">Jammu</div></div>
                 <div class="school-card"><div class="school-initial">B</div><h4>Burn Hall School</h4><div class="region">Kashmir</div></div>
                 <div class="school-card"><div class="school-initial">S</div><h4>Springdales School</h4><div class="region">Jammu</div></div>
@@ -271,11 +272,11 @@
 <div class="container">
     <section class="section">
         <div class="section-header">
-            <div class="section-badge">Why Partner</div>
-            <h2>Benefits of <span>Partnering With Us</span></h2>
+            <div class="section-badge">Why Partner?</div>
+            <h2>Benefits of <span>Partnering With Us:</span></h2>
             <p>What your school gains when you join Infoma Academy</p>
         </div>
-        <div class="benefits-grid">
+        <div class="benefits-grid" data-aos="fade-up">
             <div class="benefit-item">
                 <div class="benefit-icon"><i class="fas fa-trophy"></i></div>
                 <div><h4>Certificates & Awards</h4><p>Every participating student receives a certificate. Winners get trophies and medals at grand ceremonies.</p></div>
@@ -303,18 +304,42 @@
         </div>
     </section>
 
-    <div class="partner-cta">
+    <div class="partner-cta" data-aos="zoom-in">
         <h2>Ready to become a partner?</h2>
         <p>Join J&K's largest inter-school quiz network and give your students a platform to shine.</p>
         <div class="btn-row">
-            <a href="contact.html" class="btn-white"><i class="fas fa-school"></i> Register Your School</a>
+            <a href="contact.html" class="btn-white"><i class="fas fa-school"></i> Register School</a>
             <a href="contact.html" class="btn-outline-white"><i class="fas fa-envelope"></i> Get in Touch</a>
         </div>
     </div>
 </div>
 
+<script>
+    document.querySelectorAll('.region-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.region-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            const selected = this.textContent.trim();
+
+            document.querySelectorAll('.school-card').forEach(card => {
+                const region = card.querySelector('.region');
+                if (selected === 'All Regions' || (region && region.textContent.trim() === selected)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
 <footer style="margin-top:80px;">
     <p>© 2026 <a href="index.html">Infoma Academy</a> — Pioneering School Quizzes in Jammu & Kashmir</p>
 </footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: false, mirror: true });
+</script>
 </body>
 </html>
