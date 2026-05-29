@@ -376,6 +376,7 @@
             align-items: center;
             gap: 8px;
             box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            text-decoration: none;
         }
 
         .btn-primary:hover {
@@ -2445,7 +2446,7 @@ showResultPopup('success', '🎉 Registration Successful!', 'Your school has bee
     // Single delegated listener on document — works on all devices including mobile touch
     function attachButtonListeners() {}
     document.addEventListener('click', function(e) {
-        const btn = e.target.closest('#registerBtn, #finalCta, #schoolBtn, #exploreBtn');
+        const btn = e.target.closest('#registerBtn, #finalCta, #schoolBtn');
         if (btn) {
             e.preventDefault();
             openSchoolPopup();
