@@ -37,36 +37,25 @@
         .section-dark{background:#f9fafb}
         .section-badge{display:inline-block;background:linear-gradient(135deg,#ede9fe,#eef2ff);color:#8b5cf6;font-size:.7rem;font-weight:700;letter-spacing:1px;padding:5px 12px;border-radius:30px;margin-bottom:16px;text-transform:uppercase}
         .section-header{text-align:center;max-width:700px;margin:0 auto 50px}
-        .section-header h2{font-size:2.2rem;color:#111827;margin-bottom:12px}
-        .section-header p{color:#6b7280;font-size:1rem}
+        .section-header h2{font-size:28px;color:#111827;margin-bottom:12px}
+        .section-header p{color:#6b7280;font-size:1rem;font-weight:500}
         .gradient-heading{background:linear-gradient(135deg,#8b5cf6,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent}
         /* Leadership */
-        .leadership-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:60px}
-        .leader-card{background:#fff;border-radius:28px;overflow:hidden;border:1px solid #e5e7eb;transition:all .4s;text-align:center}
+        .leader-card{background:#fff;border-radius:20px;padding:24px 16px;border:1px solid #e5e7eb;transition:all .3s;text-align:center}
         .leader-card:hover{transform:translateY(-8px);border-color:#c4b5fd;box-shadow:0 25px 50px -12px rgba(139,92,246,.2)}
-        .leader-img{height:220px;position:relative;overflow:hidden}
-        .leader-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-        .leader-card:hover .leader-img img{transform:scale(1.06)}
-        .leader-avatar{width:100%;height:100%;background:linear-gradient(135deg,#8b5cf6,#6366f1);display:flex;align-items:center;justify-content:center;font-size:3.5rem;font-weight:800;color:#fff}
-        .leader-info{padding:24px}
+        .leader-info{padding:0}
         .leader-name{font-size:1.1rem;font-weight:800;color:#111827;margin-bottom:4px}
         .leader-role{font-size:.8rem;color:#8b5cf6;font-weight:600;margin-bottom:12px}
         .leader-bio{font-size:.82rem;color:#6b7280;line-height:1.6;margin-bottom:16px}
         .leader-social{display:flex;gap:10px;justify-content:center}
         .leader-social a{width:32px;height:32px;background:#f3f4f6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#8b5cf6;font-size:.8rem;transition:all .2s;text-decoration:none}
         .leader-social a:hover{background:#8b5cf6;color:#fff;transform:translateY(-2px)}
-        /* Departments */
-        .dept-tabs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
-        .dept-tab{padding:8px 20px;border-radius:40px;border:2px solid #e5e7eb;cursor:pointer;font-size:.85rem;font-weight:600;color:#6b7280;transition:all .3s;background:#fff}
-        .dept-tab.active,.dept-tab:hover{border-color:#8b5cf6;color:#8b5cf6;background:#f5f3ff}
         /* Team Grid */
         .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
         .team-card{background:#fff;border-radius:20px;padding:24px 16px;border:1px solid #e5e7eb;text-align:center;transition:all .3s}
         .team-card:hover{transform:translateY(-5px);border-color:#c4b5fd;box-shadow:0 15px 30px -10px rgba(139,92,246,.2)}
-        .team-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#6366f1);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.5rem;font-weight:800;color:#fff}
         .team-name{font-size:.9rem;font-weight:700;color:#111827;margin-bottom:4px}
         .team-role{font-size:.75rem;color:#8b5cf6;font-weight:600;margin-bottom:8px}
-        .team-loc{font-size:.72rem;color:#9ca3af;display:flex;align-items:center;justify-content:center;gap:4px}
         /* Join CTA */
         .join-banner{background:linear-gradient(135deg,#f5f3ff,#eef2ff);border-radius:32px;padding:50px;text-align:center;border:1px solid #e0e7ff}
         .join-banner h2{font-size:1.8rem;color:#111827;margin-bottom:12px}
@@ -102,9 +91,26 @@
         .side-social-icons a{width:36px;height:36px;background:#f3f4f6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#8b5cf6;transition:all .2s}
         .side-social-icons a:hover{background:#8b5cf6;color:#fff}
         .side-menu-footer p{font-size:.7rem;color:#9ca3af;text-align:center}
+        .leadership-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:60px}
         @media(max-width:968px){.leadership-grid{grid-template-columns:1fr 1fr}.team-grid{grid-template-columns:repeat(3,1fr)}.page-hero h1{font-size:2.2rem}}
         @media(max-width:768px){.nav-links{display:none}.menu-icon{display:block}.leadership-grid{grid-template-columns:1fr}.team-grid{grid-template-columns:repeat(2,1fr)}.container{padding:0 20px}.section{padding:50px 0}}
         @media(max-width:480px){.page-hero h1{font-size:1.8rem}.team-grid{grid-template-columns:1fr 1fr}.join-banner{padding:32px 20px}}
+        /* Lightbox */
+        .lightbox-overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s ease;}
+        .lightbox-overlay.active{opacity:1;visibility:visible;}
+        .lightbox-box{background:white;border-radius:28px;overflow:hidden;max-width:480px;width:90%;box-shadow:0 25px 60px rgba(0,0,0,0.4);transform:scale(0.8) translateY(30px);opacity:0;transition:transform .35s cubic-bezier(0.34,1.56,0.64,1),opacity .3s ease;}
+        .lightbox-overlay.active .lightbox-box{transform:scale(1) translateY(0);opacity:1;}
+        .lightbox-img{width:100%;height:260px;object-fit:cover;object-position:top}
+        .lightbox-body{padding:24px}
+        .lightbox-name{font-size:1.2rem;font-weight:800;color:#111827;margin-bottom:4px}
+        .lightbox-role{font-size:0.82rem;color:#8b5cf6;font-weight:600;margin-bottom:12px}
+        .lightbox-bio{font-size:0.85rem;color:#6b7280;line-height:1.7;margin-bottom:16px}
+        .lightbox-close{position:absolute;top:10px;right:10px;background:#8b5cf6;border:none;color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+        .lightbox-close:hover{background:rgba(255,255,255,0.35);transform:rotate(90deg)}
+        .lightbox-wrap{position:relative;max-width:480px;width:90%;}
+        .leader-card,.team-card{cursor:pointer}
+        .whatsapp-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;font-size:.78rem;font-weight:700;padding:7px 18px;border-radius:60px;text-decoration:none;transition:all .2s;margin-top:4px}
+        .whatsapp-btn:hover{opacity:.85;transform:translateY(-2px)}
     </style>
 </head>
 <body>
@@ -138,111 +144,148 @@
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <div class="section-badge">LEADERSHIP</div>
-            <h2>Meet our <span class="gradient-heading">founders & leaders</span></h2>
+            <h2>Meet our <span class="gradient-heading">Founders</span></h2>
             <p>The visionaries who started and guide Infoma Academy's mission</p>
         </div>
         <div class="leadership-grid">
-            <div class="leader-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="leader-img">
-                    <div class="leader-avatar">AK</div>
-                </div>
+            <!-- Amaan Shakeel - Founder & CEO -->
+            <div class="leader-card" data-aos="fade-up" data-aos-delay="100" onclick="openLightbox('https://image2url.com/images/1758367946444-8049c3ef-b140-4d72-aafc-058d9a2e490e.jpg','Amaan Shakeel','Founder & CEO','Visionary leader driving interactive learning innovation and building the future of education.')">
+                <img src="https://image2url.com/images/1758367946444-8049c3ef-b140-4d72-aafc-058d9a2e490e.jpg" alt="Amaan Shakeel" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
                 <div class="leader-info">
-                    <div class="leader-name">Aditya Kumar</div>
+                    <div class="leader-name">Amaan Shakeel</div>
                     <div class="leader-role">Founder & CEO</div>
-                    <div class="leader-bio">An educator at heart, Aditya founded Infoma Academy after seeing firsthand the lack of competitive academic platforms for students in J&K. He brings 10+ years of experience in education and event management.</div>
-                    <div class="leader-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+                    <div class="leader-bio">Visionary leader driving interactive learning innovation and building the future of education.</div>
+                    <a class="whatsapp-btn" style="background:linear-gradient(135deg,#8b5cf6,#6366f1);justify-content:center;" href="https://wa.me/918825073906" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
                 </div>
             </div>
-            <div class="leader-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="leader-img">
-                    <div class="leader-avatar" style="background:linear-gradient(135deg,#ec4899,#f43f5e)">SB</div>
-                </div>
+            <!-- Uzma Irshad - Co-Founder -->
+            <div class="leader-card" data-aos="fade-up" data-aos-delay="200" onclick="openLightbox('https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png','Uzma Irshad','Co-Founder','Passionate about empowering learners with amazing skills and guidance.')">
+                <img src="https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png" alt="Uzma Irshad" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
                 <div class="leader-info">
-                    <div class="leader-name">Sara Bhat</div>
-                    <div class="leader-role">Co-Founder & Academic Head</div>
-                    <div class="leader-bio">Sara oversees all quiz content and curriculum design. With a Master's in Education, she ensures every question set is pedagogically sound, rigorous, and genuinely challenging for students.</div>
-                    <div class="leader-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+                    <div class="leader-name">Uzma Irshad</div>
+                    <div class="leader-role">Co-Founder</div>
+                    <div class="leader-bio">Passionate about empowering learners with amazing skills and guidance.</div>
+                    <a class="whatsapp-btn" style="background:linear-gradient(135deg,#8b5cf6,#6366f1);justify-content:center;" href="https://wa.me/917006428370" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
                 </div>
             </div>
-            <div class="leader-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="leader-img">
-                    <div class="leader-avatar" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)">RD</div>
-                </div>
+            <!-- Mehraj Bashir - Managing Director -->
+            <div class="leader-card" data-aos="fade-up" data-aos-delay="300" onclick="openLightbox('https://www.image2url.com/r2/default/images/1776787654780-3c2b9caf-fadc-45b5-94ac-1a3629387b1f.png','Mehraj Bashir','Managing Director','Optimizing operational efficiency and managing day-to-day tasks.')">
+                <img src="https://www.image2url.com/r2/default/images/1776787654780-3c2b9caf-fadc-45b5-94ac-1a3629387b1f.png" alt="Mehraj Bashir" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
                 <div class="leader-info">
-                    <div class="leader-name">Rahul Dogra</div>
-                    <div class="leader-role">CTO & Tech Lead</div>
-                    <div class="leader-bio">Rahul built and maintains Infoma's digital platform. A software engineer who's passionate about using technology to democratize education, he ensures every online quiz runs flawlessly.</div>
-                    <div class="leader-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+                    <div class="leader-name">Mehraj Bashir</div>
+                    <div class="leader-role">Managing Director</div>
+                    <div class="leader-bio">Optimizing operational efficiency and managing day-to-day tasks.</div>
+                    <a class="whatsapp-btn" style="background:linear-gradient(135deg,#8b5cf6,#6366f1);justify-content:center;" href="https://wa.me/919103660712" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
                 </div>
             </div>
         </div>
 
-        <!-- Extended Team -->
+        <!-- Key Contributors -->
         <div class="section-header" data-aos="fade-up" style="margin-top:20px">
-            <div class="section-badge">THE TEAM</div>
+            <div class="section-badge">KEY CONTRIBUTORS</div>
             <h2>The full <span class="gradient-heading">Infoma family</span></h2>
-            <p>Spread across J&K, making things happen on the ground</p>
+            <p>Dedicated contributors making quality education happen every day</p>
         </div>
         <div class="team-grid">
-            <div class="team-card" data-aos="fade-up" data-aos-delay="50">
-                <div class="team-avatar">NJ</div>
-                <div class="team-name">Nadia Jan</div>
-                <div class="team-role">School Relations</div>
-                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Srinagar</div>
+            <!-- Saqib Ahmad -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="50" onclick="openLightbox('https://www.image2url.com/r2/default/images/1776785462390-ead5fee7-a8ce-420a-9c1b-345fb7b7e0bf.png','Saqib Ahmad','HOD - MCQs Department','Oversees and manages the MCQs department workflows.')">
+                <img src="https://www.image2url.com/r2/default/images/1776785462390-ead5fee7-a8ce-420a-9c1b-345fb7b7e0bf.png" alt="Saqib Ahmad" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Mr. Saqib</div>
+                <div class="team-role">HOD - MCQs Dept</div>
+                <a class="whatsapp-btn" href="https://wa.me/916006601907" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
             </div>
-            <div class="team-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">VS</div>
-                <div class="team-name">Vikas Sharma</div>
-                <div class="team-role">Event Coordinator</div>
-                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Jammu</div>
+            <!-- Irshad Bujran -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="100" onclick="openLightbox('https://www.image2url.com/r2/default/images/1776785593615-c51a629e-ed88-48bd-84ef-0a3ec8ec27f1.png','Irshad Bujran','HOD - Designing Department','Leading the designing team to build visual excellence.')">
+                <img src="https://www.image2url.com/r2/default/images/1776785593615-c51a629e-ed88-48bd-84ef-0a3ec8ec27f1.png" alt="Irshad Bujran" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Mr. Irshad</div>
+                <div class="team-role">Designer</div>
+                <a class="whatsapp-btn" href="https://wa.me/919541422981" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
             </div>
-            <div class="team-card" data-aos="fade-up" data-aos-delay="150">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">FM</div>
-                <div class="team-name">Faizan Mir</div>
-                <div class="team-role">Quiz Curator</div>
-                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Baramulla</div>
+            <!-- Mahifa Shabir -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="150" onclick="openLightbox('https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png','Mahifa Shabir','MCQs Dept (Member)','Specialist in curating high-quality educational MCQs.')">
+                <img src="https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png" alt="Mahifa Shabir" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Ms. Mahifa</div>
+                <div class="team-role">MCQs Compiler</div>
+                <a class="whatsapp-btn" href="https://wa.me/919797739771" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
             </div>
-            <div class="team-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#a855f7,#ec4899)">PG</div>
-                <div class="team-name">Priya Gupta</div>
-                <div class="team-role">Marketing & Outreach</div>
-                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Jammu</div>
+            <!-- Mateen Ur Rasheed -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="200" onclick="openLightbox('https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png','Mateen Ur Rasheed','MCQs Dept (Member)','Focused on developing accurate and challenging test materials.')">
+                <img src="https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png" alt="Mateen Ur Rasheed" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Mr. Shahid</div>
+                <div class="team-role">MCQs Compiler</div>
+                <a class="whatsapp-btn" href="https://wa.me/918082935124" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
             </div>
-            <div class="team-card" data-aos="fade-up" data-aos-delay="250">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#0f172a,#1e293b)">AW</div>
-                <div class="team-name">Adil Wani</div>
-                <div class="team-role">Operations Lead</div>
-                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Anantnag</div>
+            <!-- Saima Bashir -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="250" onclick="openLightbox('https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png','Saima Bashir','MCQs Dept (Member)','Expert in educational content research and MCQ verification.')">
+                <img src="https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png" alt="Saima Bashir" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Ms. Saima</div>
+                <div class="team-role">MCQs Dept (Member)</div>
+                <a class="whatsapp-btn" href="https://wa.me/919797881217" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
             </div>
-            <div class="team-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#0ea5e9,#2563eb)">SS</div>
-                <div class="team-name">Sunita Singh</div>
-                <div class="team-role">Teacher Relations</div>
-                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Udhampur</div>
+            <!-- Fatima Jan -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="300" onclick="openLightbox('https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png','Fatima Jan','MCQs Dept (Member)','Dedicated to creating comprehensive study resources.')">
+                <img src="https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png" alt="Fatima Jan" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Ms. Fatima</div>
+                <div class="team-role">MCQs Dept (Member)</div>
+                <a class="whatsapp-btn" href="https://wa.me/917889480978" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
             </div>
-            <div class="team-card" data-aos="fade-up" data-aos-delay="350">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">ZA</div>
-                <div class="team-name">Zainab Akhtar</div>
-                <div class="team-role">Content Writer</div>
-                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Kupwara</div>
+            <!-- Faizan Ahmad -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="350" onclick="openLightbox('https://www.image2url.com/r2/default/images/1776785410103-6cd10656-256c-4c68-aead-a4f95b557cf0.png','Faizan Ahmad','MCQs Dept (Member)','Passionate about digital education and accuracy.')">
+                <img src="https://www.image2url.com/r2/default/images/1776785410103-6cd10656-256c-4c68-aead-a4f95b557cf0.png" alt="Faizan Ahmad" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Mr. Faizan</div>
+                <div class="team-role">MCQs Dept (Member)</div>
+                <a class="whatsapp-btn" href="https://wa.me/919906463280" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
             </div>
-            <div class="team-card" data-aos="fade-up" data-aos-delay="400">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">MK</div>
-                <div class="team-name">Mohit Kapoor</div>
-                <div class="team-role">Digital Scoring</div>
-                <div class="team-loc"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;font-size:.65rem"></i> Jammu</div>
+            <!-- Zain Teli -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="400" onclick="openLightbox('https://www.image2url.com/r2/default/images/1776785676025-962127bf-f337-441a-a5a5-5197e2b0cb44.png','Zain Teli','MCQs Dept (Member)','Also contributes to question formatting for quiz.')">
+                <img src="https://www.image2url.com/r2/default/images/1776785676025-962127bf-f337-441a-a5a5-5197e2b0cb44.png" alt="Zain Teli" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Mr. Zain</div>
+                <div class="team-role">MCQs Dept (Member)</div>
+                <a class="whatsapp-btn" href="https://wa.me/916005155681" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
+            </div>
+            <!-- Iftikar Ahmad -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="450" onclick="openLightbox('https://www.image2url.com/r2/default/images/1776785533629-f7c9ce68-87b6-4d46-8e03-0da58756afcb.png','Iftikar Ahmad','MCQs Dept (Member)','Ensuring standard-compliant materials for all subjects.')">
+                <img src="https://www.image2url.com/r2/default/images/1776785533629-f7c9ce68-87b6-4d46-8e03-0da58756afcb.png" alt="Iftikar Ahmad" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Iftikar Ahmad</div>
+                <div class="team-role">MCQs Compiler</div>
+                <a class="whatsapp-btn" href="https://wa.me/917889871113" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
+            </div>
+            <!-- Momin Mir -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="500" onclick="openLightbox('https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png','Momin Mir','MCQs Dept (Member)','Assists in drafting and reviewing educational quizzes.')">
+                <img src="https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png" alt="Momin Mir" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Mr. Momin</div>
+                <div class="team-role">MCQs Compiler</div>
+                <a class="whatsapp-btn" href="https://wa.me/919682508374" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
+            </div>
+        </div>
+
+        <!-- Business Partners -->
+        <div class="section-header" data-aos="fade-up" style="margin-top:60px">
+            <div class="section-badge">BUSINESS PARTNERS</div>
+            <h2>Our trusted <span class="gradient-heading">partners</span></h2>
+            <p>Collaborative portals and platforms growing with Infoma Academy</p>
+        </div>
+        <div class="team-grid" style="grid-template-columns:repeat(2,1fr);max-width:620px;margin:0 auto">
+            <!-- Yasir Bashir -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="100" onclick="openLightbox('https://www.image2url.com/r2/default/images/1776855840355-a3447479-fad1-4ced-b928-502b7ef3b92f.png','Yasir Bashir','Business Partner','Owner/Manager of JK Updates Hub Students Portal.')">
+                <img src="https://www.image2url.com/r2/default/images/1776855840355-a3447479-fad1-4ced-b928-502b7ef3b92f.png" alt="Yasir Bashir" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Mr. Yasir</div>
+                <div class="team-role">Business Partner</div>
+                <a class="whatsapp-btn" href="https://wa.me/919797132510" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
+            </div>
+            <!-- Burhan Hussain -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="200" onclick="openLightbox('https://www.image2url.com/r2/default/images/1776935347921-b55ed5cc-9673-44ec-b2b2-ad90a3f79ced.png','Burhan Hussain','Business Partner','Owner/Manager of Kashmir Bulletin News Portal.')">
+                <img src="https://www.image2url.com/r2/default/images/1776935347921-b55ed5cc-9673-44ec-b2b2-ad90a3f79ced.png" alt="Burhan Hussain" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Mr. Burhan</div>
+                <div class="team-role">Business Partner</div>
+                <a class="whatsapp-btn" href="https://wa.me/918494000900" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
+            </div>
+            <!-- Sahiba Irshad -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="300" onclick="openLightbox('https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png','Sahiba Irshad','Business Partner','Owner/Manager of JK Students Updates Hub Portal.')">
+                <img src="https://image2url.com/images/1758025427203-5ac321cc-17ca-425c-ad3d-82c68d83bca1.png" alt="Sahiba Irshad" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 14px;display:block;border:3px solid #ede9fe">
+                <div class="team-name">Sahiba Irshad</div>
+                <div class="team-role">Business Partner</div>
+                <a class="whatsapp-btn" href="#" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contact</a>
             </div>
         </div>
     </div>
@@ -255,7 +298,7 @@
             <div class="section-badge">JOIN US</div>
             <h2>Want to be part of the <span class="gradient-heading">Infoma family?</span></h2>
             <p>We're always looking for passionate educators, quiz enthusiasts, event coordinators, and tech talent to help us grow across J&K.</p>
-            <a href="careers.html" class="btn-primary"><i class="fas fa-briefcase"></i> View Open Positions</a>
+            <a href="contact.html" class="btn-primary"><i class="fas fa-briefcase"></i> Get in Touch</a>
         </div>
     </div>
 </section>
@@ -265,30 +308,69 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <a href="index.html" class="logo" style="font-size:1.5rem;">Infoma<span style="color:#a78bfa;">Academy</span></a>
-                <p style="margin-top:16px;">Pioneering school quizzes in Jammu & Kashmir since 2020.</p>
+                <p style="margin-top:16px;">Infoma Academy is an interactive online learning and quiz platform founded in 2023, designed to make education engaging and accessible for students across India.</p>
             </div>
             <div class="footer-links">
-                <div class="footer-links-column"><h4>Quick Links</h4><a href="index.html">Home</a><a href="quiz-categories.html">Quizzes</a><a href="events-gallery.html">Gallery</a><a href="terms.html">Terms</a></div>
-                <div class="footer-links-column"><h4>Resources</h4><a href="how-it-works.html">How it works</a><a href="faq.html">FAQ</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a></div>
-                <div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+                <div class="footer-links-column"><h4>Quick Links</h4><a href="index.html">Home</a><a href="events-gallery.html">Quizzes</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+                <div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="https://www.instagram.com/infoma.in" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://www.youtube.com/@InfomaAcademyYT" target="_blank"><i class="fab fa-youtube"></i></a></div></div>
             </div>
         </div>
-        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu & Kashmir. The only one.</div>
+        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu & Kashmir.</div>
     </div>
 </footer>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-wrap">
+        <button class="lightbox-close" id="lbCloseBtn"><i class="fas fa-times"></i></button>
+        <div class="lightbox-box">
+            <img id="lbImg" class="lightbox-img" src="" alt="">
+            <div class="lightbox-body">
+                <div id="lbName" class="lightbox-name"></div>
+                <div id="lbRole" class="lightbox-role"></div>
+                <div id="lbBio" class="lightbox-bio"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 AOS.init({duration:800,once:false,mirror:true});
+
+function openLightbox(img, name, role, bio) {
+    document.getElementById('lbImg').src = img;
+    document.getElementById('lbName').textContent = name;
+    document.getElementById('lbRole').textContent = role;
+    document.getElementById('lbBio').textContent = bio;
+    const lb = document.getElementById('lightbox');
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+    const lb = document.getElementById('lightbox');
+    if (e.target === lb) {
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+document.getElementById('lbCloseBtn').addEventListener('click', function() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }});
+
 function createParticles(){const c=document.getElementById('particles');if(!c)return;for(let i=0;i<50;i++){const p=document.createElement('div');p.classList.add('particle');const s=Math.random()*8+2;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s`;c.appendChild(p);}}
 createParticles();
-document.body.insertAdjacentHTML('beforeend',`<div class="menu-overlay" id="menuOverlay"></div><div class="side-menu" id="sideMenu"><div class="side-menu-header"><button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button><span class="menu-logo">Infoma<span style="color:#c4b5fd">Academy</span></span></div><ul class="side-nav-links"><li><a href="index.html"><i class="fas fa-home"></i> Home</a></li><li><a href="events-gallery.html"><i class="fas fa-question-circle"></i> Quizzes</a></li><li><a href="index.html#schools"><i class="fas fa-school"></i> Schools</a></li><li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li><li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li></ul><div class="side-menu-footer"><div class="side-social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div><p>© 2025 Infoma Academy</p></div></div>`);
+
+document.body.insertAdjacentHTML('beforeend',`<div class="menu-overlay" id="menuOverlay"></div><div class="side-menu" id="sideMenu"><div class="side-menu-header"><button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button><span class="menu-logo">Infoma<span style="color:#c4b5fd">Academy</span></span></div><ul class="side-nav-links"><li><a href="index.html"><i class="fas fa-home"></i> Home</a></li><li><a href="events-gallery.html"><i class="fas fa-question-circle"></i> Quizzes</a></li><li><a href="index.html#schools"><i class="fas fa-school"></i> Schools</a></li><li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li><li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li></ul><div class="side-menu-footer"><div class="side-social-icons"><a href="https://www.instagram.com/infoma.in" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://www.youtube.com/@InfomaAcademyYT" target="_blank"><i class="fab fa-youtube"></i></a></div><p>© 2026 Infoma Academy</p></div></div>`);
+
 const sideMenu=document.getElementById('sideMenu'),menuOverlay=document.getElementById('menuOverlay'),closeMenuBtn=document.getElementById('closeMenuBtn'),menuToggle=document.getElementById('menuToggle');
 function openMenu(){sideMenu.classList.add('active');menuOverlay.classList.add('active');document.body.style.overflow='hidden';}
 function closeMenu(){sideMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';}
 if(menuToggle)menuToggle.addEventListener('click',openMenu);
 if(closeMenuBtn)closeMenuBtn.addEventListener('click',closeMenu);
 if(menuOverlay)menuOverlay.addEventListener('click',closeMenu);
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
 </script>
 </body>
 </html>
