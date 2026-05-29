@@ -249,9 +249,17 @@
         .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
         .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-        footer { background: #111827; padding: 40px; text-align: center; animation: fadeInUp 1s ease both; }
-        footer p { color: #6b7280; font-size: 0.85rem; }
-        footer a { color: #a78bfa; text-decoration: none; }
+        footer{padding:60px 0 40px;background:#111827;margin-top:60px}
+        .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:40px}
+        .footer-col p{color:#9ca3af;max-width:250px}
+        .footer-links{display:flex;gap:60px;flex-wrap:wrap}
+        .footer-links-column h4{margin-bottom:20px;font-size:1rem;color:#fff}
+        .footer-links-column a{display:block;text-decoration:none;color:#9ca3af;margin-bottom:12px;transition:color .2s}
+        .footer-links-column a:hover{color:#a78bfa}
+        .social-icons{display:flex;gap:16px}
+        .social-icons a{width:40px;height:40px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:all .2s}
+        .social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px)}
+        .copyright{text-align:center;color:#6b7280;font-size:.85rem;padding-top:32px;border-top:1px solid #1f2937}
 
         @media (max-width: 768px) {
             .page-hero h1 { font-size: 2rem; }
