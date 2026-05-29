@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Reviews | Infoma Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Poppins',sans-serif;overflow-x:hidden;background:#fff}
+        .header-bg{position:relative;width:100%;overflow:hidden;background:linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)}
+        .particles{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0}
+        .particle{position:absolute;background:rgba(255,255,255,.1);border-radius:50%;animation:floatParticle 20s infinite linear}
+        @keyframes floatParticle{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:.5}90%{opacity:.5}100%{transform:translateY(-100vh) rotate(720deg);opacity:0}}
+        .orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.3;animation:orbFloat 15s ease-in-out infinite}
+        .orb-1{width:300px;height:300px;background:#6366f1;top:-100px;right:-50px}
+        .orb-2{width:400px;height:400px;background:#ec4899;bottom:-150px;left:-100px;animation-delay:-5s}
+        .orb-3{width:250px;height:250px;background:#06b6d4;top:50%;left:30%;animation-delay:-10s}
+        @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(.9)}}
+        .container{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+        .navbar{display:flex;justify-content:space-between;align-items:center;padding:24px 0;position:relative;z-index:10}
+        .logo{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,#fff 0%,#a78bfa 100%);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em;text-decoration:none}
+        .nav-links{display:flex;gap:42px;list-style:none}
+        .nav-links a{text-decoration:none;color:rgba(255,255,255,.8);font-weight:500;transition:all .3s;font-size:.95rem;display:flex;align-items:center;gap:6px}
+        .nav-links a:hover{color:#a78bfa;transform:translateY(-2px)}
+        .menu-icon{display:none;font-size:1.8rem;cursor:pointer;color:#fff;z-index:1001}
+        .page-hero{padding:60px 0 70px;position:relative;z-index:2}
+        .page-hero-inner{text-align:center;max-width:700px;margin:0 auto}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,.2);backdrop-filter:blur(10px);padding:6px 16px;border-radius:60px;font-size:.75rem;font-weight:600;color:#c4b5fd;margin-bottom:24px;border:1px solid rgba(168,85,247,.3);animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(168,85,247,.4)}50%{box-shadow:0 0 0 10px rgba(168,85,247,0)}}
+        .page-hero h1{font-size:3rem;color:#fff;margin-bottom:16px;line-height:1.2}
+        .page-hero h1 .g{background:linear-gradient(135deg,#a78bfa,#f0f9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+        .page-hero p{color:rgba(255,255,255,.7);font-size:1rem;line-height:1.6}
+        .section{padding:80px 0}
+        .section-dark{background:#f9fafb}
+        .section-badge{display:inline-block;background:linear-gradient(135deg,#ede9fe,#eef2ff);color:#8b5cf6;font-size:.7rem;font-weight:700;letter-spacing:1px;padding:5px 12px;border-radius:30px;margin-bottom:16px;text-transform:uppercase}
+        .section-header{text-align:center;max-width:700px;margin:0 auto 50px}
+        .section-header h2{font-size:28px;color:#111827;margin-bottom:12px}
+        .section-header p{color:#6b7280;font-size:1rem;font-weight:500}
+        .gradient-heading{background:linear-gradient(135deg,#8b5cf6,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+        /* Rating Summary */
+        .rating-summary{background:linear-gradient(135deg,#f5f3ff,#eef2ff);border:1px solid #e0e7ff;border-radius:24px;padding:32px 40px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;margin-bottom:50px}
+        .rating-score{font-size:64px;font-weight:900;background:linear-gradient(135deg,#8b5cf6,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;flex-shrink:0}
+        .rating-body{display:flex;flex-direction:column;gap:8px;flex:1}
+        .rating-stars{display:flex;gap:4px}
+        .rating-stars i{font-size:18px;color:#8b5cf6}
+        .rating-stars i.empty{color:#d1d5db}
+        .rating-label{font-size:13px;color:#6b7280;font-weight:500}
+        .rating-count{font-size:14px;color:#374151;font-weight:600}
+        .rating-count span{color:#8b5cf6}
+        .write-review-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;font-size:13px;font-weight:700;padding:12px 28px;border-radius:60px;text-decoration:none;transition:all .3s;box-shadow:0 4px 20px rgba(139,92,246,.4);margin-left:auto;flex-shrink:0}
+        .write-review-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(139,92,246,.6)}
+
+        /* Reviews Grid */
+        .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:20px}
+        .review-card{background:#fff;border-radius:20px;padding:24px;border:1px solid #e5e7eb;transition:all .3s;display:flex;flex-direction:column}
+        .review-card:hover{transform:translateY(-5px);border-color:#c4b5fd;box-shadow:0 15px 30px -10px rgba(139,92,246,.2)}
+        .review-card-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+        .review-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid #ede9fe;background:#f3f4f6}
+        .review-avatar-fallback{width:48px;height:48px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#ede9fe,#eef2ff);border:2px solid #c4b5fd;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#8b5cf6}
+        .review-name{font-size:13.5px;font-weight:700;color:#111827;line-height:1.2}
+        .review-date{font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;font-weight:600}
+        .review-card-stars{display:flex;gap:3px;margin-bottom:10px}
+        .review-card-stars i{font-size:11px;color:#8b5cf6}
+        .review-card-stars i.empty{color:#d1d5db}
+        .review-quote{font-size:13px;color:#6b7280;line-height:1.7;flex:1;font-weight:500}
+
+        /* Load More */
+        .load-wrap{display:flex;justify-content:center;margin-top:30px}
+        .load-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid #e5e7eb;color:#374151;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:10px 28px;border-radius:60px;cursor:pointer;transition:all .3s}
+        .load-btn:hover{border-color:#8b5cf6;background:#f5f3ff;color:#8b5cf6}
+        .load-btn:disabled{opacity:.5;cursor:not-allowed}
+        .rv-hidden{display:none}
+
+        /* Join CTA */
+        .join-banner{background:linear-gradient(135deg,#f5f3ff,#eef2ff);border-radius:32px;padding:50px;text-align:center;border:1px solid #e0e7ff}
+        .join-banner h2{font-size:1.8rem;color:#111827;margin-bottom:12px}
+        .join-banner p{color:#6b7280;max-width:500px;margin:0 auto 28px}
+        .btn-primary{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border:none;padding:12px 28px;border-radius:60px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;text-decoration:none;box-shadow:0 4px 20px rgba(139,92,246,.4)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(139,92,246,.6)}
+
+        footer{padding:60px 0 40px;background:#111827;margin-top:60px}
+        .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:40px}
+        .footer-col p{color:#9ca3af;max-width:250px}
+        .footer-links{display:flex;gap:60px;flex-wrap:wrap}
+        .footer-links-column h4{margin-bottom:20px;font-size:1rem;color:#fff}
+        .footer-links-column a{display:block;text-decoration:none;color:#9ca3af;margin-bottom:12px;transition:color .2s}
+        .footer-links-column a:hover{color:#a78bfa}
+        .social-icons{display:flex;gap:16px}
+        .social-icons a{width:40px;height:40px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:all .2s}
+        .social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px)}
+        .copyright{text-align:center;color:#6b7280;font-size:.85rem;padding-top:32px;border-top:1px solid #1f2937}
+
+        .menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);z-index:1000;opacity:0;visibility:hidden;transition:all .4s}
+        .menu-overlay.active{opacity:1;visibility:visible}
+        .side-menu{position:fixed;top:0;left:-320px;width:300px;height:100%;background:#fff;z-index:1002;transition:left .4s;box-shadow:5px 0 40px rgba(0,0,0,.1);overflow-y:auto}
+        .side-menu.active{left:0}
+        .side-menu-header{background:linear-gradient(135deg,#8b5cf6,#6366f1);padding:40px 24px 30px;margin-bottom:20px}
+        .close-menu{background:rgba(255,255,255,.2);border:none;color:#fff;font-size:1.2rem;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;float:right;transition:all .2s}
+        .close-menu:hover{background:rgba(255,255,255,.3);transform:rotate(90deg)}
+        .side-menu .menu-logo{font-size:1.6rem;font-weight:800;color:#fff;margin-top:20px;display:block;clear:both}
+        .side-nav-links{list-style:none;padding:20px 0}
+        .side-nav-links li{border-bottom:1px solid #f3f4f6}
+        .side-nav-links a{text-decoration:none;color:#374151;font-weight:500;font-size:1rem;display:flex;align-items:center;gap:14px;padding:16px 24px;transition:all .2s}
+        .side-nav-links a:hover{background:linear-gradient(90deg,#f5f3ff,#fff);color:#8b5cf6;padding-left:28px}
+        .side-nav-links a i{width:22px;color:#8b5cf6}
+        .side-menu-footer{padding:24px;border-top:1px solid #f3f4f6;margin-top:20px}
+        .side-social-icons{display:flex;gap:16px;justify-content:center;margin-bottom:16px}
+        .side-social-icons a{width:36px;height:36px;background:#f3f4f6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#8b5cf6;transition:all .2s}
+        .side-social-icons a:hover{background:#8b5cf6;color:#fff}
+        .side-menu-footer p{font-size:.7rem;color:#9ca3af;text-align:center}
+
+        @media(max-width:968px){.reviews-grid{grid-template-columns:repeat(2,1fr)}.page-hero h1{font-size:2.2rem}}
+        @media(max-width:768px){.nav-links{display:none}.menu-icon{display:block}.reviews-grid{grid-template-columns:repeat(2,1fr)}.container{padding:0 20px}.section{padding:50px 0}.rating-summary{gap:16px;padding:24px}.rating-score{font-size:50px}.write-review-btn{width:100%;justify-content:center;margin-left:0}}
+        @media(max-width:480px){.page-hero h1{font-size:1.8rem}.reviews-grid{grid-template-columns:1fr 1fr}.join-banner{padding:32px 20px}}
+    </style>
+</head>
+<body>
+
+<div class="header-bg">
+    <div class="particles" id="particles"></div>
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
+            <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="events-gallery.html"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+                <li><a href="index.html#schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+        <div class="page-hero">
+            <div class="page-hero-inner" data-aos="fade-up">
+                <div class="hero-badge"><i class="fas fa-star"></i> Student Reviews</div>
+                <h1>What Our Students <span class="g">Say About Us</span></h1>
+                <p>Real feedback from our learners across Jammu &amp; Kashmir and beyond — sharing their experience with Infoma Academy's quizzes and platform.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+
+        <!-- Rating Summary -->
+        <div class="rating-summary" data-aos="fade-up">
+            <div class="rating-score">4.9</div>
+            <div class="rating-body">
+                <div class="rating-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <div class="rating-label">Average rating</div>
+                <div class="rating-count">Based on <span>32 verified reviews</span></div>
+            </div>
+            <button class="write-review-btn" onclick="openReviewPopup()">
+                <i class="fa-solid fa-pen-to-square"></i> Write a Review
+            </button>
+        </div>
+
+        <!-- Section Header -->
+        <div class="section-header" data-aos="fade-up">
+            <div class="section-badge">VERIFIED REVIEWS</div>
+            <h2>Voices of the <span class="gradient-heading">Infoma Community</span></h2>
+            <p>Hundreds of students trust Infoma Academy for quizzes, knowledge, and growth</p>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div class="reviews-grid" id="reviewGrid">
+
+            <!-- 1 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2xJQTRrCKPs2gyPWJa3CpCfddLOCcpBaO2a-tn1EipXc5w9sMpragLpiZuFYjMgCJ7jSS2oDU4SHqAPLY5VVyvox8LXNpLOz-1N0td800zmwZiktlSUbE7SKfLp_6svyl34THz7ppgYOwl4Jp1eHft94S0K60Zoyub-HvI6DtcOFH6dUTIxkcebGM4qws70Ip-9RUhMd8fQyQpewgcYO55QZ92cPvH7-uAC9dPR5H6dqk06827-C8AyHd9LAfCbXma_WKuoW-mpA=rw" alt="Azhar Javid" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AJ</div>
+                    <div><div class="review-name">Azhar Javid</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Jo app nai quiz start ki hai. ap ka kabili tareef initiative hai. Hmi apni prep pta chalti hai thank</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2xJQTRrCKPs2gyPWJa3CpCfddLOCcpBaO2a-tn1EipXc5w9sMpragLpiZuFYjMgCJ7jSS2oDU4SHqAPLY5VVyvox8LXNpLOz-1N0td800zmwZiktlSUbE7SKfLp_6svyl34THz7ppgYOwl4Jp1eHft94S0K60Zoyub-HvI6DtcOFH6dUTIxkcebGM4qws70Ip-9RUhMd8fQyQpewgcYO55QZ92cPvH7-uAC9dPR5H6dqk06827-C8AyHd9LAfCbXma_WKuoW-mpA=rw" alt="Toufeeq Peer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">TP</div>
+                    <div><div class="review-name">Toufeeq Peer</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Infoma Academy – Your Pocket Knowledge Hub ✨ Stay ahead with accurate, reliable, and easy-to-understand information.</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2xJQTRrCKPs2gyPWJa3CpCfddLOCcpBaO2a-tn1EipXc5w9sMpragLpiZuFYjMgCJ7jSS2oDU4SHqAPLY5VVyvox8LXNpLOz-1N0td800zmwZiktlSUbE7SKfLp_6svyl34THz7ppgYOwl4Jp1eHft94S0K60Zoyub-HvI6DtcOFH6dUTIxkcebGM4qws70Ip-9RUhMd8fQyQpewgcYO55QZ92cPvH7-uAC9dPR5H6dqk06827-C8AyHd9LAfCbXma_WKuoW-mpA=rw" alt="Adusei Kingsley" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AK</div>
+                    <div><div class="review-name">Adusei Kingsley</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">I am very glad to have access to this platform. Thanks to the developers and admins. Love from Ghana.</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2xJQTRrCKPs2gyPWJa3CpCfddLOCcpBaO2a-tn1EipXc5w9sMpragLpiZuFYjMgCJ7jSS2oDU4SHqAPLY5VVyvox8LXNpLOz-1N0td800zmwZiktlSUbE7SKfLp_6svyl34THz7ppgYOwl4Jp1eHft94S0K60Zoyub-HvI6DtcOFH6dUTIxkcebGM4qws70Ip-9RUhMd8fQyQpewgcYO55QZ92cPvH7-uAC9dPR5H6dqk06827-C8AyHd9LAfCbXma_WKuoW-mpA=rw" alt="Aadil Mushtaq" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AM</div>
+                    <div><div class="review-name">Aadil Mushtaq</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Infoma Academy is more than a learning community. Highly recommended for students and educators!</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2xJQTRrCKPs2gyPWJa3CpCfddLOCcpBaO2a-tn1EipXc5w9sMpragLpiZuFYjMgCJ7jSS2oDU4SHqAPLY5VVyvox8LXNpLOz-1N0td800zmwZiktlSUbE7SKfLp_6svyl34THz7ppgYOwl4Jp1eHft94S0K60Zoyub-HvI6DtcOFH6dUTIxkcebGM4qws70Ip-9RUhMd8fQyQpewgcYO55QZ92cPvH7-uAC9dPR5H6dqk06827-C8AyHd9LAfCbXma_WKuoW-mpA=rw" alt="Mohammad Aquib" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">MA</div>
+                    <div><div class="review-name">Mohammad Aquib</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Infoma Academy offers quality teaching with supportive faculty and a practical approach.</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2xJQTRrCKPs2gyPWJa3CpCfddLOCcpBaO2a-tn1EipXc5w9sMpragLpiZuFYjMgCJ7jSS2oDU4SHqAPLY5VVyvox8LXNpLOz-1N0td800zmwZiktlSUbE7SKfLp_6svyl34THz7ppgYOwl4Jp1eHft94S0K60Zoyub-HvI6DtcOFH6dUTIxkcebGM4qws70Ip-9RUhMd8fQyQpewgcYO55QZ92cPvH7-uAC9dPR5H6dqk06827-C8AyHd9LAfCbXma_WKuoW-mpA=rw" alt="Asim Yousuf" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AY</div>
+                    <div><div class="review-name">Asim Yousuf</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">This platform is nice and is founded by Amaan Sir (Best teacher ever)</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2xJQTRrCKPs2gyPWJa3CpCfddLOCcpBaO2a-tn1EipXc5w9sMpragLpiZuFYjMgCJ7jSS2oDU4SHqAPLY5VVyvox8LXNpLOz-1N0td800zmwZiktlSUbE7SKfLp_6svyl34THz7ppgYOwl4Jp1eHft94S0K60Zoyub-HvI6DtcOFH6dUTIxkcebGM4qws70Ip-9RUhMd8fQyQpewgcYO55QZ92cPvH7-uAC9dPR5H6dqk06827-C8AyHd9LAfCbXma_WKuoW-mpA=rw" alt="Mr Imtiyaz" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">MI</div>
+                    <div><div class="review-name">Mr Imtiyaz</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">This is very good and very useful because it improves our knowledge, I am satisfied with it.</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2xJQTRrCKPs2gyPWJa3CpCfddLOCcpBaO2a-tn1EipXc5w9sMpragLpiZuFYjMgCJ7jSS2oDU4SHqAPLY5VVyvox8LXNpLOz-1N0td800zmwZiktlSUbE7SKfLp_6svyl34THz7ppgYOwl4Jp1eHft94S0K60Zoyub-HvI6DtcOFH6dUTIxkcebGM4qws70Ip-9RUhMd8fQyQpewgcYO55QZ92cPvH7-uAC9dPR5H6dqk06827-C8AyHd9LAfCbXma_WKuoW-mpA=rw" alt="Naseeb Abass" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">NA</div>
+                    <div><div class="review-name">Naseeb Abass</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Proud of you brother, Keep it up and make Kashmir more proud.</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2xJQTRrCKPs2gyPWJa3CpCfddLOCcpBaO2a-tn1EipXc5w9sMpragLpiZuFYjMgCJ7jSS2oDU4SHqAPLY5VVyvox8LXNpLOz-1N0td800zmwZiktlSUbE7SKfLp_6svyl34THz7ppgYOwl4Jp1eHft94S0K60Zoyub-HvI6DtcOFH6dUTIxkcebGM4qws70Ip-9RUhMd8fQyQpewgcYO55QZ92cPvH7-uAC9dPR5H6dqk06827-C8AyHd9LAfCbXma_WKuoW-mpA=rw" alt="Aaditya Raj" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AR</div>
+                    <div><div class="review-name">Aaditya Raj</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">This website is truly outstanding! Smooth, fast, and packed with features. Hats off to the team!</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Maria" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">M</div>
+                    <div><div class="review-name">Maria</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">A marvellous learning platform...credibly user-friendly and makes taking quizzes a smooth experience!</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2xJQTRrCKPs2gyPWJa3CpCfddLOCcpBaO2a-tn1EipXc5w9sMpragLpiZuFYjMgCJ7jSS2oDU4SHqAPLY5VVyvox8LXNpLOz-1N0td800zmwZiktlSUbE7SKfLp_6svyl34THz7ppgYOwl4Jp1eHft94S0K60Zoyub-HvI6DtcOFH6dUTIxkcebGM4qws70Ip-9RUhMd8fQyQpewgcYO55QZ92cPvH7-uAC9dPR5H6dqk06827-C8AyHd9LAfCbXma_WKuoW-mpA=rw" alt="Pixels Education" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">PE</div>
+                    <div><div class="review-name">Pixels Education</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Infoma Academy is a complete package for students 🚀. Authentic, reliable, and student-friendly 💯</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Peerzada Afreen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">PA</div>
+                    <div><div class="review-name">Peerzada Afreen</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">I really appreciate the team who work behind this academy tirelessly 🤍 and provide us amazing content.</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Haziqa Maqbool" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">HM</div>
+                    <div><div class="review-name">Haziqa Maqbool</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star empty"></i></div>
+                <div class="review-quote">This quiz is very important for me because it plays a significant role in my academic progress.</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Shamsiya Aftab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">SA</div>
+                    <div><div class="review-name">Shamsiya Aftab</div><div class="review-date">Mar 08, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">These quizzes provide good information about Islam and general knowledge questions.</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Shah Soliha" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">SS</div>
+                    <div><div class="review-name">Shah Soliha</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">The Ramadan quiz was truly amazing and informative. Helped me learn more about Islam.</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Nahida Hafeez" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">NH</div>
+                    <div><div class="review-name">Nahida Hafeez</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Thank you for your commitment to providing such high-quality, reliable information!</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Aiman" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AI</div>
+                    <div><div class="review-name">Aiman</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Quizzes are really amazing and also help us to boost our knowledge. Thankyousomuch!</div>
+            </div>
+
+            <!-- 18 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Shayista Shafi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">SH</div>
+                    <div><div class="review-name">Shayista Shafi</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">May Allah bless you and accept your efforts. Great opportunity for knowledge.</div>
+            </div>
+
+            <!-- 19 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Madiha" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">MD</div>
+                    <div><div class="review-name">Madiha</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Simply Amazing quizzes, amazing Questions, Amazing Learning ✨🥰</div>
+            </div>
+
+            <!-- 20 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuQLpOuZRcaELI16X7ZJIEB_0EOI1OzrHYKwkShsgmfTQg5M7Zb96LiVNYryEFBzgUH9p9XCfOLNdc2z5LBL6ZKnn7gTH25cLAaPKTSAe_V-pNORbNOkEePblXKSH7tyGlggrx-tOhPMc7Do0iTwq8goSXUauTHiavLM4lC98gzh2vmBTPN2PYL-qd41c5XvGG9e0TigGIysijFyE5OFCui84mb4rgOIS5tE5Tnl6wfsgjWLRZb1lvZQEtAhoFHZBmmMV4NSWb6UGk=rw" alt="Aqib Hamid" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AH</div>
+                    <div><div class="review-name">Aqib Hamid</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">This quiz helps a person gain Islamic knowledge in a short time.</div>
+            </div>
+
+            <!-- 21 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuQLpOuZRcaELI16X7ZJIEB_0EOI1OzrHYKwkShsgmfTQg5M7Zb96LiVNYryEFBzgUH9p9XCfOLNdc2z5LBL6ZKnn7gTH25cLAaPKTSAe_V-pNORbNOkEePblXKSH7tyGlggrx-tOhPMc7Do0iTwq8goSXUauTHiavLM4lC98gzh2vmBTPN2PYL-qd41c5XvGG9e0TigGIysijFyE5OFCui84mb4rgOIS5tE5Tnl6wfsgjWLRZb1lvZQEtAhoFHZBmmMV4NSWb6UGk=rw" alt="Owais" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">OW</div>
+                    <div><div class="review-name">Owais</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">The quiz was well-organized and very informative. Clear questions and testing.</div>
+            </div>
+
+            <!-- 22 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Afra" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AF</div>
+                    <div><div class="review-name">Afra</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Even if the skies are shorter than your knees, wallahi you will never kneel insha allah</div>
+            </div>
+
+            <!-- 23 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Mir Suhana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">MS</div>
+                    <div><div class="review-name">Mir Suhana</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Infoma Academy provided an engaging and interactive learning experience through their well-organized quizzes. The sessions helped improve vocabulary and confidence. The friendly environment motivated us to think critically. Overall, it was a rewarding experience that inspired us to keep learning.</div>
+            </div>
+
+            <!-- 24 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuQLpOuZRcaELI16X7ZJIEB_0EOI1OzrHYKwkShsgmfTQg5M7Zb96LiVNYryEFBzgUH9p9XCfOLNdc2z5LBL6ZKnn7gTH25cLAaPKTSAe_V-pNORbNOkEePblXKSH7tyGlggrx-tOhPMc7Do0iTwq8goSXUauTHiavLM4lC98gzh2vmBTPN2PYL-qd41c5XvGG9e0TigGIysijFyE5OFCui84mb4rgOIS5tE5Tnl6wfsgjWLRZb1lvZQEtAhoFHZBmmMV4NSWb6UGk=rw" alt="Royat Fayaz" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">RF</div>
+                    <div><div class="review-name">Royat Fayaz</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Infoma Academy — the hub of knowledge and colorful future — enables everyone whether rich or poor to seek the taste of education. It provides both Science knowledge and long-lasting Islamic knowledge. Hats off to the generous, hard-working staff. They have the brain size of a planet!</div>
+            </div>
+
+            <!-- 25 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuQLpOuZRcaELI16X7ZJIEB_0EOI1OzrHYKwkShsgmfTQg5M7Zb96LiVNYryEFBzgUH9p9XCfOLNdc2z5LBL6ZKnn7gTH25cLAaPKTSAe_V-pNORbNOkEePblXKSH7tyGlggrx-tOhPMc7Do0iTwq8goSXUauTHiavLM4lC98gzh2vmBTPN2PYL-qd41c5XvGG9e0TigGIysijFyE5OFCui84mb4rgOIS5tE5Tnl6wfsgjWLRZb1lvZQEtAhoFHZBmmMV4NSWb6UGk=rw" alt="Irshad" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">IR</div>
+                    <div><div class="review-name">Irshad</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Thanks for providing the guess paper! Your quizzes were really helpful in our exams. Great effort in making learning easier. Keep up the good work!</div>
+            </div>
+
+            <!-- 26 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuQLpOuZRcaELI16X7ZJIEB_0EOI1OzrHYKwkShsgmfTQg5M7Zb96LiVNYryEFBzgUH9p9XCfOLNdc2z5LBL6ZKnn7gTH25cLAaPKTSAe_V-pNORbNOkEePblXKSH7tyGlggrx-tOhPMc7Do0iTwq8goSXUauTHiavLM4lC98gzh2vmBTPN2PYL-qd41c5XvGG9e0TigGIysijFyE5OFCui84mb4rgOIS5tE5Tnl6wfsgjWLRZb1lvZQEtAhoFHZBmmMV4NSWb6UGk=rw" alt="Maroof" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">MR</div>
+                    <div><div class="review-name">Maroof</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Congratulations on fostering curiosity and knowledge. Your quiz competitions ignite minds and inspire growth. Keep challenging, keep learning! May your community grow stronger, smarter, and more informed.</div>
+            </div>
+
+            <!-- 27 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuQLpOuZRcaELI16X7ZJIEB_0EOI1OzrHYKwkShsgmfTQg5M7Zb96LiVNYryEFBzgUH9p9XCfOLNdc2z5LBL6ZKnn7gTH25cLAaPKTSAe_V-pNORbNOkEePblXKSH7tyGlggrx-tOhPMc7Do0iTwq8goSXUauTHiavLM4lC98gzh2vmBTPN2PYL-qd41c5XvGG9e0TigGIysijFyE5OFCui84mb4rgOIS5tE5Tnl6wfsgjWLRZb1lvZQEtAhoFHZBmmMV4NSWb6UGk=rw" alt="Arif" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AR</div>
+                    <div><div class="review-name">Arif</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">These quizzes are a booster for learning. Knowledge is like an ocean — deep and limitless. The more you explore, the more you realize there is still so much left to discover.</div>
+            </div>
+
+            <!-- 28 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Afra" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AF</div>
+                    <div><div class="review-name">Afra</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Being a part of Infoma family simply meant happiness and the nectar of knowledge for me. I wrote a poem especially for the Infoma team — I hope I can offer you things even better than this.</div>
+            </div>
+
+            <!-- 29 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Afreen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">AF</div>
+                    <div><div class="review-name">Afreen</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">This was my first experience of district vs district quiz and it was incredible 👍😍 Much obliged to Infoma Academy for organising such quizzes ❤️ We hope Insha Allah Infoma Academy will continue it 🎗️</div>
+            </div>
+
+            <!-- 30 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuQLpOuZRcaELI16X7ZJIEB_0EOI1OzrHYKwkShsgmfTQg5M7Zb96LiVNYryEFBzgUH9p9XCfOLNdc2z5LBL6ZKnn7gTH25cLAaPKTSAe_V-pNORbNOkEePblXKSH7tyGlggrx-tOhPMc7Do0iTwq8goSXUauTHiavLM4lC98gzh2vmBTPN2PYL-qd41c5XvGG9e0TigGIysijFyE5OFCui84mb4rgOIS5tE5Tnl6wfsgjWLRZb1lvZQEtAhoFHZBmmMV4NSWb6UGk=rw" alt="Jahangir Hussain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">JH</div>
+                    <div><div class="review-name">Jahangir Hussain</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Infoma Academy's quizzes and group discussions have helped me learn a lot. Their interactive approach makes learning fun and easy. I highly recommend them!</div>
+            </div>
+
+            <!-- 31 -->
+            <div class="review-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="review-card-top">
+                    <img class="review-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPvyK2l3ODZ0Y5uG-sFNc38cRLoQ8636AOWhHEeWbGBMFTHtK4i_P_RVQQe6VOfcnTiNH6W2yAtW2C8qlvmrmetNOlLfIy39sTnaSwWgPC_oNC6l-Kb2PgViFyPWNLKOC0m3LaPRKItOibuY71KCDljzkzPOhytX_SdR2W4saMiQuqWtzcxG4NCpa_SbepC6MF_OalPLAOCnyp8g_T3cj2uralNvSYZ6RFhKpZatv-R1KO_QrODhvelEE0PkaEm_b46UZfLyDo6BJ1=rw" alt="Falak Manzoor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-fallback" style="display:none">FM</div>
+                    <div><div class="review-name">Falak Manzoor</div><div class="review-date">Mar 09, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">Infoma Academy provides incredibly useful information. Your quizzes are a great way to test knowledge and reinforce important concepts. Keep up the amazing work — your contributions are making a real difference.</div>
+            </div>
+
+            <!-- 32 - Hidden -->
+            <div class="review-card rv-hidden" id="rv-hidden-32" data-aos="fade-up">
+                <div class="review-card-top">
+                    <div class="review-avatar-fallback">AI</div>
+                    <div><div class="review-name">Afsara Iqbal</div><div class="review-date">Mar 10, 2026</div></div>
+                </div>
+                <div class="review-card-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="review-quote">This platform is really good. Nourishing our knowledge.</div>
+            </div>
+
+        </div>
+
+        <!-- Load More -->
+        <div class="load-wrap">
+            <button class="load-btn" id="rvLoadBtn">
+                <i class="fa-solid fa-rotate-right" style="font-size:11px;"></i> Load More Reviews
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="join-banner" data-aos="zoom-in">
+            <div class="section-badge">SHARE YOUR EXPERIENCE</div>
+            <h2>Had a great experience with <span class="gradient-heading">Infoma Academy?</span></h2>
+            <p>We'd love to hear from you! Your review helps us grow and motivates our team to keep delivering quality quizzes and content.</p>
+            <button class="btn-primary" onclick="openReviewPopup()"><i class="fas fa-pen-to-square"></i> Write a Review</button>
+        </div>
+    </div>
+</section>
+
+<footer style="padding:60px 0 40px;background:#111827;margin-top:60px">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="font-size:1.5rem;">Infoma<span style="color:#a78bfa;">Academy</span></a>
+                <p style="margin-top:16px;">Infoma Academy is an interactive online learning and quiz platform founded in 2023, designed to make education engaging and accessible for students across India.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-links-column"><h4>Quick Links</h4><a href="index.html">Home</a><a href="events-gallery.html">Quizzes</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+                <div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="https://www.instagram.com/infoma.in" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://www.youtube.com/@InfomaAcademyYT" target="_blank"><i class="fab fa-youtube"></i></a></div></div>
+            </div>
+        </div>
+        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu & Kashmir.</div>
+    </div>
+</footer>
+
+<!-- Review Popup -->
+<div id="reviewPopup" class="popup-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease;">
+  <div class="popup-container" style="background:white;width:90%;max-width:500px;max-height:90vh;border-radius:28px;overflow:hidden;transform:scale(0.9);transition:transform 0.3s ease;box-shadow:0 25px 50px rgba(0,0,0,0.4);">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;background:linear-gradient(135deg,#8b5cf6,#6366f1);color:white;">
+      <h3 style="font-size:1.2rem;font-weight:700;display:flex;align-items:center;gap:10px;margin:0;"><i class="fas fa-pen-to-square"></i> Write a Review</h3>
+      <button onclick="closeReviewPopup()" style="background:rgba(255,255,255,0.2);border:none;color:white;font-size:1.5rem;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">&times;</button>
+    </div>
+    <div style="padding:24px;max-height:calc(90vh - 70px);overflow-y:auto;">
+      <p style="color:#6b7280;font-size:0.82rem;margin-bottom:20px;padding:10px 12px;background:#f3f4f6;border-radius:12px;line-height:1.5;">Share your experience with Infoma Academy. Your feedback helps us grow!</p>
+      <form id="reviewForm">
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:#374151;margin-bottom:6px;"><i class="fas fa-user" style="color:#8b5cf6;width:20px;"></i> Full Name *</label>
+          <input type="text" id="rv_name" required placeholder="Your name" style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:12px;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none;" onfocus="this.style.borderColor='#8b5cf6'" onblur="this.style.borderColor='#e5e7eb'">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+          <div>
+            <label style="display:block;font-size:0.8rem;font-weight:600;color:#374151;margin-bottom:6px;"><i class="fas fa-envelope" style="color:#8b5cf6;width:20px;"></i> Email *</label>
+            <input type="email" id="rv_email" required placeholder="your@email.com" style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:12px;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none;" onfocus="this.style.borderColor='#8b5cf6'" onblur="this.style.borderColor='#e5e7eb'">
+          </div>
+          <div>
+            <label style="display:block;font-size:0.8rem;font-weight:600;color:#374151;margin-bottom:6px;"><i class="fas fa-map-marker-alt" style="color:#8b5cf6;width:20px;"></i> City</label>
+            <input type="text" id="rv_city" placeholder="e.g. Srinagar" style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:12px;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none;" onfocus="this.style.borderColor='#8b5cf6'" onblur="this.style.borderColor='#e5e7eb'">
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:#374151;margin-bottom:6px;"><i class="fas fa-star" style="color:#8b5cf6;width:20px;"></i> Rating *</label>
+          <select id="rv_rating" required style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:12px;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none;background:white;" onfocus="this.style.borderColor='#8b5cf6'" onblur="this.style.borderColor='#e5e7eb'">
+            <option value="">Select rating</option>
+            <option value="5">⭐⭐⭐⭐⭐ — Excellent</option>
+            <option value="4">⭐⭐⭐⭐ — Good</option>
+            <option value="3">⭐⭐⭐ — Average</option>
+            <option value="2">⭐⭐ — Below Average</option>
+            <option value="1">⭐ — Poor</option>
+          </select>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:#374151;margin-bottom:6px;"><i class="fas fa-comment" style="color:#8b5cf6;width:20px;"></i> Your Review *</label>
+          <textarea id="rv_message" required rows="4" placeholder="Share your experience..." style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:12px;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none;resize:vertical;" onfocus="this.style.borderColor='#8b5cf6'" onblur="this.style.borderColor='#e5e7eb'"></textarea>
+        </div>
+        <button type="submit" id="rv_submitBtn" style="width:100%;padding:12px;background:linear-gradient(135deg,#8b5cf6,#6366f1);color:white;border:none;border-radius:40px;font-weight:600;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Poppins',sans-serif;">
+          <i class="fas fa-paper-plane"></i> Submit Review
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration:800,once:false,mirror:true});
+
+// ── Review Popup ──────────────────────────────────────
+const REVIEW_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwpL_A3nZwuM0jWRdMaeoG8J_VBSDevSf8ETUcWWuOtOlItO2XNaQCPYKcniNyDJYG0Q/exec';
+
+function openReviewPopup() {
+    var p = document.getElementById('reviewPopup');
+    p.style.opacity = '1'; p.style.visibility = 'visible';
+    p.querySelector('.popup-container').style.transform = 'scale(1)';
+    document.body.style.overflow = 'hidden';
+}
+function closeReviewPopup() {
+    var p = document.getElementById('reviewPopup');
+    p.style.opacity = '0'; p.style.visibility = 'hidden';
+    p.querySelector('.popup-container').style.transform = 'scale(0.9)';
+    document.body.style.overflow = '';
+}
+document.getElementById('reviewPopup').addEventListener('click', function(e){ if(e.target===this) closeReviewPopup(); });
+
+document.getElementById('reviewForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('rv_submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    var params = new URLSearchParams({
+        formType: 'review',
+        name:    document.getElementById('rv_name').value,
+        email:   document.getElementById('rv_email').value,
+        city:    document.getElementById('rv_city').value,
+        rating:  document.getElementById('rv_rating').value,
+        message: document.getElementById('rv_message').value,
+        timestamp: new Date().toLocaleString('en-IN', {timeZone:'Asia/Kolkata'}),
+        source: 'Reviews Page'
+    });
+    try {
+        await fetch(REVIEW_SCRIPT_URL + '?' + params.toString(), {method:'GET', mode:'no-cors'});
+        this.reset();
+        closeReviewPopup();
+        var s = document.createElement('div');
+        s.style.cssText='position:fixed;top:24px;right:24px;background:linear-gradient(135deg,#8b5cf6,#6366f1);color:white;padding:14px 22px;border-radius:16px;font-family:Poppins,sans-serif;font-size:0.9rem;font-weight:600;z-index:99999;box-shadow:0 10px 30px rgba(139,92,246,0.4);';
+        s.innerHTML='<i class="fas fa-check-circle"></i> Review submitted! Thank you 🎉';
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(), 4000);
+    } catch(err) {
+        alert('Submission failed. Please try again.');
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Review';
+    }
+});
+
+// Load More
+(function(){
+    var btn = document.getElementById('rvLoadBtn');
+    btn.addEventListener('click', function(){
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size:11px;"></i> Loading...';
+        btn.disabled = true;
+        setTimeout(function(){
+            document.getElementById('rv-hidden-32').classList.remove('rv-hidden');
+            btn.innerHTML = '<i class="fa-solid fa-check" style="font-size:11px;"></i> All Reviews Loaded';
+        }, 800);
+    });
+})();
+
+// Particles
+function createParticles(){
+    var c = document.getElementById('particles');
+    if(!c) return;
+    for(var i=0;i<50;i++){
+        var p = document.createElement('div');
+        p.classList.add('particle');
+        var s = Math.random()*8+2;
+        p.style.cssText='width:'+s+'px;height:'+s+'px;left:'+Math.random()*100+'%;animation-duration:'+(Math.random()*15+10)+'s;animation-delay:'+(Math.random()*10)+'s';
+        c.appendChild(p);
+    }
+}
+createParticles();
+
+// Mobile Menu
+document.body.insertAdjacentHTML('beforeend','<div class="menu-overlay" id="menuOverlay"></div><div class="side-menu" id="sideMenu"><div class="side-menu-header"><button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button><span class="menu-logo">Infoma<span style="color:#c4b5fd">Academy</span></span></div><ul class="side-nav-links"><li><a href="index.html"><i class="fas fa-home"></i> Home</a></li><li><a href="events-gallery.html"><i class="fas fa-question-circle"></i> Quizzes</a></li><li><a href="index.html#schools"><i class="fas fa-school"></i> Schools</a></li><li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li><li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li></ul><div class="side-menu-footer"><div class="side-social-icons"><a href="https://www.instagram.com/infoma.in" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://www.youtube.com/@InfomaAcademyYT" target="_blank"><i class="fab fa-youtube"></i></a></div><p>© 2026 Infoma Academy</p></div></div>');
+
+var sideMenu=document.getElementById('sideMenu'),menuOverlay=document.getElementById('menuOverlay'),closeMenuBtn=document.getElementById('closeMenuBtn'),menuToggle=document.getElementById('menuToggle');
+function openMenu(){sideMenu.classList.add('active');menuOverlay.classList.add('active');document.body.style.overflow='hidden';}
+function closeMenu(){sideMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';}
+if(menuToggle)menuToggle.addEventListener('click',openMenu);
+if(closeMenuBtn)closeMenuBtn.addEventListener('click',closeMenu);
+if(menuOverlay)menuOverlay.addEventListener('click',closeMenu);
+</script>
+</body>
+</html>
