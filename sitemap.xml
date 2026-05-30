@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://infoma.in/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://infoma.in/live-quiz</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://infoma.in/about-us</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://infoma.in/partners</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://infoma.in/events-gallery</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://infoma.in/reviews</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://infoma.in/quiz-categories</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://infoma.in/how-quiz-works</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://infoma.in/contact-us</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://infoma.in/infoma-team</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://infoma.in/our-mission</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://infoma.in/careers</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://infoma.in/advertise</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://infoma.in/frequently-asked-questions</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://infoma.in/privacy-policy</loc><priority>0.4</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://infoma.in/terms-and-conditions</loc><priority>0.4</priority><changefreq>yearly</changefreq></url>
+</urlset>
