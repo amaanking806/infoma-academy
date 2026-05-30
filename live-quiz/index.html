@@ -611,6 +611,10 @@
     };
 
     function openModal(name, url) {
+        if (parseInt(localStorage.getItem('quizSwitchCount') || '0') >= MAX_SWITCHES) {
+            showCheatPopup();
+            return;
+        }
         document.getElementById('modal-heading').textContent = name + ' Quiz';
         document.getElementById('modal-subheading').textContent = name + ' — Fill in your name, school below';
 
@@ -647,13 +651,14 @@ body.scrollTop = 0;
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 // --- Tab Switch / Cheat Detection ---
-let switchCount = 0;
+let switchCount = parseInt(localStorage.getItem('quizSwitchCount') || '0');
 const MAX_SWITCHES = 2;
 
 document.addEventListener('visibilitychange', () => {
     if (!document.getElementById('quizModal').classList.contains('open')) return;
     if (document.hidden) {
-        switchCount++;
+            switchCount++;
+            localStorage.setItem('quizSwitchCount', switchCount);
         if (switchCount >= MAX_SWITCHES) {
             closeModal();
             showCheatPopup();
@@ -680,6 +685,7 @@ function showSwitchWarning(count) {
 
 function showCheatPopup() {
     switchCount = 0;
+    localStorage.setItem('quizSwitchCount', '0');
     const popup = document.createElement('div');
     popup.style.cssText = `position:fixed;inset:0;background:rgba(0,0,0,0.8);
         z-index:99999;display:flex;align-items:center;justify-content:center;
