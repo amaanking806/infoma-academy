@@ -2,555 +2,1695 @@
 <html lang="en">
 <head>
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Infoma Academy | J&K's Premier Quiz Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS Library for scroll animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        :root {
-            --navy-darkest: #060a14;
-            --navy-dark: #0a0e1a;
-            --navy-mid: #0d1526;
-            --navy-light: #111d35;
-            --navy-accent: #162040;
-            --silver-bright: #e8edf5;
-            --silver-mid: #c0c8d8;
-            --silver-muted: #8a96aa;
-            --steel-blue: #4a7fa5;
-            --steel-light: #6b9fc4;
-            --chrome-shine: #d4dce8;
-            --gold-accent: #c9a84c;
-            --white: #ffffff;
-            --text-muted: rgba(192,200,216,0.65);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Mulish', sans-serif;
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
-            background: var(--white);
+            background: #ffffff;
         }
 
-        /* Header */
+        /* Full Width Header Background */
         .header-bg {
             position: relative;
             width: 100%;
             overflow: hidden;
-            background: linear-gradient(135deg, var(--navy-darkest) 0%, var(--navy-mid) 50%, var(--navy-light) 100%);
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
         }
 
-        /* Metallic grid overlay */
-        .header-bg::before {
-            content: '';
+        /* Animated Background Particles */
+        .particles {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image:
-                linear-gradient(rgba(192,200,216,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(192,200,216,0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             z-index: 0;
         }
 
-        .particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; }
         .particle {
             position: absolute;
-            background: rgba(192, 200, 216, 0.12);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             animation: floatParticle 20s infinite linear;
         }
+
         @keyframes floatParticle {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.4; }
-            90% { opacity: 0.4; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
         }
 
-        /* Orbs — navy/steel tones */
-        .orb { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.2; animation: orbFloat 15s ease-in-out infinite; }
-        .orb-1 { width: 300px; height: 300px; background: #1e3a5f; top: -100px; right: -50px; }
-        .orb-2 { width: 400px; height: 400px; background: #0d2444; bottom: -150px; left: -100px; animation-delay: -5s; }
-        .orb-3 { width: 250px; height: 250px; background: #2a5080; top: 50%; left: 30%; animation-delay: -10s; }
+        /* Floating Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: orbFloat 15s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: #6366f1;
+            top: -100px;
+            right: -50px;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #ec4899;
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: #06b6d4;
+            top: 50%;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
         @keyframes orbFloat {
             0%, 100% { transform: translate(0, 0) scale(1); }
             33% { transform: translate(30px, -30px) scale(1.1); }
             66% { transform: translate(-20px, 20px) scale(0.9); }
         }
 
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
 
-        /* Navbar */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; position: relative; z-index: 10; }
+        /* Glassmorphism Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            position: relative;
+            z-index: 10;
+        }
 
         .logo {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.9rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ffffff 0%, var(--silver-mid) 50%, var(--chrome-shine) 100%);
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: 0.05em;
+            letter-spacing: -0.02em;
         }
 
-        .nav-links { display: flex; gap: 36px; list-style: none; }
+        .nav-links {
+            display: flex;
+            gap: 42px;
+            list-style: none;
+        }
+
         .nav-links a {
             text-decoration: none;
-            color: rgba(192, 200, 216, 0.8);
-            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
             transition: all 0.3s;
-            font-size: 0.88rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
             gap: 6px;
-            letter-spacing: 0.03em;
         }
-        .nav-links a:hover { color: var(--silver-bright); transform: translateY(-2px); }
-        .nav-links a i { color: var(--steel-light); }
 
-        .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; color: var(--silver-mid); }
+        .nav-links a:hover {
+            color: #a78bfa;
+            transform: translateY(-2px);
+        }
 
-        /* Hero */
-        .hero { padding: 60px 0 80px; position: relative; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+        }
+
+                /* Hero Section */
+        .hero {
+            padding: 60px 0 80px;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(74, 127, 165, 0.15);
+            background: rgba(168, 85, 247, 0.2);
             backdrop-filter: blur(10px);
             padding: 6px 16px;
             border-radius: 60px;
             font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--steel-light);
+            font-weight: 600;
+            color: #c4b5fd;
             margin-bottom: 24px;
-            border: 1px solid rgba(74, 127, 165, 0.35);
+            border: 1px solid rgba(168, 85, 247, 0.3);
             animation: pulse 2s infinite;
             white-space: nowrap;
-            letter-spacing: 0.05em;
-        }
-        .hero-badge span { white-space: normal; }
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(74, 127, 165, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(74, 127, 165, 0); }
         }
 
-        .hero h1 { font-family: 'Rajdhani', sans-serif; font-size: 3.4rem; margin-bottom: 20px; line-height: 1.15; color: var(--silver-bright); font-weight: 700; letter-spacing: 0.02em; }
+        .hero-badge span {
+            white-space: normal;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: white;
+        }
+
         .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--chrome-shine) 0%, var(--steel-light) 50%, var(--silver-mid) 100%);
+            background: linear-gradient(135deg, #a78bfa, #f0f9ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        .hero p { font-size: 1rem; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
 
-        .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+        .hero p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
 
-        .hero-stats { display: flex; flex-wrap: wrap; gap: 24px; }
-        .hero-stat { display: flex; align-items: center; gap: 10px; }
-        .hero-stat i { font-size: 1.6rem; color: var(--steel-light); }
-        .hero-stat .stat-info .number { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--silver-bright); }
-        .hero-stat .stat-info .label { font-size: 0.7rem; color: var(--text-muted); }
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
 
-        /* Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, #1e3a5f, #2a5080);
-            color: var(--silver-bright);
-            border: 1px solid rgba(192, 200, 216, 0.25);
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 0;
+        }
+
+        .hero-stat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-stat i {
+            font-size: 1.6rem;
+            color: #a78bfa;
+        }
+
+        .hero-stat .stat-info .number {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .hero-stat .stat-info .label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Mobile Responsive Hero */
+        @media (max-width: 968px) {
+            .hero {
+                padding: 40px 0 60px;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero-badge {
+                display: inline-flex;
+                white-space: normal;
+                text-align: center;
+                padding: 6px 14px;
+                font-size: 0.7rem;
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+                word-wrap: break-word;
+            }
+            
+            .hero p {
+                font-size: 0.95rem;
+                padding: 0 8px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+                gap: 20px;
+            }
+            
+            .hero-stat {
+                flex-direction: column;
+                text-align: center;
+                gap: 6px;
+            }
+            
+            .hero-stat i {
+                font-size: 1.4rem;
+            }
+            
+            .hero-stat .stat-info .number {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stat .stat-info .label {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 30px 0 50px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 0.85rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-outline-light {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+                margin-left: 0 !important;
+            }
+            
+            .hero-stats {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            
+            .hero-stat {
+                flex: 1;
+                min-width: 80px;
+            }
+        }
+
+                .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+            border: none;
             padding: 12px 28px;
-            border-radius: 4px;
-            font-weight: 700;
+            border-radius: 60px;
+            font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(192,200,216,0.1);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
             text-decoration: none;
-            letter-spacing: 0.04em;
-            font-family: 'Mulish', sans-serif;
         }
+
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 20px rgba(74,127,165,0.3);
-            border-color: rgba(192,200,216,0.45);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.6);
         }
-        .btn-primary * { pointer-events: none; }
 
         .btn-outline-light {
             background: transparent;
-            border: 1px solid rgba(192, 200, 216, 0.3);
-            color: var(--silver-mid);
-            padding: 11px 26px;
-            border-radius: 4px;
-            font-weight: 700;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 26px;
+            border-radius: 60px;
+            font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            letter-spacing: 0.04em;
-            font-family: 'Mulish', sans-serif;
         }
+
+        @media (max-width: 480px) {
+            .btn-primary, .btn-outline-light {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+        }
+
         .btn-outline-light:hover {
-            border-color: var(--steel-light);
-            background: rgba(74, 127, 165, 0.1);
-            color: var(--silver-bright);
+            border-color: #a78bfa;
+            background: rgba(168, 85, 247, 0.1);
             transform: translateY(-2px);
         }
-        .btn-outline-light * { pointer-events: none; }
 
-        .hero-image { position: relative; animation: floatImage 5s ease-in-out infinite; }
-        @keyframes floatImage { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .hero-image {
+            position: relative;
+            animation: floatImage 5s ease-in-out infinite;
+        }
+
+        @keyframes floatImage {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
         .hero-image img {
             width: 100%;
             max-width: 500px;
-            border-radius: 4px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(192,200,216,0.1);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
         }
 
         .floating-card {
             position: absolute;
-            background: rgba(10, 14, 26, 0.92);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(192, 200, 216, 0.2);
-            padding: 10px 20px;
-            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 60px;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--silver-bright);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            font-weight: 600;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             animation: floatBadge 4s ease-in-out infinite;
         }
-        @keyframes floatBadge { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-        .badge-1 { bottom: 20px; left: -20px; animation-delay: 0s; }
-        .badge-2 { top: 30px; right: -20px; animation-delay: 1s; }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .badge-1 {
+            bottom: 20px;
+            left: -20px;
+            animation-delay: 0s;
+        }
+
+        .badge-2 {
+            top: 30px;
+            right: -20px;
+            animation-delay: 1s;
+        }
 
         /* Trust Bar */
-        .trust-section { padding: 40px 0; background: #f4f6f9; }
+        .trust-section {
+            padding: 60px 0;
+            background: white;
+        }
+
         .trust-grid {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
             background: white;
-            padding: 28px 40px;
-            border-radius: 4px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            border: 1px solid #dde2ea;
+            padding: 32px 48px;
+            border-radius: 80px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
         }
-        .trust-item { display: flex; align-items: center; gap: 14px; padding: 10px 20px; border-radius: 4px; transition: all 0.3s; cursor: default; flex: 1; min-width: 180px; justify-content: center; }
-        .trust-item:hover { transform: translateY(-3px); background: #f4f6f9; }
-        .trust-icon { width: 46px; height: 46px; background: linear-gradient(135deg, #e8edf5 0%, #d4dce8 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
-        .trust-item:hover .trust-icon { background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%); }
-        .trust-icon i { font-size: 1.2rem; color: var(--navy-mid); transition: all 0.3s; }
-        .trust-item:hover .trust-icon i { color: var(--silver-mid); }
-        .trust-content { display: flex; flex-direction: column; }
-        .trust-title { font-weight: 700; font-size: 0.95rem; color: var(--navy-dark); letter-spacing: -0.2px; }
-        .trust-desc { font-size: 0.68rem; color: #94a3b8; font-weight: 600; margin-top: 2px; }
 
-        /* Stats Grid */
-        .stats-grid {
+        .trust-item {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-            background: linear-gradient(135deg, var(--navy-darkest) 0%, var(--navy-mid) 100%);
-            padding: 28px 32px;
-            border-radius: 4px;
-            border: 1px solid rgba(192,200,216,0.1);
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            color: #374151;
         }
-        .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .stat-item { text-align: center; color: white; padding: 16px; background: rgba(192,200,216,0.04); border-radius: 4px; border: 1px solid rgba(192,200,216,0.08); transition: all 0.3s; }
-        .stat-item:hover { background: rgba(74, 127, 165, 0.12); border-color: rgba(74, 127, 165, 0.3); transform: translateY(-3px); }
-        .stat-item i { font-size: 1.6rem; color: var(--steel-light); margin-bottom: 8px; display: inline-block; }
-        .stat-number { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--silver-bright); }
-        .stat-label { color: var(--silver-muted); font-weight: 600; margin-top: 4px; font-size: 0.68rem; letter-spacing: 0.05em; }
 
-        /* Sections */
-        .section { padding: 80px 0; }
-        .section-dark { background: #f4f6f9; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 40px; padding: 0 16px; }
-        .section-header h2 { font-family: 'Rajdhani', sans-serif; font-size: 2.6rem; margin-bottom: 16px; color: var(--navy-dark); font-weight: 700; letter-spacing: 0.02em; }
-        .section-header .section-subtitle { color: #6b7280; font-size: 1.0rem; }
+        .trust-item i {
+            font-size: 1.3rem;
+            color: #8b5cf6;
+        }
 
+                /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-dark {
+            background: #f9fafb;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            padding: 0 16px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: #111827;
+        }
+
+        .section-header .section-subtitle {
+            color: #6b7280;
+            font-size: 1.05rem;
+        }
+
+        /* Mobile section header */
+        @media (max-width: 768px) {
+            .section {
+                padding: 50px 0;
+            }
+            
+            .section-header {
+                margin: 0 auto 32px;
+                padding: 0 12px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header .section-subtitle {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 40px 0;
+            }
+            
+            .section-header {
+                margin: 0 auto 24px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-header .section-subtitle {
+                font-size: 0.85rem;
+            }
+        }
+                /* Features Grid - Redesigned */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 32px 28px;
+            border-radius: 28px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -2px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #8b5cf6, #6366f1, #a78bfa);
+            transform: scaleX(1);
+            transition: transform 0.4s ease;
+            transform-origin: left;
+        }
+
+        .feature-card {
+            border-color: #8b5cf6;
+            box-shadow: 0 25px 45px -12px rgba(139, 92, 246, 0.25);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: #8b5cf6;
+            box-shadow: 0 25px 45px -12px rgba(139, 92, 246, 0.25);
+        }
+        .feature-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-number {
+            opacity: 0.6;
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px -8px rgba(139, 92, 246, 0.3);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 12px 25px -8px rgba(139, 92, 246, 0.4);
+        }
+
+        .feature-icon i {
+            font-size: 1.8rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            color: #111827;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #8b5cf6;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .feature-card:hover .feature-link {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .feature-link i {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+
+        .feature-link:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Section Badge */
         .section-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #e8edf5, #d4dce8);
-            color: var(--navy-mid);
-            font-size: 0.68rem;
-            font-weight: 800;
-            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ede9fe, #eef2ff);
+            color: #8b5cf6;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
             padding: 5px 12px;
-            border-radius: 2px;
+            border-radius: 30px;
             margin-bottom: 16px;
             text-transform: uppercase;
-            border: 1px solid rgba(10,14,26,0.12);
         }
 
         .gradient-heading {
-            background: linear-gradient(135deg, var(--navy-mid), var(--steel-blue));
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        /* Feature Cards */
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
-        .feature-card {
-            background: white;
-            padding: 32px 28px;
-            border-radius: 4px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #dde2ea;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            position: relative;
-            overflow: hidden;
+        /* Mobile Responsive for Features */
+        @media (max-width: 768px) {
+            .features-grid {
+                gap: 20px;
+                padding: 0 4px;
+            }
+            
+            .feature-card {
+                padding: 24px 20px;
+                border-radius: 24px;
+            }
+            
+            .feature-number {
+                font-size: 2.5rem;
+                top: 16px;
+                right: 18px;
+            }
+            
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .feature-icon i {
+                font-size: 1.5rem;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+            
+            .feature-card p {
+                font-size: 0.85rem;
+                margin-bottom: 16px;
+            }
+            
+            .feature-link {
+                font-size: 0.8rem;
+                opacity: 1;
+                transform: translateX(0);
+                color: #8b5cf6;
+            }
+            
+            .section-badge {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
         }
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: linear-gradient(90deg, var(--navy-darkest), var(--steel-blue), var(--silver-mid));
-        }
-        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 25px 45px -12px rgba(10,14,26,0.15); border-color: var(--steel-blue); }
 
-        .feature-number {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #e8edf5;
-            position: absolute;
-            top: 20px; right: 24px;
-            opacity: 0.5;
-            transition: all 0.3s;
+        @media (max-width: 480px) {
+            .feature-card {
+                padding: 20px 16px;
+            }
+            
+            .feature-number {
+                font-size: 2rem;
+                top: 12px;
+                right: 14px;
+            }
+            
+            .feature-icon {
+                width: 44px;
+                height: 44px;
+                border-radius: 14px;
+                margin-bottom: 16px;
+            }
+            
+            .feature-icon i {
+                font-size: 1.3rem;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .feature-card p {
+                font-size: 0.8rem;
+            }
         }
-        .feature-card:hover .feature-number { opacity: 0.8; }
-
-        .feature-icon {
-            width: 58px; height: 58px;
-            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-light) 100%);
-            border-radius: 4px;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 24px;
-            transition: all 0.3s;
-            box-shadow: 0 6px 16px rgba(10,14,26,0.2);
-            border: 1px solid rgba(192,200,216,0.15);
+                        /* Stats Grid Dark - 2 Rows Layout */
+        .stats-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: linear-gradient(135deg, #1e1b4b 0%, #2e1065 100%);
+            padding: 28px 32px;
+            border-radius: 36px;
         }
-        .feature-card:hover .feature-icon { transform: scale(1.05) rotate(3deg); box-shadow: 0 10px 24px rgba(10,14,26,0.25); }
-        .feature-icon i { font-size: 1.6rem; color: var(--silver-mid); }
 
-        .feature-card h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; margin-bottom: 10px; color: var(--navy-dark); font-weight: 700; letter-spacing: 0.02em; }
-        .feature-card p { color: #6b7280; line-height: 1.6; margin-bottom: 20px; font-size: 0.92rem; }
-        .feature-link { display: inline-flex; align-items: center; gap: 8px; color: var(--steel-blue); font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: all 0.3s; opacity: 0; transform: translateX(-10px); letter-spacing: 0.03em; }
-        .feature-card:hover .feature-link { opacity: 1; transform: translateX(0); }
-        .feature-link i { font-size: 0.72rem; transition: transform 0.2s; }
-        .feature-link:hover i { transform: translateX(4px); }
+        .stat-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .stat-item i {
+            font-size: 1.6rem;
+            color: #a78bfa;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .stat-number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .stat-label {
+            color: #c4b5fd;
+            font-weight: 500;
+            margin-top: 4px;
+            font-size: 0.7rem;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .stats-grid {
+                padding: 20px 20px;
+                gap: 16px;
+            }
+            
+            .stat-row {
+                gap: 12px;
+            }
+            
+            .stat-item {
+                padding: 10px 12px;
+            }
+            
+            .stat-item i {
+                font-size: 1.3rem;
+                margin-bottom: 6px;
+            }
+            
+            .stat-number {
+                font-size: 1.3rem;
+            }
+            
+            .stat-label {
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                padding: 16px 16px;
+                gap: 12px;
+            }
+            
+            .stat-row {
+                gap: 10px;
+            }
+            
+            .stat-item {
+                padding: 8px 10px;
+            }
+            
+            .stat-item i {
+                font-size: 1.1rem;
+            }
+            
+            .stat-number {
+                font-size: 1.1rem;
+            }
+            
+            .stat-label {
+                font-size: 0.55rem;
+            }
+        }
+
+        /* Mobile responsive for stats */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                padding: 24px 20px;
+                border-radius: 28px;
+            }
+            
+            .stat-item i {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .stat-label {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                gap: 16px;
+                padding: 20px 16px;
+            }
+            
+            .stat-item i {
+                font-size: 1.3rem;
+            }
+            
+            .stat-number {
+                font-size: 1.3rem;
+            }
+            
+            .stat-label {
+                font-size: 0.65rem;
+            }
+        }
 
         /* Exclusive Banner */
         .exclusive-banner {
-            background: linear-gradient(135deg, #f4f6f9 0%, #e8edf5 100%);
-            border-radius: 4px;
+            background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
+            border-radius: 48px;
             padding: 60px;
             text-align: center;
-            border: 1px solid #dde2ea;
+            border: 1px solid #e9d5ff;
             position: relative;
             overflow: hidden;
         }
+
         .exclusive-banner::before {
             content: '';
             position: absolute;
-            top: -50%; right: -20%;
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(10,14,26,0.04) 0%, transparent 70%);
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
             border-radius: 50%;
         }
+
         .exclusive-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: linear-gradient(135deg, var(--navy-dark), var(--navy-light));
-            color: var(--silver-mid);
-            padding: 6px 16px; border-radius: 2px;
-            font-size: 0.75rem; font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ede9fe;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #8b5cf6;
             margin-bottom: 24px;
-            letter-spacing: 0.1em;
-            border: 1px solid rgba(192,200,216,0.2);
         }
-        .exclusive-banner h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.9rem; margin-bottom: 16px; color: var(--navy-dark); font-weight: 700; }
-        .exclusive-banner p { color: #6b7280; max-width: 600px; margin: 0 auto 32px; }
 
-        /* Testimonials */
-        .testimonials-scroll-wrapper { overflow: hidden; padding: 12px 0 32px; cursor: grab; user-select: none; }
-        .testimonials-scroll-wrapper:active { cursor: grabbing; }
-        .testimonials-track { display: flex; gap: 24px; width: max-content; animation: scrollTestimonials 30s linear infinite; padding: 0 32px; }
-        @keyframes scrollTestimonials { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+                .exclusive-banner h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #111827;
+        }
+
+        .exclusive-banner p {
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+                @media (max-width: 768px) {
+            .exclusive-banner h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .exclusive-banner h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+                /* Testimonials - Horizontal Auto Scroll */
+        .testimonials-scroll-wrapper {
+            overflow: hidden;
+            padding: 12px 0 32px;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .testimonials-scroll-wrapper:active {
+            cursor: grabbing;
+        }
+
+        .testimonials-track {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+            animation: scrollTestimonials 30s linear infinite;
+            padding: 0 32px;
+        }
+
+        
+
+        @keyframes scrollTestimonials {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         .testimonial-card {
-            background: white; padding: 28px; border-radius: 4px;
-            border: 1px solid #dde2ea; transition: all 0.3s;
-            width: 340px; flex-shrink: 0; display: flex; flex-direction: column;
+            background: white;
+            padding: 28px;
+            border-radius: 24px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+            width: 340px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
         }
-        .testimonial-card:hover { border-color: var(--steel-blue); box-shadow: 0 15px 35px -12px rgba(10,14,26,0.12); transform: translateY(-4px); }
-        .quote-icon { color: var(--navy-mid); font-size: 1.8rem; opacity: 0.2; margin-bottom: 10px; }
-        .star-rating { display: flex; gap: 4px; margin-bottom: 14px; }
-        .star-rating i { color: var(--gold-accent); font-size: 0.9rem; }
-        .testimonial-card p { color: #4b5563; font-style: italic; line-height: 1.6; margin-bottom: 20px; font-size: 0.92rem; flex: 1; }
-        .author { display: flex; align-items: center; gap: 12px; margin-top: auto; }
-        .author-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--navy-dark), var(--navy-light)); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--silver-mid); font-weight: 700; flex-shrink: 0; border: 1px solid rgba(192,200,216,0.15); }
-        .author-info .name { font-weight: 700; color: var(--navy-dark); font-size: 0.88rem; }
-        .author-info .title { font-size: 0.72rem; color: #6b7280; margin-top: 2px; }
 
-        /* CTA */
+        .testimonial-card:hover {
+            border-color: #c4b5fd;
+            box-shadow: 0 15px 35px -12px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .quote-icon {
+            color: #8b5cf6;
+            font-size: 1.8rem;
+            opacity: 0.4;
+            margin-bottom: 10px;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 14px;
+        }
+
+        .star-rating i {
+            color: #f59e0b;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-card p {
+            color: #4b5563;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .author-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .author-info .name {
+            font-weight: 700;
+            color: #111827;
+            font-size: 0.9rem;
+        }
+
+        .author-info .title {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-card {
+                width: 280px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .testimonial-card {
+                width: 240px;
+                padding: 16px;
+            }
+
+            .testimonial-card p {
+                font-size: 0.82rem;
+            }
+        }
+
+        /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, var(--navy-darkest) 0%, var(--navy-mid) 100%);
-            border-radius: 4px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            border-radius: 48px;
             padding: 60px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(192,200,216,0.1);
         }
-        .cta-section::after {
-            content: '';
+
+        .cta-section::before {
+            content: '✨';
+            font-size: 200px;
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: linear-gradient(rgba(192,200,216,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(192,200,216,0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
+            opacity: 0.08;
+            bottom: -40px;
+            right: -40px;
             pointer-events: none;
+            z-index: 0;
         }
-        .cta-section h2, .cta-section p, .cta-section button { position: relative; z-index: 1; }
-        .cta-section h2 { font-family: 'Rajdhani', sans-serif; color: var(--silver-bright); font-size: 2.2rem; margin-bottom: 16px; font-weight: 700; letter-spacing: 0.03em; }
-        .cta-section p { color: var(--text-muted); max-width: 500px; margin: 0 auto 32px; }
+
+        .cta-section h2,
+        .cta-section p,
+        .cta-section button {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.85);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
 
         .btn-white {
-            background: linear-gradient(135deg, var(--silver-bright) 0%, var(--chrome-shine) 100%);
-            color: var(--navy-dark);
+            background: white;
+            color: #8b5cf6;
             padding: 14px 38px;
-            border-radius: 4px;
-            font-weight: 800;
+            border-radius: 60px;
+            font-weight: 700;
             border: none;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'Mulish', sans-serif;
-            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            letter-spacing: 0.04em;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            pointer-events: auto;
         }
-        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
-        .btn-white * { pointer-events: none; }
+
+        .btn-white * {
+            pointer-events: none;
+        }
+
+        .btn-primary * {
+            pointer-events: none;
+        }
+
+        .btn-outline-light * {
+            pointer-events: none;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
 
         /* Footer */
-        footer { padding: 60px 0 40px; background: var(--navy-darkest); margin-top: 60px; border-top: 1px solid rgba(192,200,216,0.08); }
-        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 40px; }
-        .footer-col .logo { font-size: 1.5rem; margin-bottom: 16px; display: block; }
-        .footer-col p { color: #6b7280; max-width: 250px; font-size: 13px; line-height: 1.6; }
-        .footer-links { display: flex; gap: 60px; flex-wrap: wrap; }
-        .footer-links-column h4 { margin-bottom: 20px; font-size: 0.85rem; color: var(--silver-mid); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
-        .footer-links-column a { display: block; text-decoration: none; color: #6b7280; margin-bottom: 12px; transition: color 0.2s; font-size: 0.88rem; }
-        .footer-links-column a:hover { color: var(--silver-mid); }
-        .social-icons { display: flex; gap: 12px; }
-        .social-icons a { width: 36px; height: 36px; background: rgba(192,200,216,0.06); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #6b7280; transition: all 0.2s; border: 1px solid rgba(192,200,216,0.1); }
-        .social-icons a:hover { background: var(--navy-light); color: var(--silver-mid); transform: translateY(-3px); border-color: rgba(192,200,216,0.25); }
-        .copyright { text-align: center; color: #4b5563; font-size: 0.8rem; padding-top: 32px; border-top: 1px solid rgba(192,200,216,0.06); }
+        footer {
+            padding: 60px 0 40px;
+            background: #111827;
+            margin-top: 60px;
+        }
 
-        /* Mobile Side Menu */
-        .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.4s; }
-        .menu-overlay.active { opacity: 1; visibility: visible; }
-        .side-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: var(--navy-dark); z-index: 1002; padding: 0; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 40px rgba(0,0,0,0.5); overflow-y: auto; border-right: 1px solid rgba(192,200,216,0.08); }
-        .side-menu.active { left: 0; }
-        .side-menu-header { background: linear-gradient(135deg, var(--navy-darkest), var(--navy-mid)); padding: 40px 24px 30px; margin-bottom: 20px; border-bottom: 1px solid rgba(192,200,216,0.1); }
-        .close-menu { background: rgba(192,200,216,0.1); border: 1px solid rgba(192,200,216,0.15); color: var(--silver-mid); font-size: 1.2rem; cursor: pointer; width: 36px; height: 36px; border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; float: right; }
-        .close-menu:hover { background: rgba(192,200,216,0.2); transform: rotate(90deg); }
-        .side-menu .logo { font-size: 1.6rem; margin-top: 20px; display: block; clear: both; }
-        .side-nav-links { list-style: none; padding: 10px 0; }
-        .side-nav-links li { border-bottom: 1px solid rgba(192,200,216,0.06); }
-        .side-nav-links a { text-decoration: none; color: var(--silver-muted); font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 14px; padding: 15px 24px; transition: all 0.2s; letter-spacing: 0.03em; }
-        .side-nav-links a:hover { background: rgba(74,127,165,0.1); color: var(--silver-bright); padding-left: 28px; }
-        .side-nav-links a i { width: 20px; color: var(--steel-light); }
-        .side-menu-footer { padding: 24px; border-top: 1px solid rgba(192,200,216,0.08); margin-top: 20px; }
-        .side-social-icons { display: flex; gap: 12px; justify-content: center; margin-bottom: 16px; }
-        .side-social-icons a { width: 34px; height: 34px; background: rgba(192,200,216,0.06); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--steel-light); transition: all 0.2s; border: 1px solid rgba(192,200,216,0.1); }
-        .side-social-icons a:hover { background: var(--navy-light); color: var(--silver-mid); transform: translateY(-3px); }
-        .side-menu-footer p { font-size: 0.68rem; color: #4b5563; text-align: center; }
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
 
-        /* Popup */
-        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s; }
-        .popup-overlay.active { opacity: 1; visibility: visible; }
-        .popup-container { background: white; width: 90%; max-width: 550px; max-height: 90vh; border-radius: 4px; overflow: hidden; transform: scale(0.9); transition: transform 0.3s; box-shadow: 0 25px 60px rgba(0,0,0,0.6); border: 1px solid rgba(192,200,216,0.15); }
-        .popup-overlay.active .popup-container { transform: scale(1); }
-        .popup-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; background: linear-gradient(135deg, var(--navy-darkest), var(--navy-mid)); color: white; border-bottom: 1px solid rgba(192,200,216,0.1); }
-        .popup-header h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px; margin: 0; color: var(--silver-bright); letter-spacing: 0.03em; }
-        .popup-close { background: rgba(192,200,216,0.1); border: 1px solid rgba(192,200,216,0.15); color: var(--silver-mid); font-size: 1.8rem; cursor: pointer; width: 36px; height: 36px; border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-        .popup-close:hover { background: rgba(192,200,216,0.2); transform: rotate(90deg); }
-        .popup-body { padding: 24px; max-height: calc(90vh - 80px); overflow-y: auto; }
-        .popup-desc { color: #6b7280; font-size: 0.83rem; margin-bottom: 20px; line-height: 1.5; padding: 10px 12px; background: #f4f6f9; border-radius: 4px; border-left: 3px solid var(--steel-blue); }
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--navy-mid); margin-bottom: 6px; letter-spacing: 0.03em; }
-        .form-group label i { color: var(--steel-blue); width: 20px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #dde2ea; border-radius: 4px; font-family: 'Mulish', sans-serif; font-size: 0.85rem; transition: all 0.2s; background: white; color: var(--navy-dark); }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--steel-blue); box-shadow: 0 0 0 3px rgba(74,127,165,0.1); }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .submit-btn { width: 100%; padding: 12px; background: linear-gradient(135deg, var(--navy-dark), var(--navy-light)); color: var(--silver-bright); border: 1px solid rgba(192,200,216,0.2); border-radius: 4px; font-weight: 800; font-size: 0.88rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; font-family: 'Mulish', sans-serif; letter-spacing: 0.05em; }
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(10,14,26,0.3); }
-        .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-        .form-status { margin-top: 12px; padding: 10px; border-radius: 4px; font-size: 0.8rem; text-align: center; display: none; }
-        .form-status.success { display: block; background: #d1fae5; color: #065f46; }
-        .form-status.error { display: block; background: #fee2e2; color: #991b1b; }
+        .footer-col .logo {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
 
-        /* Responsive */
+        .footer-col p {
+            color: #9ca3af;
+            max-width: 250px;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links-column h4 {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .footer-links-column a {
+            display: block;
+            text-decoration: none;
+            color: #9ca3af;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-links-column a:hover {
+            color: #a78bfa;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: #1f2937;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            transition: all 0.2s;
+        }
+
+        .social-icons a:hover {
+            background: #8b5cf6;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding-top: 32px;
+            border-top: 1px solid #1f2937;
+        }
+
         @media (max-width: 968px) {
             .container { padding: 0 24px; }
-            .hero h1 { font-size: 2.6rem; }
+            .hero h1 { font-size: 2.8rem; }
             .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .hero-content { text-align: center; }
-            .hero-badge { display: inline-flex; }
             .hero-stats { justify-content: center; }
-            .hero-buttons { justify-content: center; }
-            .trust-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; border-radius: 4px; padding: 20px; }
-            .trust-item { min-width: auto; justify-content: flex-start; }
-            .stat-row { gap: 12px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; }
+            .trust-grid { flex-direction: column; align-items: center; border-radius: 40px; }
             .section { padding: 60px 0; }
             .exclusive-banner { padding: 40px 24px; }
             .cta-section { padding: 40px 24px; }
-            .cta-section h2 { font-size: 1.8rem; }
         }
+
+                        /* Mobile Side Slide Menu - Clean Design */
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+            z-index: 1001;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            color: #a78bfa;
+        }
+
+        /* Side Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Side Menu Panel - Clean White Design */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 300px;
+            height: 100%;
+            background: white;
+            z-index: 1002;
+            padding: 0;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 5px 0 40px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .side-menu.active {
+            left: 0;
+        }
+
+        /* Menu Header */
+        .side-menu-header {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            padding: 40px 24px 30px;
+            margin-bottom: 20px;
+        }
+
+        .close-menu {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            float: right;
+        }
+
+        .close-menu:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .side-menu .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: white;
+            margin-top: 20px;
+            display: block;
+            clear: both;
+        }
+
+        .side-menu .logo span {
+            color: #c4b5fd;
+        }
+
+        /* Navigation Links */
+        .side-nav-links {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .side-nav-links li {
+            margin: 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .side-nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 24px;
+            transition: all 0.2s;
+        }
+
+        .side-nav-links a:hover {
+            background: linear-gradient(90deg, #f5f3ff 0%, white 100%);
+            color: #8b5cf6;
+            padding-left: 28px;
+        }
+
+        .side-nav-links a i {
+            width: 22px;
+            color: #8b5cf6;
+            font-size: 1.1rem;
+        }
+
+        /* Menu Footer */
+        .side-menu-footer {
+            padding: 24px;
+            border-top: 1px solid #f3f4f6;
+            margin-top: 20px;
+        }
+
+        .side-social-icons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .side-social-icons a {
+            width: 36px;
+            height: 36px;
+            background: #f3f4f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b5cf6;
+            transition: all 0.2s;
+        }
+
+        .side-social-icons a:hover {
+            background: #8b5cf6;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .side-menu-footer p {
+            font-size: 0.7rem;
+            color: #9ca3af;
+            text-align: center;
+        }
+
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .menu-icon { display: block; }
-            .hero h1 { font-size: 2rem; }
-            .section-header h2 { font-size: 1.9rem; }
-            .testimonial-card { width: 280px; padding: 20px; }
+            .nav-links {
+                display: none;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .stats-grid { 
+                grid-template-columns: 1fr; 
+                gap: 32px; 
+            }
+            .hero h1 { 
+                font-size: 2rem; 
+            }
         }
+
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.75rem; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .btn-primary, .btn-outline-light { width: 100%; max-width: 260px; justify-content: center; }
-            .side-menu { width: 85%; left: -85%; }
-            .form-row { grid-template-columns: 1fr; }
-            .popup-container { width: 95%; }
-            .section-header h2 { font-size: 1.6rem; }
-            .exclusive-banner h2 { font-size: 1.3rem; }
-            .stats-grid { padding: 16px; }
-            .stat-number { font-size: 1.5rem; }
+            .side-menu {
+                width: 85%;
+                left: -85%;
+            }
+        }
+                /* Popup Modal Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-container {
+            background: white;
+            width: 90%;
+            max-width: 550px;
+            max-height: 90vh;
+            border-radius: 28px;
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .popup-overlay.active .popup-container {
+            transform: scale(1);
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+        }
+
+        .popup-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+        }
+
+        .popup-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .popup-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .popup-body {
+            padding: 24px;
+            max-height: calc(90vh - 80px);
+            overflow-y: auto;
+        }
+
+        .popup-desc {
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            padding: 10px 12px;
+            background: #f3f4f6;
+            border-radius: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        .form-group label i {
+            color: #8b5cf6;
+            width: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -8px rgba(139, 92, 246, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-status {
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+            display: none;
+        }
+
+        .form-status.success {
+            display: block;
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .form-status.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .form-status {
+            display: block;
+        }
+
+        @media (max-width: 550px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .popup-container {
+                width: 95%;
+                border-radius: 20px;
+            }
+            
+            .popup-header {
+                padding: 16px 20px;
+            }
+            
+            .popup-header h3 {
+                font-size: 1.1rem;
+            }
+            
+            .popup-body {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
+<!-- Full Width Header Background -->
 <div class="header-bg">
+    <!-- Animated Particles -->
     <div class="particles" id="particles"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
@@ -558,26 +1698,27 @@
 
     <div class="container">
         <nav class="navbar">
-            <div class="logo" data-aos="fade-right">Infoma<span style="color: var(--silver-muted);">Academy</span></div>
+            <div class="logo" data-aos="fade-right" style="background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Infoma<span style="background: linear-gradient(135deg, #ffffff, #c4b5fd); -webkit-background-clip: text; background-clip: text; color: transparent;">Academy</span></div>
             <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="https://infoma.in"><i class="fas fa-home"></i> Home</a></li>
+                                <li><a href="https://infoma.in"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="https://infoma.in/live-quiz"><i class="fas fa-question-circle"></i> Quizzes</a></li>
                 <li><a href="#schools"><i class="fas fa-school"></i> Schools</a></li>
-                <li><a href="https://infoma.in/partners"><i class="fas fa-handshake"></i> Partners</a></li>
+                 <li><a href="https://infoma.in/partners"><i class="fas fa-handshake"></i> Partners</a></li>
                 <li><a href="https://infoma.in/about-us"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="https://infoma.in/reviews"><i class="fas fa-star"></i> Reviews</a></li>
+<li><a href="https://infoma.in/reviews"><i class="fas fa-star"></i> Reviews</a></li>
                 <li><a href="https://infoma.in/contact-us"><i class="fas fa-envelope"></i> Contact</a></li>
                 <li><a href="https://infoma.in/careers"><i class="fas fa-briefcase"></i> Careers</a></li>
             </ul>
         </nav>
 
+                <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="hero-grid">
                 <div class="hero-content" data-aos="fade-up" data-aos-duration="800">
-                    <div class="hero-badge"><i class="fas fa-crown"></i> <span>JAMMU &amp; KASHMIR'S FIRST &amp; ONLY</span></div>
-                    <h1>Where Young Minds <span class="gradient-text">Compete</span> &amp; <span class="gradient-text">Shine</span></h1>
-                    <p>Infoma Academy is the only dedicated quiz platform in J&amp;K, organizing professional inter-school quizzes that transform how students learn and compete.</p>
+                    <div class="hero-badge"><i class="fas fa-crown"></i> <span>JAMMU & KASHMIR'S FIRST & ONLY</span></div>
+                    <h1>Where Young Minds <span class="gradient-text">Compete</span> & <span class="gradient-text">Shine</span></h1>
+                    <p>Infoma Academy is the only dedicated quiz platform in J&K, organizing professional inter-school quizzes that transform how students learn and compete.</p>
                     <div class="hero-buttons">
                         <a href="live-quiz.html" class="btn-primary" id="exploreBtn"><i class="fas fa-rocket"></i> Explore Quizzes</a>
                         <button class="btn-outline-light" id="schoolBtn"><i class="fas fa-graduation-cap"></i> For Schools</button>
@@ -590,49 +1731,294 @@
                 </div>
                 <div class="hero-image" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
                     <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=600&fit=crop" alt="Quiz competition">
-                    <div class="floating-card badge-1"><i class="fas fa-medal" style="color: var(--gold-accent);"></i> <span>#1 in J&amp;K</span></div>
-                    <div class="floating-card badge-2"><i class="fas fa-star" style="color: var(--steel-light);"></i> <span>98% Satisfaction</span></div>
+                    <div class="floating-card badge-1"><i class="fas fa-medal" style="color: #f59e0b;"></i> <span>#1 in J&K</span></div>
+                    <div class="floating-card badge-2"><i class="fas fa-star" style="color: #8b5cf6;"></i> <span>98% Satisfaction</span></div>
                 </div>
             </div>
         </section>
     </div>
 </div>
 
-<!-- Trust Bar -->
+<!-- Trust Bar - 2x3 Grid Layout -->
 <div class="trust-section" data-aos="fade-up" data-aos-duration="600">
     <div class="container">
         <div class="trust-grid">
-            <div class="trust-item"><div class="trust-icon"><i class="fas fa-map-marker-alt"></i></div><div class="trust-content"><div class="trust-title">Only in J&amp;K</div><div class="trust-desc">Exclusive</div></div></div>
-            <div class="trust-item"><div class="trust-icon"><i class="fas fa-trophy"></i></div><div class="trust-content"><div class="trust-title">Win Award</div><div class="trust-desc">Certificates</div></div></div>
-            <div class="trust-item"><div class="trust-icon"><i class="fas fa-chart-line"></i></div><div class="trust-content"><div class="trust-title">98% Satisfaction</div><div class="trust-desc">School approved</div></div></div>
-            <div class="trust-item"><div class="trust-icon"><i class="fas fa-laptop-code"></i></div><div class="trust-content"><div class="trust-title">Online Quiz</div><div class="trust-desc">Digital platform</div></div></div>
-            <div class="trust-item"><div class="trust-icon"><i class="fas fa-school"></i></div><div class="trust-content"><div class="trust-title">50+ Schools</div><div class="trust-desc">Partnered with us</div></div></div>
-            <div class="trust-item"><div class="trust-icon"><i class="fas fa-globe"></i></div><div class="trust-content"><div class="trust-title">Pan J&amp;K</div><div class="trust-desc">Coverage</div></div></div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="trust-content">
+                    <div class="trust-title">Only in J&K</div>
+                    <div class="trust-desc">Exclusive</div>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-trophy"></i></div>
+                <div class="trust-content">
+                    <div class="trust-title">Win Award</div>
+                    <div class="trust-desc">Certificates</div>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="trust-content">
+                    <div class="trust-title">98% Satisfaction</div>
+                    <div class="trust-desc">School approved</div>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-laptop-code"></i></div>
+                <div class="trust-content">
+                    <div class="trust-title">Online Quiz</div>
+                    <div class="trust-desc">Digital platform</div>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-school"></i></div>
+                <div class="trust-content">
+                    <div class="trust-title">50+ Schools</div>
+                    <div class="trust-desc">Partnered with us</div>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-globe"></i></div>
+                <div class="trust-content">
+                    <div class="trust-title">Pan J&K</div>
+                    <div class="trust-desc">Coverage</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Stats -->
-<div class="container" data-aos="fade-up" data-aos-duration="800" style="margin-top: 40px; margin-bottom: 40px;">
+<style>
+    .trust-section {
+        padding: 40px 0;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .trust-grid {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+        background: white;
+        padding: 32px 40px;
+        border-radius: 60px;
+        box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(99, 102, 241, 0.15);
+        backdrop-filter: blur(4px);
+        transition: all 0.3s ease;
+    }
+
+    .trust-grid:hover {
+        box-shadow: 0 25px 45px -12px rgba(99, 102, 241, 0.15);
+        border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 10px 20px;
+        border-radius: 60px;
+        transition: all 0.3s ease;
+        cursor: default;
+        background: white;
+        flex: 1;
+        min-width: 180px;
+        justify-content: center;
+    }
+
+    .trust-item:hover {
+        transform: translateY(-3px);
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(168, 85, 247, 0.05));
+        box-shadow: 0 10px 25px -8px rgba(99, 102, 241, 0.15);
+    }
+
+    .trust-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #eef2ff 0%, #ede9fe 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .trust-item:hover .trust-icon {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        transform: scale(1.05);
+    }
+
+    .trust-icon i {
+        font-size: 1.3rem;
+        color: #6366f1;
+        transition: all 0.3s ease;
+    }
+
+    .trust-item:hover .trust-icon i {
+        color: white;
+    }
+
+    .trust-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .trust-title {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #1e293b;
+        letter-spacing: -0.2px;
+    }
+
+    .trust-desc {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        font-weight: 500;
+        margin-top: 2px;
+    }
+
+    /* Desktop: 6 items in one row */
+    @media (min-width: 1200px) {
+        .trust-grid {
+            flex-wrap: nowrap;
+        }
+        
+        .trust-item {
+            min-width: auto;
+        }
+    }
+
+    /* Tablet: 3x2 grid (3 rows, 2 columns) */
+    @media (max-width: 1199px) and (min-width: 769px) {
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            padding: 28px 32px;
+        }
+        
+        .trust-item {
+            min-width: auto;
+            justify-content: flex-start;
+            padding: 12px 20px;
+        }
+    }
+
+    /* Mobile: 3x2 grid (3 rows, 2 columns) - 2 items per row */
+    @media (max-width: 768px) {
+        .trust-section {
+            padding: 20px 0;
+        }
+        
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            border-radius: 32px;
+            padding: 20px 16px;
+        }
+        
+        .trust-item {
+            padding: 10px 12px;
+            gap: 10px;
+            background: #f8fafc;
+            justify-content: flex-start;
+            min-width: auto;
+        }
+        
+        .trust-item:hover {
+            background: linear-gradient(135deg, #eef2ff, #ede9fe);
+            transform: translateY(-2px);
+        }
+        
+        .trust-icon {
+            width: 38px;
+            height: 38px;
+        }
+        
+        .trust-icon i {
+            font-size: 1rem;
+        }
+        
+        .trust-title {
+            font-size: 0.85rem;
+        }
+        
+        .trust-desc {
+            font-size: 0.6rem;
+        }
+    }
+
+    /* Small mobile */
+    @media (max-width: 480px) {
+        .trust-grid {
+            gap: 10px;
+            padding: 16px 12px;
+        }
+        
+        .trust-item {
+            padding: 8px 10px;
+            gap: 8px;
+        }
+        
+        .trust-icon {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .trust-icon i {
+            font-size: 0.85rem;
+        }
+        
+        .trust-title {
+            font-size: 0.75rem;
+        }
+        
+        .trust-desc {
+            font-size: 0.55rem;
+        }
+    }
+</style>
+
+<!-- Stats Dark Section - 2 Rows Layout -->
+<div class="container" data-aos="fade-up" data-aos-duration="800">
     <div class="stats-grid">
         <div class="stat-row">
-            <div class="stat-item"><i class="fas fa-school"></i><div class="stat-number" data-target="52">0</div><div class="stat-label">Schools Partnered</div></div>
-            <div class="stat-item"><i class="fas fa-user-graduate"></i><div class="stat-number" data-target="18400">0</div><div class="stat-label">Students Impacted</div></div>
+            <div class="stat-item">
+                <i class="fas fa-school"></i>
+                <div class="stat-number" data-target="52">0</div>
+                <div class="stat-label">Schools Partnered</div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-user-graduate"></i>
+                <div class="stat-number" data-target="18400">0</div>
+                <div class="stat-label">Students Impacted</div>
+            </div>
         </div>
         <div class="stat-row">
-            <div class="stat-item"><i class="fas fa-question-circle"></i><div class="stat-number" data-target="134">0</div><div class="stat-label">Quizzes Organized</div></div>
-            <div class="stat-item"><i class="fas fa-crown"></i><div class="stat-number" data-target="1">0</div><div class="stat-label">Pioneer in J&amp;K</div></div>
+            <div class="stat-item">
+                <i class="fas fa-question-circle"></i>
+                <div class="stat-number" data-target="134">0</div>
+                <div class="stat-label">Quizzes Organized</div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-crown"></i>
+                <div class="stat-number" data-target="1">0</div>
+                <div class="stat-label">Pioneer in J&K</div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Features -->
+<!-- Features Section - Redesigned -->
 <section class="section" id="quizzes">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <div class="section-badge">WHY US</div>
             <h2>Why choose <span class="gradient-heading">Infoma Academy?</span></h2>
-            <p class="section-subtitle">We're not just another quiz platform — we're the only one in J&amp;K doing this at scale</p>
+            <p class="section-subtitle">We're not just another quiz platform — we're the only one in J&K doing this at scale</p>
         </div>
         <div class="features-grid">
             <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
@@ -645,7 +2031,7 @@
             <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="feature-number">02</div>
                 <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <h3>Pan J&amp;K Presence</h3>
+                <h3>Pan J&K Presence</h3>
                 <p>From Jammu to Srinagar to Leh, we reach schools across the entire region.</p>
                 <div class="feature-link">Learn more <i class="fas fa-arrow-right"></i></div>
             </div>
@@ -671,9 +2057,9 @@
 <div class="container" data-aos="zoom-in" data-aos-duration="800">
     <div class="exclusive-banner">
         <div class="exclusive-badge"><i class="fas fa-star"></i> EXCLUSIVE</div>
-        <h2>The Only Dedicated Quiz Platform in <span style="color: var(--steel-blue);">Jammu &amp; Kashmir</span></h2>
-        <p>No other organization in J&amp;K specializes in school quiz championships at this scale. Infoma Academy is leading this movement alone.</p>
-        <button class="btn-primary" id="registerBtn" style="margin: 0 auto;"><i class="fas fa-calendar-alt"></i> Register Your School →</button>
+        <h2>The Only Dedicated Quiz Platform in <span style="color: #8b5cf6;">Jammu & Kashmir</span></h2>
+        <p>No other organization in J&K specializes in school quiz championships at this scale. Infoma Academy is leading this movement alone.</p>
+        <button class="btn-primary" id="registerBtn"><i class="fas fa-calendar-alt"></i> Register Your School →</button>
     </div>
 </div>
 
@@ -681,41 +2067,102 @@
 <section class="section section-dark" id="schools">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <h2>Trusted by educators across J&amp;K</h2>
+            <h2>Trusted by educators across J&K</h2>
             <p class="section-subtitle">What school leaders say about our impact</p>
         </div>
     </div>
     <div class="testimonials-scroll-wrapper">
         <div class="testimonials-track" id="testimonialsTrack">
-            <div class="testimonial-card"><div class="quote-icon"><i class="fas fa-quote-left"></i></div><div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Infoma Academy has brought a quizzing revolution to our students. Being the only platform doing this in J&K, they've set a gold standard."</p><div class="author"><div class="author-icon"><i class="fas fa-user"></i></div><div class="author-info"><div class="name">Mrs. Shahnaz Ahmad</div><div class="title">Principal, DPS Jammu</div></div></div></div>
-            <div class="testimonial-card"><div class="quote-icon"><i class="fas fa-quote-left"></i></div><div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Our students eagerly wait for Infoma's quizzes every semester. Professional, engaging and truly the first of its kind in the valley."</p><div class="author"><div class="author-icon"><i class="fas fa-user"></i></div><div class="author-info"><div class="name">Mr. Vikram Singh</div><div class="title">VP, Burn Hall School</div></div></div></div>
-            <div class="testimonial-card"><div class="quote-icon"><i class="fas fa-quote-left"></i></div><div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"The only organization that understands J&K's educational landscape. Their quizzes have boosted student confidence tremendously."</p><div class="author"><div class="author-icon"><i class="fas fa-user"></i></div><div class="author-info"><div class="name">Dr. Nusrat Jan</div><div class="title">Academic Director</div></div></div></div>
-            <div class="testimonial-card"><div class="quote-icon"><i class="fas fa-quote-left"></i></div><div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"A platform that truly understands the aspirations of J&K's youth. Our students have grown more confident and competitive."</p><div class="author"><div class="author-icon"><i class="fas fa-user"></i></div><div class="author-info"><div class="name">Mr. Rajan Bhat</div><div class="title">Principal, Army School Srinagar</div></div></div></div>
-            <div class="testimonial-card"><div class="quote-icon"><i class="fas fa-quote-left"></i></div><div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Organizing, professional, and passionate about education. Infoma Academy is exactly what J&K's school ecosystem needed."</p><div class="author"><div class="author-icon"><i class="fas fa-user"></i></div><div class="author-info"><div class="name">Mrs. Aarti Dogra</div><div class="title">Vice Principal, Springdales Jammu</div></div></div></div>
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p>"Infoma Academy has brought a quizzing revolution to our students. Being the only platform doing this in J&K, they've set a gold standard."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Mrs. Shahnaz Ahmad</div>
+                        <div class="title">Principal, DPS Jammu</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p>"Our students eagerly wait for Infoma's quizzes every semester. Professional, engaging and truly the first of its kind in the valley."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Mr. Vikram Singh</div>
+                        <div class="title">VP, Burn Hall School</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p>"The only organization that understands J&K's educational landscape. Their quizzes have boosted student confidence tremendously."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Dr. Nusrat Jan</div>
+                        <div class="title">Academic Director</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p>"A platform that truly understands the aspirations of J&K's youth. Our students have grown more confident and competitive."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Mr. Rajan Bhat</div>
+                        <div class="title">Principal, Army School Srinagar</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p>"Organizing, professional, and passionate about education. Infoma Academy is exactly what J&K's school ecosystem needed."</p>
+                <div class="author">
+                    <div class="author-icon"><i class="fas fa-user"></i></div>
+                    <div class="author-info">
+                        <div class="name">Mrs. Aarti Dogra</div>
+                        <div class="title">Vice Principal, Springdales Jammu</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- CTA -->
-<div class="container" data-aos="fade-up" data-aos-duration="800" style="margin-bottom: 60px;">
+<!-- CTA Section -->
+<div class="container" data-aos="fade-up" data-aos-duration="800">
     <div class="cta-section">
         <h2>Ready to bring quizzing to your school?</h2>
-        <p>Join the only platform in J&amp;K that's shaping the future of academic competitions.</p>
-        <button class="btn-white" id="finalCta" onclick="openSchoolPopup()"><i class="fas fa-arrow-right"></i> Get Started Today</button>
+        <p>Join the only platform in J&K that's shaping the future of academic competitions.</p>
+       <button class="btn-white" id="finalCta" onclick="openSchoolPopup()"><i class="fas fa-arrow-right"></i> Get Started Today</button>
     </div>
 </div>
 
 <footer id="contact">
     <div class="container">
         <div class="footer-grid">
-            <div class="footer-col"><div class="logo">Infoma<span style="color: var(--silver-muted);">Academy</span></div><p>Infoma Academy is an interactive online learning and quiz platform founded in 2023, designed to make education engaging and accessible for students across India.</p></div>
-            <div class="footer-links">
-                <div class="footer-links-column"><h4>Quick Links</h4><a href="https://infoma.in">Home</a><a href="https://infoma.in/how-quiz-works">About Quizzes</a><a href="https://infoma.in/events-gallery">Events Gallery</a><a href="https://infoma.in/infoma-team">Our Team</a><a href="https://infoma.in/terms-and-conditions">Our Terms</a><a href="https://infoma.in/our-mission">Our Mission</a></div>
-                <div class="footer-links-column"><h4>Resources</h4><a href="https://infoma.in/how-quiz-works">How quiz works</a><a href="https://infoma.in/frequently-asked-questions">Frequently Asked</a><a href="https://infoma.in/advertise">Advertise With Us</a><a href="https://infoma.in/privacy-policy">Privacy Policy</a><a href="https://infoma.in/contact-us">Contact Us</a><a href="https://infoma.in/about-us">About Us</a></div>
-                <div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
-            </div>
+            <div class="footer-col"><div class="logo">Infoma<span style="color: #a78bfa;">Academy</span></div><p>Infoma Academy is an interactive online learning and quiz platform founded in 2023, designed to make education engaging and accessible for students across India.</p></div>
+            <div class="footer-links"><div class="footer-links-column"><h4>Quick Links</h4><a href="https://infoma.in">Home</a><a href="https://infoma.in/how-quiz-works">About Quizzes</a><a href="https://infoma.in/events-gallery">Events Gallery</a><a href="https://infoma.in/infoma-team">Our Team</a><a href="https://infoma.in/terms-and-conditions">Our Terms</a><a href="https://infoma.in/our-mission">Our Mission</a></div><div class="footer-links-column"><h4>Resources</h4><a href="https://infoma.in/how-quiz-works">How quiz works</a><a href="https://infoma.in/frequently-asked-questions">Frequently Asked</a><a href="https://infoma.in/advertise">Advertise With Us</a><a href="https://infoma.in/privacy-policy">Privacy Policy</a><a href="https://infoma.in/contact-us">Contact Us</a><a href="https://infoma.in/about-us">About Us</a></div><div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div></div>
         </div>
-        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu &amp; Kashmir. The only one.</div>
+        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu & Kashmir. The only one.</div>
     </div>
 </footer>
 
@@ -723,35 +2170,42 @@
 <script>
     AOS.init({ duration: 800, once: false, mirror: true });
 
+    // Generate particles
     function createParticles() {
-        const c = document.getElementById('particles');
-        if (!c) return;
-        for (let i = 0; i < 50; i++) {
-            const p = document.createElement('div');
-            p.classList.add('particle');
-            const s = Math.random() * 6 + 2;
-            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s`;
-            c.appendChild(p);
+        const particlesContainer = document.getElementById('particles');
+        if (particlesContainer) {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 8 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 15 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particlesContainer.appendChild(particle);
+            }
         }
     }
     createParticles();
 
+           // Create side menu HTML - Clean Design
     const sideMenuHTML = `
         <div class="menu-overlay" id="menuOverlay"></div>
         <div class="side-menu" id="sideMenu">
             <div class="side-menu-header">
                 <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
-                <div class="logo">Infoma<span style="color:var(--silver-muted)">Academy</span></div>
+                <div class="logo">Infoma<span>Academy</span></div>
             </div>
             <ul class="side-nav-links">
                 <li><a href="https://infoma.in"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="https://infoma.in/live-quiz"><i class="fas fa-question-circle"></i> Quizzes</a></li>
-                <li><a href="#schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="https://infoma.in#schools"><i class="fas fa-school"></i> Schools</a></li>
                 <li><a href="https://infoma.in/partners"><i class="fas fa-handshake"></i> Partners</a></li>
                 <li><a href="https://infoma.in/about-us"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="https://infoma.in/reviews"><i class="fas fa-star"></i> Reviews</a></li>
-                <li><a href="https://infoma.in/contact-us"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li><a href="https://infoma.in/careers"><i class="fas fa-briefcase"></i> Careers</a></li>
+<li><a href="https://infoma.in/reviews"><i class="fas fa-star"></i> Reviews</a></li>
+                <li><a href="https://infoma.in/reviews"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="https://www.infoma.in/careers"><i class="fas fa-briefcase"></i> Careers</a></li>
             </ul>
             <div class="side-menu-footer">
                 <div class="side-social-icons">
@@ -760,31 +2214,75 @@
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <p>© 2026 Infoma Academy</p>
+                <p>© 2025 Infoma Academy</p>
             </div>
-        </div>`;
+        </div>
+    `;
+    
+    // Add side menu to body
     document.body.insertAdjacentHTML('beforeend', sideMenuHTML);
-
+    
+    // Get elements
     const menuToggle = document.getElementById('menuToggle');
     const sideMenu = document.getElementById('sideMenu');
     const menuOverlay = document.getElementById('menuOverlay');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
-
-    function openSideMenu() { sideMenu.classList.add('active'); menuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeSideMenu() { sideMenu.classList.remove('active'); menuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
-
-    if (menuToggle) menuToggle.addEventListener('click', openSideMenu);
-    if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeSideMenu);
-    if (menuOverlay) menuOverlay.addEventListener('click', closeSideMenu);
+    
+    // Open menu function
+    function openSideMenu() {
+        if (sideMenu) sideMenu.classList.add('active');
+        if (menuOverlay) menuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Close menu function
+    function closeSideMenu() {
+        if (sideMenu) sideMenu.classList.remove('active');
+        if (menuOverlay) menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    // Event listeners
+    if (menuToggle) {
+        menuToggle.addEventListener('click', openSideMenu);
+    }
+    
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', closeSideMenu);
+    }
+    
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', closeSideMenu);
+    }
+    
+    // Close menu when clicking on a link
     document.querySelectorAll('.side-nav-links a').forEach(link => {
         link.addEventListener('click', (e) => {
-            const h = link.getAttribute('href');
-            if (h && h.startsWith('#')) { e.preventDefault(); closeSideMenu(); const el = document.querySelector(h); if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 300); }
-            else { closeSideMenu(); }
+            const targetId = link.getAttribute('href');
+            // Only intercept hash links (#schools etc), let page links navigate normally
+            if (targetId && targetId.startsWith('#')) {
+                e.preventDefault();
+                closeSideMenu();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }, 300);
+                }
+            } else {
+                closeSideMenu();
+            }
         });
     });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && sideMenu && sideMenu.classList.contains('active')) closeSideMenu(); });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sideMenu && sideMenu.classList.contains('active')) {
+            closeSideMenu();
+        }
+    });
 
+    // Popup Form HTML
     const popupHTML = `
         <div id="schoolPopup" class="popup-overlay">
             <div class="popup-container">
@@ -795,44 +2293,90 @@
                 <div class="popup-body">
                     <p class="popup-desc">Register your school to participate in J&K's premier quiz competitions. Fill in the details below and our team will contact you within 24 hours.</p>
                     <form id="registrationForm">
-                        <div class="form-group"><label><i class="fas fa-building"></i> School Name *</label><input type="text" id="schoolName" name="schoolName" required placeholder="Enter your school name"></div>
-                        <div class="form-row">
-                            <div class="form-group"><label><i class="fas fa-user"></i> Principal/Contact Person *</label><input type="text" id="contactPerson" name="contactPerson" required placeholder="Full name"></div>
-                            <div class="form-group"><label><i class="fas fa-briefcase"></i> Designation</label><input type="text" id="designation" name="designation" placeholder="Principal / Teacher / Coordinator"></div>
+                        <div class="form-group">
+                            <label><i class="fas fa-building"></i> School Name *</label>
+                            <input type="text" id="schoolName" name="schoolName" required placeholder="Enter your school name">
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label><i class="fas fa-envelope"></i> Email Address *</label><input type="email" id="email" name="email" required placeholder="school@example.com"></div>
-                            <div class="form-group"><label><i class="fas fa-phone"></i> Phone Number *</label><input type="tel" id="phone" name="phone" required placeholder="+91 XXXXXXXXXX"></div>
+                            <div class="form-group">
+                                <label><i class="fas fa-user"></i> Principal/Contact Person *</label>
+                                <input type="text" id="contactPerson" name="contactPerson" required placeholder="Full name">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-briefcase"></i> Designation</label>
+                                <input type="text" id="designation" name="designation" placeholder="Principal / Teacher / Coordinator">
+                            </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label><i class="fas fa-map-marker-alt"></i> City/District *</label><input type="text" id="city" name="city" required placeholder="e.g., Srinagar, Jammu"></div>
-                            <div class="form-group"><label><i class="fas fa-users"></i> Number of Students</label><input type="number" id="studentCount" name="studentCount" placeholder="Approx. student strength"></div>
+                            <div class="form-group">
+                                <label><i class="fas fa-envelope"></i> Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="school@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-phone"></i> Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXXXXXXX">
+                            </div>
                         </div>
-                        <div class="form-group"><label><i class="fas fa-comment"></i> Additional Message (Optional)</label><textarea id="message" name="message" rows="3" placeholder="Any specific requirements or questions..."></textarea></div>
-                        <button type="submit" class="submit-btn" id="submitBtn"><i class="fas fa-paper-plane"></i> Submit Registration</button>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-map-marker-alt"></i> City/District *</label>
+                                <input type="text" id="city" name="city" required placeholder="e.g., Srinagar, Jammu">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-users"></i> Number of Students</label>
+                                <input type="number" id="studentCount" name="studentCount" placeholder="Approx. student strength">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-comment"></i> Additional Message (Optional)</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Any specific requirements or questions..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> Submit Registration
+                        </button>
                         <div id="formStatus" class="form-status"></div>
                     </form>
                 </div>
             </div>
-        </div>`;
+        </div>
+    `;
+
+    // Add popup to body
     document.body.insertAdjacentHTML('beforeend', popupHTML);
 
+    // Google Apps Script Web App URL - Replace with your deployed URL
+    // After deploying your Apps Script, replace the URL below:
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwpL_A3nZwuM0jWRdMaeoG8J_VBSDevSf8ETUcWWuOtOlItO2XNaQCPYKcniNyDJYG0Q/exec';
+    
+    // For testing without Google Sheets, set to false. When ready to connect, set to true and update URL above
     const USE_GOOGLE_SHEETS = true;
 
-    window.openSchoolPopup = function() {
-        const p = document.getElementById('schoolPopup');
-        if (p) { p.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    };
-    function closeSchoolPopup() {
-        const p = document.getElementById('schoolPopup');
-        if (p) { p.classList.remove('active'); document.body.style.overflow = ''; }
+    // Open popup function
+    window.openSchoolPopup = function openSchoolPopup() {
+        const popup = document.getElementById('schoolPopup');
+        if (popup) {
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     }
 
+    // Close popup function
+    function closeSchoolPopup() {
+        const popup = document.getElementById('schoolPopup');
+        if (popup) {
+            popup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Form submission handler
     async function handleFormSubmit(event) {
         event.preventDefault();
+        
         const submitBtn = document.getElementById('submitBtn');
         const formStatus = document.getElementById('formStatus');
+        
+        // Get form data
         const formData = {
             schoolName: document.getElementById('schoolName').value,
             contactPerson: document.getElementById('contactPerson').value,
@@ -845,22 +2389,62 @@
             timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
             source: 'Website Registration Form'
         };
-        if (!formData.schoolName || !formData.contactPerson || !formData.email || !formData.phone || !formData.city) { showResultPopup('error', '⚠️ Missing Fields', 'Please fill all required fields marked with (*)'); return; }
+        
+        // Basic validation
+        if (!formData.schoolName || !formData.contactPerson || !formData.email || !formData.phone || !formData.city) {
+            showResultPopup('error', '⚠️ Missing Fields', 'Please fill all required fields marked with (*)');
+return;
+        }
+        
+        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.email)) { showResultPopup('error', '⚠️ Invalid Email', 'Please enter a valid email address.'); return; }
+        if (!emailRegex.test(formData.email)) {
+            showResultPopup('error', '⚠️ Invalid Email', 'Please enter a valid email address.');
+return;
+        }
+        
+        // Phone validation (basic)
         const phoneRegex = /^[0-9+\-\s]{10,15}$/;
-        if (!phoneRegex.test(formData.phone)) { showResultPopup('error', '⚠️ Invalid Phone', 'Please enter a valid phone number.'); return; }
+        if (!phoneRegex.test(formData.phone)) {
+            showResultPopup('error', '⚠️ Invalid Phone', 'Please enter a valid phone number.');
+return;
+        }
+        
+        // Disable button and show loading
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        formStatus.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting your registration...';
+        formStatus.className = 'form-status';
+        
         try {
-            if (USE_GOOGLE_SHEETS) {
+            if (USE_GOOGLE_SHEETS && GOOGLE_SCRIPT_URL !== 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec') {
+                // Send to Google Sheets via Apps Script
                 const params = new URLSearchParams(formData);
-                await fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
+const response = await fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), {
+    method: 'GET',
+    mode: 'no-cors',
+});
+                
+                // Since mode is 'no-cors', we can't read response, assume success
+                document.getElementById('registrationForm').reset();
+                closeSchoolPopup();
+                showResultPopup('success', '🎉 Registration Successful!', 'Your school has been registered successfully! Our team will contact you within 24 hours.');
+                
+            } else {
+                // Demo mode - store in localStorage and show success
+                console.log('Demo mode - Form Data:', formData);
+                
+                // Store in localStorage for demo
+                let registrations = JSON.parse(localStorage.getItem('schoolRegistrations') || '[]');
+                registrations.push(formData);
+                localStorage.setItem('schoolRegistrations', JSON.stringify(registrations));
+                
+                document.getElementById('registrationForm').reset();
+closeSchoolPopup();
+showResultPopup('success', '🎉 Registration Successful!', 'Your school has been registered successfully! Our team will contact you within 24 hours.');
             }
-            document.getElementById('registrationForm').reset();
-            closeSchoolPopup();
-            showResultPopup('success', '🎉 Registration Successful!', 'Your school has been registered successfully! Our team will contact you within 24 hours.');
         } catch (error) {
+            console.error('Submission error:', error);
             showResultPopup('error', '❌ Submission Failed', 'Unable to submit. Please try again or contact us directly.');
         } finally {
             submitBtn.disabled = false;
@@ -868,55 +2452,125 @@
         }
     }
 
+    // Single delegated listener on document — works on all devices including mobile touch
+    function attachButtonListeners() {}
     document.addEventListener('click', function(e) {
         const btn = e.target.closest('#registerBtn, #finalCta, #schoolBtn');
-        if (btn) { e.preventDefault(); openSchoolPopup(); }
+        if (btn) {
+            e.preventDefault();
+            openSchoolPopup();
+        }
     });
+    // Close popup events
     const closeBtn = document.getElementById('closePopup');
-    if (closeBtn) closeBtn.addEventListener('click', closeSchoolPopup);
-    window.addEventListener('click', e => { const p = document.getElementById('schoolPopup'); if (e.target === p) closeSchoolPopup(); });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeSchoolPopup);
+    }
+    
+    // Close popup when clicking outside
+    window.addEventListener('click', (e) => {
+        const popup = document.getElementById('schoolPopup');
+        if (e.target === popup) {
+            closeSchoolPopup();
+        }
+    });
+    
+    // Form submission
     const form = document.getElementById('registrationForm');
-    if (form) form.addEventListener('submit', handleFormSubmit);
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit);
+    }
+    
+    // Initialize button listeners
+    attachButtonListeners();
+    
+    // For dynamically added buttons, observe DOM changes
+    const observer = new MutationObserver(() => {
+        attachButtonListeners();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
 
+   // Duplicate testimonial cards for seamless infinite scroll loop
     const track = document.getElementById('testimonialsTrack');
-    if (track) { const cards = track.innerHTML; track.innerHTML = cards + cards; }
+    if (track) {
+        const cards = track.innerHTML;
+        track.innerHTML = cards + cards;
+    }
 
+    // Animated counter
     const statNumbers = document.querySelectorAll('.stat-number');
+    const observerOptions = { threshold: 0.3, rootMargin: '0px' };
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const el = entry.target;
-            if (el.getAttribute('data-animated')) return;
-            el.setAttribute('data-animated', 'true');
-            let target = parseInt(el.getAttribute('data-target'));
-            if (isNaN(target)) target = 0;
-            let current = 0;
-            const increment = target / 60;
-            const interval = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    el.innerText = target.toLocaleString() + (target === 1 ? '' : '+');
-                    clearInterval(interval);
-                } else {
-                    el.innerText = Math.floor(current).toLocaleString() + (target === 1 ? '' : '+');
-                }
-            }, 20);
-            counterObserver.unobserve(el);
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                if (el.getAttribute('data-animated')) return;
+                el.setAttribute('data-animated', 'true');
+                let target = parseInt(el.getAttribute('data-target'));
+                if (isNaN(target)) target = 0;
+                let current = 0;
+                const increment = target / 60;
+                const updateNumber = () => {
+                    current += increment;
+                    if (current >= target) {
+                        el.innerText = target.toLocaleString() + (target === 1 ? '' : '+');
+                        clearInterval(interval);
+                    } else {
+                        el.innerText = Math.floor(current).toLocaleString() + (target === 1 ? '' : '+');
+                    }
+                };
+                const interval = setInterval(updateNumber, 20);
+                counterObserver.unobserve(el);
+            }
         });
-    }, { threshold: 0.3 });
-    statNumbers.forEach(s => counterObserver.observe(s));
+    }, observerOptions);
+    statNumbers.forEach(stat => counterObserver.observe(stat));
+// Result Popup
+function showResultPopup(type, title, message) {
+    const existing = document.getElementById('resultPopup');
+    if (existing) existing.remove();
 
-    function showResultPopup(type, title, message) {
-        const existing = document.getElementById('resultPopup');
-        if (existing) existing.remove();
-        const isSuccess = type === 'success';
-        const popup = document.createElement('div');
-        popup.id = 'resultPopup';
-        popup.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);z-index:99999;display:flex;align-items:center;justify-content:center;';
-        popup.innerHTML = `<div style="background:white;border-radius:4px;padding:40px 32px;max-width:420px;width:90%;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,0.4);border:1px solid #dde2ea;"><div style="width:68px;height:68px;border-radius:4px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;background:${isSuccess?'linear-gradient(135deg,#d1fae5,#a7f3d0)':'linear-gradient(135deg,#fee2e2,#fecaca)'};color:${isSuccess?'#059669':'#dc2626'};">${isSuccess?'✓':'✕'}</div><h3 style="font-family:Rajdhani,sans-serif;font-size:1.4rem;font-weight:700;color:#0a0e1a;margin-bottom:12px;">${title}</h3><p style="color:#6b7280;font-size:0.88rem;line-height:1.6;margin-bottom:28px;">${message}</p><button onclick="document.getElementById('resultPopup').remove()" style="background:${isSuccess?'linear-gradient(135deg,#0d1526,#162040)':'linear-gradient(135deg,#ef4444,#dc2626)'};color:${isSuccess?'#e8edf5':'white'};border:1px solid rgba(192,200,216,0.2);padding:12px 36px;border-radius:4px;font-weight:700;font-size:0.9rem;cursor:pointer;font-family:Mulish,sans-serif;letter-spacing:0.04em;">Close</button></div>`;
-        popup.addEventListener('click', e => { if (e.target === popup) popup.remove(); });
-        document.body.appendChild(popup);
-    }
+    const isSuccess = type === 'success';
+    const popup = document.createElement('div');
+    popup.id = 'resultPopup';
+    popup.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+        z-index: 99999; display: flex; align-items: center; justify-content: center;
+        animation: fadeIn 0.3s ease;
+    `;
+    popup.innerHTML = `
+        <div style="
+            background: white; border-radius: 24px; padding: 40px 32px;
+            max-width: 420px; width: 90%; text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        ">
+            <div style="
+                width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 20px;
+                display: flex; align-items: center; justify-content: center; font-size: 2rem;
+                background: ${isSuccess ? 'linear-gradient(135deg, #d1fae5, #a7f3d0)' : 'linear-gradient(135deg, #fee2e2, #fecaca)'};
+                color: ${isSuccess ? '#059669' : '#dc2626'};
+            ">${isSuccess ? '✓' : '✕'}</div>
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: #111827; margin-bottom: 12px; font-family: Poppins, sans-serif;">${title}</h3>
+            <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.6; margin-bottom: 28px; font-family: Poppins, sans-serif;">${message}</p>
+            <button onclick="document.getElementById('resultPopup').remove()" style="
+                background: ${isSuccess ? 'linear-gradient(135deg, #8b5cf6, #6366f1)' : 'linear-gradient(135deg, #ef4444, #dc2626)'};
+                color: white; border: none; padding: 12px 36px; border-radius: 40px;
+                font-weight: 600; font-size: 0.95rem; cursor: pointer;
+                font-family: Poppins, sans-serif; transition: all 0.2s;
+            " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                Close
+            </button>
+        </div>
+        <style>
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes scaleIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        </style>
+    `;
+    popup.addEventListener('click', (e) => { if (e.target === popup) popup.remove(); });
+    document.body.appendChild(popup);
+}
 </script>
 </body>
 </html>
