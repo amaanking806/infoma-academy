@@ -497,6 +497,7 @@
                 </div>
                 <div class="modal-meta">
                     <div class="quiz-status"><div class="dot"></div> Live Now</div>
+                    <div id="quizTimer" style="font-size:0.82rem;font-weight:700;background:#dcfce7;color:#15803d;padding:5px 12px;border-radius:40px;white-space:nowrap;">⏱ 20:00</div>
                     <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fas fa-times"></i></button>
                 </div>
             </div>
@@ -636,12 +637,66 @@ body.scrollTop = 0;
 
         document.getElementById('quizModal').classList.add('open');
         document.body.style.overflow = 'hidden';
+        startTimer();
     }
 
     function closeModal() {
         document.getElementById('quizModal').classList.remove('open');
         document.body.style.overflow = '';
         document.getElementById('modal-body').innerHTML = '';
+        clearInterval(timerInterval);
+        timerInterval = null;
+        localStorage.removeItem('quizStartTime');
+    }
+
+    function startTimer() {
+        clearInterval(timerInterval);
+        if (!localStorage.getItem('quizStartTime')) {
+            localStorage.setItem('quizStartTime', Date.now().toString());
+        }
+        updateTimerDisplay();
+        timerInterval = setInterval(() => {
+            const elapsed = Math.floor((Date.now() - parseInt(localStorage.getItem('quizStartTime'))) / 1000);
+            const remaining = QUIZ_DURATION - elapsed;
+            if (remaining <= 0) {
+                clearInterval(timerInterval);
+                closeModal();
+                showTimeUpPopup();
+            } else {
+                updateTimerDisplay();
+            }
+        }, 1000);
+    }
+
+    function updateTimerDisplay() {
+        const elapsed = Math.floor((Date.now() - parseInt(localStorage.getItem('quizStartTime') || Date.now())) / 1000);
+        const remaining = Math.max(0, QUIZ_DURATION - elapsed);
+        const mins = Math.floor(remaining / 60).toString().padStart(2, '0');
+        const secs = (remaining % 60).toString().padStart(2, '0');
+        const timerEl = document.getElementById('quizTimer');
+        if (timerEl) {
+            timerEl.textContent = `⏱ ${mins}:${secs}`;
+            timerEl.style.color = remaining <= 15 ? '#ef4444' : remaining <= 30 ? '#f59e0b' : '#15803d';
+        }
+    }
+
+    function showTimeUpPopup() {
+        localStorage.removeItem('quizStartTime');
+        const popup = document.createElement('div');
+        popup.style.cssText = `position:fixed;inset:0;background:rgba(0,0,0,0.8);
+            z-index:99999;display:flex;align-items:center;justify-content:center;
+            font-family:Poppins,sans-serif;`;
+        popup.innerHTML = `<div style="background:white;border-radius:24px;padding:40px 32px;
+            max-width:400px;width:90%;text-align:center;">
+            <div style="font-size:3rem;margin-bottom:16px;">⏰</div>
+            <h3 style="font-size:1.2rem;font-weight:800;color:#111827;margin-bottom:10px;">Time's Up!</h3>
+            <p style="color:#6b7280;font-size:0.88rem;line-height:1.6;margin-bottom:24px;">
+                Your 01 minute is over. The quiz has been closed.</p>
+            <button onclick="this.closest('div').parentElement.remove()" style="background:linear-gradient(135deg,#8b5cf6,#6366f1);
+                color:white;border:none;padding:11px 32px;border-radius:40px;
+                font-weight:700;font-size:0.9rem;cursor:pointer;font-family:Poppins,sans-serif;">OK</button>
+        </div>`;
+        document.body.appendChild(popup);
     }
 
     function closeModalOnOverlay(e) {
@@ -653,6 +708,8 @@ body.scrollTop = 0;
 // --- Tab Switch / Cheat Detection ---
 let switchCount = parseInt(localStorage.getItem('quizSwitchCount') || '0');
 const MAX_SWITCHES = 2;
+let timerInterval = null;
+const QUIZ_DURATION = 1 * 60; // 20 minutes in seconds
 
 document.addEventListener('visibilitychange', () => {
     if (!document.getElementById('quizModal').classList.contains('open')) return;
