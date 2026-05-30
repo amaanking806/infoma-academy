@@ -39,8 +39,8 @@ const CONFIG = {
 
   // --- Contact Info ---
   contact: {
-    email:   "hello@infoma.in",
-    phone:   "+91 XXXXXXXXXX",
+    email:   "theinfomaacademy@gmail.com",
+    phone:   "+91 7051242985",
     address: "Jammu & Kashmir, India"
   }
 };
@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "Our Team":         CONFIG.footer.team,
     "Our Terms":        CONFIG.footer.terms,
     "Our Mission":      CONFIG.footer.mission,
-    "How Quiz Works":   CONFIG.footer.howQuizWorks,
+    "How quiz works":   CONFIG.footer.howQuizWorks,
     "Frequently Asked": CONFIG.footer.faq,
-    "Advertisements":CONFIG.footer.advertise,
+    "Advertise With Us":CONFIG.footer.advertise,
     "Privacy Policy":   CONFIG.footer.privacy,
     "Contact Us":       CONFIG.nav.contact,
     "About Us":         CONFIG.nav.about
