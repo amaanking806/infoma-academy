@@ -209,8 +209,8 @@
             display: flex; align-items: center; justify-content: center;
             color: white; font-size: 1.1rem; flex-shrink: 0;
         }
-        .modal-title h2 { font-size: 1.15rem; font-weight: 700; color: #111827; }
-        .modal-title p  { font-size: 0.78rem; color: #6b7280; margin-top: 2px; }
+       .modal-title h2 { font-size: 1.15rem; font-weight: 700; color: #111827; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+        .modal-title p  { font-size: 0.78rem; color: #6b7280; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
         .modal-meta { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
         .quiz-status { display: flex; align-items: center; gap: 5px; background: #dcfce7; color: #15803d; padding: 5px 10px; border-radius: 40px; font-size: 0.72rem; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
         .quiz-status .dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 1.5s infinite; }
@@ -350,6 +350,9 @@
 
         @media (max-width: 768px) {
             .page-hero h1 { font-size: 2rem; }
+            .modal-title-icon { display: none; }
+            .modal-title h2 { max-width: 120px; font-size: 1rem; }
+            .modal-title p { max-width: 120px; }
             .navbar { padding: 16px 20px; }
             .nav-links { display: none; }
             .container { padding: 0 20px; }
@@ -616,6 +619,10 @@
             showCheatPopup();
             return;
         }
+        if (localStorage.getItem('quizCompleted') === '1') {
+            showTimeUpPopup();
+            return;
+        }
         document.getElementById('modal-heading').textContent = name + ' Quiz';
         document.getElementById('modal-subheading').textContent = name + ' — Fill in your name, school below';
 
@@ -682,6 +689,7 @@ body.scrollTop = 0;
 
     function showTimeUpPopup() {
         localStorage.removeItem('quizStartTime');
+        localStorage.setItem('quizCompleted', '1');
         const popup = document.createElement('div');
         popup.style.cssText = `position:fixed;inset:0;background:rgba(0,0,0,0.8);
             z-index:99999;display:flex;align-items:center;justify-content:center;
