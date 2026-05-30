@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "Our Team":         CONFIG.footer.team,
     "Our Terms":        CONFIG.footer.terms,
     "Our Mission":      CONFIG.footer.mission,
-    "How quiz works":   CONFIG.footer.howQuizWorks,
+    "How Quiz Works":   CONFIG.footer.howQuizWorks,
     "Frequently Asked": CONFIG.footer.faq,
-    "Advertise With Us":CONFIG.footer.advertise,
+    "Advertisements":CONFIG.footer.advertise,
     "Privacy Policy":   CONFIG.footer.privacy,
     "Contact Us":       CONFIG.nav.contact,
     "About Us":         CONFIG.nav.about
