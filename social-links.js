@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Footer quick links
   const linkMap = {
-    "About Quizzes":    CONFIG.footer.howQuizWorks,
+    "About Quizzes":    CONFIG.footer.aboutQuizzes,
     "Events Gallery":   CONFIG.footer.gallery,
     "Our Team":         CONFIG.footer.team,
     "Our Terms":        CONFIG.footer.terms,
