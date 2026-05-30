@@ -26,6 +26,7 @@ const CONFIG = {
 
   // --- Footer Quick Links ---
   footer: {
+    aboutQuizzes: "https://infoma.in/quiz-categories",
     howQuizWorks: "https://infoma.in/how-quiz-works",
     gallery:      "https://infoma.in/events-gallery",
     team:         "https://infoma.in/infoma-team",
