@@ -105,17 +105,86 @@
         .btn-primary{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border:none;padding:12px 28px;border-radius:60px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;text-decoration:none;box-shadow:0 4px 20px rgba(139,92,246,.4)}
         .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(139,92,246,.6)}
 
-        footer{padding:60px 0 40px;background:#111827;margin-top:60px}
-        .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:40px}
-        .footer-col p{color:#9ca3af;max-width:250px}
-        .footer-links{display:flex;gap:60px;flex-wrap:wrap}
-        .footer-links-column h4{margin-bottom:20px;font-size:1rem;color:#fff}
-        .footer-links-column a{display:block;text-decoration:none;color:#9ca3af;margin-bottom:12px;transition:color .2s}
-        .footer-links-column a:hover{color:#a78bfa}
-        .social-icons{display:flex;gap:16px}
-        .social-icons a{width:40px;height:40px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:all .2s}
-        .social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px)}
-        .copyright{text-align:center;color:#6b7280;font-size:.85rem;padding-top:32px;border-top:1px solid #1f2937}
+        /* Footer */
+        footer {
+            padding: 60px 0 40px;
+            background: #111827;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col .logo {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p {
+            color: #9ca3af;
+            max-width: 250px;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links-column h4 {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .footer-links-column a {
+            display: block;
+            text-decoration: none;
+            color: #9ca3af;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-links-column a:hover {
+            color: #a78bfa;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: #1f2937;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            transition: all 0.2s;
+        }
+
+        .social-icons a:hover {
+            background: #8b5cf6;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding-top: 32px;
+            border-top: 1px solid #1f2937;
+        }
 
         .menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);z-index:1000;opacity:0;visibility:hidden;transition:all .4s}
         .menu-overlay.active{opacity:1;visibility:visible}
@@ -722,5 +791,6 @@ if(menuToggle)menuToggle.addEventListener('click',openMenu);
 if(closeMenuBtn)closeMenuBtn.addEventListener('click',closeMenu);
 if(menuOverlay)menuOverlay.addEventListener('click',closeMenu);
 </script>
+    <script src="/social-links.js"></script>
 </body>
 </html>
