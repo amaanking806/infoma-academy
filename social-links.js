@@ -7,9 +7,9 @@ const CONFIG = {
   // --- Social Media Links ---
   social: {
     instagram: "https://instagram.com/infoma.in",
-    facebook:  "https://facebook.com/infoma.in",
-    twitter:   "https://twitter.com/infoma.in",
-    linkedin:  "https://linkedin.com/company/infoma"
+    facebook:  "https://www.facebook.com/share/1CnGDkvd3G/",
+    twitter:   "https://x.com/InfomaAcademy",
+    linkedin:  "https://www.linkedin.com/in/amaan-shakeel-4827553b7/"
   },
 
   // --- Navigation Links ---
