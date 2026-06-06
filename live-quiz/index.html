@@ -396,13 +396,13 @@
         </div>
 
         <div class="quiz-cards">
-            <div class="quiz-card active" onclick="openModal('Burn Hall', 'https://docs.google.com/forms/d/e/1FAIpQLSdAV2tqaZ868G6pt0mjwR3mS1rA86qwCWw94guWDofoJxeNzQ/viewform?embedded=true')">
+            <div class="quiz-card active" onclick="openModal('Infoma Vs Veerian', 'https://docs.google.com/forms/d/e/1FAIpQLSdAV2tqaZ868G6pt0mjwR3mS1rA86qwCWw94guWDofoJxeNzQ/viewform?embedded=true')">
                 <div class="card-icon general"><i class="fas fa-globe"></i></div>
-                <h3>Burn Hall</h3>
+                <h3>Infoma Vs Veerian</h3>
                 <p>Click here to attempt!</p>
                 <div class="quiz-meta">
-                    <span class="meta-tag"><i class="fas fa-clock"></i> 20 Min</span>
-                    <span class="meta-tag"><i class="fas fa-list"></i> 25 Qs</span>
+                    <span class="meta-tag"><i class="fas fa-clock"></i> 04 Min</span>
+                    <span class="meta-tag"><i class="fas fa-list"></i> 30 Qs</span>
                 </div>
             </div>
            <div class="quiz-card unavailable">
@@ -711,7 +711,7 @@
             <div style="font-size:3rem;margin-bottom:16px;">⏰</div>
             <h3 style="font-size:1.2rem;font-weight:800;color:#111827;margin-bottom:10px;">Time's Up!</h3>
             <p style="color:#6b7280;font-size:0.88rem;line-height:1.6;margin-bottom:24px;">
-                Your 5 minutes are over. The quiz has been closed.</p>
+                Your 4 minutes are over. The quiz has been closed.</p>
             <button onclick="this.closest('div').parentElement.remove()" style="background:linear-gradient(135deg,#8b5cf6,#6366f1);
                 color:white;border:none;padding:11px 32px;border-radius:40px;
                 font-weight:700;font-size:0.9rem;cursor:pointer;font-family:Poppins,sans-serif;">OK</button>
@@ -729,7 +729,7 @@
 let switchCount = parseInt(localStorage.getItem('quizSwitchCount') || '0');
 const MAX_SWITCHES = 2;
 let timerInterval = null;
-const QUIZ_DURATION = 5 * 60; // 5 minutes in seconds
+const QUIZ_DURATION = 4 * 60; // 4 minutes in seconds
 document.addEventListener('visibilitychange', () => {
     if (!document.getElementById('quizModal').classList.contains('open')) return;
     if (document.hidden) {
