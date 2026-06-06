@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Contact Us | Infoma Academy — Get in Touch</title>
-<meta name="description" content="Contact Infoma Academy to register your school for J&K's premier quiz competitions or to learn more about our programs. We respond within 24 hours.">
-<meta name="keywords" content="contact Infoma Academy, register school quiz JK, Infoma Academy email, school quiz registration Jammu Kashmir">
+<meta name="description" content="Contact Infoma Academy to register your institution for J&K's premier quiz competitions or to learn more about our programs. We respond within 24 hours.">
+<meta name="keywords" content="contact Infoma Academy, register institution quiz JK, Infoma Academy email, institution quiz registration Jammu Kashmir">
 <meta name="author" content="Infoma Academy">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://infoma.in/contact-us">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://infoma.in/contact-us">
 <meta property="og:title" content="Contact Us | Infoma Academy">
-<meta property="og:description" content="Contact Infoma Academy to register your school for J&K's premier quiz competitions.">
+<meta property="og:description" content="Contact Infoma Academy to register your institution for J&K's premier quiz competitions.">
 <meta property="og:image" content="https://infoma.in/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -20,7 +20,7 @@
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Contact Us | Infoma Academy">
-<meta name="twitter:description" content="Contact Infoma Academy to register your school for J&K's premier quiz competitions.">
+<meta name="twitter:description" content="Contact Infoma Academy to register your institution for J&K's premier quiz competitions.">
 <meta name="twitter:image" content="https://infoma.in/og-image.jpg">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -174,7 +174,7 @@
 <div class="page-hero">
    <div class="badge" data-aos="fade-down" data-aos-duration="600"><i class="fas fa-envelope"></i> Contact Us</div>
     <h1 data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">Get in Touch</h1>
-    <p data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">Have a question, want to register your school, or just want to say hello? We'd love to hear from you.</p>
+    <p data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">Have a question, want to register your institution, or just want to say hello? We'd love to hear from you.</p>
 </div>
 
 <div class="container">
@@ -213,7 +213,7 @@
                     <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXXXXXXX"></div>
                     <div class="form-group"><label>Subject *</label>
                         <select>
-                            <option>School Registration</option>
+                            <option>institution Registration</option>
                             <option>Quiz Information</option>
                             <option>Partnership</option>
                             <option>Media / Press</option>
@@ -221,7 +221,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group"><label>School Name (if applicable)</label><input type="text" placeholder="Your school name"></div>
+                <div class="form-group"><label>institution Name (if applicable)</label><input type="text" placeholder="Your institution name"></div>
                 <div class="form-group"><label>Message *</label><textarea rows="5" placeholder="Tell us how we can help..."></textarea></div>
                 <button class="submit-btn" id="contactSubmitBtn" onclick="handleContactSubmit()"><i class="fas fa-paper-plane"></i> Send Message</button>
             </div>
@@ -235,7 +235,7 @@
             <div class="footer-col"><div class="logo">Infoma<span style="color: #a78bfa;">Academy</span></div><p>Infoma Academy is an interactive online learning and quiz platform founded in 2023, designed to make education engaging and accessible for students across India.</p></div>
             <div class="footer-links"><div class="footer-links-column"><h4>Quick Links</h4><a href="https://infoma.in">Home</a><a href="https://infoma.in/how-quiz-works">About Quizzes</a><a href="https://infoma.in/events-gallery">Events Gallery</a><a href="https://infoma.in/infoma-team">Our Team</a><a href="https://infoma.in/terms-and-conditions">Our Terms</a><a href="https://infoma.in/our-mission">Our Mission</a></div><div class="footer-links-column"><h4>Resources</h4><a href="https://infoma.in/how-quiz-works">How quiz works</a><a href="https://infoma.in/frequently-asked-questions">Frequently Asked</a><a href="https://infoma.in/advertise">Advertise With Us</a><a href="https://infoma.in/privacy-policy">Privacy Policy</a><a href="https://infoma.in/contact-us">Contact Us</a><a href="https://infoma.in/about-us">About Us</a></div><div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div></div>
         </div>
-        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu & Kashmir. The only one.</div>
+        <div class="copyright">© 2026 Infoma Academy — Pioneering institution Quizzes in Jammu & Kashmir. The only one.</div>
     </div>
 </footer>
 
@@ -250,7 +250,7 @@ async function handleContactSubmit() {
     const email = inputs[1].value.trim();
     const phone = inputs[2].value.trim();
     const subject = inputs[3].value.trim();
-    const school = inputs[4].value.trim();
+    const institution = inputs[4].value.trim();
     const message = inputs[5].value.trim();
 
     if (!name || !email || !message) {
@@ -267,7 +267,7 @@ async function handleContactSubmit() {
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
     try {
-        const params = new URLSearchParams({ formType: 'contact', name, email, phone, subject, school, message });
+        const params = new URLSearchParams({ formType: 'contact', name, email, phone, subject, institution, message });
         await fetch(CONTACT_SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
 
         inputs.forEach(i => i.value = '');
