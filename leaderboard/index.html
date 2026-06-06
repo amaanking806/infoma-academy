@@ -137,7 +137,6 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .lb-section h3 i{color:#8b5cf6;}
 
 .lb-table{width:100%;border-collapse:collapse;table-layout:fixed;}
-.lb-table{width:100%;border-collapse:collapse;table-layout:fixed;}
 .lb-table th:nth-child(1){width:40px;}
 .lb-table th:nth-child(2){width:auto;}
 .lb-table th:nth-child(3){width:56px;}
@@ -226,8 +225,8 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .cbar-row{display:flex;flex-direction:column;gap:4px;}
 .cbar-label{font-size:.72rem;font-weight:600;color:#6b7280;display:flex;justify-content:space-between;}
 .cbar-track{position:relative;height:10px;background:#e5e7eb;border-radius:5px;overflow:hidden;}
-.cbar-a{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#8b5cf6,#a78bfa);border-radius:5px;transition:width .8s ease;}
-.cbar-b{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#0ea5e9,#38bdf8);border-radius:5px;transition:width .8s ease;}
+.cbar-a{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#8b5cf6,#a78bfa);border-radius:5px;width:0%;transition:width .9s cubic-bezier(.34,1.56,.64,1);}
+.cbar-b{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#0ea5e9,#38bdf8);border-radius:5px;width:0%;transition:width .9s cubic-bezier(.34,1.56,.64,1);}
 
 /* ── MODAL TABS ── */
 .modal-tabs{display:flex;gap:0;border-bottom:2px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:10;flex-shrink:0;}
@@ -242,9 +241,12 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 @keyframes tabFadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── STICKY TOP 3 ── */
-.lb-table tbody tr.top-rank-1{background:linear-gradient(90deg,#fffbeb,#fff);}
+.lb-table tbody tr.top-rank-1{background:linear-gradient(90deg,#fffbeb,#fff);position:relative;overflow:hidden;}
+.lb-table tbody tr.top-rank-1::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(245,158,11,0.15),transparent);animation:shimmer 2.5s ease-in-out infinite;}
+@keyframes shimmer{0%{left:-100%;}100%{left:200%;}}
 .lb-table tbody tr.top-rank-2{background:linear-gradient(90deg,#f8fafc,#fff);}
 .lb-table tbody tr.top-rank-3{background:linear-gradient(90deg,#fef6ee,#fff);}
+.lb-table tbody tr.top-rank-1{box-shadow:inset 0 0 0 1.5px rgba(245,158,11,0.3);}
 .lb-table tbody tr.top-rank-1:hover{background:linear-gradient(90deg,#fef3c7,#faf5ff);}
 .lb-table tbody tr.top-rank-2:hover{background:linear-gradient(90deg,#f1f5f9,#faf5ff);}
 .lb-table tbody tr.top-rank-3:hover{background:linear-gradient(90deg,#fef2e4,#faf5ff);}
@@ -732,6 +734,16 @@ function switchTab(tab) {
     document.querySelectorAll('.tab-only-leaderboard').forEach(el => {
         el.style.display = tab === 'leaderboard' ? '' : 'none';
     });
+    if (tab === 'teams') {
+        setTimeout(() => {
+            document.querySelectorAll('.cbar-a, .cbar-b').forEach(bar => {
+                const target = bar.dataset.width || bar.style.width;
+                bar.style.width = '0%';
+                void bar.offsetWidth;
+                setTimeout(() => { bar.style.width = target; }, 50);
+            });
+        }, 50);
+    }
     document.querySelectorAll('.tab-panel').forEach(p => {
         const isActive = p.dataset.tab === tab;
         if (isActive) {
@@ -896,13 +908,13 @@ function openModal(institutionId) {
                             <div class="cbar-label" style="color:#374151;font-size:.68rem;">Avg Score</div>
                             <div style="display:flex;align-items:center;gap:8px;">
                                 <div class="cbar-track" style="height:14px;border-radius:7px;flex:1;">
-                                    <div class="cbar-a" style="width:${Math.round(a.avg/maxAvg*100)}%"></div>
+                                    <div class="cbar-a" style="width:0%" data-width="${Math.round(a.avg/maxAvg*100)}%"></div>
                                 </div>
                                 <span style="font-size:.75rem;font-weight:700;color:#8b5cf6;min-width:28px;">${a.avg}</span>
                             </div>
                             <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
                                 <div class="cbar-track" style="height:14px;border-radius:7px;flex:1;">
-                                    <div class="cbar-b" style="width:${Math.round(b.avg/maxAvg*100)}%"></div>
+                                    <div class="cbar-b" style="width:0%" data-width="${Math.round(b.avg/maxAvg*100)}%"></div>
                                 </div>
                                 <span style="font-size:.75rem;font-weight:700;color:#0ea5e9;min-width:28px;">${b.avg}</span>
                             </div>
@@ -911,13 +923,13 @@ function openModal(institutionId) {
                             <div class="cbar-label" style="color:#374151;font-size:.68rem;">Top Score</div>
                             <div style="display:flex;align-items:center;gap:8px;">
                                 <div class="cbar-track" style="height:14px;border-radius:7px;flex:1;">
-                                    <div class="cbar-a" style="width:${Math.round(a.top/maxTop*100)}%"></div>
+                                    <div class="cbar-a" style="width:0%" data-width="${Math.round(a.top/maxTop*100)}%"></div>
                                 </div>
                                 <span style="font-size:.75rem;font-weight:700;color:#8b5cf6;min-width:28px;">${a.top}</span>
                             </div>
                             <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
                                 <div class="cbar-track" style="height:14px;border-radius:7px;flex:1;">
-                                    <div class="cbar-b" style="width:${Math.round(b.top/maxTop*100)}%"></div>
+                                    <div class="cbar-b" style="width:0%" data-width="${Math.round(b.top/maxTop*100)}%"></div>
                                 </div>
                                 <span style="font-size:.75rem;font-weight:700;color:#0ea5e9;min-width:28px;">${b.top}</span>
                             </div>
@@ -926,13 +938,13 @@ function openModal(institutionId) {
                             <div class="cbar-label" style="color:#374151;font-size:.68rem;">Participants in Top 10</div>
                             <div style="display:flex;align-items:center;gap:8px;">
                                 <div class="cbar-track" style="height:14px;border-radius:7px;flex:1;">
-                                    <div class="cbar-a" style="width:${Math.round(a.count/maxCnt*100)}%"></div>
+                                    <div class="cbar-a" style="width:0%" data-width="${Math.round(a.count/maxCnt*100)}%"></div>
                                 </div>
                                 <span style="font-size:.75rem;font-weight:700;color:#8b5cf6;min-width:28px;">${a.count}</span>
                             </div>
                             <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
                                 <div class="cbar-track" style="height:14px;border-radius:7px;flex:1;">
-                                    <div class="cbar-b" style="width:${Math.round(b.count/maxCnt*100)}%"></div>
+                                    <div class="cbar-b" style="width:0%" data-width="${Math.round(b.count/maxCnt*100)}%"></div>
                                 </div>
                                 <span style="font-size:.75rem;font-weight:700;color:#0ea5e9;min-width:28px;">${b.count}</span>
                             </div>
