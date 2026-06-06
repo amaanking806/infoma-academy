@@ -665,7 +665,7 @@ function renderAllParticipants(participants, filterName='', filterDistrict='') {
     grid.innerHTML = slice.map(p => {
         const rankEmoji = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : `#${p.rank}`;
         const waMsg = encodeURIComponent(`🏆 I ranked #${p.rank} at Infoma Academy Quiz with ${p.score}/${currentInstitution ? currentInstitution.topScore : '?'} pts! Check the leaderboard: infoma.in/leaderboard`);
-        return `<div class="p-card" onclick="openParticipantPopup(${JSON.stringify(p)})" style="cursor:pointer;">
+        return `<div class="p-card" onclick="openParticipantPopup(this)" data-p='${JSON.stringify(p).replace(/'/g,"&#39;")}' style="cursor:pointer;">
             <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0;">
                 <div style="font-size:.85rem;font-weight:800;color:#8b5cf6;flex-shrink:0;min-width:24px;text-align:center;">${rankEmoji}</div>
                 <div class="p-info" style="min-width:0;">
@@ -1051,7 +1051,8 @@ function shareResult(institution, winner) {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-function openParticipantPopup(p) {
+function openParticipantPopup(el) {
+    const p = JSON.parse(el.dataset.p);
     const rankEmoji = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : `#${p.rank}`;
     const topScore = currentInstitution ? currentInstitution.topScore : '?';
     document.getElementById('popupRank').textContent    = rankEmoji;
