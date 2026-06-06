@@ -534,6 +534,7 @@ function openModal(institutionId) {
                 <div class="winner-badges">
                     <span class="w-badge gold">🥇 1st Place</span>
                     ${institution.runnerUp ? `<span class="w-badge silver">🥈 Runner Up: ${institution.runnerUp.name} (${institution.runnerUp.score} pts)</span>` : ''}
+                    ${institution.winningTeam ? `<span class="w-badge" style="background:#ede9fe;color:#6d28d9;">🏆 Winning Team: ${institution.winningTeam}</span>` : ''}
                 </div>
             </div>
         </div>
