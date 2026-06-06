@@ -140,10 +140,9 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .lb-table{width:100%;border-collapse:collapse;table-layout:fixed;}
 .lb-table th:nth-child(1){width:40px;}
 .lb-table th:nth-child(2){width:auto;}
-.lb-table th:nth-child(3){width:48px;}
-.lb-table th:nth-child(4){width:36px;}
-.lb-table th:nth-child(5){width:36px;}
-.lb-table th:nth-child(6){width:40px;}
+.lb-table th:nth-child(3){width:56px;}
+.lb-table th:nth-child(4){width:44px;}
+.lb-table th:nth-child(5){width:44px;}
 .lb-table td{overflow:hidden;text-overflow:ellipsis;vertical-align:middle;padding:10px 6px;}
 .lb-table thead th{padding:8px 6px;}
 .participant-name{font-weight:600;color:#111827;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
@@ -822,10 +821,9 @@ function openModal(institutionId) {
                     <tr>
                         <th style="width:40px;">#</th>
                         <th>Name</th>
-                        <th style="width:48px;text-align:center;">Pts</th>
-                        <th style="width:36px;text-align:center;color:#10b981;">✓</th>
-                        <th style="width:36px;text-align:center;color:#ef4444;">✗</th>
-                        <th style="width:40px;"></th>
+                        <th style="width:56px;text-align:center;">Score</th>
+                        <th style="width:44px;text-align:center;color:#10b981;">✓</th>
+                        <th style="width:44px;text-align:center;color:#ef4444;">✗</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -845,7 +843,7 @@ function openModal(institutionId) {
                             <td style="text-align:center;font-weight:800;color:#111827;font-size:.9rem;">${p.score}</td>
                             <td style="text-align:center;color:#10b981;font-weight:700;font-size:.85rem;">${p.correct}</td>
                             <td style="text-align:center;color:#ef4444;font-weight:700;font-size:.85rem;">${p.wrong}</td>
-                            <td><a href="https://wa.me/?text=${waText}" target="_blank" class="p-wa"><i class="fab fa-whatsapp"></i></a></td>
+                            
                         </tr>`;
                     }).join('')}
                 </tbody>
