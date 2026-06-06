@@ -396,7 +396,7 @@
         </div>
 
         <div class="quiz-cards">
-            <div class="quiz-card active" onclick="openModal('Burn Hall', 'YOUR_NEW_FORM_URL_HERE')">
+            <div class="quiz-card active" onclick="openModal('Burn Hall', 'https://docs.google.com/forms/d/e/1FAIpQLSdAV2tqaZ868G6pt0mjwR3mS1rA86qwCWw94guWDofoJxeNzQ/viewform?embedded=true')">
                 <div class="card-icon general"><i class="fas fa-globe"></i></div>
                 <h3>Burn Hall</h3>
                 <p>Click here to attempt!</p>
@@ -634,10 +634,9 @@
         if (isPlaceholder) {
             body.innerHTML = `
                 <div class="embed-placeholder">
-                    
-                    
-                     <code><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd_CcuaemNG7d5hdby_xL-1mCK32QggqJWGCVnMPvTDZ5G1vQ/viewform?embedded=true" width="640" height="1769" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></code>
-                    in the quiz card's <code>onclick</code> with your actual Google Form embed URL.</p>
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Form Not Available</h3>
+                    <p>This quiz form has not been set up yet. Please check back later.</p>
                 </div>`;
         } else {
             body.innerHTML = `
