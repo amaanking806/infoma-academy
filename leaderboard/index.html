@@ -289,6 +289,23 @@ footer{padding:50px 0 36px;background:#111827;}
 .social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px);}
 .copyright{text-align:center;color:#6b7280;font-size:.82rem;padding-top:28px;border-top:1px solid #1f2937;}
 
+/* Participant Popup */
+.participant-popup-overlay{display:none;position:fixed;inset:0;background:rgba(15,12,41,.7);z-index:9999;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);}
+.participant-popup-overlay.open{display:flex;}
+.participant-popup{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:500px;padding:28px 24px 36px;animation:slideUp .3s cubic-bezier(.22,1,.36,1);}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.popup-handle{width:40px;height:4px;background:#e5e7eb;border-radius:4px;margin:0 auto 20px;}
+.popup-rank{font-size:2.5rem;text-align:center;margin-bottom:8px;}
+.popup-name{font-size:1.3rem;font-weight:800;color:#111827;text-align:center;margin-bottom:4px;}
+.popup-meta{font-size:.8rem;color:#9ca3af;text-align:center;margin-bottom:20px;}
+.popup-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.popup-stat{background:#f9fafb;border-radius:12px;padding:12px;text-align:center;}
+.popup-stat .psv{font-size:1.2rem;font-weight:800;color:#111827;}
+.popup-stat .psl{font-size:.65rem;color:#9ca3af;font-weight:600;margin-top:2px;}
+.popup-wa{width:100%;background:#25d366;color:#fff;border:none;border-radius:40px;padding:12px;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;}
+.popup-wa:hover{background:#1da851;}
+.popup-close{position:absolute;top:16px;right:16px;width:32px;height:32px;background:#f3f4f6;border:none;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;}
+
 @media(max-width:768px){
     .navbar{padding:16px 20px;}
     .nav-links{display:none;}
@@ -648,7 +665,7 @@ function renderAllParticipants(participants, filterName='', filterDistrict='') {
     grid.innerHTML = slice.map(p => {
         const rankEmoji = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : `#${p.rank}`;
         const waMsg = encodeURIComponent(`🏆 I ranked #${p.rank} at Infoma Academy Quiz with ${p.score}/${currentInstitution ? currentInstitution.topScore : '?'} pts! Check the leaderboard: infoma.in/leaderboard`);
-        return `<div class="p-card">
+        return `<div class="p-card" onclick="openParticipantPopup(${JSON.stringify(p)})" style="cursor:pointer;">
             <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0;">
                 <div style="font-size:.85rem;font-weight:800;color:#8b5cf6;flex-shrink:0;min-width:24px;text-align:center;">${rankEmoji}</div>
                 <div class="p-info" style="min-width:0;">
@@ -659,13 +676,9 @@ function renderAllParticipants(participants, filterName='', filterDistrict='') {
             </div>
             <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
                 <div class="p-score">${p.score}</div>
-                <a class="p-wa" href="https://wa.me/?text=${waMsg}" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Share
-                </a>
             </div>
         </div>`;
     }).join('');
-
     if (pgBar) pgBar.innerHTML = list.length > PAGE_SIZE ? renderPagination(list.length, currentPage) : '';
 }
 
@@ -1038,9 +1051,56 @@ function shareResult(institution, winner) {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+function openParticipantPopup(p) {
+    const rankEmoji = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : `#${p.rank}`;
+    const topScore = currentInstitution ? currentInstitution.topScore : '?';
+    document.getElementById('popupRank').textContent    = rankEmoji;
+    document.getElementById('popupName').textContent    = p.name;
+    document.getElementById('popupMeta').textContent    = `${p.class || '—'}${p.team ? ' · ' + p.team : ''}`;
+    document.getElementById('popupScore').textContent   = `${p.score}/${topScore}`;
+    document.getElementById('popupCorrect').textContent = p.correct ?? '—';
+    document.getElementById('popupWrong').textContent   = p.wrong ?? '—';
+    const waMsg = encodeURIComponent(`🏆 I ranked ${rankEmoji} at Infoma Academy Quiz with ${p.score}/${topScore} pts! Check the leaderboard: infoma.in/leaderboard`);
+    document.getElementById('popupShare').href = `https://wa.me/?text=${waMsg}`;
+    document.getElementById('participantPopup').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeParticipantPopup(e) {
+    if (e && e.target !== document.getElementById('participantPopup') && e.type !== 'click') return;
+    if (e && e.currentTarget === document.querySelector('.popup-close')) {
+        document.getElementById('participantPopup').classList.remove('open');
+        document.body.style.overflow = '';
+        return;
+    }
+    if (!e || e.target === document.getElementById('participantPopup')) {
+        document.getElementById('participantPopup').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
 // Boot
 loadData();
 </script>
 <script src="/social-links.js"></script>
+
+<!-- PARTICIPANT POPUP -->
+<div class="participant-popup-overlay" id="participantPopup" onclick="closeParticipantPopup(event)">
+    <div class="participant-popup" style="position:relative;">
+        <button class="popup-close" onclick="closeParticipantPopup()">✕</button>
+        <div class="popup-handle"></div>
+        <div class="popup-rank" id="popupRank">🥇</div>
+        <div class="popup-name" id="popupName">—</div>
+        <div class="popup-meta" id="popupMeta">—</div>
+        <div class="popup-stats">
+            <div class="popup-stat"><div class="psv" id="popupScore">—</div><div class="psl">Score</div></div>
+            <div class="popup-stat"><div class="psv" style="color:#10b981;" id="popupCorrect">—</div><div class="psl">Correct</div></div>
+            <div class="popup-stat"><div class="psv" style="color:#ef4444;" id="popupWrong">—</div><div class="psl">Wrong</div></div>
+        </div>
+        <a class="popup-wa" id="popupShare" href="#" target="_blank">
+            <i class="fab fa-whatsapp"></i> Share Result on WhatsApp
+        </a>
+    </div>
+</div>
 </body>
 </html>
