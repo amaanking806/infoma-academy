@@ -500,8 +500,9 @@ function renderSchoolCards(schools) {
                 <div class="winner-chip">
                     <i class="fas fa-trophy"></i>
                     <div>
-                        <div class="wl">🏆 Winner</div>
-                        <div class="wn">${school.winner.name} — ${school.winner.score} pts</div>
+                        <div class="wl">🏆 Winning Team</div>
+                        <div class="wn">${school.winningTeam || school.winner.name}</div>
+                        <div class="wl" style="margin-top:3px;">Top scorer: ${school.winner.name} — ${school.winner.score} pts</div>
                     </div>
                 </div>
                 <button class="view-btn" onclick="openModal('${school.id}')">
