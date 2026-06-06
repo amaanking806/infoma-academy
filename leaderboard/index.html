@@ -213,6 +213,40 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .cbar-a{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#8b5cf6,#a78bfa);border-radius:5px;transition:width .8s ease;}
 .cbar-b{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#0ea5e9,#38bdf8);border-radius:5px;transition:width .8s ease;}
 
+/* ── MODAL TABS ── */
+.modal-tabs{display:flex;gap:0;border-bottom:2px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:10;flex-shrink:0;}
+.modal-tab{flex:1;padding:14px 8px;border:none;background:none;font-family:'Poppins',sans-serif;font-size:.78rem;font-weight:600;color:#6b7280;cursor:pointer;transition:all .2s;position:relative;display:flex;align-items:center;justify-content:center;gap:6px;}
+.modal-tab::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,#8b5cf6,#6366f1);border-radius:2px;transition:width .3s ease;}
+.modal-tab.active{color:#8b5cf6;}
+.modal-tab.active::after{width:100%;}
+.modal-tab:hover{color:#8b5cf6;background:#faf5ff;}
+.modal-tab i{font-size:.8rem;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ── STICKY TOP 3 ── */
+.lb-table tbody tr.top-rank-1{background:linear-gradient(90deg,#fffbeb,#fff);}
+.lb-table tbody tr.top-rank-2{background:linear-gradient(90deg,#f8fafc,#fff);}
+.lb-table tbody tr.top-rank-3{background:linear-gradient(90deg,#fef6ee,#fff);}
+.lb-table tbody tr.top-rank-1:hover{background:linear-gradient(90deg,#fef3c7,#faf5ff);}
+.lb-table tbody tr.top-rank-2:hover{background:linear-gradient(90deg,#f1f5f9,#faf5ff);}
+.lb-table tbody tr.top-rank-3:hover{background:linear-gradient(90deg,#fef2e4,#faf5ff);}
+.lb-table tbody tr.top-rank-1 .rank-num,
+.lb-table tbody tr.top-rank-2 .rank-num,
+.lb-table tbody tr.top-rank-3 .rank-num{font-size:1.1rem;}
+.lb-table tbody tr.top-rank-1 .participant-name{color:#b45309;}
+.lb-table tbody tr.top-rank-2 .participant-name{color:#475569;}
+.lb-table tbody tr.top-rank-3 .participant-name{color:#92400e;}
+
+/* ── PAGINATION ── */
+.pagination-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0 0;gap:10px;flex-wrap:wrap;}
+.pagination-bar .pg-info{font-size:.78rem;color:#6b7280;font-weight:500;}
+.pagination-btns{display:flex;gap:6px;}
+.pg-btn{width:34px;height:34px;border:1.5px solid #e5e7eb;background:#fff;border-radius:10px;font-family:'Poppins',sans-serif;font-size:.78rem;font-weight:600;color:#374151;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.pg-btn:hover:not(:disabled){border-color:#8b5cf6;color:#8b5cf6;background:#faf5ff;}
+.pg-btn.active{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border-color:transparent;}
+.pg-btn:disabled{opacity:.35;cursor:not-allowed;}
+
 /* No data */
 .no-data{text-align:center;padding:48px 24px;color:#9ca3af;}
 .no-data i{font-size:2.5rem;margin-bottom:12px;display:block;}
@@ -325,6 +359,12 @@ footer{padding:50px 0 36px;background:#111827;}
                 </div>
             </div>
 
+            <div class="modal-tabs" id="modalTabs" style="display:none;">
+                <button class="modal-tab active" onclick="switchTab('leaderboard')"><i class="fas fa-list-ol"></i> Top 10</button>
+                <button class="modal-tab" onclick="switchTab('participants')"><i class="fas fa-users"></i> All Participants</button>
+                <button class="modal-tab" onclick="switchTab('teams')"><i class="fas fa-chart-bar"></i> Team Stats</button>
+                <button class="modal-tab" onclick="switchTab('summary')"><i class="fas fa-info-circle"></i> Summary</button>
+            </div>
             <div class="modal-body" id="modalBody">
                 <!-- injected dynamically -->
             </div>
@@ -573,29 +613,44 @@ function getTeamStats(institution) {
 }
 
 function renderAllParticipants(participants, filterName='', filterDistrict='') {
-    const grid = document.getElementById('allParticipantsGrid');
+    const grid  = document.getElementById('allParticipantsGrid');
+    const pgBar = document.getElementById('paginationBar');
+    const badge = document.getElementById('participantCountBadge');
     if (!grid) return;
+
     let list = participants;
     if (filterName)     list = list.filter(p => p.name.toLowerCase().includes(filterName.toLowerCase()));
     if (filterDistrict) list = list.filter(p => (p.class||'').toLowerCase().includes(filterDistrict.toLowerCase()));
-    document.getElementById('participantCountBadge').textContent = list.length + ' participants';
+
+    if (badge) badge.textContent = list.length + ' participants';
+
     if (!list.length) {
         grid.innerHTML = `<div class="no-results-msg">No participants match your search.</div>`;
+        if (pgBar) pgBar.innerHTML = '';
         return;
     }
-    grid.innerHTML = list.map((p, idx) => `
-        <div class="p-card">
+
+    const totalPages = Math.ceil(list.length / PAGE_SIZE);
+    if (currentPage > totalPages) currentPage = totalPages;
+    const slice = list.slice((currentPage-1)*PAGE_SIZE, currentPage*PAGE_SIZE);
+
+    grid.innerHTML = slice.map(p => {
+        const waMsg = encodeURIComponent(`🏆 I ranked #${p.rank} at Infoma Academy Quiz with ${p.score}/${currentInstitution ? currentInstitution.topScore : '?'} pts! Check the leaderboard: infoma.in/leaderboard`);
+        return `<div class="p-card">
             <div class="p-info">
                 <div class="p-name">${p.name}</div>
-                <div class="p-district">${p.class || '—'}</div>
+                <div class="p-district">${p.class || '—'} ${p.team ? `<span style="color:#8b5cf6;font-weight:600;">· ${p.team}</span>` : ''}</div>
             </div>
             <div style="display:flex;align-items:center;gap:6px;">
                 <div class="p-score">${p.score}</div>
-                <a class="p-wa" href="https://wa.me/?text=${encodeURIComponent(`🏆 I ranked #${p.rank} at Infoma Academy Quiz with ${p.score}/${currentInstitution.topScore} pts! Check the leaderboard: infoma.in/leaderboard`)}" target="_blank">
+                <a class="p-wa" href="https://wa.me/?text=${waMsg}" target="_blank">
                     <i class="fab fa-whatsapp"></i> Share
                 </a>
             </div>
-        </div>`).join('');
+        </div>`;
+    }).join('');
+
+    if (pgBar) pgBar.innerHTML = list.length > PAGE_SIZE ? renderPagination(list.length, currentPage) : '';
 }
 
 function updateHeroStats(institutions) {
@@ -654,6 +709,45 @@ function renderinstitutionCards(institutions) {
     });
 }
 
+let currentPage = 1;
+const PAGE_SIZE = 10;
+
+function switchTab(tab) {
+    document.querySelectorAll('.modal-tab').forEach((t,i) => {
+        const ids = ['leaderboard','participants','teams','summary'];
+        t.classList.toggle('active', ids[i] === tab);
+    });
+    document.querySelectorAll('.tab-panel').forEach(p => {
+        p.classList.toggle('active', p.dataset.tab === tab);
+    });
+}
+
+function renderPagination(total, page) {
+    const totalPages = Math.ceil(total / PAGE_SIZE);
+    const start = (page-1)*PAGE_SIZE + 1;
+    const end   = Math.min(page*PAGE_SIZE, total);
+    let btns = '';
+    for (let i = 1; i <= totalPages; i++) {
+        btns += `<button class="pg-btn ${i===page?'active':''}" onclick="goToPage(${i})">${i}</button>`;
+    }
+    return `<div class="pagination-bar">
+        <div class="pg-info">Showing ${start}–${end} of ${total}</div>
+        <div class="pagination-btns">
+            <button class="pg-btn" onclick="goToPage(${page-1})" ${page===1?'disabled':''}><i class="fas fa-chevron-left"></i></button>
+            ${btns}
+            <button class="pg-btn" onclick="goToPage(${page+1})" ${page===totalPages?'disabled':''}><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>`;
+}
+
+function goToPage(page) {
+    currentPage = page;
+    renderAllParticipants(allParticipantsData,
+        document.getElementById('searchName') ? document.getElementById('searchName').value : '',
+        document.getElementById('filterDistrict') ? document.getElementById('filterDistrict').value : ''
+    );
+}
+
 function openModal(institutionId) {
     launchConfetti();
     const institution = allData.institutions.find(s => s.id === institutionId);
@@ -670,7 +764,7 @@ function openModal(institutionId) {
 
     // Build modal body
     let html = `
-        <!-- WINNER BANNER -->
+        <!-- WINNER BANNER (shown on all tabs) -->
         <div class="winner-banner">
             <div class="trophy-icon">🏆</div>
             <div class="winner-info">
@@ -693,7 +787,8 @@ function openModal(institutionId) {
             </button>
         </div>
 
-        <!-- TOP 10 LEADERBOARD -->
+        <!-- TAB: LEADERBOARD -->
+        <div class="tab-panel active" data-tab="leaderboard">
         <div class="lb-section">
             <h3><i class="fas fa-list-ol"></i> Top 10 Leaderboard</h3>
             ${institution.topTen && institution.topTen.length ? `
@@ -714,7 +809,8 @@ function openModal(institutionId) {
                         const rankEmoji = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : p.rank;
                         const pct = Math.round((p.score / maxScore) * 100);
                         const waText = encodeURIComponent(`🏆 I ranked #${p.rank} at Infoma Academy Quiz with ${p.score}/${maxScore} pts! Check the leaderboard: infoma.in/leaderboard`);
-                        return `<tr>
+                        const stickyClass = p.rank <= 3 ? `top-rank-${p.rank}` : '';
+                        return `<tr class="${stickyClass}">
                             <td>
                                 <div class="rank-cell">
                                     <div class="rank-num ${rankClass}">${rankEmoji}</div>
@@ -738,8 +834,11 @@ function openModal(institutionId) {
                 </tbody>
             </table>` : `<div class="no-data"><i class="fas fa-hourglass-half"></i><p>Leaderboard data not yet available for this institution.</p></div>`}
         </div>
+        </div><!-- /tab leaderboard -->
 
-        <!-- TEAM COMPARISON -->
+        <!-- TAB: ALL PARTICIPANTS -->
+        <div class="tab-panel" data-tab="participants">
+        <!-- ALL PARTICIPANTS -->
         ${(() => {
             const teamStats = getTeamStats(institution);
             if (!teamStats || teamStats.length < 2) return '';
@@ -798,38 +897,20 @@ function openModal(institutionId) {
             </div>`;
         })()}
 
-        <!-- ALL PARTICIPANTS -->
         <div class="all-participants-section">
-            <h3><i class="fas fa-users"></i> All Participants <span class="participant-count-badge" id="participantCountBadge">${institution.allParticipants ? institution.allParticipants.length : (institution.topTen ? institution.topTen.length : 0)} participants</span></h3>
+            <h3><i class="fas fa-users"></i> All Participants <span class="participant-count-badge" id="participantCountBadge">0 participants</span></h3>
             <div class="search-filter-bar">
-                <input type="text" id="searchName" placeholder="🔍 Search by name…" oninput="renderAllParticipants(allParticipantsData, this.value, document.getElementById('filterDistrict').value)">
-                <input type="text" id="filterDistrict" placeholder="📍 Filter by district…" oninput="renderAllParticipants(allParticipantsData, document.getElementById('searchName').value, this.value)">
+                <input type="text" id="searchName" placeholder="🔍 Search by name…" oninput="currentPage=1;renderAllParticipants(allParticipantsData, this.value, document.getElementById('filterDistrict').value)">
+                <input type="text" id="filterDistrict" placeholder="📍 Filter by district…" oninput="currentPage=1;renderAllParticipants(allParticipantsData, document.getElementById('searchName').value, this.value)">
             </div>
             <div class="participants-grid" id="allParticipantsGrid"></div>
+            <div id="paginationBar"></div>
         </div>
+        </div><!-- /tab participants -->
 
-        <!-- QUICK STATS -->
-        <div class="lb-section" style="padding-top:0;">
-            <h3><i class="fas fa-info-circle"></i> Quiz Summary</h3>
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
-                <div class="c-stat" style="text-align:left;padding:14px 16px;">
-                    <div class="cl" style="margin-bottom:4px;">📅 Date</div>
-                    <div class="cv" style="font-size:.9rem;">${institution.date}</div>
-                </div>
-                <div class="c-stat" style="text-align:left;padding:14px 16px;">
-                    <div class="cl" style="margin-bottom:4px;">👥 Total Participants</div>
-                    <div class="cv" style="font-size:.9rem;">${institution.totalParticipants}</div>
-                </div>
-                <div class="c-stat" style="text-align:left;padding:14px 16px;">
-                    <div class="cl" style="margin-bottom:4px;">📊 Average Score</div>
-                    <div class="cv" style="font-size:.9rem;">${institution.avgScore} / ${maxScore}</div>
-                </div>
-                <div class="c-stat" style="text-align:left;padding:14px 16px;">
-                    <div class="cl" style="margin-bottom:4px;">⏱ Duration</div>
-                    <div class="cv" style="font-size:.9rem;">${institution.duration}</div>
-                </div>
-            </div>
-        </div>`;
+        <!-- TAB: TEAM STATS -->
+        <div class="tab-panel" data-tab="teams">
+        <!-- TEAM COMPARISON -->
 
     currentInstitution = institution;
     allParticipantsData = (institution.allParticipants || institution.topTen || []).map(p => ({
@@ -837,9 +918,12 @@ function openModal(institutionId) {
     }));
 
     document.getElementById('modalBody').innerHTML = html;
+    document.getElementById('modalTabs').style.display = 'flex';
+    switchTab('leaderboard');
     document.getElementById('detailModal').classList.add('open');
     document.body.style.overflow = 'hidden';
 
+    currentPage = 1;
     renderAllParticipants(allParticipantsData);
 
     // Animate score bars after render
@@ -856,6 +940,7 @@ function closeModal() {
     document.getElementById('detailModal').classList.remove('open');
     document.body.style.overflow = '';
     document.getElementById('modalBody').innerHTML = '';
+    document.getElementById('modalTabs').style.display = 'none';
 }
 
 function closeModalOnOverlay(e) {
