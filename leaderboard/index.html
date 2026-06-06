@@ -143,7 +143,12 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .lb-table th:nth-child(3){width:56px;}
 .lb-table th:nth-child(4){width:44px;}
 .lb-table th:nth-child(5){width:44px;}
-.lb-table td{overflow:hidden;text-overflow:ellipsis;vertical-align:middle;padding:10px 6px;}
+.lb-table td{vertical-align:middle;padding:10px 6px;}
+.lb-table td:nth-child(1){overflow:hidden;}
+.lb-table td:nth-child(2){overflow:hidden;text-overflow:ellipsis;}
+.lb-table td:nth-child(3){text-align:center;font-weight:800;font-size:.9rem;white-space:nowrap;}
+.lb-table td:nth-child(4){text-align:center;font-weight:700;font-size:.9rem;white-space:nowrap;color:#10b981;}
+.lb-table td:nth-child(5){text-align:center;font-weight:700;font-size:.9rem;white-space:nowrap;color:#ef4444;}
 .lb-table thead th{padding:8px 6px;}
 .participant-name{font-weight:600;color:#111827;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
 .participant-institution{font-size:.65rem;color:#9ca3af;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -838,7 +843,8 @@ function openModal(institutionId) {
                             </td>
                             <td>
                                 <div class="participant-name">${p.name}</div>
-                                <div class="participant-institution">${p.class}${p.team ? ` · <span style="color:#8b5cf6;font-weight:600;">${p.team}</span>` : ''}</div>
+                                <div class="participant-institution">${p.class}</div>
+                                ${p.team ? `<div style="font-size:.65rem;font-weight:700;color:#8b5cf6;margin-top:1px;">${p.team}</div>` : ''}
                             </td>
                             <td style="text-align:center;font-weight:800;color:#111827;font-size:.9rem;">${p.score}</td>
                             <td style="text-align:center;color:#10b981;font-weight:700;font-size:.85rem;">${p.correct}</td>
