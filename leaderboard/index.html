@@ -734,12 +734,13 @@ function switchTab(tab) {
     if (tab === 'teams') {
         setTimeout(() => {
             document.querySelectorAll('.cbar-a, .cbar-b').forEach(bar => {
-                const target = bar.dataset.width || bar.style.width;
+                const target = bar.dataset.width;
+                if (!target) return;
                 bar.style.width = '0%';
                 void bar.offsetWidth;
-                setTimeout(() => { bar.style.width = target; }, 50);
+                setTimeout(() => { bar.style.width = target; }, 80);
             });
-        }, 50);
+        }, 100);
     }
     document.querySelectorAll('.tab-panel').forEach(p => {
         const isActive = p.dataset.tab === tab;
