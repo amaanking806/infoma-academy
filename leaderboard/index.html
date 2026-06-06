@@ -192,7 +192,7 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .search-filter-bar input::placeholder{color:#9ca3af;}
 
 /* All Participants */
-.all-participants-section{padding:0 28px 24px;}
+.all-participants-section{padding:24px 28px 24px;}
 .all-participants-section h3{font-size:.85rem;font-weight:700;color:#111827;margin-bottom:14px;display:flex;align-items:center;gap:6px;flex-wrap:nowrap;white-space:nowrap;}
 .participant-count-badge{font-size:.68rem;background:#f5f3ff;color:#7c3aed;padding:2px 8px;border-radius:20px;font-weight:600;white-space:nowrap;flex-shrink:0;}
 .all-participants-section h3 i{color:#8b5cf6;}
@@ -210,7 +210,7 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .no-results-msg{text-align:center;padding:24px;color:#9ca3af;font-size:.85rem;grid-column:1/-1;}
 
 /* Team Comparison */
-.team-comparison{padding:0 28px 28px;}
+.team-comparison{padding:24px 28px 28px;}
 .team-comparison h3{font-size:1rem;font-weight:700;color:#111827;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 .team-comparison h3 i{color:#8b5cf6;}
 .comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
@@ -368,12 +368,7 @@ footer{padding:50px 0 36px;background:#111827;}
                     </div>
                     <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fas fa-times"></i></button>
                 </div>
-                <div class="modal-meta-row">
-                    <div class="m-stat"><div class="mv" id="mParticipants">—</div><div class="ml">Participants</div></div>
-                    <div class="m-stat"><div class="mv" id="mAvgScore">—</div><div class="ml">Avg Score</div></div>
-                    <div class="m-stat"><div class="mv" id="mTopScore">—</div><div class="ml">Top Score</div></div>
-                    <div class="m-stat"><div class="mv" id="mDuration">—</div><div class="ml">Duration</div></div>
-                </div>
+               
             </div>
 
             <div class="modal-tabs" id="modalTabs" style="display:none;">
@@ -784,10 +779,7 @@ function openModal(institutionId) {
 
     document.getElementById('minstitutionName').textContent   = institution.name + ' — Quiz Results';
     document.getElementById('mDate').textContent         = institution.date;
-    document.getElementById('mParticipants').textContent = institution.totalParticipants;
-    document.getElementById('mAvgScore').textContent     = institution.avgScore + '/'+institution.topScore;
-    document.getElementById('mTopScore').textContent     = institution.topScore + ' pts';
-    document.getElementById('mDuration').textContent     = institution.duration;
+    
 
     const maxScore = institution.topScore;
 
