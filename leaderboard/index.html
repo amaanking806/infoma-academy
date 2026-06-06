@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Leaderboard | Infoma Academy — Quiz Results J&K</title>
-<meta name="description" content="View quiz results and leaderboards for Infoma Academy inter-school quiz competitions across Jammu & Kashmir.">
+<meta name="description" content="View quiz results and leaderboards for Infoma Academy inter-institution quiz competitions across Jammu & Kashmir.">
 <link rel="canonical" href="https://infoma.in/leaderboard">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -50,10 +50,10 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 @keyframes spin{to{transform:rotate(360deg);}}
 #loadingState p{color:#6b7280;font-size:.9rem;}
 
-/* ── SCHOOL CARDS GRID ── */
-#schoolsGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+/* ── institution CARDS GRID ── */
+#institutionsGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
 
-.school-card{
+.institution-card{
     background:#fff;
     border:2px solid #e5e7eb;
     border-radius:24px;
@@ -65,19 +65,19 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
     animation:fadeScaleIn .5s ease both;
 }
 @keyframes fadeScaleIn{from{opacity:0;transform:translateY(20px) scale(.96);}to{opacity:1;transform:translateY(0) scale(1);}}
-.school-card:hover{border-color:#c4b5fd;box-shadow:0 16px 40px -8px rgba(139,92,246,.25);transform:translateY(-6px);}
+.institution-card:hover{border-color:#c4b5fd;box-shadow:0 16px 40px -8px rgba(139,92,246,.25);transform:translateY(-6px);}
 
 .card-top-bar{height:5px;background:linear-gradient(90deg,#8b5cf6,#6366f1,#a78bfa);}
 .card-body{padding:24px;}
 
-.school-card-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
-.school-icon{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#8b5cf6,#6366f1);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;flex-shrink:0;}
-.school-icon.gold{background:linear-gradient(135deg,#f59e0b,#d97706);}
-.school-icon.silver{background:linear-gradient(135deg,#94a3b8,#64748b);}
-.school-icon.bronze{background:linear-gradient(135deg,#b45309,#92400e);}
+.institution-card-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.institution-icon{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#8b5cf6,#6366f1);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;flex-shrink:0;}
+.institution-icon.gold{background:linear-gradient(135deg,#f59e0b,#d97706);}
+.institution-icon.silver{background:linear-gradient(135deg,#94a3b8,#64748b);}
+.institution-icon.bronze{background:linear-gradient(135deg,#b45309,#92400e);}
 
-.school-card h3{font-size:1rem;font-weight:700;color:#111827;margin-bottom:3px;}
-.school-card .date-chip{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;color:#8b5cf6;background:#f5f3ff;padding:3px 9px;border-radius:20px;font-weight:600;}
+.institution-card h3{font-size:1rem;font-weight:700;color:#111827;margin-bottom:3px;}
+.institution-card .date-chip{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;color:#8b5cf6;background:#f5f3ff;padding:3px 9px;border-radius:20px;font-weight:600;}
 
 .card-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px;}
 .c-stat{background:#f9fafb;border-radius:12px;padding:10px 12px;text-align:center;}
@@ -106,8 +106,8 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 
 .modal-header{background:linear-gradient(135deg,#0f0c29,#302b63);padding:24px 28px;flex-shrink:0;}
 .modal-header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:20px;}
-.modal-school-name{font-size:1.4rem;font-weight:800;color:#fff;}
-.modal-school-date{font-size:.78rem;color:rgba(255,255,255,.6);margin-top:4px;display:flex;align-items:center;gap:5px;}
+.modal-institution-name{font-size:1.4rem;font-weight:800;color:#fff;}
+.modal-institution-date{font-size:.78rem;color:rgba(255,255,255,.6);margin-top:4px;display:flex;align-items:center;gap:5px;}
 .modal-close{width:36px;height:36px;background:rgba(255,255,255,.15);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:1rem;transition:all .2s;flex-shrink:0;}
 .modal-close:hover{background:rgba(255,255,255,.25);}
 
@@ -158,7 +158,7 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .score-val{font-weight:700;color:#111827;font-size:.85rem;min-width:36px;text-align:right;}
 
 .participant-name{font-weight:600;color:#111827;}
-.participant-school{font-size:.72rem;color:#9ca3af;margin-top:1px;}
+.participant-institution{font-size:.72rem;color:#9ca3af;margin-top:1px;}
 
 /* Congrats strip */
 .congrats-strip{background:linear-gradient(135deg,#8b5cf6,#6366f1);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
@@ -199,12 +199,12 @@ footer{padding:50px 0 36px;background:#111827;}
     .page-hero h1{font-size:2rem;}
     .page-hero{padding:50px 20px 60px;}
     .container{padding:0 16px;}
-    #schoolsGrid{grid-template-columns:1fr;}
+    #institutionsGrid{grid-template-columns:1fr;}
     .modal-meta-row{grid-template-columns:repeat(2,1fr);}
     .hero-stats-row{gap:24px;}
     .modal-box{border-radius:20px;}
     .modal-header{padding:18px 20px;}
-    .modal-school-name{font-size:1.15rem;}
+    .modal-institution-name{font-size:1.15rem;}
     .lb-section{padding:16px 18px;}
     .winner-banner{padding:18px 20px;}
     .congrats-strip{padding:14px 20px;}
@@ -232,7 +232,7 @@ footer{padding:50px 0 36px;background:#111827;}
     <h1>Quiz <span>Leaderboards</span></h1>
     <p>Official results from all quiz competitions across Jammu, Kashmir & Ladakh. Click any institution to see full details.</p>
     <div class="hero-stats-row">
-        <div class="hero-stat-item"><div class="num" id="heroSchools">—</div><div class="lbl">Institutions</div></div>
+        <div class="hero-stat-item"><div class="num" id="heroinstitutions">—</div><div class="lbl">Institutions</div></div>
         <div class="hero-stat-item"><div class="num" id="heroParticipants">—</div><div class="lbl">Participants</div></div>
         <div class="hero-stat-item"><div class="num" id="heroQuizzes">—</div><div class="lbl">Quizzes Held</div></div>
     </div>
@@ -240,7 +240,7 @@ footer{padding:50px 0 36px;background:#111827;}
 
 <div class="container">
 
-    <!-- SCHOOLS SECTION -->
+    <!-- institutionS SECTION -->
     <section class="section">
         <div class="section-header">
             <div class="section-badge">Results</div>
@@ -253,7 +253,7 @@ footer{padding:50px 0 36px;background:#111827;}
             <p>Loading results from the Server…</p>
         </div>
 
-        <div id="schoolsGrid">
+        <div id="institutionsGrid">
             <!-- Cards injected by JS -->
         </div>
     </section>
@@ -264,8 +264,8 @@ footer{padding:50px 0 36px;background:#111827;}
             <div class="modal-header">
                 <div class="modal-header-top">
                     <div>
-                        <div class="modal-school-name" id="mSchoolName">Institution Name</div>
-                        <div class="modal-school-date"><i class="fas fa-calendar-alt"></i> <span id="mDate">—</span></div>
+                        <div class="modal-institution-name" id="minstitutionName">Institution Name</div>
+                        <div class="modal-institution-date"><i class="fas fa-calendar-alt"></i> <span id="mDate">—</span></div>
                     </div>
                     <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fas fa-times"></i></button>
                 </div>
@@ -287,7 +287,7 @@ footer{padding:50px 0 36px;background:#111827;}
     <div class="bottom-cta">
         <h2>Register Your Institution</h2>
         <p>Give your students the chance to compete on J&K's largest quiz platform.</p>
-        <a href="/" class="btn-purple"><i class="fas fa-school"></i> Register Now</a>
+        <a href="/" class="btn-purple"><i class="fas fa-institution"></i> Register Now</a>
     </div>
 
 </div>
@@ -298,7 +298,7 @@ footer{padding:50px 0 36px;background:#111827;}
             <div class="footer-col"><div class="logo">Infoma<span style="color: #a78bfa;">Academy</span></div><p>Infoma Academy is an interactive online learning and quiz platform founded in 2023, designed to make education engaging and accessible for students across India.</p></div>
             <div class="footer-links"><div class="footer-links-column"><h4>Quick Links</h4><a href="https://infoma.in">Home</a><a href="https://infoma.in/how-quiz-works">About Quizzes</a><a href="https://infoma.in/events-gallery">Events Gallery</a><a href="https://infoma.in/infoma-team">Our Team</a><a href="https://infoma.in/terms-and-conditions">Our Terms</a><a href="https://infoma.in/our-mission">Our Mission</a></div><div class="footer-links-column"><h4>Resources</h4><a href="https://infoma.in/how-quiz-works">How quiz works</a><a href="https://infoma.in/frequently-asked-questions">Frequently Asked</a><a href="https://infoma.in/advertise">Advertise With Us</a><a href="https://infoma.in/privacy-policy">Privacy Policy</a><a href="https://infoma.in/contact-us">Contact Us</a><a href="https://infoma.in/about-us">About Us</a></div><div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div></div>
         </div>
-        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu & Kashmir. The only one.</div>
+        <div class="copyright">© 2026 Infoma Academy — Pioneering institution Quizzes in Jammu & Kashmir. The only one.</div>
     </div>
 </footer>
 
@@ -319,10 +319,10 @@ const USE_LIVE_DATA = true;
    This is what the page will show when USE_LIVE_DATA = false
    ================================================================ */
 const DEMO_DATA = {
-    schools: [
+    institutions: [
         {
             id: 'burn-hall',
-            name: 'Burn Hall School',
+            name: 'Burn Hall institution',
             date: 'May 28, 2026',
             totalParticipants: 142,
             avgScore: 18,
@@ -377,17 +377,17 @@ function doGet(e) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var output = {};
 
-  // Sheet named "Schools" with columns:
+  // Sheet named "institutions" with columns:
   // id | name | date | totalParticipants | avgScore | topScore | duration | winnerName | winnerClass | winnerScore | runnerUpName | runnerUpClass | runnerUpScore
-  var schoolsSheet = ss.getSheetByName('Schools');
-  var schoolsData  = schoolsSheet.getDataRange().getValues();
-  var schools = [];
+  var institutionsSheet = ss.getSheetByName('institutions');
+  var institutionsData  = institutionsSheet.getDataRange().getValues();
+  var institutions = [];
 
-  for (var i = 1; i < schoolsData.length; i++) {
-    var row = schoolsData[i];
+  for (var i = 1; i < institutionsData.length; i++) {
+    var row = institutionsData[i];
     if (!row[0]) continue;
 
-    // Sheet named after school id (e.g., "burn-hall") with columns:
+    // Sheet named after institution id (e.g., "burn-hall") with columns:
     // rank | name | class | score | correct | wrong
     var topTen = [];
     try {
@@ -407,7 +407,7 @@ function doGet(e) {
       }
     } catch(err) {}
 
-    schools.push({
+    institutions.push({
       id:                row[0],
       name:              row[1],
       date:              row[2],
@@ -421,7 +421,7 @@ function doGet(e) {
     });
   }
 
-  output.schools = schools;
+  output.institutions = institutions;
   return ContentService
     .createTextOutput(JSON.stringify(output))
     .setMimeType(ContentService.MimeType.JSON);
@@ -441,8 +441,8 @@ async function loadData() {
         } else {
             allData = DEMO_DATA;
         }
-        renderSchoolCards(allData.schools);
-        updateHeroStats(allData.schools);
+        renderinstitutionCards(allData.institutions);
+        updateHeroStats(allData.institutions);
     } catch (err) {
         console.error(err);
         document.getElementById('loadingState').innerHTML = `
@@ -453,55 +453,55 @@ async function loadData() {
     }
 }
 
-function updateHeroStats(schools) {
-    const total = schools.reduce((a, s) => a + (s.totalParticipants || 0), 0);
-    document.getElementById('heroSchools').textContent      = schools.length;
+function updateHeroStats(institutions) {
+    const total = institutions.reduce((a, s) => a + (s.totalParticipants || 0), 0);
+    document.getElementById('heroinstitutions').textContent      = institutions.length;
     document.getElementById('heroParticipants').textContent = total.toLocaleString();
-    document.getElementById('heroQuizzes').textContent      = schools.length;
+    document.getElementById('heroQuizzes').textContent      = institutions.length;
 }
 
 const iconColors = ['','gold','silver','bronze'];
 const rankLabels = ['🥇','🥈','🥉'];
 
-function renderSchoolCards(schools) {
-    const grid = document.getElementById('schoolsGrid');
-    if (!schools || !schools.length) {
+function renderinstitutionCards(institutions) {
+    const grid = document.getElementById('institutionsGrid');
+    if (!institutions || !institutions.length) {
         grid.innerHTML = `<div class="no-data" style="grid-column:1/-1"><i class="fas fa-inbox"></i><p>No quiz results yet. Check back soon!</p></div>`;
         return;
     }
     grid.innerHTML = '';
-    schools.forEach((school, idx) => {
+    institutions.forEach((institution, idx) => {
         const colorClass = iconColors[idx] || '';
         const rankBadgeClass = idx < 3 ? `r${idx+1}` : 'rn';
         const rankDisplay = idx < 3 ? rankLabels[idx] : `#${idx+1}`;
         const card = document.createElement('div');
-        card.className = 'school-card';
+        card.className = 'institution-card';
         card.style.animationDelay = (idx * 100) + 'ms';
         card.innerHTML = `
             <div class="card-top-bar"></div>
             <div class="card-body">
                 <div class="rank-badge ${rankBadgeClass}">${rankDisplay}</div>
-                <div class="school-card-header">
-                    <div class="school-icon ${colorClass}"><i class="fas fa-school"></i></div>
+                <div class="institution-card-header">
+                    <div class="institution-icon ${colorClass}"><i class="fas fa-institution"></i></div>
                     <div>
-                        <h3>${school.name}</h3>
-                        <span class="date-chip"><i class="fas fa-calendar-alt"></i> ${school.date}</span>
+                        <h3>${institution.name}</h3>
+                        <span class="date-chip"><i class="fas fa-calendar-alt"></i> ${institution.date}</span>
                     </div>
                 </div>
                 <div class="card-stats">
-                    <div class="c-stat"><div class="cv">${school.totalParticipants}</div><div class="cl">Participants</div></div>
-                    <div class="c-stat"><div class="cv">${school.topScore}</div><div class="cl">Top Score</div></div>
-                    <div class="c-stat"><div class="cv">${school.duration}</div><div class="cl">Duration</div></div>
+                    <div class="c-stat"><div class="cv">${institution.totalParticipants}</div><div class="cl">Participants</div></div>
+                    <div class="c-stat"><div class="cv">${institution.topScore}</div><div class="cl">Top Score</div></div>
+                    <div class="c-stat"><div class="cv">${institution.duration}</div><div class="cl">Duration</div></div>
                 </div>
                 <div class="winner-chip">
                     <i class="fas fa-trophy"></i>
                     <div>
                         <div class="wl">🏆 Winning Team</div>
-                        <div class="wn">${school.winningTeam || school.winner.name}</div>
-                        <div class="wl" style="margin-top:3px;">Top scorer: ${school.winner.name} — ${school.winner.score} pts</div>
+                        <div class="wn">${institution.winningTeam || institution.winner.name}</div>
+                        <div class="wl" style="margin-top:3px;">Top scorer: ${institution.winner.name} — ${institution.winner.score} pts</div>
                     </div>
                 </div>
-                <button class="view-btn" onclick="openModal('${school.id}')">
+                <button class="view-btn" onclick="openModal('${institution.id}')">
                     <i class="fas fa-chart-bar"></i> View Full Leaderboard
                 </button>
             </div>`;
@@ -509,18 +509,18 @@ function renderSchoolCards(schools) {
     });
 }
 
-function openModal(schoolId) {
-    const school = allData.schools.find(s => s.id === schoolId);
-    if (!school) return;
+function openModal(institutionId) {
+    const institution = allData.institutions.find(s => s.id === institutionId);
+    if (!institution) return;
 
-    document.getElementById('mSchoolName').textContent   = school.name + ' — Quiz Results';
-    document.getElementById('mDate').textContent         = school.date;
-    document.getElementById('mParticipants').textContent = school.totalParticipants;
-    document.getElementById('mAvgScore').textContent     = school.avgScore + '/'+school.topScore;
-    document.getElementById('mTopScore').textContent     = school.topScore + ' pts';
-    document.getElementById('mDuration').textContent     = school.duration;
+    document.getElementById('minstitutionName').textContent   = institution.name + ' — Quiz Results';
+    document.getElementById('mDate').textContent         = institution.date;
+    document.getElementById('mParticipants').textContent = institution.totalParticipants;
+    document.getElementById('mAvgScore').textContent     = institution.avgScore + '/'+institution.topScore;
+    document.getElementById('mTopScore').textContent     = institution.topScore + ' pts';
+    document.getElementById('mDuration').textContent     = institution.duration;
 
-    const maxScore = school.topScore;
+    const maxScore = institution.topScore;
 
     // Build modal body
     let html = `
@@ -529,19 +529,19 @@ function openModal(schoolId) {
             <div class="trophy-icon">🏆</div>
             <div class="winner-info">
                 <h3>Quiz Winner</h3>
-                <h2>${school.winner.name}</h2>
-                <p>${school.winner.class} &nbsp;·&nbsp; Score: <strong>${school.winner.score}/${maxScore}</strong></p>
+                <h2>${institution.winner.name}</h2>
+                <p>${institution.winner.class} &nbsp;·&nbsp; Score: <strong>${institution.winner.score}/${maxScore}</strong></p>
                 <div class="winner-badges">
                     <span class="w-badge gold">🥇 1st Place</span>
-                    ${school.runnerUp ? `<span class="w-badge silver">🥈 Runner Up: ${school.runnerUp.name} (${school.runnerUp.score} pts)</span>` : ''}
+                    ${institution.runnerUp ? `<span class="w-badge silver">🥈 Runner Up: ${institution.runnerUp.name} (${institution.runnerUp.score} pts)</span>` : ''}
                 </div>
             </div>
         </div>
 
         <!-- CONGRATS STRIP -->
         <div class="congrats-strip">
-            <p>🎉 Congratulations to all participants of <strong>${school.name}</strong> for an outstanding performance!</p>
-            <button class="share-btn" onclick="shareResult('${school.name}','${school.winner.name}')">
+            <p>🎉 Congratulations to all participants of <strong>${institution.name}</strong> for an outstanding performance!</p>
+            <button class="share-btn" onclick="shareResult('${institution.name}','${institution.winner.name}')">
                 <i class="fas fa-share-alt"></i> Share
             </button>
         </div>
@@ -549,7 +549,7 @@ function openModal(schoolId) {
         <!-- TOP 10 LEADERBOARD -->
         <div class="lb-section">
             <h3><i class="fas fa-list-ol"></i> Top 10 Leaderboard</h3>
-            ${school.topTen && school.topTen.length ? `
+            ${institution.topTen && institution.topTen.length ? `
             <table class="lb-table">
                 <thead>
                     <tr>
@@ -561,7 +561,7 @@ function openModal(schoolId) {
                     </tr>
                 </thead>
                 <tbody>
-                    ${school.topTen.map(p => {
+                    ${institution.topTen.map(p => {
                         const rankClass = p.rank <= 3 ? `p${p.rank}` : 'pn';
                         const rankEmoji = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : p.rank;
                         const pct = Math.round((p.score / maxScore) * 100);
@@ -573,7 +573,7 @@ function openModal(schoolId) {
                             </td>
                             <td>
                                 <div class="participant-name">${p.name}</div>
-                                <div class="participant-school">${p.class}</div>
+                                <div class="participant-institution">${p.class}</div>
                             </td>
                             <td>
                                 <div class="score-bar-wrap">
@@ -586,7 +586,7 @@ function openModal(schoolId) {
                         </tr>`;
                     }).join('')}
                 </tbody>
-            </table>` : `<div class="no-data"><i class="fas fa-hourglass-half"></i><p>Leaderboard data not yet available for this school.</p></div>`}
+            </table>` : `<div class="no-data"><i class="fas fa-hourglass-half"></i><p>Leaderboard data not yet available for this institution.</p></div>`}
         </div>
 
         <!-- QUICK STATS -->
@@ -595,19 +595,19 @@ function openModal(schoolId) {
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
                 <div class="c-stat" style="text-align:left;padding:14px 16px;">
                     <div class="cl" style="margin-bottom:4px;">📅 Date</div>
-                    <div class="cv" style="font-size:.9rem;">${school.date}</div>
+                    <div class="cv" style="font-size:.9rem;">${institution.date}</div>
                 </div>
                 <div class="c-stat" style="text-align:left;padding:14px 16px;">
                     <div class="cl" style="margin-bottom:4px;">👥 Total Participants</div>
-                    <div class="cv" style="font-size:.9rem;">${school.totalParticipants}</div>
+                    <div class="cv" style="font-size:.9rem;">${institution.totalParticipants}</div>
                 </div>
                 <div class="c-stat" style="text-align:left;padding:14px 16px;">
                     <div class="cl" style="margin-bottom:4px;">📊 Average Score</div>
-                    <div class="cv" style="font-size:.9rem;">${school.avgScore} / ${maxScore}</div>
+                    <div class="cv" style="font-size:.9rem;">${institution.avgScore} / ${maxScore}</div>
                 </div>
                 <div class="c-stat" style="text-align:left;padding:14px 16px;">
                     <div class="cl" style="margin-bottom:4px;">⏱ Duration</div>
-                    <div class="cv" style="font-size:.9rem;">${school.duration}</div>
+                    <div class="cv" style="font-size:.9rem;">${institution.duration}</div>
                 </div>
             </div>
         </div>`;
@@ -636,8 +636,8 @@ function closeModalOnOverlay(e) {
     if (e.target === document.getElementById('detailModal')) closeModal();
 }
 
-function shareResult(school, winner) {
-    const text = `🏆 ${winner} won the Infoma Academy Quiz at ${school}! Check out the full leaderboard at infoma.in/leaderboard`;
+function shareResult(institution, winner) {
+    const text = `🏆 ${winner} won the Infoma Academy Quiz at ${institution}! Check out the full leaderboard at infoma.in/leaderboard`;
     if (navigator.share) {
         navigator.share({ title: 'Infoma Academy Quiz Results', text, url: window.location.href });
     } else if (navigator.clipboard) {
