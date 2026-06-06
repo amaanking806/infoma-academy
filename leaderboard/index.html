@@ -838,64 +838,6 @@ function openModal(institutionId) {
 
         <!-- TAB: ALL PARTICIPANTS -->
         <div class="tab-panel" data-tab="participants">
-        <!-- ALL PARTICIPANTS -->
-        ${(() => {
-            const teamStats = getTeamStats(institution);
-            if (!teamStats || teamStats.length < 2) return '';
-            const a = teamStats[0], b = teamStats[1];
-            const maxAvg = Math.max(a.avg, b.avg) || 1;
-            const maxTop = Math.max(a.top, b.top) || 1;
-            const maxCnt = Math.max(a.count, b.count) || 1;
-            const winner = a.avg >= b.avg ? a.name : b.name;
-            return `
-            <div class="team-comparison">
-                <h3><i class="fas fa-chart-bar"></i> Team Comparison</h3>
-                <div class="comparison-grid">
-                    <div class="team-box team-a ${winner===a.name?'winner-team':''}">
-                        ${winner===a.name?'<div class="crown">👑</div>':''}
-                        <div class="t-name">${a.name}</div>
-                        <div class="t-val">${a.avg}</div>
-                        <div class="t-lbl">Avg Score</div>
-                    </div>
-                    <div class="team-box team-b ${winner===b.name?'winner-team':''}">
-                        ${winner===b.name?'<div class="crown">👑</div>':''}
-                        <div class="t-name">${b.name}</div>
-                        <div class="t-val">${b.avg}</div>
-                        <div class="t-lbl">Avg Score</div>
-                    </div>
-                </div>
-                <div class="comparison-bars">
-                    <div class="cbar-row">
-                        <div class="cbar-label"><span>${a.name}</span><span>${b.name}</span></div>
-                        <div class="cbar-label" style="color:#374151;font-size:.68rem;">Avg Score</div>
-                        <div class="cbar-track" style="height:14px;border-radius:7px;">
-                            <div class="cbar-a" style="width:${Math.round(a.avg/maxAvg*100)}%"></div>
-                        </div>
-                        <div class="cbar-track" style="height:14px;border-radius:7px;margin-top:4px;">
-                            <div class="cbar-b" style="width:${Math.round(b.avg/maxAvg*100)}%"></div>
-                        </div>
-                    </div>
-                    <div class="cbar-row">
-                        <div class="cbar-label" style="color:#374151;font-size:.68rem;">Top Score</div>
-                        <div class="cbar-track" style="height:14px;border-radius:7px;">
-                            <div class="cbar-a" style="width:${Math.round(a.top/maxTop*100)}%"></div>
-                        </div>
-                        <div class="cbar-track" style="height:14px;border-radius:7px;margin-top:4px;">
-                            <div class="cbar-b" style="width:${Math.round(b.top/maxTop*100)}%"></div>
-                        </div>
-                    </div>
-                    <div class="cbar-row">
-                        <div class="cbar-label" style="color:#374151;font-size:.68rem;">Participants in Top 10</div>
-                        <div class="cbar-track" style="height:14px;border-radius:7px;">
-                            <div class="cbar-a" style="width:${Math.round(a.count/maxCnt*100)}%"></div>
-                        </div>
-                        <div class="cbar-track" style="height:14px;border-radius:7px;margin-top:4px;">
-                            <div class="cbar-b" style="width:${Math.round(b.count/maxCnt*100)}%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-        })()}
 
         <div class="all-participants-section">
             <h3><i class="fas fa-users"></i> All Participants <span class="participant-count-badge" id="participantCountBadge">0 participants</span></h3>
