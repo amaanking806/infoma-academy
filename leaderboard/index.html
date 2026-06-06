@@ -136,7 +136,16 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .lb-section h3{font-size:1rem;font-weight:700;color:#111827;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 .lb-section h3 i{color:#8b5cf6;}
 
-.lb-table{width:100%;border-collapse:collapse;table-layout:fixed;} .lb-table th:nth-child(1){width:52px;} .lb-table th:nth-child(2){width:auto;} .lb-table th:nth-child(3){width:90px;} .lb-table th:nth-child(4){width:60px;} .lb-table th:nth-child(5){width:60px;} .lb-table th:nth-child(6){width:64px;}
+.lb-table{width:100%;border-collapse:collapse;table-layout:fixed;}
+.lb-table th:nth-child(1){width:44px;}
+.lb-table th:nth-child(2){width:auto;}
+.lb-table th:nth-child(3){width:52px;}
+.lb-table th:nth-child(4){width:40px;}
+.lb-table th:nth-child(5){width:40px;}
+.lb-table th:nth-child(6){width:44px;}
+.lb-table td{overflow:hidden;text-overflow:ellipsis;vertical-align:middle;}
+.participant-name{font-weight:600;color:#111827;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.participant-institution{font-size:.68rem;color:#9ca3af;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .lb-table thead th{font-size:.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.6px;padding:8px 12px;text-align:left;background:#f9fafb;border-bottom:1px solid #e5e7eb;}
 .lb-table thead th:first-child{border-radius:10px 0 0 0;}
 .lb-table thead th:last-child{border-radius:0 10px 0 0;text-align:right;}
@@ -171,14 +180,15 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 #confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;}
 
 /* Search & Filter */
-.search-filter-bar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
-.search-filter-bar input,.search-filter-bar select{flex:1;min-width:140px;padding:9px 14px;border:1.5px solid #e5e7eb;border-radius:40px;font-family:'Poppins',sans-serif;font-size:.82rem;color:#374151;outline:none;transition:border-color .2s;}
+.search-filter-bar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:nowrap;}
+.search-filter-bar input,.search-filter-bar select{flex:1;min-width:0;padding:8px 12px;border:1.5px solid #e5e7eb;border-radius:40px;font-family:'Poppins',sans-serif;font-size:.75rem;color:#374151;outline:none;transition:border-color .2s;}
 .search-filter-bar input:focus,.search-filter-bar select:focus{border-color:#8b5cf6;}
 .search-filter-bar input::placeholder{color:#9ca3af;}
 
 /* All Participants */
 .all-participants-section{padding:0 28px 24px;}
-.all-participants-section h3{font-size:1rem;font-weight:700;color:#111827;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.all-participants-section h3{font-size:.85rem;font-weight:700;color:#111827;margin-bottom:14px;display:flex;align-items:center;gap:6px;flex-wrap:nowrap;white-space:nowrap;}
+.participant-count-badge{font-size:.68rem;background:#f5f3ff;color:#7c3aed;padding:2px 8px;border-radius:20px;font-weight:600;white-space:nowrap;flex-shrink:0;}
 .all-participants-section h3 i{color:#8b5cf6;}
 .participant-count-badge{font-size:.72rem;background:#f5f3ff;color:#7c3aed;padding:3px 10px;border-radius:20px;font-weight:600;}
 .participants-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;max-height:320px;overflow-y:auto;padding-right:4px;}
