@@ -136,7 +136,7 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .lb-section h3{font-size:1rem;font-weight:700;color:#111827;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 .lb-section h3 i{color:#8b5cf6;}
 
-.lb-table{width:100%;border-collapse:collapse;}
+.lb-table{width:100%;border-collapse:collapse;table-layout:fixed;} .lb-table th:nth-child(1){width:52px;} .lb-table th:nth-child(2){width:auto;} .lb-table th:nth-child(3){width:90px;} .lb-table th:nth-child(4){width:60px;} .lb-table th:nth-child(5){width:60px;} .lb-table th:nth-child(6){width:64px;}
 .lb-table thead th{font-size:.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.6px;padding:8px 12px;text-align:left;background:#f9fafb;border-bottom:1px solid #e5e7eb;}
 .lb-table thead th:first-child{border-radius:10px 0 0 0;}
 .lb-table thead th:last-child{border-radius:0 10px 0 0;text-align:right;}
@@ -215,12 +215,12 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 
 /* ── MODAL TABS ── */
 .modal-tabs{display:flex;gap:0;border-bottom:2px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:10;flex-shrink:0;}
-.modal-tab{flex:1;padding:14px 8px;border:none;background:none;font-family:'Poppins',sans-serif;font-size:.78rem;font-weight:600;color:#6b7280;cursor:pointer;transition:all .2s;position:relative;display:flex;align-items:center;justify-content:center;gap:6px;}
+.modal-tab{flex:1;padding:10px 4px;border:none;background:none;font-family:'Poppins',sans-serif;font-size:.7rem;font-weight:600;color:#6b7280;cursor:pointer;transition:all .2s;position:relative;display:flex;align-items:center;justify-content:center;gap:4px;white-space:nowrap;}
 .modal-tab::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,#8b5cf6,#6366f1);border-radius:2px;transition:width .3s ease;}
 .modal-tab.active{color:#8b5cf6;}
 .modal-tab.active::after{width:100%;}
 .modal-tab:hover{color:#8b5cf6;background:#faf5ff;}
-.modal-tab i{font-size:.8rem;}
+.modal-tab i{font-size:.8rem;} @media(max-width:768px){.modal-tab i{display:none;}.modal-tab{font-size:.72rem;padding:10px 2px;}}
 .tab-panel{display:none;opacity:0;}
 .tab-panel.active{display:block;animation:tabFadeUp .35s cubic-bezier(.22,1,.36,1) both;}
 @keyframes tabFadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
