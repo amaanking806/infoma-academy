@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Leaderboard | Infoma Academy — Quiz Results J&K</title>
+<meta name="description" content="View quiz results and leaderboards for Infoma Academy inter-school quiz competitions across Jammu & Kashmir.">
+<link rel="canonical" href="https://infoma.in/leaderboard">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-x:hidden;}
+
+/* ── NAVBAR ── */
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:linear-gradient(135deg,#0f0c29,#302b63);position:sticky;top:0;z-index:100;}
+.logo{font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,#fff,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:#c4b5fd;border-radius:2px;transition:width .3s ease;}
+.nav-links a:hover::after{width:100%;}
+.nav-links a:hover{color:#c4b5fd;}
+
+/* ── HERO ── */
+.page-hero{background:linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%);padding:70px 40px 80px;text-align:center;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(139,92,246,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,.2);border:1px solid rgba(168,85,247,.3);padding:6px 16px;border-radius:60px;font-size:.75rem;font-weight:600;color:#c4b5fd;margin-bottom:20px;}
+.page-hero h1{font-size:3rem;color:#fff;margin-bottom:14px;line-height:1.2;}
+.page-hero h1 span{background:linear-gradient(135deg,#c4b5fd,#818cf8);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.page-hero p{color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 32px;font-size:1rem;line-height:1.7;}
+.hero-stats-row{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:8px;}
+.hero-stat-item{text-align:center;}
+.hero-stat-item .num{font-size:1.8rem;font-weight:800;color:#fff;}
+.hero-stat-item .lbl{font-size:.72rem;color:rgba(255,255,255,.5);font-weight:500;margin-top:2px;}
+
+/* ── CONTAINER ── */
+.container{max-width:1100px;margin:0 auto;padding:0 32px;}
+.section{padding:60px 0;}
+
+/* ── SECTION HEADER ── */
+.section-badge{display:inline-block;background:linear-gradient(135deg,#ede9fe,#eef2ff);color:#8b5cf6;font-size:.7rem;font-weight:700;letter-spacing:1px;padding:5px 12px;border-radius:30px;margin-bottom:14px;text-transform:uppercase;}
+.section-header{text-align:center;margin-bottom:44px;}
+.section-header h2{font-size:2.2rem;color:#111827;margin-bottom:10px;}
+.section-header h2 span{background:linear-gradient(135deg,#8b5cf6,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.section-header p{color:#6b7280;font-size:.88rem;font-weight:500;}
+
+/* ── LOADING ── */
+#loadingState{text-align:center;padding:60px 0;display:none;}
+#loadingState .spinner{width:48px;height:48px;border:4px solid #e5e7eb;border-top-color:#8b5cf6;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#loadingState p{color:#6b7280;font-size:.9rem;}
+
+/* ── SCHOOL CARDS GRID ── */
+#schoolsGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+
+.school-card{
+    background:#fff;
+    border:2px solid #e5e7eb;
+    border-radius:24px;
+    padding:0;
+    cursor:pointer;
+    transition:all .3s cubic-bezier(.34,1.56,.64,1);
+    overflow:hidden;
+    position:relative;
+    animation:fadeScaleIn .5s ease both;
+}
+@keyframes fadeScaleIn{from{opacity:0;transform:translateY(20px) scale(.96);}to{opacity:1;transform:translateY(0) scale(1);}}
+.school-card:hover{border-color:#c4b5fd;box-shadow:0 16px 40px -8px rgba(139,92,246,.25);transform:translateY(-6px);}
+
+.card-top-bar{height:5px;background:linear-gradient(90deg,#8b5cf6,#6366f1,#a78bfa);}
+.card-body{padding:24px;}
+
+.school-card-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.school-icon{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#8b5cf6,#6366f1);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;flex-shrink:0;}
+.school-icon.gold{background:linear-gradient(135deg,#f59e0b,#d97706);}
+.school-icon.silver{background:linear-gradient(135deg,#94a3b8,#64748b);}
+.school-icon.bronze{background:linear-gradient(135deg,#b45309,#92400e);}
+
+.school-card h3{font-size:1rem;font-weight:700;color:#111827;margin-bottom:3px;}
+.school-card .date-chip{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;color:#8b5cf6;background:#f5f3ff;padding:3px 9px;border-radius:20px;font-weight:600;}
+
+.card-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px;}
+.c-stat{background:#f9fafb;border-radius:12px;padding:10px 12px;text-align:center;}
+.c-stat .cv{font-size:1.1rem;font-weight:800;color:#111827;}
+.c-stat .cl{font-size:.65rem;color:#9ca3af;font-weight:600;margin-top:2px;}
+
+.winner-chip{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fde68a;border-radius:12px;padding:10px 14px;margin-bottom:16px;}
+.winner-chip i{color:#f59e0b;font-size:1rem;}
+.winner-chip .wl{font-size:.72rem;color:#92400e;font-weight:600;}
+.winner-chip .wn{font-size:.88rem;font-weight:700;color:#78350f;}
+
+.view-btn{width:100%;background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border:none;border-radius:40px;padding:10px;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .3s;}
+.view-btn:hover{box-shadow:0 8px 20px rgba(139,92,246,.4);transform:translateY(-2px);}
+
+.rank-badge{position:absolute;top:18px;right:16px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;}
+.rank-badge.r1{background:#fef3c7;color:#b45309;}
+.rank-badge.r2{background:#f1f5f9;color:#475569;}
+.rank-badge.r3{background:#fef2e4;color:#92400e;}
+.rank-badge.rn{background:#f5f3ff;color:#7c3aed;}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,12,41,.8);z-index:999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#fff;border-radius:28px;width:100%;max-width:860px;max-height:94vh;display:flex;flex-direction:column;overflow:hidden;animation:popIn .25s ease;}
+@keyframes popIn{from{transform:scale(.88);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+.modal-header{background:linear-gradient(135deg,#0f0c29,#302b63);padding:24px 28px;flex-shrink:0;}
+.modal-header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:20px;}
+.modal-school-name{font-size:1.4rem;font-weight:800;color:#fff;}
+.modal-school-date{font-size:.78rem;color:rgba(255,255,255,.6);margin-top:4px;display:flex;align-items:center;gap:5px;}
+.modal-close{width:36px;height:36px;background:rgba(255,255,255,.15);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:1rem;transition:all .2s;flex-shrink:0;}
+.modal-close:hover{background:rgba(255,255,255,.25);}
+
+.modal-meta-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.m-stat{background:rgba(255,255,255,.1);border-radius:14px;padding:12px 14px;text-align:center;}
+.m-stat .mv{font-size:1.3rem;font-weight:800;color:#fff;}
+.m-stat .ml{font-size:.68rem;color:rgba(255,255,255,.6);margin-top:3px;}
+
+.modal-body{flex:1;overflow-y:auto;padding:0;}
+
+/* Winner Banner */
+.winner-banner{background:linear-gradient(135deg,#fffbeb,#fef9f0);border-bottom:1px solid #fde68a;padding:24px 28px;display:flex;align-items:center;gap:20px;}
+.trophy-icon{font-size:3rem;animation:trophyBounce 2s ease-in-out infinite;}
+@keyframes trophyBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.winner-info h3{font-size:.78rem;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;}
+.winner-info h2{font-size:1.5rem;font-weight:800;color:#78350f;}
+.winner-info p{font-size:.82rem;color:#b45309;margin-top:4px;}
+.winner-badges{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.w-badge{font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:20px;}
+.w-badge.gold{background:#fef3c7;color:#b45309;}
+.w-badge.silver{background:#f1f5f9;color:#475569;}
+.w-badge.bronze{background:#fef2e4;color:#92400e;}
+
+/* Leaderboard Table */
+.lb-section{padding:24px 28px;}
+.lb-section h3{font-size:1rem;font-weight:700;color:#111827;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.lb-section h3 i{color:#8b5cf6;}
+
+.lb-table{width:100%;border-collapse:collapse;}
+.lb-table thead th{font-size:.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.6px;padding:8px 12px;text-align:left;background:#f9fafb;border-bottom:1px solid #e5e7eb;}
+.lb-table thead th:first-child{border-radius:10px 0 0 0;}
+.lb-table thead th:last-child{border-radius:0 10px 0 0;text-align:right;}
+.lb-table tbody tr{transition:background .15s;border-bottom:1px solid #f3f4f6;}
+.lb-table tbody tr:hover{background:#faf5ff;}
+.lb-table tbody td{padding:12px;font-size:.85rem;color:#374151;}
+.lb-table tbody td:last-child{text-align:right;}
+
+.rank-cell{display:flex;align-items:center;gap:10px;}
+.rank-num{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;}
+.rank-num.p1{background:#fef3c7;color:#b45309;}
+.rank-num.p2{background:#f1f5f9;color:#475569;}
+.rank-num.p3{background:#fef2e4;color:#92400e;}
+.rank-num.pn{background:#f5f3ff;color:#7c3aed;}
+
+.score-bar-wrap{display:flex;align-items:center;gap:8px;}
+.score-bar-bg{flex:1;height:6px;background:#e5e7eb;border-radius:3px;min-width:60px;}
+.score-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#8b5cf6,#6366f1);transition:width .6s ease;}
+.score-val{font-weight:700;color:#111827;font-size:.85rem;min-width:36px;text-align:right;}
+
+.participant-name{font-weight:600;color:#111827;}
+.participant-school{font-size:.72rem;color:#9ca3af;margin-top:1px;}
+
+/* Congrats strip */
+.congrats-strip{background:linear-gradient(135deg,#8b5cf6,#6366f1);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.congrats-strip p{color:rgba(255,255,255,.9);font-size:.82rem;}
+.congrats-strip strong{color:#fff;}
+.congrats-strip .share-btn{background:rgba(255,255,255,.2);color:#fff;border:none;padding:8px 18px;border-radius:40px;font-family:'Poppins',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s;}
+.congrats-strip .share-btn:hover{background:rgba(255,255,255,.3);}
+
+/* No data */
+.no-data{text-align:center;padding:48px 24px;color:#9ca3af;}
+.no-data i{font-size:2.5rem;margin-bottom:12px;display:block;}
+.no-data p{font-size:.88rem;}
+
+/* CTA bottom */
+.bottom-cta{background:linear-gradient(135deg,#0f0c29,#302b63);border-radius:32px;padding:50px 40px;text-align:center;margin-bottom:80px;}
+.bottom-cta h2{color:#fff;font-size:1.8rem;margin-bottom:12px;}
+.bottom-cta p{color:rgba(255,255,255,.7);max-width:460px;margin:0 auto 26px;font-size:.92rem;line-height:1.7;}
+.btn-purple{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;padding:12px 28px;border-radius:40px;font-weight:700;border:none;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.88rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .3s;}
+.btn-purple:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(139,92,246,.4);}
+
+/* Footer */
+footer{padding:50px 0 36px;background:#111827;}
+.footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:36px;}
+.footer-col .logo{font-size:1.4rem;margin-bottom:14px;}
+.footer-col p{color:#9ca3af;max-width:240px;font-size:.85rem;}
+.footer-links{display:flex;gap:52px;flex-wrap:wrap;}
+.footer-links-column h4{margin-bottom:16px;font-size:.9rem;color:#fff;}
+.footer-links-column a{display:block;text-decoration:none;color:#9ca3af;margin-bottom:10px;font-size:.85rem;transition:color .2s;}
+.footer-links-column a:hover{color:#a78bfa;}
+.social-icons{display:flex;gap:14px;}
+.social-icons a{width:38px;height:38px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:all .2s;}
+.social-icons a:hover{background:#8b5cf6;color:#fff;transform:translateY(-3px);}
+.copyright{text-align:center;color:#6b7280;font-size:.82rem;padding-top:28px;border-top:1px solid #1f2937;}
+
+@media(max-width:768px){
+    .navbar{padding:16px 20px;}
+    .nav-links{display:none;}
+    .page-hero h1{font-size:2rem;}
+    .page-hero{padding:50px 20px 60px;}
+    .container{padding:0 16px;}
+    #schoolsGrid{grid-template-columns:1fr;}
+    .modal-meta-row{grid-template-columns:repeat(2,1fr);}
+    .hero-stats-row{gap:24px;}
+    .modal-box{border-radius:20px;}
+    .modal-header{padding:18px 20px;}
+    .modal-school-name{font-size:1.15rem;}
+    .lb-section{padding:16px 18px;}
+    .winner-banner{padding:18px 20px;}
+    .congrats-strip{padding:14px 20px;}
+    .winner-info h2{font-size:1.2rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="/" class="logo">Infoma<span style="color:#c4b5fd;">Academy</span></a>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="https://infoma.in/partners">Partners</a></li>
+        <li><a href="https://infoma.in/live-quiz">Quiz</a></li>
+        <li><a href="https://infoma.in/leaderboard" style="color:#c4b5fd;">Leaderboard</a></li>
+        <li><a href="https://infoma.in/contact-us">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+    <div class="badge"><i class="fas fa-trophy"></i> Quiz Results</div>
+    <h1>School <span>Leaderboards</span></h1>
+    <p>Official results from all inter-school quiz competitions across Jammu, Kashmir & Ladakh. Click any school to see full details.</p>
+    <div class="hero-stats-row">
+        <div class="hero-stat-item"><div class="num" id="heroSchools">—</div><div class="lbl">Schools</div></div>
+        <div class="hero-stat-item"><div class="num" id="heroParticipants">—</div><div class="lbl">Participants</div></div>
+        <div class="hero-stat-item"><div class="num" id="heroQuizzes">—</div><div class="lbl">Quizzes Held</div></div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- SCHOOLS SECTION -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-badge">Results</div>
+            <h2>Select a <span>School</span></h2>
+            <p>Click on any school card below to view detailed leaderboard, winner, and participant info</p>
+        </div>
+
+        <div id="loadingState">
+            <div class="spinner"></div>
+            <p>Loading results from Google Sheets…</p>
+        </div>
+
+        <div id="schoolsGrid">
+            <!-- Cards injected by JS -->
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="detailModal" onclick="closeModalOnOverlay(event)">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-header-top">
+                    <div>
+                        <div class="modal-school-name" id="mSchoolName">School Name</div>
+                        <div class="modal-school-date"><i class="fas fa-calendar-alt"></i> <span id="mDate">—</span></div>
+                    </div>
+                    <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-meta-row">
+                    <div class="m-stat"><div class="mv" id="mParticipants">—</div><div class="ml">Participants</div></div>
+                    <div class="m-stat"><div class="mv" id="mAvgScore">—</div><div class="ml">Avg Score</div></div>
+                    <div class="m-stat"><div class="mv" id="mTopScore">—</div><div class="ml">Top Score</div></div>
+                    <div class="m-stat"><div class="mv" id="mDuration">—</div><div class="ml">Duration</div></div>
+                </div>
+            </div>
+
+            <div class="modal-body" id="modalBody">
+                <!-- injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bottom-cta">
+        <h2>Register Your School</h2>
+        <p>Give your students the chance to compete on J&K's largest quiz platform.</p>
+        <a href="/" class="btn-purple"><i class="fas fa-school"></i> Register Now</a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col"><div class="logo">Infoma<span style="color:#a78bfa;">Academy</span></div><p>Infoma Academy is an interactive online learning and quiz platform founded in 2023, making education engaging for students across India.</p></div>
+            <div class="footer-links">
+                <div class="footer-links-column"><h4>Quick Links</h4><a href="https://infoma.in">Home</a><a href="https://infoma.in/how-quiz-works">About Quizzes</a><a href="https://infoma.in/events-gallery">Events Gallery</a><a href="https://infoma.in/infoma-team">Our Team</a></div>
+                <div class="footer-links-column"><h4>Resources</h4><a href="https://infoma.in/frequently-asked-questions">FAQ</a><a href="https://infoma.in/privacy-policy">Privacy Policy</a><a href="https://infoma.in/contact-us">Contact Us</a><a href="https://infoma.in/about-us">About Us</a></div>
+                <div class="footer-links-column"><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+            </div>
+        </div>
+        <div class="copyright">© 2026 Infoma Academy — Pioneering School Quizzes in Jammu & Kashmir. The only one.</div>
+    </div>
+</footer>
+
+<script>
+/* ================================================================
+   CONFIGURATION — Update these values
+   ================================================================ */
+
+// Your deployed Google Apps Script Web App URL
+// Deploy → Manage Deployments → New Deployment → Web App → "Anyone"
+const APPSCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
+
+// Set to TRUE once your AppScript is deployed and URL is set above
+const USE_LIVE_DATA = false;
+
+/* ================================================================
+   DEMO DATA — Replace with real data via AppScript
+   This is what the page will show when USE_LIVE_DATA = false
+   ================================================================ */
+const DEMO_DATA = {
+    schools: [
+        {
+            id: 'burn-hall',
+            name: 'Burn Hall School',
+            date: 'May 28, 2026',
+            totalParticipants: 142,
+            avgScore: 18,
+            topScore: 25,
+            duration: '20 Min',
+            winner: { name: 'Aryan Sharma', class: 'Class 10-A', score: 25 },
+            runnerUp: { name: 'Zara Bhat', class: 'Class 9-B', score: 24 },
+            topTen: [
+                { rank:1, name:'Aryan Sharma',    class:'Class 10-A', score:25, correct:25, wrong:0  },
+                { rank:2, name:'Zara Bhat',        class:'Class 9-B',  score:24, correct:24, wrong:1  },
+                { rank:3, name:'Rayan Mir',        class:'Class 11-A', score:23, correct:23, wrong:2  },
+                { rank:4, name:'Aisha Khan',       class:'Class 10-B', score:22, correct:22, wrong:3  },
+                { rank:5, name:'Sameer Wani',      class:'Class 9-A',  score:21, correct:21, wrong:4  },
+                { rank:6, name:'Nidhi Gupta',      class:'Class 12-A', score:20, correct:20, wrong:5  },
+                { rank:7, name:'Faisal Ahmed',     class:'Class 10-C', score:19, correct:19, wrong:6  },
+                { rank:8, name:'Priya Dogra',      class:'Class 11-B', score:18, correct:18, wrong:7  },
+                { rank:9, name:'Umar Farooq',      class:'Class 9-C',  score:17, correct:17, wrong:8  },
+                { rank:10,name:'Mehak Singh',      class:'Class 10-A', score:16, correct:16, wrong:9  },
+            ]
+        },
+        {
+            id: 'gvei',
+            name: 'GVEI',
+            date: 'May 30, 2026',
+            totalParticipants: 98,
+            avgScore: 17,
+            topScore: 30,
+            duration: '25 Min',
+            winner: { name: 'Bilal Hussain', class: 'Class 11-A', score: 30 },
+            runnerUp: { name: 'Simran Kaur', class: 'Class 10-B', score: 28 },
+            topTen: [
+                { rank:1, name:'Bilal Hussain',    class:'Class 11-A', score:30, correct:30, wrong:0 },
+                { rank:2, name:'Simran Kaur',      class:'Class 10-B', score:28, correct:28, wrong:2 },
+                { rank:3, name:'Asif Lone',        class:'Class 12-A', score:26, correct:26, wrong:4 },
+                { rank:4, name:'Tanveer Ahmad',    class:'Class 9-A',  score:24, correct:24, wrong:6 },
+                { rank:5, name:'Pooja Sharma',     class:'Class 11-B', score:23, correct:23, wrong:7 },
+                { rank:6, name:'Waqar Ali',        class:'Class 10-A', score:22, correct:22, wrong:8 },
+                { rank:7, name:'Ritika Dhar',      class:'Class 9-B',  score:21, correct:21, wrong:9 },
+                { rank:8, name:'Sahil Anand',      class:'Class 12-B', score:20, correct:20, wrong:10},
+                { rank:9, name:'Hira Rashid',      class:'Class 10-C', score:19, correct:19, wrong:11},
+                { rank:10,name:'Abhay Joshi',      class:'Class 11-C', score:18, correct:18, wrong:12},
+            ]
+        }
+    ]
+};
+
+/* ================================================================
+   APPSCRIPT CODE (save this separately as Code.gs in Apps Script)
+   ================================================================
+   
+function doGet(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var output = {};
+
+  // Sheet named "Schools" with columns:
+  // id | name | date | totalParticipants | avgScore | topScore | duration | winnerName | winnerClass | winnerScore | runnerUpName | runnerUpClass | runnerUpScore
+  var schoolsSheet = ss.getSheetByName('Schools');
+  var schoolsData  = schoolsSheet.getDataRange().getValues();
+  var schools = [];
+
+  for (var i = 1; i < schoolsData.length; i++) {
+    var row = schoolsData[i];
+    if (!row[0]) continue;
+
+    // Sheet named after school id (e.g., "burn-hall") with columns:
+    // rank | name | class | score | correct | wrong
+    var topTen = [];
+    try {
+      var topSheet = ss.getSheetByName(row[0]);
+      if (topSheet) {
+        var topData = topSheet.getDataRange().getValues();
+        for (var j = 1; j < topData.length && j <= 10; j++) {
+          topTen.push({
+            rank:    topData[j][0],
+            name:    topData[j][1],
+            class:   topData[j][2],
+            score:   topData[j][3],
+            correct: topData[j][4],
+            wrong:   topData[j][5]
+          });
+        }
+      }
+    } catch(err) {}
+
+    schools.push({
+      id:                row[0],
+      name:              row[1],
+      date:              row[2],
+      totalParticipants: row[3],
+      avgScore:          row[4],
+      topScore:          row[5],
+      duration:          row[6],
+      winner:   { name: row[7],  class: row[8],  score: row[9]  },
+      runnerUp: { name: row[10], class: row[11], score: row[12] },
+      topTen:   topTen
+    });
+  }
+
+  output.schools = schools;
+  return ContentService
+    .createTextOutput(JSON.stringify(output))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+   ================================================================ */
+
+/* ── Runtime ── */
+let allData = null;
+
+async function loadData() {
+    document.getElementById('loadingState').style.display = 'block';
+    try {
+        if (USE_LIVE_DATA) {
+            const res  = await fetch(APPSCRIPT_URL);
+            allData    = await res.json();
+        } else {
+            allData = DEMO_DATA;
+        }
+        renderSchoolCards(allData.schools);
+        updateHeroStats(allData.schools);
+    } catch (err) {
+        console.error(err);
+        document.getElementById('loadingState').innerHTML = `
+            <i class="fas fa-exclamation-circle" style="font-size:2rem;color:#ef4444;display:block;margin:0 auto 12px;"></i>
+            <p style="color:#ef4444;">Could not load data. Check your AppScript URL.</p>`;
+    } finally {
+        document.getElementById('loadingState').style.display = 'none';
+    }
+}
+
+function updateHeroStats(schools) {
+    const total = schools.reduce((a, s) => a + (s.totalParticipants || 0), 0);
+    document.getElementById('heroSchools').textContent      = schools.length;
+    document.getElementById('heroParticipants').textContent = total.toLocaleString();
+    document.getElementById('heroQuizzes').textContent      = schools.length;
+}
+
+const iconColors = ['','gold','silver','bronze'];
+const rankLabels = ['🥇','🥈','🥉'];
+
+function renderSchoolCards(schools) {
+    const grid = document.getElementById('schoolsGrid');
+    if (!schools || !schools.length) {
+        grid.innerHTML = `<div class="no-data" style="grid-column:1/-1"><i class="fas fa-inbox"></i><p>No quiz results yet. Check back soon!</p></div>`;
+        return;
+    }
+    grid.innerHTML = '';
+    schools.forEach((school, idx) => {
+        const colorClass = iconColors[idx] || '';
+        const rankBadgeClass = idx < 3 ? `r${idx+1}` : 'rn';
+        const rankDisplay = idx < 3 ? rankLabels[idx] : `#${idx+1}`;
+        const card = document.createElement('div');
+        card.className = 'school-card';
+        card.style.animationDelay = (idx * 100) + 'ms';
+        card.innerHTML = `
+            <div class="card-top-bar"></div>
+            <div class="card-body">
+                <div class="rank-badge ${rankBadgeClass}">${rankDisplay}</div>
+                <div class="school-card-header">
+                    <div class="school-icon ${colorClass}"><i class="fas fa-school"></i></div>
+                    <div>
+                        <h3>${school.name}</h3>
+                        <span class="date-chip"><i class="fas fa-calendar-alt"></i> ${school.date}</span>
+                    </div>
+                </div>
+                <div class="card-stats">
+                    <div class="c-stat"><div class="cv">${school.totalParticipants}</div><div class="cl">Participants</div></div>
+                    <div class="c-stat"><div class="cv">${school.topScore}</div><div class="cl">Top Score</div></div>
+                    <div class="c-stat"><div class="cv">${school.duration}</div><div class="cl">Duration</div></div>
+                </div>
+                <div class="winner-chip">
+                    <i class="fas fa-trophy"></i>
+                    <div>
+                        <div class="wl">🏆 Winner</div>
+                        <div class="wn">${school.winner.name} — ${school.winner.score} pts</div>
+                    </div>
+                </div>
+                <button class="view-btn" onclick="openModal('${school.id}')">
+                    <i class="fas fa-chart-bar"></i> View Full Leaderboard
+                </button>
+            </div>`;
+        grid.appendChild(card);
+    });
+}
+
+function openModal(schoolId) {
+    const school = allData.schools.find(s => s.id === schoolId);
+    if (!school) return;
+
+    document.getElementById('mSchoolName').textContent   = school.name + ' — Quiz Results';
+    document.getElementById('mDate').textContent         = school.date;
+    document.getElementById('mParticipants').textContent = school.totalParticipants;
+    document.getElementById('mAvgScore').textContent     = school.avgScore + '/'+school.topScore;
+    document.getElementById('mTopScore').textContent     = school.topScore + ' pts';
+    document.getElementById('mDuration').textContent     = school.duration;
+
+    const maxScore = school.topScore;
+
+    // Build modal body
+    let html = `
+        <!-- WINNER BANNER -->
+        <div class="winner-banner">
+            <div class="trophy-icon">🏆</div>
+            <div class="winner-info">
+                <h3>Quiz Winner</h3>
+                <h2>${school.winner.name}</h2>
+                <p>${school.winner.class} &nbsp;·&nbsp; Score: <strong>${school.winner.score}/${maxScore}</strong></p>
+                <div class="winner-badges">
+                    <span class="w-badge gold">🥇 1st Place</span>
+                    ${school.runnerUp ? `<span class="w-badge silver">🥈 Runner Up: ${school.runnerUp.name} (${school.runnerUp.score} pts)</span>` : ''}
+                </div>
+            </div>
+        </div>
+
+        <!-- CONGRATS STRIP -->
+        <div class="congrats-strip">
+            <p>🎉 Congratulations to all participants of <strong>${school.name}</strong> for an outstanding performance!</p>
+            <button class="share-btn" onclick="shareResult('${school.name}','${school.winner.name}')">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
+        </div>
+
+        <!-- TOP 10 LEADERBOARD -->
+        <div class="lb-section">
+            <h3><i class="fas fa-list-ol"></i> Top 10 Leaderboard</h3>
+            ${school.topTen && school.topTen.length ? `
+            <table class="lb-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Participant</th>
+                        <th>Score</th>
+                        <th>Correct</th>
+                        <th>Wrong</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${school.topTen.map(p => {
+                        const rankClass = p.rank <= 3 ? `p${p.rank}` : 'pn';
+                        const rankEmoji = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : p.rank;
+                        const pct = Math.round((p.score / maxScore) * 100);
+                        return `<tr>
+                            <td>
+                                <div class="rank-cell">
+                                    <div class="rank-num ${rankClass}">${rankEmoji}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="participant-name">${p.name}</div>
+                                <div class="participant-school">${p.class}</div>
+                            </td>
+                            <td>
+                                <div class="score-bar-wrap">
+                                    <div class="score-bar-bg"><div class="score-bar-fill" style="width:${pct}%"></div></div>
+                                    <span class="score-val">${p.score}</span>
+                                </div>
+                            </td>
+                            <td style="color:#10b981;font-weight:600;">✓ ${p.correct}</td>
+                            <td style="color:#ef4444;font-weight:600;">✗ ${p.wrong}</td>
+                        </tr>`;
+                    }).join('')}
+                </tbody>
+            </table>` : `<div class="no-data"><i class="fas fa-hourglass-half"></i><p>Leaderboard data not yet available for this school.</p></div>`}
+        </div>
+
+        <!-- QUICK STATS -->
+        <div class="lb-section" style="padding-top:0;">
+            <h3><i class="fas fa-info-circle"></i> Quiz Summary</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
+                <div class="c-stat" style="text-align:left;padding:14px 16px;">
+                    <div class="cl" style="margin-bottom:4px;">📅 Date</div>
+                    <div class="cv" style="font-size:.9rem;">${school.date}</div>
+                </div>
+                <div class="c-stat" style="text-align:left;padding:14px 16px;">
+                    <div class="cl" style="margin-bottom:4px;">👥 Total Participants</div>
+                    <div class="cv" style="font-size:.9rem;">${school.totalParticipants}</div>
+                </div>
+                <div class="c-stat" style="text-align:left;padding:14px 16px;">
+                    <div class="cl" style="margin-bottom:4px;">📊 Average Score</div>
+                    <div class="cv" style="font-size:.9rem;">${school.avgScore} / ${maxScore}</div>
+                </div>
+                <div class="c-stat" style="text-align:left;padding:14px 16px;">
+                    <div class="cl" style="margin-bottom:4px;">⏱ Duration</div>
+                    <div class="cv" style="font-size:.9rem;">${school.duration}</div>
+                </div>
+            </div>
+        </div>`;
+
+    document.getElementById('modalBody').innerHTML = html;
+    document.getElementById('detailModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Animate score bars after render
+    setTimeout(() => {
+        document.querySelectorAll('.score-bar-fill').forEach(bar => {
+            const w = bar.style.width;
+            bar.style.width = '0%';
+            setTimeout(() => { bar.style.width = w; }, 50);
+        });
+    }, 100);
+}
+
+function closeModal() {
+    document.getElementById('detailModal').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('modalBody').innerHTML = '';
+}
+
+function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('detailModal')) closeModal();
+}
+
+function shareResult(school, winner) {
+    const text = `🏆 ${winner} won the Infoma Academy Quiz at ${school}! Check out the full leaderboard at infoma.in/leaderboard`;
+    if (navigator.share) {
+        navigator.share({ title: 'Infoma Academy Quiz Results', text, url: window.location.href });
+    } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => alert('Result copied to clipboard!'));
+    } else {
+        window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+    }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Boot
+loadData();
+</script>
+<script src="/social-links.js"></script>
+</body>
+</html>
