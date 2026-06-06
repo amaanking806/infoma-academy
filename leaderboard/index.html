@@ -556,7 +556,7 @@ function getTeamStats(institution) {
     const topTen = institution.topTen || [];
     const teams  = {};
     topTen.forEach(p => {
-        const t = p.team || p.class || 'Unknown';
+        const t = p.team || 'Unknown';
         if (!teams[t]) teams[t] = { scores: [], count: 0, top: 0 };
         teams[t].scores.push(p.score);
         teams[t].count++;
@@ -800,7 +800,7 @@ function openModal(institutionId) {
 
         <!-- ALL PARTICIPANTS -->
         <div class="all-participants-section">
-            <h3><i class="fas fa-users"></i> All Participants <span class="participant-count-badge" id="participantCountBadge">${institution.topTen ? institution.topTen.length : 0} participants</span></h3>
+            <h3><i class="fas fa-users"></i> All Participants <span class="participant-count-badge" id="participantCountBadge">${institution.allParticipants ? institution.allParticipants.length : (institution.topTen ? institution.topTen.length : 0)} participants</span></h3>
             <div class="search-filter-bar">
                 <input type="text" id="searchName" placeholder="🔍 Search by name…" oninput="renderAllParticipants(allParticipantsData, this.value, document.getElementById('filterDistrict').value)">
                 <input type="text" id="filterDistrict" placeholder="📍 Filter by district…" oninput="renderAllParticipants(allParticipantsData, document.getElementById('searchName').value, this.value)">
@@ -832,8 +832,8 @@ function openModal(institutionId) {
         </div>`;
 
     currentInstitution = institution;
-    allParticipantsData = (institution.topTen || []).map(p => ({
-        rank: p.rank, name: p.name, class: p.class || p.district || '—', score: p.score
+    allParticipantsData = (institution.allParticipants || institution.topTen || []).map(p => ({
+        rank: p.rank, name: p.name, class: p.class || '—', team: p.team || '', score: p.score
     }));
 
     document.getElementById('modalBody').innerHTML = html;
