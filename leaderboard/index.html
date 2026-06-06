@@ -1005,7 +1005,7 @@ function openModal(institutionId) {
 
     currentInstitution = institution;
     allParticipantsData = (institution.allParticipants || institution.topTen || []).map(p => ({
-        rank: p.rank, name: p.name, class: p.class || '—', team: p.team || '', score: p.score
+        rank: p.rank, name: p.name, class: p.class || '—', team: p.team || '', score: p.score, correct: p.correct ?? '—', wrong: p.wrong ?? '—'
     }));
 
     document.getElementById('modalBody').innerHTML = html;
@@ -1067,18 +1067,15 @@ function openParticipantPopup(p) {
 }
 
 function closeParticipantPopup(e) {
-    if (e && e.target !== document.getElementById('participantPopup') && e.type !== 'click') return;
-    if (e && e.currentTarget === document.querySelector('.popup-close')) {
-        document.getElementById('participantPopup').classList.remove('open');
-        document.body.style.overflow = '';
-        return;
-    }
-    if (!e || e.target === document.getElementById('participantPopup')) {
-        document.getElementById('participantPopup').classList.remove('open');
-        document.body.style.overflow = '';
-    }
+    if (e && e.target !== document.getElementById('participantPopup')) return;
+    document.getElementById('participantPopup').classList.remove('open');
+    document.body.style.overflow = '';
 }
 
+function closeParticipantPopupBtn() {
+    document.getElementById('participantPopup').classList.remove('open');
+    document.body.style.overflow = '';
+}
 // Boot
 loadData();
 </script>
@@ -1087,7 +1084,7 @@ loadData();
 <!-- PARTICIPANT POPUP -->
 <div class="participant-popup-overlay" id="participantPopup" onclick="closeParticipantPopup(event)">
     <div class="participant-popup" style="position:relative;">
-        <button class="popup-close" onclick="closeParticipantPopup()">✕</button>
+        <button class="popup-close" onclick="closeParticipantPopupBtn()">✕</button>
         <div class="popup-handle"></div>
         <div class="popup-rank" id="popupRank">🥇</div>
         <div class="popup-name" id="popupName">—</div>
