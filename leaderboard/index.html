@@ -910,7 +910,97 @@ function openModal(institutionId) {
 
         <!-- TAB: TEAM STATS -->
         <div class="tab-panel" data-tab="teams">
-        <!-- TEAM COMPARISON -->
+            ${(() => {
+                const teamStats = getTeamStats(institution);
+                if (!teamStats || teamStats.length < 2) return '<div class="no-data" style="padding:40px"><i class="fas fa-users"></i><p>Team comparison not available.</p></div>';
+                const a = teamStats[0], b = teamStats[1];
+                const maxAvg = Math.max(a.avg, b.avg) || 1;
+                const maxTop = Math.max(a.top, b.top) || 1;
+                const maxCnt = Math.max(a.count, b.count) || 1;
+                const winner = a.avg >= b.avg ? a.name : b.name;
+                return `
+                <div class="team-comparison">
+                    <h3><i class="fas fa-chart-bar"></i> Team Comparison</h3>
+                    <div class="comparison-grid">
+                        <div class="team-box team-a ${winner===a.name?'winner-team':''}">
+                            ${winner===a.name?'<div class="crown">👑</div>':''}
+                            <div class="t-name">${a.name}</div>
+                            <div class="t-val">${a.avg}</div>
+                            <div class="t-lbl">Avg Score</div>
+                        </div>
+                        <div class="team-box team-b ${winner===b.name?'winner-team':''}">
+                            ${winner===b.name?'<div class="crown">👑</div>':''}
+                            <div class="t-name">${b.name}</div>
+                            <div class="t-val">${b.avg}</div>
+                            <div class="t-lbl">Avg Score</div>
+                        </div>
+                    </div>
+                    <div class="comparison-bars">
+                        <div class="cbar-row">
+                            <div class="cbar-label"><span>${a.name}</span><span>${b.name}</span></div>
+                            <div class="cbar-label" style="color:#374151;font-size:.68rem;">Avg Score</div>
+                            <div class="cbar-track" style="height:14px;border-radius:7px;">
+                                <div class="cbar-a" style="width:${Math.round(a.avg/maxAvg*100)}%"></div>
+                            </div>
+                            <div class="cbar-track" style="height:14px;border-radius:7px;margin-top:4px;">
+                                <div class="cbar-b" style="width:${Math.round(b.avg/maxAvg*100)}%"></div>
+                            </div>
+                        </div>
+                        <div class="cbar-row">
+                            <div class="cbar-label" style="color:#374151;font-size:.68rem;">Top Score</div>
+                            <div class="cbar-track" style="height:14px;border-radius:7px;">
+                                <div class="cbar-a" style="width:${Math.round(a.top/maxTop*100)}%"></div>
+                            </div>
+                            <div class="cbar-track" style="height:14px;border-radius:7px;margin-top:4px;">
+                                <div class="cbar-b" style="width:${Math.round(b.top/maxTop*100)}%"></div>
+                            </div>
+                        </div>
+                        <div class="cbar-row">
+                            <div class="cbar-label" style="color:#374151;font-size:.68rem;">Participants in Top 10</div>
+                            <div class="cbar-track" style="height:14px;border-radius:7px;">
+                                <div class="cbar-a" style="width:${Math.round(a.count/maxCnt*100)}%"></div>
+                            </div>
+                            <div class="cbar-track" style="height:14px;border-radius:7px;margin-top:4px;">
+                                <div class="cbar-b" style="width:${Math.round(b.count/maxCnt*100)}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            })()}
+        </div><!-- /tab teams -->
+
+        <!-- TAB: SUMMARY -->
+        <div class="tab-panel" data-tab="summary">
+            <div class="lb-section">
+                <h3><i class="fas fa-info-circle"></i> Quiz Summary</h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
+                    <div class="c-stat" style="text-align:left;padding:14px 16px;">
+                        <div class="cl" style="margin-bottom:4px;">📅 Date</div>
+                        <div class="cv" style="font-size:.9rem;">${institution.date}</div>
+                    </div>
+                    <div class="c-stat" style="text-align:left;padding:14px 16px;">
+                        <div class="cl" style="margin-bottom:4px;">👥 Total Participants</div>
+                        <div class="cv" style="font-size:.9rem;">${institution.totalParticipants}</div>
+                    </div>
+                    <div class="c-stat" style="text-align:left;padding:14px 16px;">
+                        <div class="cl" style="margin-bottom:4px;">📊 Average Score</div>
+                        <div class="cv" style="font-size:.9rem;">${institution.avgScore} / ${maxScore}</div>
+                    </div>
+                    <div class="c-stat" style="text-align:left;padding:14px 16px;">
+                        <div class="cl" style="margin-bottom:4px;">⏱ Duration</div>
+                        <div class="cv" style="font-size:.9rem;">${institution.duration}</div>
+                    </div>
+                    <div class="c-stat" style="text-align:left;padding:14px 16px;">
+                        <div class="cl" style="margin-bottom:4px;">🏆 Winning Team</div>
+                        <div class="cv" style="font-size:.9rem;">${institution.winningTeam || '—'}</div>
+                    </div>
+                    <div class="c-stat" style="text-align:left;padding:14px 16px;">
+                        <div class="cl" style="margin-bottom:4px;">🥇 Top Score</div>
+                        <div class="cv" style="font-size:.9rem;">${maxScore} pts</div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
 
     currentInstitution = institution;
     allParticipantsData = (institution.allParticipants || institution.topTen || []).map(p => ({
