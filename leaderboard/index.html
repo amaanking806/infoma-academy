@@ -221,8 +221,9 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .modal-tab.active::after{width:100%;}
 .modal-tab:hover{color:#8b5cf6;background:#faf5ff;}
 .modal-tab i{font-size:.8rem;}
-.tab-panel{display:none;}
-.tab-panel.active{display:block;}
+.tab-panel{display:none;opacity:0;}
+.tab-panel.active{display:block;animation:tabFadeUp .35s cubic-bezier(.22,1,.36,1) both;}
+@keyframes tabFadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── STICKY TOP 3 ── */
 .lb-table tbody tr.top-rank-1{background:linear-gradient(90deg,#fffbeb,#fff);}
@@ -718,7 +719,16 @@ function switchTab(tab) {
         t.classList.toggle('active', ids[i] === tab);
     });
     document.querySelectorAll('.tab-panel').forEach(p => {
-        p.classList.toggle('active', p.dataset.tab === tab);
+        const isActive = p.dataset.tab === tab;
+        if (isActive) {
+            p.style.display = 'block';
+            p.classList.remove('active');
+            void p.offsetWidth;
+            p.classList.add('active');
+        } else {
+            p.style.display = 'none';
+            p.classList.remove('active');
+        }
     });
 }
 
