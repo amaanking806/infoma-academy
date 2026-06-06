@@ -167,6 +167,52 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .congrats-strip .share-btn{background:rgba(255,255,255,.2);color:#fff;border:none;padding:8px 18px;border-radius:40px;font-family:'Poppins',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s;}
 .congrats-strip .share-btn:hover{background:rgba(255,255,255,.3);}
 
+/* Confetti */
+#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;}
+
+/* Search & Filter */
+.search-filter-bar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+.search-filter-bar input,.search-filter-bar select{flex:1;min-width:140px;padding:9px 14px;border:1.5px solid #e5e7eb;border-radius:40px;font-family:'Poppins',sans-serif;font-size:.82rem;color:#374151;outline:none;transition:border-color .2s;}
+.search-filter-bar input:focus,.search-filter-bar select:focus{border-color:#8b5cf6;}
+.search-filter-bar input::placeholder{color:#9ca3af;}
+
+/* All Participants */
+.all-participants-section{padding:0 28px 24px;}
+.all-participants-section h3{font-size:1rem;font-weight:700;color:#111827;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.all-participants-section h3 i{color:#8b5cf6;}
+.participant-count-badge{font-size:.72rem;background:#f5f3ff;color:#7c3aed;padding:3px 10px;border-radius:20px;font-weight:600;}
+.participants-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;max-height:320px;overflow-y:auto;padding-right:4px;}
+.participants-grid::-webkit-scrollbar{width:4px;}
+.participants-grid::-webkit-scrollbar-track{background:#f1f5f9;}
+.participants-grid::-webkit-scrollbar-thumb{background:#c4b5fd;border-radius:4px;}
+.p-card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.p-card .p-info .p-name{font-size:.82rem;font-weight:600;color:#111827;}
+.p-card .p-info .p-district{font-size:.7rem;color:#9ca3af;margin-top:1px;}
+.p-card .p-score{font-size:.88rem;font-weight:800;color:#8b5cf6;}
+.p-card .p-wa{background:#25d366;color:#fff;border:none;border-radius:20px;padding:4px 10px;font-size:.68rem;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:4px;text-decoration:none;}
+.p-card .p-wa:hover{background:#1da851;}
+.no-results-msg{text-align:center;padding:24px;color:#9ca3af;font-size:.85rem;grid-column:1/-1;}
+
+/* Team Comparison */
+.team-comparison{padding:0 28px 28px;}
+.team-comparison h3{font-size:1rem;font-weight:700;color:#111827;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.team-comparison h3 i{color:#8b5cf6;}
+.comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
+.team-box{border-radius:16px;padding:16px 18px;text-align:center;position:relative;overflow:hidden;}
+.team-box.team-a{background:linear-gradient(135deg,#ede9fe,#ddd6fe);border:2px solid #c4b5fd;}
+.team-box.team-b{background:linear-gradient(135deg,#e0f2fe,#bae6fd);border:2px solid #7dd3fc;}
+.team-box.winner-team{box-shadow:0 0 0 3px #f59e0b;}
+.team-box .crown{position:absolute;top:8px;right:10px;font-size:1rem;}
+.team-box .t-name{font-size:.78rem;font-weight:700;color:#374151;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;}
+.team-box .t-val{font-size:1.6rem;font-weight:800;color:#111827;}
+.team-box .t-lbl{font-size:.65rem;color:#6b7280;margin-top:2px;}
+.comparison-bars{display:flex;flex-direction:column;gap:12px;}
+.cbar-row{display:flex;flex-direction:column;gap:4px;}
+.cbar-label{font-size:.72rem;font-weight:600;color:#6b7280;display:flex;justify-content:space-between;}
+.cbar-track{position:relative;height:10px;background:#e5e7eb;border-radius:5px;overflow:hidden;}
+.cbar-a{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#8b5cf6,#a78bfa);border-radius:5px;transition:width .8s ease;}
+.cbar-b{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#0ea5e9,#38bdf8);border-radius:5px;transition:width .8s ease;}
+
 /* No data */
 .no-data{text-align:center;padding:48px 24px;color:#9ca3af;}
 .no-data i{font-size:2.5rem;margin-bottom:12px;display:block;}
@@ -213,6 +259,8 @@ footer{padding:50px 0 36px;background:#111827;}
 </style>
 </head>
 <body>
+
+<canvas id="confetti-canvas"></canvas>
 
 <!-- NAVBAR -->
 <nav class="navbar">
@@ -429,15 +477,65 @@ function doGet(e) {
 
    ================================================================ */
 
+/* ── Confetti ── */
+function launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const pieces = [];
+    const colors = ['#8b5cf6','#6366f1','#f59e0b','#10b981','#ef4444','#c4b5fd','#fde68a'];
+    for (let i = 0; i < 160; i++) {
+        pieces.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            w: Math.random() * 10 + 5,
+            h: Math.random() * 5 + 3,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            rotation: Math.random() * 360,
+            speed: Math.random() * 4 + 2,
+            rotSpeed: Math.random() * 4 - 2,
+            opacity: 1
+        });
+    }
+    let frame;
+    let elapsed = 0;
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        elapsed++;
+        let alive = false;
+        pieces.forEach(p => {
+            p.y += p.speed;
+            p.rotation += p.rotSpeed;
+            if (elapsed > 80) p.opacity -= 0.012;
+            if (p.opacity < 0) p.opacity = 0;
+            if (p.y < canvas.height + 20) alive = true;
+            ctx.save();
+            ctx.globalAlpha = p.opacity;
+            ctx.translate(p.x + p.w/2, p.y + p.h/2);
+            ctx.rotate(p.rotation * Math.PI / 180);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+            ctx.restore();
+        });
+        if (alive) frame = requestAnimationFrame(draw);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    if (frame) cancelAnimationFrame(frame);
+    draw();
+}
+
 /* ── Runtime ── */
 let allData = null;
+let currentInstitution = null;
+let allParticipantsData = [];
 
 async function loadData() {
     document.getElementById('loadingState').style.display = 'block';
     try {
         if (USE_LIVE_DATA) {
-            const res  = await fetch(APPSCRIPT_URL);
-            allData    = await res.json();
+            const res = await fetch(APPSCRIPT_URL);
+            allData   = await res.json();
         } else {
             allData = DEMO_DATA;
         }
@@ -451,6 +549,53 @@ async function loadData() {
     } finally {
         document.getElementById('loadingState').style.display = 'none';
     }
+}
+
+function getTeamStats(institution) {
+    if (!institution.winningTeam) return null;
+    const topTen = institution.topTen || [];
+    const teams  = {};
+    topTen.forEach(p => {
+        const t = p.team || p.class || 'Unknown';
+        if (!teams[t]) teams[t] = { scores: [], count: 0, top: 0 };
+        teams[t].scores.push(p.score);
+        teams[t].count++;
+        if (p.score > teams[t].top) teams[t].top = p.score;
+    });
+    const names = Object.keys(teams);
+    if (names.length < 2) return null;
+    return names.map(n => ({
+        name: n,
+        avg:  Math.round(teams[n].scores.reduce((a,b)=>a+b,0) / teams[n].scores.length),
+        count: teams[n].count,
+        top:  teams[n].top
+    }));
+}
+
+function renderAllParticipants(participants, filterName='', filterDistrict='') {
+    const grid = document.getElementById('allParticipantsGrid');
+    if (!grid) return;
+    let list = participants;
+    if (filterName)     list = list.filter(p => p.name.toLowerCase().includes(filterName.toLowerCase()));
+    if (filterDistrict) list = list.filter(p => (p.class||'').toLowerCase().includes(filterDistrict.toLowerCase()));
+    document.getElementById('participantCountBadge').textContent = list.length + ' participants';
+    if (!list.length) {
+        grid.innerHTML = `<div class="no-results-msg">No participants match your search.</div>`;
+        return;
+    }
+    grid.innerHTML = list.map((p, idx) => `
+        <div class="p-card">
+            <div class="p-info">
+                <div class="p-name">${p.name}</div>
+                <div class="p-district">${p.class || '—'}</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;">
+                <div class="p-score">${p.score}</div>
+                <a class="p-wa" href="https://wa.me/?text=${encodeURIComponent(`🏆 I ranked #${p.rank} at Infoma Academy Quiz with ${p.score}/${currentInstitution.topScore} pts! Check the leaderboard: infoma.in/leaderboard`)}" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Share
+                </a>
+            </div>
+        </div>`).join('');
 }
 
 function updateHeroStats(institutions) {
@@ -510,6 +655,7 @@ function renderinstitutionCards(institutions) {
 }
 
 function openModal(institutionId) {
+    launchConfetti();
     const institution = allData.institutions.find(s => s.id === institutionId);
     if (!institution) return;
 
@@ -559,6 +705,7 @@ function openModal(institutionId) {
                         <th>Score</th>
                         <th>Correct</th>
                         <th>Wrong</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -566,6 +713,7 @@ function openModal(institutionId) {
                         const rankClass = p.rank <= 3 ? `p${p.rank}` : 'pn';
                         const rankEmoji = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : p.rank;
                         const pct = Math.round((p.score / maxScore) * 100);
+                        const waText = encodeURIComponent(`🏆 I ranked #${p.rank} at Infoma Academy Quiz with ${p.score}/${maxScore} pts! Check the leaderboard: infoma.in/leaderboard`);
                         return `<tr>
                             <td>
                                 <div class="rank-cell">
@@ -584,10 +732,80 @@ function openModal(institutionId) {
                             </td>
                             <td style="color:#10b981;font-weight:600;">✓ ${p.correct}</td>
                             <td style="color:#ef4444;font-weight:600;">✗ ${p.wrong}</td>
+                            <td><a href="https://wa.me/?text=${waText}" target="_blank" class="p-wa"><i class="fab fa-whatsapp"></i> Share</a></td>
                         </tr>`;
                     }).join('')}
                 </tbody>
             </table>` : `<div class="no-data"><i class="fas fa-hourglass-half"></i><p>Leaderboard data not yet available for this institution.</p></div>`}
+        </div>
+
+        <!-- TEAM COMPARISON -->
+        ${(() => {
+            const teamStats = getTeamStats(institution);
+            if (!teamStats || teamStats.length < 2) return '';
+            const a = teamStats[0], b = teamStats[1];
+            const maxAvg = Math.max(a.avg, b.avg) || 1;
+            const maxTop = Math.max(a.top, b.top) || 1;
+            const maxCnt = Math.max(a.count, b.count) || 1;
+            const winner = a.avg >= b.avg ? a.name : b.name;
+            return `
+            <div class="team-comparison">
+                <h3><i class="fas fa-chart-bar"></i> Team Comparison</h3>
+                <div class="comparison-grid">
+                    <div class="team-box team-a ${winner===a.name?'winner-team':''}">
+                        ${winner===a.name?'<div class="crown">👑</div>':''}
+                        <div class="t-name">${a.name}</div>
+                        <div class="t-val">${a.avg}</div>
+                        <div class="t-lbl">Avg Score</div>
+                    </div>
+                    <div class="team-box team-b ${winner===b.name?'winner-team':''}">
+                        ${winner===b.name?'<div class="crown">👑</div>':''}
+                        <div class="t-name">${b.name}</div>
+                        <div class="t-val">${b.avg}</div>
+                        <div class="t-lbl">Avg Score</div>
+                    </div>
+                </div>
+                <div class="comparison-bars">
+                    <div class="cbar-row">
+                        <div class="cbar-label"><span>${a.name}</span><span>${b.name}</span></div>
+                        <div class="cbar-label" style="color:#374151;font-size:.68rem;">Avg Score</div>
+                        <div class="cbar-track" style="height:14px;border-radius:7px;">
+                            <div class="cbar-a" style="width:${Math.round(a.avg/maxAvg*100)}%"></div>
+                        </div>
+                        <div class="cbar-track" style="height:14px;border-radius:7px;margin-top:4px;">
+                            <div class="cbar-b" style="width:${Math.round(b.avg/maxAvg*100)}%"></div>
+                        </div>
+                    </div>
+                    <div class="cbar-row">
+                        <div class="cbar-label" style="color:#374151;font-size:.68rem;">Top Score</div>
+                        <div class="cbar-track" style="height:14px;border-radius:7px;">
+                            <div class="cbar-a" style="width:${Math.round(a.top/maxTop*100)}%"></div>
+                        </div>
+                        <div class="cbar-track" style="height:14px;border-radius:7px;margin-top:4px;">
+                            <div class="cbar-b" style="width:${Math.round(b.top/maxTop*100)}%"></div>
+                        </div>
+                    </div>
+                    <div class="cbar-row">
+                        <div class="cbar-label" style="color:#374151;font-size:.68rem;">Participants in Top 10</div>
+                        <div class="cbar-track" style="height:14px;border-radius:7px;">
+                            <div class="cbar-a" style="width:${Math.round(a.count/maxCnt*100)}%"></div>
+                        </div>
+                        <div class="cbar-track" style="height:14px;border-radius:7px;margin-top:4px;">
+                            <div class="cbar-b" style="width:${Math.round(b.count/maxCnt*100)}%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        })()}
+
+        <!-- ALL PARTICIPANTS -->
+        <div class="all-participants-section">
+            <h3><i class="fas fa-users"></i> All Participants <span class="participant-count-badge" id="participantCountBadge">${institution.topTen ? institution.topTen.length : 0} participants</span></h3>
+            <div class="search-filter-bar">
+                <input type="text" id="searchName" placeholder="🔍 Search by name…" oninput="renderAllParticipants(allParticipantsData, this.value, document.getElementById('filterDistrict').value)">
+                <input type="text" id="filterDistrict" placeholder="📍 Filter by district…" oninput="renderAllParticipants(allParticipantsData, document.getElementById('searchName').value, this.value)">
+            </div>
+            <div class="participants-grid" id="allParticipantsGrid"></div>
         </div>
 
         <!-- QUICK STATS -->
@@ -613,9 +831,16 @@ function openModal(institutionId) {
             </div>
         </div>`;
 
+    currentInstitution = institution;
+    allParticipantsData = (institution.topTen || []).map(p => ({
+        rank: p.rank, name: p.name, class: p.class || p.district || '—', score: p.score
+    }));
+
     document.getElementById('modalBody').innerHTML = html;
     document.getElementById('detailModal').classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    renderAllParticipants(allParticipantsData);
 
     // Animate score bars after render
     setTimeout(() => {
