@@ -718,6 +718,9 @@ function switchTab(tab) {
         const ids = ['leaderboard','participants','teams','summary'];
         t.classList.toggle('active', ids[i] === tab);
     });
+    document.querySelectorAll('.tab-only-leaderboard').forEach(el => {
+        el.style.display = tab === 'leaderboard' ? '' : 'none';
+    });
     document.querySelectorAll('.tab-panel').forEach(p => {
         const isActive = p.dataset.tab === tab;
         if (isActive) {
@@ -774,8 +777,8 @@ function openModal(institutionId) {
 
     // Build modal body
     let html = `
-        <!-- WINNER BANNER (shown on all tabs) -->
-        <div class="winner-banner">
+        <!-- WINNER BANNER (shown only on leaderboard tab) -->
+        <div class="winner-banner tab-only-leaderboard">
             <div class="trophy-icon">🏆</div>
             <div class="winner-info">
                 <h3>Quiz Winner</h3>
@@ -790,7 +793,7 @@ function openModal(institutionId) {
         </div>
 
         <!-- CONGRATS STRIP -->
-        <div class="congrats-strip">
+        <div class="congrats-strip tab-only-leaderboard">
             <p>🎉 Congratulations to all participants of <strong>${institution.name}</strong> for an outstanding performance!</p>
             <button class="share-btn" onclick="shareResult('${institution.name}','${institution.winner.name}')">
                 <i class="fas fa-share-alt"></i> Share
@@ -805,40 +808,32 @@ function openModal(institutionId) {
             <table class="lb-table">
                 <thead>
                     <tr>
-                        <th>Rank</th>
+                        <th style="width:48px;">Rank</th>
                         <th>Participant</th>
-                        <th>Score</th>
-                        <th>Correct</th>
-                        <th>Wrong</th>
-                        <th></th>
+                        <th style="width:80px;text-align:center;">Score</th>
+                        <th style="width:52px;text-align:center;">✓</th>
+                        <th style="width:52px;text-align:center;">✗</th>
+                        <th style="width:56px;"></th>
                     </tr>
                 </thead>
                 <tbody>
                     ${institution.topTen.map(p => {
                         const rankClass = p.rank <= 3 ? `p${p.rank}` : 'pn';
                         const rankEmoji = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : p.rank;
-                        const pct = Math.round((p.score / maxScore) * 100);
                         const waText = encodeURIComponent(`🏆 I ranked #${p.rank} at Infoma Academy Quiz with ${p.score}/${maxScore} pts! Check the leaderboard: infoma.in/leaderboard`);
                         const stickyClass = p.rank <= 3 ? `top-rank-${p.rank}` : '';
                         return `<tr class="${stickyClass}">
                             <td>
-                                <div class="rank-cell">
-                                    <div class="rank-num ${rankClass}">${rankEmoji}</div>
-                                </div>
+                                <div class="rank-num ${rankClass}" style="margin:0 auto;">${rankEmoji}</div>
                             </td>
                             <td>
                                 <div class="participant-name">${p.name}</div>
-                                <div class="participant-institution">${p.class}</div>
+                                <div class="participant-institution">${p.class}${p.team ? ` · <span style="color:#8b5cf6;font-weight:600;">${p.team}</span>` : ''}</div>
                             </td>
-                            <td>
-                                <div class="score-bar-wrap">
-                                    <div class="score-bar-bg"><div class="score-bar-fill" style="width:${pct}%"></div></div>
-                                    <span class="score-val">${p.score}</span>
-                                </div>
-                            </td>
-                            <td style="color:#10b981;font-weight:600;">✓ ${p.correct}</td>
-                            <td style="color:#ef4444;font-weight:600;">✗ ${p.wrong}</td>
-                            <td><a href="https://wa.me/?text=${waText}" target="_blank" class="p-wa"><i class="fab fa-whatsapp"></i> Share</a></td>
+                            <td style="text-align:center;font-weight:800;color:#111827;font-size:.9rem;">${p.score}</td>
+                            <td style="text-align:center;color:#10b981;font-weight:700;font-size:.85rem;">${p.correct}</td>
+                            <td style="text-align:center;color:#ef4444;font-weight:700;font-size:.85rem;">${p.wrong}</td>
+                            <td><a href="https://wa.me/?text=${waText}" target="_blank" class="p-wa"><i class="fab fa-whatsapp"></i></a></td>
                         </tr>`;
                     }).join('')}
                 </tbody>
