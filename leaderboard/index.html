@@ -137,15 +137,17 @@ body{font-family:'Poppins',sans-serif;background:#f4f3ff;color:#111827;overflow-
 .lb-section h3 i{color:#8b5cf6;}
 
 .lb-table{width:100%;border-collapse:collapse;table-layout:fixed;}
-.lb-table th:nth-child(1){width:44px;}
+.lb-table{width:100%;border-collapse:collapse;table-layout:fixed;}
+.lb-table th:nth-child(1){width:40px;}
 .lb-table th:nth-child(2){width:auto;}
-.lb-table th:nth-child(3){width:52px;}
-.lb-table th:nth-child(4){width:40px;}
-.lb-table th:nth-child(5){width:40px;}
-.lb-table th:nth-child(6){width:44px;}
-.lb-table td{overflow:hidden;text-overflow:ellipsis;vertical-align:middle;}
-.participant-name{font-weight:600;color:#111827;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.participant-institution{font-size:.68rem;color:#9ca3af;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.lb-table th:nth-child(3){width:48px;}
+.lb-table th:nth-child(4){width:36px;}
+.lb-table th:nth-child(5){width:36px;}
+.lb-table th:nth-child(6){width:40px;}
+.lb-table td{overflow:hidden;text-overflow:ellipsis;vertical-align:middle;padding:10px 6px;}
+.lb-table thead th{padding:8px 6px;}
+.participant-name{font-weight:600;color:#111827;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+.participant-institution{font-size:.65rem;color:#9ca3af;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .lb-table thead th{font-size:.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.6px;padding:8px 12px;text-align:left;background:#f9fafb;border-bottom:1px solid #e5e7eb;}
 .lb-table thead th:first-child{border-radius:10px 0 0 0;}
 .lb-table thead th:last-child{border-radius:0 10px 0 0;text-align:right;}
@@ -818,12 +820,12 @@ function openModal(institutionId) {
             <table class="lb-table">
                 <thead>
                     <tr>
-                        <th style="width:48px;">Rank</th>
-                        <th>Participant</th>
-                        <th style="width:80px;text-align:center;">Score</th>
-                        <th style="width:52px;text-align:center;">✓</th>
-                        <th style="width:52px;text-align:center;">✗</th>
-                        <th style="width:56px;"></th>
+                        <th style="width:40px;">#</th>
+                        <th>Name</th>
+                        <th style="width:48px;text-align:center;">Pts</th>
+                        <th style="width:36px;text-align:center;color:#10b981;">✓</th>
+                        <th style="width:36px;text-align:center;color:#ef4444;">✗</th>
+                        <th style="width:40px;"></th>
                     </tr>
                 </thead>
                 <tbody>
