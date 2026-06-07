@@ -634,7 +634,7 @@ function getTeamStats(institution) {
     if (names.length < 2) return null;
     return names.map(n => ({
         name: n,
-        avg:  Math.round(teams[n].scores.reduce((a,b)=>a+b,0) / teams[n].scores.length),
+        avg:  teams[n].scores.reduce((a,b)=>a+b,0),
         count: teams[n].count,
         top:  teams[n].top
     }));
@@ -905,19 +905,19 @@ function openModal(institutionId) {
                             ${winner===a.name?'<div class="crown">👑</div>':''}
                             <div class="t-name">${a.name}</div>
                             <div class="t-val">${a.avg}</div>
-                            <div class="t-lbl">Avg Score</div>
+                            <div class="t-lbl">Total Score</div>
                         </div>
                         <div class="team-box team-b ${winner===b.name?'winner-team':''}">
                             ${winner===b.name?'<div class="crown">👑</div>':''}
                             <div class="t-name">${b.name}</div>
                             <div class="t-val">${b.avg}</div>
-                            <div class="t-lbl">Avg Score</div>
+                            <div class="t-lbl">Total Score</div>
                         </div>
                     </div>
                     <div class="comparison-bars">
                         <div class="cbar-row">
                             <div class="cbar-label"><span>${a.name}</span><span>${b.name}</span></div>
-                            <div class="cbar-label" style="color:#374151;font-size:.68rem;">Avg Score</div>
+                            <div class="cbar-label" style="color:#374151;font-size:.68rem;">Total Score</div>
                             <div style="display:flex;align-items:center;gap:8px;">
                                 <div class="cbar-track" style="height:14px;border-radius:7px;flex:1;">
                                     <div class="cbar-a" style="width:0%" data-width="${Math.round(a.avg/maxAvg*100)}%"></div>
