@@ -723,11 +723,10 @@ function renderinstitutionCards(institutions) {
                     <div class="c-stat"><div class="cv">${institution.duration}</div><div class="cl">Duration</div></div>
                 </div>
                 <div class="winner-chip">
-                    <i class="fas fa-trophy"></i>
-                    <div>
-                        <div class="wl">🏆 Winning Team</div>
-                        <div class="wn">${institution.winningTeam || institution.winner.name}</div>
-                        <div class="wl" style="margin-top:3px;">Top scorer: ${institution.winner.name} — ${institution.winner.score} pts</div>
+                    <span style="font-size:1.1rem;">🏆</span>
+                    <div style="flex:1;">
+                        <div class="wn" style="margin:0;text-align:center;">Winning Team: ${institution.winningTeam || institution.winner.name} 🏆</div>
+                        <div class="wl" style="margin-top:4px;">Top scorer: ${institution.winner.name} — ${institution.winner.score} pts</div>
                     </div>
                 </div>
                 <button class="view-btn" onclick="openModal('${institution.id}')">
@@ -900,7 +899,7 @@ function openModal(institutionId) {
                 const maxAvg = Math.max(a.avg, b.avg) || 1;
                 const maxTop = Math.max(a.top, b.top) || 1;
                 const maxCnt = Math.max(a.count, b.count) || 1;
-                const winner = a.avg >= b.avg ? a.name : b.name;
+                const winner = institution.winningTeam || (a.avg >= b.avg ? a.name : b.name);
                 return `
                 <div class="team-comparison">
                     <h3><i class="fas fa-chart-bar"></i> Team Comparison</h3>
