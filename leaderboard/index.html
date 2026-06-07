@@ -722,8 +722,8 @@ function renderinstitutionCards(institutions) {
                     <div class="c-stat"><div class="cv">${institution.topScore}</div><div class="cl">Top Score</div></div>
                     <div class="c-stat"><div class="cv">${institution.duration}</div><div class="cl">Duration</div></div>
                 </div>
-                <div class="winner-chip">
-                    <span style="font-size:1.1rem;">🏆</span>
+                <div class="winner-chip" style="align-items:center;">
+                    <span style="font-size:1.1rem;align-self:center;">🏆</span>
                     <div style="flex:1;">
                         <div class="wn" style="margin:0;text-align:center;">Winning Team: ${institution.winningTeam || institution.winner.name} 🏆</div>
                         <div class="wl" style="margin-top:4px;">Top scorer: ${institution.winner.name} — ${institution.winner.score} pts</div>
