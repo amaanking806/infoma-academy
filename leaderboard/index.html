@@ -621,7 +621,7 @@ async function loadData() {
 
 function getTeamStats(institution) {
     if (!institution.winningTeam) return null;
-    const topTen = institution.topTen || [];
+    const topTen = institution.allParticipants || institution.topTen || [];
     const teams  = {};
     topTen.forEach(p => {
         const t = p.team || 'Unknown';
